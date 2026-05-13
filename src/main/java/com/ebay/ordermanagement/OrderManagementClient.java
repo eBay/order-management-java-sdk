@@ -2,6 +2,8 @@ package com.ebay.ordermanagement;
 
 import com.ebay.ordermanagement.clients.rest.FulfillmentClient;
 import com.ebay.ordermanagement.clients.rest.LogisticsClient;
+import com.ebay.ordermanagement.clients.graphql.DynamicGraphQLClient;
+import com.ebay.ordermanagement.clients.graphql.OrderManagementGraphQLClient;
 import com.ebay.ordermanagement.configuration.OrderManagementConfiguration;
 import com.ebay.ordermanagement.configuration.KiotaAuthProvider;
 import com.ebay.ordermanagement.generated.fulfillment.FulfillmentApiClient;
@@ -30,6 +32,7 @@ public final class OrderManagementClient implements Closeable {
 
     public final FulfillmentClient fulfillment;
     public final LogisticsClient logistics;
+    public final OrderManagementGraphQLClient graphQL;
 
     public OrderManagementClient(OrderManagementConfiguration config) {
         // Shared OkHttpClient for all REST clients
@@ -47,6 +50,10 @@ public final class OrderManagementClient implements Closeable {
         var logisticsAdapter = new OkHttpRequestAdapter(authProvider, null, null, sharedHttpClient);
         logisticsAdapter.setBaseUrl(config.getLogisticsBaseUrl());
         this.logistics = new LogisticsClient(new LogisticsApiClient(logisticsAdapter), config);
+
+        // GraphQL client
+        var dynamicGraphQL = new DynamicGraphQLClient(sharedHttpClient, config);
+        this.graphQL = new OrderManagementGraphQLClient(dynamicGraphQL);
     }
 
     @Override

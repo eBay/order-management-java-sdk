@@ -10,8 +10,9 @@ import java.util.HashSet;
  */
 public final class OrderManagementConfiguration {
     // Base URLs for each API
-    private String fulfillmentBaseUrl = "https://api.ebay.com";
-    private String logisticsBaseUrl = "https://api.ebay.com";
+    private String fulfillmentBaseUrl = "https://api.ebay.com/sell/fulfillment/v1";
+    private String logisticsBaseUrl = "https://api.ebay.com/sell/logistics/v1";
+    private String graphQLBaseUrl = "https://apig.ebay.com/graphql";
 
     private String accessToken;  // static fallback; per-call token takes precedence
     private boolean diagnosticLogging = false;
@@ -29,6 +30,9 @@ public final class OrderManagementConfiguration {
     public String getLogisticsBaseUrl() { return logisticsBaseUrl; }
     public void setLogisticsBaseUrl(String logisticsBaseUrl) { this.logisticsBaseUrl = logisticsBaseUrl; }
 
+    public String getGraphQLBaseUrl() { return graphQLBaseUrl; }
+    public void setGraphQLBaseUrl(String graphQLBaseUrl) { this.graphQLBaseUrl = graphQLBaseUrl; }
+
     public String getAccessToken() { return accessToken; }
     public void setAccessToken(String accessToken) { this.accessToken = accessToken; }
 
@@ -45,6 +49,7 @@ public final class OrderManagementConfiguration {
         Set<String> hosts = new HashSet<>();
         hosts.add(extractHost(fulfillmentBaseUrl));
         hosts.add(extractHost(logisticsBaseUrl));
+        hosts.add(extractHost(graphQLBaseUrl));
         return hosts;
     }
 
