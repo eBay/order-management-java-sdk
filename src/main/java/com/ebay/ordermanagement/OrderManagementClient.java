@@ -1,0 +1,57 @@
+package com.ebay.ordermanagement;
+
+import com.ebay.ordermanagement.clients.rest.FulfillmentClient;
+import com.ebay.ordermanagement.clients.rest.LogisticsClient;
+import com.ebay.ordermanagement.configuration.OrderManagementConfiguration;
+import com.ebay.ordermanagement.configuration.KiotaAuthProvider;
+import com.ebay.ordermanagement.generated.fulfillment.FulfillmentApiClient;
+import com.ebay.ordermanagement.generated.logistics.LogisticsApiClient;
+import com.microsoft.kiota.authentication.BaseBearerTokenAuthenticationProvider;
+import com.microsoft.kiota.http.OkHttpRequestAdapter;
+import okhttp3.OkHttpClient;
+import java.io.Closeable;
+
+/**
+ * Main facade for the Order Management SDK.
+ * Provides unified access to Fulfillment and Logistics APIs.
+ *
+ * <pre>{@code
+ * var config = new OrderManagementConfiguration();
+ * config.setAccessToken("your-token");
+ *
+ * try (var sdk = new OrderManagementClient(config)) {
+ *     var order = sdk.fulfillment.getOrderAsync("order-id", null, null, null).join();
+ *     System.out.println(order);
+ * }
+ * }</pre>
+ */
+public final class OrderManagementClient implements Closeable {
+    private final OkHttpClient sharedHttpClient;
+
+    public final FulfillmentClient fulfillment;
+    public final LogisticsClient logistics;
+
+    public OrderManagementClient(OrderManagementConfiguration config) {
+        // Shared OkHttpClient for all REST clients
+        this.sharedHttpClient = new OkHttpClient.Builder()
+            .build();
+
+        var authProvider = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config));
+
+        // Fulfillment API client
+        var fulfillmentAdapter = new OkHttpRequestAdapter(authProvider, null, null, sharedHttpClient);
+        fulfillmentAdapter.setBaseUrl(config.getFulfillmentBaseUrl());
+        this.fulfillment = new FulfillmentClient(new FulfillmentApiClient(fulfillmentAdapter), config);
+
+        // Logistics API client
+        var logisticsAdapter = new OkHttpRequestAdapter(authProvider, null, null, sharedHttpClient);
+        logisticsAdapter.setBaseUrl(config.getLogisticsBaseUrl());
+        this.logistics = new LogisticsClient(new LogisticsApiClient(logisticsAdapter), config);
+    }
+
+    @Override
+    public void close() {
+        sharedHttpClient.dispatcher().executorService().shutdown();
+        sharedHttpClient.connectionPool().evictAll();
+    }
+}

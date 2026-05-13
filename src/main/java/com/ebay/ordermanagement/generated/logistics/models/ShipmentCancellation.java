@@ -1,0 +1,109 @@
+package com.ebay.ordermanagement.generated.logistics.models;
+
+import com.microsoft.kiota.serialization.AdditionalDataHolder;
+import com.microsoft.kiota.serialization.Parsable;
+import com.microsoft.kiota.serialization.ParseNode;
+import com.microsoft.kiota.serialization.SerializationWriter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+/**
+ * This type defines a shipment cancellation by the date and time the cancellation request was made and the current status of the request.
+ */
+@jakarta.annotation.Generated("com.microsoft.kiota")
+public class ShipmentCancellation implements AdditionalDataHolder, Parsable {
+    /**
+     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     */
+    private Map<String, Object> additionalData;
+    /**
+     * The time and date the request was made to cancel the shipment, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; UTC string.
+     */
+    private String cancellationRequestedDate;
+    /**
+     * This enum specifies the current cancellation status of a shipment, if a cancellation request has been made. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/logistics/types/api:ShipmentCancellationStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     */
+    private String cancellationStatus;
+    /**
+     * Instantiates a new {@link ShipmentCancellation} and sets the default values.
+     */
+    public ShipmentCancellation() {
+        this.setAdditionalData(new HashMap<>());
+    }
+    /**
+     * Creates a new instance of the appropriate class based on discriminator value
+     * @param parseNode The parse node to use to read the discriminator value and create the object
+     * @return a {@link ShipmentCancellation}
+     */
+    @jakarta.annotation.Nonnull
+    public static ShipmentCancellation createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
+        Objects.requireNonNull(parseNode);
+        return new ShipmentCancellation();
+    }
+    /**
+     * Gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     * @return a {@link Map<String, Object>}
+     */
+    @jakarta.annotation.Nonnull
+    public Map<String, Object> getAdditionalData() {
+        return this.additionalData;
+    }
+    /**
+     * Gets the cancellationRequestedDate property value. The time and date the request was made to cancel the shipment, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; UTC string.
+     * @return a {@link String}
+     */
+    @jakarta.annotation.Nullable
+    public String getCancellationRequestedDate() {
+        return this.cancellationRequestedDate;
+    }
+    /**
+     * Gets the cancellationStatus property value. This enum specifies the current cancellation status of a shipment, if a cancellation request has been made. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/logistics/types/api:ShipmentCancellationStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * @return a {@link String}
+     */
+    @jakarta.annotation.Nullable
+    public String getCancellationStatus() {
+        return this.cancellationStatus;
+    }
+    /**
+     * The deserialization information for the current model
+     * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
+     */
+    @jakarta.annotation.Nonnull
+    public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
+        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(2);
+        deserializerMap.put("cancellationRequestedDate", (n) -> { this.setCancellationRequestedDate(n.getStringValue()); });
+        deserializerMap.put("cancellationStatus", (n) -> { this.setCancellationStatus(n.getStringValue()); });
+        return deserializerMap;
+    }
+    /**
+     * Serializes information the current object
+     * @param writer Serialization writer to use to serialize this model
+     */
+    public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
+        Objects.requireNonNull(writer);
+        writer.writeStringValue("cancellationRequestedDate", this.getCancellationRequestedDate());
+        writer.writeStringValue("cancellationStatus", this.getCancellationStatus());
+        writer.writeAdditionalData(this.getAdditionalData());
+    }
+    /**
+     * Sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     * @param value Value to set for the AdditionalData property.
+     */
+    public void setAdditionalData(@jakarta.annotation.Nullable final Map<String, Object> value) {
+        this.additionalData = value;
+    }
+    /**
+     * Sets the cancellationRequestedDate property value. The time and date the request was made to cancel the shipment, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; UTC string.
+     * @param value Value to set for the cancellationRequestedDate property.
+     */
+    public void setCancellationRequestedDate(@jakarta.annotation.Nullable final String value) {
+        this.cancellationRequestedDate = value;
+    }
+    /**
+     * Sets the cancellationStatus property value. This enum specifies the current cancellation status of a shipment, if a cancellation request has been made. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/logistics/types/api:ShipmentCancellationStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * @param value Value to set for the cancellationStatus property.
+     */
+    public void setCancellationStatus(@jakarta.annotation.Nullable final String value) {
+        this.cancellationStatus = value;
+    }
+}

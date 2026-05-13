@@ -1,0 +1,68 @@
+{
+  "rest": {
+    "sell_fulfillment_v1_oas3": [
+      "acceptPaymentDispute",
+      "addEvidence",
+      "contestPaymentDispute",
+      "createShippingFulfillment",
+      "fetchEvidenceContent",
+      "getActivities",
+      "getOrder",
+      "getOrders",
+      "getPaymentDispute",
+      "getPaymentDisputeSummaries",
+      "getShippingFulfillment",
+      "getShippingFulfillments",
+      "issueRefund",
+      "updateEvidence",
+      "uploadEvidenceFile"
+    ],
+    "sell_logistics_v1_oas3": [
+      "cancelShipment",
+      "createFromShippingQuote",
+      "createShippingQuote",
+      "downloadLabelFile",
+      "getShipment",
+      "getShippingQuote"
+    ]
+  },
+  "graphql": {
+    "eBay_Graph": [
+      "approveContractCancellation",
+      "contractCancellation",
+      "createItemCommitmentCancellation",
+      "createOrderCancellation",
+      "createPurchaseQuoteCancellation",
+      "declineContractCancellation",
+      "sellerContractCancellations",
+      "itemCommitments",
+      "itemCommitmentsByIds",
+      "markOrdersPaid",
+      "orderLineItemsByIds",
+      "orders",
+      "ordersByIds",
+      "orderInquiry",
+      "processOrderInquiryRefund",
+      "provideShipmentInfoForItemNotReceivedInquiry",
+      "sellerOrderInquiries",
+      "sendOrderInquiryMessage",
+      "submitOrderInquiryReferral",
+      "bulkupdatepurchasequotes",
+      "createPurchaseQuote",
+      "approveReturn",
+      "attachReturnShipmentLabel",
+      "declineReturn",
+      "orderReturn",
+      "processReturnRefund",
+      "proposeKeepItemWithPartialRefund",
+      "provideRmaNumber",
+      "recordReturnLabelSentOffline",
+      "recordReturnReceived",
+      "sellerOrderReturns",
+      "sellerReturnPreference",
+      "sendReturnMessage",
+      "submitReturnReferral",
+      "updateSellerRmaPreference"
+    ]
+  }
+}

@@ -1,0 +1,156 @@
+package com.ebay.ordermanagement.generated.fulfillment.order.item.shipping_fulfillment;
+
+import com.ebay.ordermanagement.generated.fulfillment.models.ShippingFulfillmentDetails;
+import com.ebay.ordermanagement.generated.fulfillment.models.ShippingFulfillmentPagedCollection;
+import com.ebay.ordermanagement.generated.fulfillment.order.item.shipping_fulfillment.item.WithFulfillmentItemRequestBuilder;
+import com.microsoft.kiota.BaseRequestBuilder;
+import com.microsoft.kiota.BaseRequestConfiguration;
+import com.microsoft.kiota.HttpMethod;
+import com.microsoft.kiota.RequestAdapter;
+import com.microsoft.kiota.RequestInformation;
+import com.microsoft.kiota.RequestOption;
+import com.microsoft.kiota.serialization.Parsable;
+import com.microsoft.kiota.serialization.ParsableFactory;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+/**
+ * Builds and executes requests for operations under /order/{order-id}/shipping_fulfillment
+ */
+@jakarta.annotation.Generated("com.microsoft.kiota")
+public class ShippingFulfillmentRequestBuilder extends BaseRequestBuilder {
+    /**
+     * Gets an item from the com.ebay.ordermanagement.generated.fulfillment.order.item.shipping_fulfillment.item collection
+     * @param fulfillmentId This path parameter is used to specify the unique identifier of the shipping fulfillment being retrieved.&lt;br&gt;&lt;br&gt;Use the &lt;a href=&quot;/api-docs/sell/fulfillment/resources/order/shipping_fulfillment/methods/getShippingFulfillments&quot; target=&quot;_blank &quot;&gt;getShippingFulfillments&lt;/a&gt; method to retrieved fulfillment IDs.
+     * @return a {@link WithFulfillmentItemRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public WithFulfillmentItemRequestBuilder byFulfillmentId(@jakarta.annotation.Nonnull final String fulfillmentId) {
+        Objects.requireNonNull(fulfillmentId);
+        final HashMap<String, Object> urlTplParams = new HashMap<String, Object>(this.pathParameters);
+        urlTplParams.put("fulfillmentId", fulfillmentId);
+        return new WithFulfillmentItemRequestBuilder(urlTplParams, requestAdapter);
+    }
+    /**
+     * Instantiates a new {@link ShippingFulfillmentRequestBuilder} and sets the default values.
+     * @param pathParameters Path parameters for the request
+     * @param requestAdapter The request adapter to use to execute the requests.
+     */
+    public ShippingFulfillmentRequestBuilder(@jakarta.annotation.Nonnull final HashMap<String, Object> pathParameters, @jakarta.annotation.Nonnull final RequestAdapter requestAdapter) {
+        super(requestAdapter, "{+baseurl}/order/{order%2Did}/shipping_fulfillment", pathParameters);
+    }
+    /**
+     * Instantiates a new {@link ShippingFulfillmentRequestBuilder} and sets the default values.
+     * @param rawUrl The raw URL to use for the request builder.
+     * @param requestAdapter The request adapter to use to execute the requests.
+     */
+    public ShippingFulfillmentRequestBuilder(@jakarta.annotation.Nonnull final String rawUrl, @jakarta.annotation.Nonnull final RequestAdapter requestAdapter) {
+        super(requestAdapter, "{+baseurl}/order/{order%2Did}/shipping_fulfillment", rawUrl);
+    }
+    /**
+     * Use this call to retrieve the contents of all fulfillments currently defined for a specified order based on the order&apos;s unique identifier, &lt;b&gt;orderId&lt;/b&gt;. This value is returned in the &lt;b&gt;getOrders&lt;/b&gt; call&apos;s &lt;b&gt;members.orderId&lt;/b&gt; field when you search for orders by creation date or shipment status.
+     * @return a {@link ShippingFulfillmentPagedCollection}
+     */
+    @jakarta.annotation.Nullable
+    public ShippingFulfillmentPagedCollection get() {
+        return get(null);
+    }
+    /**
+     * Use this call to retrieve the contents of all fulfillments currently defined for a specified order based on the order&apos;s unique identifier, &lt;b&gt;orderId&lt;/b&gt;. This value is returned in the &lt;b&gt;getOrders&lt;/b&gt; call&apos;s &lt;b&gt;members.orderId&lt;/b&gt; field when you search for orders by creation date or shipment status.
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return a {@link ShippingFulfillmentPagedCollection}
+     */
+    @jakarta.annotation.Nullable
+    public ShippingFulfillmentPagedCollection get(@jakarta.annotation.Nullable final java.util.function.Consumer<GetRequestConfiguration> requestConfiguration) {
+        final RequestInformation requestInfo = toGetRequestInformation(requestConfiguration);
+        return this.requestAdapter.send(requestInfo, null, ShippingFulfillmentPagedCollection::createFromDiscriminatorValue);
+    }
+    /**
+     * When you group an order&apos;s line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is a &lt;i&gt;shipping fulfillment&lt;/i&gt;. For each package, execute this call once to generate a shipping fulfillment associated with that package. &lt;br&gt;&lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; A single line item in an order can consist of multiple units of a purchased item, and one unit can consist of multiple parts or components. Although these components might be provided by the manufacturer in separate packaging, the seller must include all components of a given line item in the same package.&lt;/span&gt; &lt;br&gt;&lt;br&gt;Before using this call for a given package, you must determine which line items are in the package. If the package has been shipped, you should provide the date of shipment in the request. If not provided, it will default to the current date and time.
+     * @param body This type contains the details for creating a fulfillment for an order.
+     * @return a {@link ShippingFulfillmentPostResponse}
+     */
+    @jakarta.annotation.Nullable
+    public ShippingFulfillmentPostResponse post(@jakarta.annotation.Nonnull final ShippingFulfillmentDetails body) {
+        return post(body, null);
+    }
+    /**
+     * When you group an order&apos;s line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is a &lt;i&gt;shipping fulfillment&lt;/i&gt;. For each package, execute this call once to generate a shipping fulfillment associated with that package. &lt;br&gt;&lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; A single line item in an order can consist of multiple units of a purchased item, and one unit can consist of multiple parts or components. Although these components might be provided by the manufacturer in separate packaging, the seller must include all components of a given line item in the same package.&lt;/span&gt; &lt;br&gt;&lt;br&gt;Before using this call for a given package, you must determine which line items are in the package. If the package has been shipped, you should provide the date of shipment in the request. If not provided, it will default to the current date and time.
+     * @param body This type contains the details for creating a fulfillment for an order.
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return a {@link ShippingFulfillmentPostResponse}
+     */
+    @jakarta.annotation.Nullable
+    public ShippingFulfillmentPostResponse post(@jakarta.annotation.Nonnull final ShippingFulfillmentDetails body, @jakarta.annotation.Nullable final java.util.function.Consumer<PostRequestConfiguration> requestConfiguration) {
+        Objects.requireNonNull(body);
+        final RequestInformation requestInfo = toPostRequestInformation(body, requestConfiguration);
+        return this.requestAdapter.send(requestInfo, null, ShippingFulfillmentPostResponse::createFromDiscriminatorValue);
+    }
+    /**
+     * Use this call to retrieve the contents of all fulfillments currently defined for a specified order based on the order&apos;s unique identifier, &lt;b&gt;orderId&lt;/b&gt;. This value is returned in the &lt;b&gt;getOrders&lt;/b&gt; call&apos;s &lt;b&gt;members.orderId&lt;/b&gt; field when you search for orders by creation date or shipment status.
+     * @return a {@link RequestInformation}
+     */
+    @jakarta.annotation.Nonnull
+    public RequestInformation toGetRequestInformation() {
+        return toGetRequestInformation(null);
+    }
+    /**
+     * Use this call to retrieve the contents of all fulfillments currently defined for a specified order based on the order&apos;s unique identifier, &lt;b&gt;orderId&lt;/b&gt;. This value is returned in the &lt;b&gt;getOrders&lt;/b&gt; call&apos;s &lt;b&gt;members.orderId&lt;/b&gt; field when you search for orders by creation date or shipment status.
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return a {@link RequestInformation}
+     */
+    @jakarta.annotation.Nonnull
+    public RequestInformation toGetRequestInformation(@jakarta.annotation.Nullable final java.util.function.Consumer<GetRequestConfiguration> requestConfiguration) {
+        final RequestInformation requestInfo = new RequestInformation(HttpMethod.GET, urlTemplate, pathParameters);
+        requestInfo.configure(requestConfiguration, GetRequestConfiguration::new);
+        requestInfo.headers.tryAdd("Accept", "application/json");
+        return requestInfo;
+    }
+    /**
+     * When you group an order&apos;s line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is a &lt;i&gt;shipping fulfillment&lt;/i&gt;. For each package, execute this call once to generate a shipping fulfillment associated with that package. &lt;br&gt;&lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; A single line item in an order can consist of multiple units of a purchased item, and one unit can consist of multiple parts or components. Although these components might be provided by the manufacturer in separate packaging, the seller must include all components of a given line item in the same package.&lt;/span&gt; &lt;br&gt;&lt;br&gt;Before using this call for a given package, you must determine which line items are in the package. If the package has been shipped, you should provide the date of shipment in the request. If not provided, it will default to the current date and time.
+     * @param body This type contains the details for creating a fulfillment for an order.
+     * @return a {@link RequestInformation}
+     */
+    @jakarta.annotation.Nonnull
+    public RequestInformation toPostRequestInformation(@jakarta.annotation.Nonnull final ShippingFulfillmentDetails body) {
+        return toPostRequestInformation(body, null);
+    }
+    /**
+     * When you group an order&apos;s line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is a &lt;i&gt;shipping fulfillment&lt;/i&gt;. For each package, execute this call once to generate a shipping fulfillment associated with that package. &lt;br&gt;&lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; A single line item in an order can consist of multiple units of a purchased item, and one unit can consist of multiple parts or components. Although these components might be provided by the manufacturer in separate packaging, the seller must include all components of a given line item in the same package.&lt;/span&gt; &lt;br&gt;&lt;br&gt;Before using this call for a given package, you must determine which line items are in the package. If the package has been shipped, you should provide the date of shipment in the request. If not provided, it will default to the current date and time.
+     * @param body This type contains the details for creating a fulfillment for an order.
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @return a {@link RequestInformation}
+     */
+    @jakarta.annotation.Nonnull
+    public RequestInformation toPostRequestInformation(@jakarta.annotation.Nonnull final ShippingFulfillmentDetails body, @jakarta.annotation.Nullable final java.util.function.Consumer<PostRequestConfiguration> requestConfiguration) {
+        Objects.requireNonNull(body);
+        final RequestInformation requestInfo = new RequestInformation(HttpMethod.POST, urlTemplate, pathParameters);
+        requestInfo.configure(requestConfiguration, PostRequestConfiguration::new);
+        requestInfo.headers.tryAdd("Accept", "application/json");
+        requestInfo.setContentFromParsable(requestAdapter, "application/json", body);
+        return requestInfo;
+    }
+    /**
+     * Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+     * @param rawUrl The raw URL to use for the request builder.
+     * @return a {@link ShippingFulfillmentRequestBuilder}
+     */
+    @jakarta.annotation.Nonnull
+    public ShippingFulfillmentRequestBuilder withUrl(@jakarta.annotation.Nonnull final String rawUrl) {
+        Objects.requireNonNull(rawUrl);
+        return new ShippingFulfillmentRequestBuilder(rawUrl, requestAdapter);
+    }
+    /**
+     * Configuration for the request such as headers, query parameters, and middleware options.
+     */
+    @jakarta.annotation.Generated("com.microsoft.kiota")
+    public class GetRequestConfiguration extends BaseRequestConfiguration {
+    }
+    /**
+     * Configuration for the request such as headers, query parameters, and middleware options.
+     */
+    @jakarta.annotation.Generated("com.microsoft.kiota")
+    public class PostRequestConfiguration extends BaseRequestConfiguration {
+    }
+}
