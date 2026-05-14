@@ -1,60 +1,30 @@
 query ContractCancellation($input: ContractCancellationInput!) {
   contractCancellation(input: $input) {
     __typename
-    ... on ContractCancellationSuccess {
-      contractCancellation {
-        cancellationId
-        lineItems {
-          __typename
-          cancellationLineItemId
-          requestedQuantity
-          cancelledQuantity
-          listingRestockTasks {
-            __typename
-            ... on PostPurchaseListingRelistTask {
-              relistStatus {
-                code
-                displayText
-              }
-              relistedListing {
-                listingId
-              }
-            }
-          }
-          ... on OrderCancellationLineItem {
-            orderLineItem {
-              orderLineItemId
-            }
-          }
-        }
-        requestedAt
-        reason {
-          code
-          displayText
-        }
-        requesterNote
-        requester
-        status {
-          code
-          displayText
-        }
-        closedAt
-        refunds {
-          refundId
-        }
-        sellerAvailableActions {
-          primaryActions {
-            code
-            displayText
-          }
-          responseDueAt
-        }
-      }
-    }
     ... on ContractCancellationNotFoundError {
       errorCode
       errorMessage
       requestedContractCancellationId
+    }
+    ... on ContractCancellationSuccess {
+      contractCancellation {
+        cancellationId
+        closedAt
+        reason {
+          code
+          displayText
+        }
+        refunds {
+          refundId
+        }
+        requestedAt
+        requester
+        requesterNote
+        status {
+          code
+          displayText
+        }
+      }
     }
   }
 }

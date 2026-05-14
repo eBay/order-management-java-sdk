@@ -1,76 +1,6 @@
 query SellerContractCancellations($input: SellerContractCancellationsInput!) {
   sellerContractCancellations(input: $input) {
     __typename
-    ... on SellerContractCancellationsSuccess {
-      contractCancellations {
-        __typename
-        cancellationId
-        lineItems {
-          __typename
-          cancellationLineItemId
-          requestedQuantity
-          cancelledQuantity
-          listingRestockTasks {
-            __typename
-            ... on PostPurchaseListingRelistTask {
-              relistStatus {
-                code
-                displayText
-              }
-              relistedListing {
-                listingId
-              }
-            }
-          }
-          ... on OrderCancellationLineItem {
-            orderLineItem {
-              orderLineItemId
-            }
-          }
-          ... on PurchaseQuoteCancellationLineItem {
-            purchaseQuoteLineItem {
-              purchaseQuoteLineItemId
-            }
-          }
-        }
-        requestedAt
-        reason {
-          code
-          displayText
-        }
-        requesterNote
-        requester
-        status {
-          code
-          displayText
-        }
-        closedAt
-        refunds {
-          refundId
-        }
-        sellerAvailableActions {
-          primaryActions {
-            code
-            displayText
-          }
-          responseDueAt
-        }
-        ... on ItemCommitmentCancellation {
-          itemCommitment {
-            itemCommitmentId
-          }
-        }
-        ... on PurchaseQuoteCancellation {
-          purchaseQuote {
-            purchaseQuoteId
-          }
-        }
-      }
-      pagination {
-        nextCursor
-        previousCursor
-      }
-    }
     ... on ContractCancellationInvalidDateRangeError {
       errorCode
       errorMessage
@@ -83,6 +13,30 @@ query SellerContractCancellations($input: SellerContractCancellationsInput!) {
     ... on ContractCancellationInvalidSearchInputError {
       errorCode
       errorMessage
+    }
+    ... on SellerContractCancellationsSuccess {
+      contractCancellations {
+        cancellationId
+        closedAt
+        reason {
+          code
+          displayText
+        }
+        refunds {
+          refundId
+        }
+        requestedAt
+        requester
+        requesterNote
+        status {
+          code
+          displayText
+        }
+      }
+      pagination {
+        nextCursor
+        previousCursor
+      }
     }
   }
 }
