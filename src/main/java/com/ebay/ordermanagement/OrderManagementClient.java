@@ -1,9 +1,11 @@
 package com.ebay.ordermanagement;
 
-import com.ebay.ordermanagement.clients.rest.FulfillmentClient;
-import com.ebay.ordermanagement.clients.rest.LogisticsClient;
+import com.apollographql.apollo.ApolloClient;
+import com.ebay.ordermanagement.clients.graphql.BearerTokenInterceptor;
 import com.ebay.ordermanagement.clients.graphql.DynamicGraphQLClient;
 import com.ebay.ordermanagement.clients.graphql.OrderManagementGraphQLClient;
+import com.ebay.ordermanagement.clients.rest.FulfillmentClient;
+import com.ebay.ordermanagement.clients.rest.LogisticsClient;
 import com.ebay.ordermanagement.configuration.OrderManagementConfiguration;
 import com.ebay.ordermanagement.configuration.KiotaAuthProvider;
 import com.ebay.ordermanagement.generated.fulfillment.FulfillmentApiClient;
@@ -51,9 +53,21 @@ public final class OrderManagementClient implements Closeable {
         logisticsAdapter.setBaseUrl(config.getLogisticsBaseUrl());
         this.logistics = new LogisticsClient(new LogisticsApiClient(logisticsAdapter), config);
 
-        // GraphQL client
-        var dynamicGraphQL = new DynamicGraphQLClient(sharedHttpClient, config);
-        this.graphQL = new OrderManagementGraphQLClient(dynamicGraphQL);
+        // Apollo client with token interceptor for GraphQL
+        var apolloHttp = new OkHttpClient.Builder()
+            .addInterceptor(new BearerTokenInterceptor(config))
+            .build();
+        var apolloClient = com.ebay.ordermanagement.clients.graphql.ApolloClientFactory.create(
+            config.getGraphQLBaseUrl(),
+            apolloHttp
+        );
+
+        // GraphQL client (Apollo Kotlin with type safety)
+        this.graphQL = new OrderManagementGraphQLClient(
+            apolloClient,
+            new DynamicGraphQLClient(sharedHttpClient, config),
+            config
+        );
     }
 
     @Override
