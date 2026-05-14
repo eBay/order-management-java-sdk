@@ -1,0 +1,47 @@
+mutation RecordReturnReceived($input: RecordReturnReceivedInput!) {
+  recordReturnReceived(input: $input) {
+    __typename
+    ... on OrderReturn {
+      returnId
+      status {
+        __typename
+        code
+        displayText
+        ... on ReturnRequested {
+          code
+          displayText
+        }
+        ... on ReturnOpen {
+          code
+          displayText
+        }
+        ... on ReturnDeclined {
+          code
+          displayText
+        }
+        ... on ReturnCancelled {
+          code
+          displayText
+        }
+        ... on ReturnClosed {
+          code
+          displayText
+        }
+      }
+      closedAt
+    }
+    ... on ReturnNotFoundError {
+      errorCode
+      errorMessage
+      requestedReturnId
+    }
+    ... on ReturnActionNotPermittedError {
+      errorCode
+      errorMessage
+      availableActions {
+        code
+        displayText
+      }
+    }
+  }
+}

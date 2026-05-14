@@ -1,0 +1,33 @@
+mutation MarkItemCommitmentsPaid($input: MarkItemCommitmentsPaidInput!) {
+  markItemCommitmentsPaid(input: $input) {
+    __typename
+    ... on MarkItemCommitmentsPaidSuccess {
+      markPaidItemCommitments {
+        itemCommitmentId
+      }
+    }
+    ... on MarkItemCommitmentsPaidPartialFailure {
+      errorCode
+      errorMessage
+      markPaidItemCommitments {
+        itemCommitmentId
+      }
+      failures {
+        inputItemCommitmentId
+        errorCode
+        displayMessage
+        retryable
+      }
+    }
+    ... on MarkItemCommitmentsPaidCompleteFailure {
+      errorCode
+      errorMessage
+      failures {
+        inputItemCommitmentId
+        errorCode
+        displayMessage
+        retryable
+      }
+    }
+  }
+}

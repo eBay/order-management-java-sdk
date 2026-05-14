@@ -1,0 +1,88 @@
+mutation UpdateSellerReturnResponseRuleCondition($input: UpdateSellerReturnResponseRuleConditionInput!) {
+  updateSellerReturnResponseRuleCondition(input: $input) {
+    __typename
+    ... on ReturnResponseRule {
+      ruleId
+      name
+      priority
+      responseStrategy {
+        code
+        displayText
+      }
+      status {
+        code
+        displayText
+      }
+      conditionSet {
+        operator
+        conditions {
+          __typename
+          ... on ReturnRefundRangeCondition {
+            minRefundAmount {
+              value
+              currency
+            }
+            maxRefundAmount {
+              value
+              currency
+            }
+          }
+          ... on ReturnReasonCondition {
+            returnReasonList {
+              code
+              displayText
+            }
+          }
+          ... on ReturnItemCategoryCondition {
+            categories {
+              categoryId
+            }
+          }
+          ... on ReturnShipmentOriginCountryCondition {
+            returnShipmentOriginCountries
+          }
+          ... on ReturnItemLocationCountryCondition {
+            itemLocationCountries
+          }
+          ... on ReturnListingGroupCondition {
+            returnRuleListingGroupId
+          }
+        }
+      }
+    }
+    ... on ReturnRuleNameError {
+      errorCode
+      errorMessage
+      containsInvalidCharacters
+      duplicateRuleName
+      nameConstraint {
+        characterLimit {
+          minLength
+          maxLength
+        }
+        allowedPattern
+      }
+    }
+    ... on ReturnRuleInvalidConditionsError {
+      errorCode
+      errorMessage
+      ruleConditionViolation {
+        code
+        displayMessage
+      }
+    }
+    ... on ReturnRuleNotFoundError {
+      errorCode
+      errorMessage
+      requestedRuleId
+    }
+    ... on ReturnRuleFeatureNotEnabledError {
+      errorCode
+      errorMessage
+    }
+    ... on ReturnRuleMissingConditionError {
+      errorCode
+      errorMessage
+    }
+  }
+}

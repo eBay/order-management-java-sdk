@@ -1,0 +1,15 @@
+mutation CreatePurchaseQuote($input: CreatePurchaseQuoteInput!) {
+  createPurchaseQuote(input: $input) {
+    __typename
+    ... on CreatePurchaseQuoteSuccess {
+      purchaseQuote {
+        purchaseQuoteId
+      }
+    }
+    ... on CreatePurchaseQuoteBusinessError {
+      errorCode
+      errorMessage
+      retryable
+    }
+  }
+}

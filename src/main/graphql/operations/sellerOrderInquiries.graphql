@@ -1,0 +1,105 @@
+query SellerOrderInquiries($input: SellerOrderInquiriesInput!) {
+  sellerOrderInquiries(input: $input) {
+    __typename
+    ... on SellerOrderInquiries {
+      orderInquiries {
+        __typename
+        closedAt
+        createdAt
+        initiator
+        inquirers
+        inquiryId
+        providedInformation {
+          submittedAt
+          submittedInformation {
+            __typename
+            ... on OrderInquiryShipmentTracking {
+              trackingNumber
+              shippingCarrier {
+                carrierCode
+                unsupportedCarrierName
+              }
+            }
+            ... on OrderInquirySignatureConfirmation {
+              signatureConfirmationProof {
+                documentId
+                documentName
+                filenameExtension
+                uploadedAt
+              }
+              trackingNumber
+            }
+          }
+          submitter
+        }
+        requestedInformation {
+          requestedAt
+          requester
+        }
+        responder
+        status {
+          code
+          displayText
+        }
+        ... on ItemNotReceivedInquiry {
+          inquiryId
+          status {
+            __typename
+            ... on OrderInquiryOpen {
+              code
+              displayText
+            }
+            ... on OrderInquiryClosed {
+              code
+              displayText
+            }
+          }
+          createdAt
+          closedAt
+          initiator
+          responder
+          inquirers
+          lineItems {
+            inquiryLineItemId
+            quantity
+            orderLineItem {
+              orderLineItemId
+            }
+          }
+          sellerAvailableActions {
+            respondByAction {
+              respondAction {
+                code
+                displayText
+              }
+              responseDueAt
+            }
+            secondaryActions {
+              code
+              displayText
+            }
+          }
+        }
+      }
+      pagination {
+        nextCursor
+        previousCursor
+      }
+    }
+    ... on OrderInquiryInvalidDateRangeError {
+      errorCode
+      errorMessage
+    }
+    ... on OrderInquiryInvalidPageSizeError {
+      errorCode
+      errorMessage
+      maxAllowedPageSize
+      minAllowedPageSize
+      requestedPageSize
+    }
+    ... on OrderInquiryInvalidSearchInputError {
+      errorCode
+      errorMessage
+    }
+  }
+}

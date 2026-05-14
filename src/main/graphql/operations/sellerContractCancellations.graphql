@@ -1,0 +1,88 @@
+query SellerContractCancellations($input: SellerContractCancellationsInput!) {
+  sellerContractCancellations(input: $input) {
+    __typename
+    ... on SellerContractCancellationsSuccess {
+      contractCancellations {
+        __typename
+        cancellationId
+        lineItems {
+          __typename
+          cancellationLineItemId
+          requestedQuantity
+          cancelledQuantity
+          listingRestockTasks {
+            __typename
+            ... on PostPurchaseListingRelistTask {
+              relistStatus {
+                code
+                displayText
+              }
+              relistedListing {
+                listingId
+              }
+            }
+          }
+          ... on OrderCancellationLineItem {
+            orderLineItem {
+              orderLineItemId
+            }
+          }
+          ... on PurchaseQuoteCancellationLineItem {
+            purchaseQuoteLineItem {
+              purchaseQuoteLineItemId
+            }
+          }
+        }
+        requestedAt
+        reason {
+          code
+          displayText
+        }
+        requesterNote
+        requester
+        status {
+          code
+          displayText
+        }
+        closedAt
+        refunds {
+          refundId
+        }
+        sellerAvailableActions {
+          primaryActions {
+            code
+            displayText
+          }
+          responseDueAt
+        }
+        ... on ItemCommitmentCancellation {
+          itemCommitment {
+            itemCommitmentId
+          }
+        }
+        ... on PurchaseQuoteCancellation {
+          purchaseQuote {
+            purchaseQuoteId
+          }
+        }
+      }
+      pagination {
+        nextCursor
+        previousCursor
+      }
+    }
+    ... on ContractCancellationInvalidDateRangeError {
+      errorCode
+      errorMessage
+    }
+    ... on ContractCancellationInvalidPageSizeError {
+      errorCode
+      errorMessage
+      maxAllowedPageSize
+    }
+    ... on ContractCancellationInvalidSearchInputError {
+      errorCode
+      errorMessage
+    }
+  }
+}

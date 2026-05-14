@@ -1,0 +1,15 @@
+mutation UpdateSellerRmaPreference($input: UpdateSellerRmaPreferenceInput!) {
+  updateSellerRmaPreference(input: $input) {
+    __typename
+    ... on SellerReturnPreferences {
+      listingMarketplace
+      rmaPreference {
+        preferenceStatus
+      }
+    }
+    ... on ReturnPreferenceNotFoundError {
+      errorCode
+      errorMessage
+    }
+  }
+}

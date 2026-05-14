@@ -1,0 +1,97 @@
+query PurchaseQuotesByIds($input: PurchaseQuotesByIdsInput!) {
+  purchaseQuotesByIds(input: $input) {
+    __typename
+    ... on PurchaseQuotesByIdsCompleteFailure {
+      errorCode
+      errorMessage
+      failures {
+        displayMessage
+        errorCode
+        inputPurchaseQuoteId
+        retryable
+      }
+    }
+    ... on PurchaseQuotesByIdsPartialFailure {
+      errorCode
+      errorMessage
+      failures {
+        displayMessage
+        errorCode
+        inputPurchaseQuoteId
+        retryable
+      }
+      purchaseQuotes {
+        purchaseQuoteId
+        updatedAt
+        createdAt
+        state {
+          __typename
+          ... on PurchaseQuoteActive {
+            label
+          }
+          ... on PurchaseQuoteCancelled {
+            cancelledAt
+            label
+            reason {
+              displayName
+              id
+            }
+          }
+          ... on PurchaseQuoteCompleted {
+            label
+          }
+          ... on PurchaseQuoteInvalid {
+            label
+            reason {
+              displayName
+              id
+            }
+          }
+          ... on PurchaseQuoteLocked {
+            label
+          }
+          ... on PurchaseQuoteRequested {
+            label
+          }
+        }
+      }
+    }
+    ... on PurchaseQuotesByIdsSuccess {
+      purchaseQuotes {
+        purchaseQuoteId
+        updatedAt
+        createdAt
+        state {
+          __typename
+          ... on PurchaseQuoteActive {
+            label
+          }
+          ... on PurchaseQuoteCancelled {
+            cancelledAt
+            label
+            reason {
+              displayName
+              id
+            }
+          }
+          ... on PurchaseQuoteCompleted {
+            label
+          }
+          ... on PurchaseQuoteInvalid {
+            label
+            reason {
+              displayName
+              id
+            }
+          }
+          ... on PurchaseQuoteLocked {
+            label
+          }
+          ... on PurchaseQuoteRequested {
+            label
+          }
+        }
+      }
+    }
+  }
+}

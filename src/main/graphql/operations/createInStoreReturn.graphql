@@ -1,0 +1,202 @@
+mutation CreateInStoreReturn($input: CreateInStoreReturnInput!) {
+  createInStoreReturn(input: $input) {
+    __typename
+    ... on OrderReturn {
+      returnId
+      status {
+        __typename
+        code
+        displayText
+        ... on ReturnRequested {
+          code
+          displayText
+        }
+        ... on ReturnOpen {
+          code
+          displayText
+        }
+        ... on ReturnDeclined {
+          code
+          displayText
+        }
+        ... on ReturnCancelled {
+          code
+          displayText
+        }
+        ... on ReturnClosed {
+          code
+          displayText
+        }
+      }
+      closedAt
+      requester
+      requestedAt
+      sellerAvailableActions {
+        respondByAction {
+          respondAction {
+            code
+            displayText
+          }
+          responseDueAt
+        }
+        secondaryActions {
+          code
+          displayText
+        }
+      }
+      refunds {
+        refundId
+      }
+      cases {
+        caseId
+        status {
+          code
+          displayText
+        }
+        reason {
+          displayText
+          code
+        }
+        latestDecision {
+          decidedAt
+          decisionId
+          inFavorOf
+          note
+          outcomes {
+            code
+            displayText
+          }
+          reviewRequest {
+            reason {
+              code
+              displayText
+            }
+            requestedAt
+            requester
+            requesterNote
+          }
+        }
+        initiator
+      }
+    }
+    ... on ReturnCreationNotAllowedError {
+      errorCode
+      errorMessage
+      returnIneligibilityReasons {
+        __typename
+        code
+        displayMessage
+        orderLineItem {
+          orderLineItemId
+          buyerNotes
+          createdAt
+          updatedAt
+        }
+        ... on ReturnIneligibleReturnNotAccepted {
+          code
+          displayMessage
+          orderLineItem {
+            orderLineItemId
+          }
+        }
+        ... on ReturnIneligibleQuantityExceeded {
+          code
+          displayMessage
+          orderLineItem {
+            orderLineItemId
+          }
+          requestedQuantity
+          returnableQuantity
+        }
+        ... on ReturnIneligibleReasonNotAllowed {
+          code
+          displayMessage
+          orderLineItem {
+            orderLineItemId
+          }
+          allowedReasons {
+            code
+            displayText
+          }
+        }
+        ... on ReturnIneligibleInquiryExists {
+          code
+          displayMessage
+          orderLineItem {
+            orderLineItemId
+          }
+        }
+        ... on ReturnIneligibleReturnExists {
+          code
+          displayMessage
+          orderLineItem {
+            orderLineItemId
+          }
+        }
+        ... on ReturnIneligibleTooEarly {
+          code
+          displayMessage
+          orderLineItem {
+            orderLineItemId
+          }
+        }
+        ... on ReturnIneligibleReturnWindowElapsed {
+          code
+          displayMessage
+          orderLineItem {
+            orderLineItemId
+          }
+        }
+        ... on ReturnIneligibleRefundIssued {
+          code
+          displayMessage
+          orderLineItem {
+            orderLineItemId
+          }
+        }
+        ... on ReturnIneligiblePaymentDisputeExists {
+          code
+          displayMessage
+          orderLineItem {
+            orderLineItemId
+          }
+        }
+        ... on ReturnIneligibleInStoreReturnNotSupported {
+          code
+          displayMessage
+          orderLineItem {
+            orderLineItemId
+          }
+        }
+        ... on ReturnIneligibleCancellationExists {
+          code
+          displayMessage
+          orderLineItem {
+            orderLineItemId
+          }
+        }
+      }
+    }
+    ... on OrderLineItemNotFoundError {
+      errorCode
+      errorMessage
+      requestedLineItemIds
+    }
+    ... on CreateInStoreReturnInputValidationError {
+      errorCode
+      errorMessage
+      violations {
+        code
+        displayMessage
+      }
+    }
+    ... on MultipleLineItemReturnNotSupportedError {
+      errorCode
+      maxAllowed
+    }
+    ... on ReturnRequestLineItemRequiredError {
+      errorCode
+      errorMessage
+    }
+  }
+}
