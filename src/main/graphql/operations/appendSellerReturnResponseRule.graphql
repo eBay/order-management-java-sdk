@@ -1,0 +1,88 @@
+mutation AppendSellerReturnResponseRule($input: AppendSellerReturnResponseRuleInput!) {
+  appendSellerReturnResponseRule(input: $input) {
+    __typename
+    ... on ReturnResponseRule {
+      ruleId
+      name
+      priority
+      status {
+        code
+        displayText
+      }
+      responseStrategy {
+        code
+        displayText
+      }
+      conditionSet {
+        operator
+        conditions {
+          __typename
+          ... on ReturnRefundRangeCondition {
+            minRefundAmount {
+              currency
+              value
+            }
+            maxRefundAmount {
+              currency
+              value
+            }
+          }
+          ... on ReturnReasonCondition {
+            returnReasonList {
+              code
+              displayText
+            }
+          }
+          ... on ReturnShipmentOriginCountryCondition {
+            returnShipmentOriginCountries
+          }
+          ... on ReturnItemCategoryCondition {
+            categories {
+              categoryId
+            }
+          }
+          ... on ReturnItemLocationCountryCondition {
+            itemLocationCountries
+          }
+          ... on ReturnListingGroupCondition {
+            returnRuleListingGroupId
+          }
+        }
+      }
+    }
+    ... on ReturnRuleLimitExceededError {
+      errorCode
+      errorMessage
+      maxAllowed
+    }
+    ... on ReturnRuleInvalidConditionsError {
+      errorCode
+      errorMessage
+      ruleConditionViolation {
+        code
+        displayMessage
+      }
+    }
+    ... on ReturnRuleNameError {
+      errorCode
+      errorMessage
+      containsInvalidCharacters
+      duplicateRuleName
+      nameConstraint {
+        characterLimit {
+          minLength
+          maxLength
+        }
+        allowedPattern
+      }
+    }
+    ... on ReturnRuleFeatureNotEnabledError {
+      errorMessage
+      errorCode
+    }
+    ... on ReturnRuleMissingConditionError {
+      errorCode
+      errorMessage
+    }
+  }
+}

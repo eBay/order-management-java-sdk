@@ -1,0 +1,83 @@
+mutation RecordReturnLabelSentOffline($input: RecordReturnLabelSentOfflineInput!) {
+  recordReturnLabelSentOffline(input: $input) {
+    __typename
+    ... on OrderReturn {
+      returnId
+      status {
+        __typename
+        code
+        displayText
+        ... on ReturnRequested {
+          code
+          displayText
+        }
+        ... on ReturnOpen {
+          code
+          displayText
+        }
+        ... on ReturnDeclined {
+          code
+          displayText
+        }
+        ... on ReturnCancelled {
+          code
+          displayText
+        }
+        ... on ReturnClosed {
+          code
+          displayText
+        }
+      }
+      closedAt
+      requestedAt
+      requester
+    }
+    ... on ReturnNotFoundError {
+      errorCode
+      errorMessage
+      requestedReturnId
+    }
+    ... on ReturnActionNotPermittedError {
+      errorCode
+      errorMessage
+      availableActions {
+        code
+        displayText
+      }
+    }
+    ... on RecordReturnLabelSentOfflineInputValidationError {
+      errorCode
+      errorMessage
+      violations {
+        __typename
+        code
+        displayMessage
+        ... on ReturnTrackingNumberViolation {
+          code
+          displayMessage
+          containsInvalidCharacters
+          exceededLength
+          duplicateTrackingNumber
+          constraint {
+            characterLimit {
+              minLength
+              maxLength
+            }
+          }
+        }
+        ... on ReturnShippingCarrierNameViolation {
+          code
+          displayMessage
+          containsInvalidCharacters
+          exceededLength
+          constraint {
+            characterLimit {
+              minLength
+              maxLength
+            }
+          }
+        }
+      }
+    }
+  }
+}
