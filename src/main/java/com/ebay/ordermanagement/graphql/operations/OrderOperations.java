@@ -3,8 +3,10 @@ package com.ebay.ordermanagement.graphql.operations;
 /**
  * GraphQL query and mutation constants for Item Commitment & Order operations.
  *
- * Contains 8 operations:
+ * Contains 10 operations:
  * - BULK_UPDATE_ITEM_COMMITMENT_TAGS
+ * - BULK_UPDATE_ORDER_TAGS
+ * - COMMIT_TO_PURCHASE
  * - ITEM_COMMITMENTS
  * - ITEM_COMMITMENTS_BY_IDS
  * - MARK_ITEM_COMMITMENTS_PAID
@@ -54,6 +56,75 @@ public final class OrderOperations {
                     }
                 }
             }
+        }
+        """;
+
+    public static final String BULK_UPDATE_ORDER_TAGS = """
+        mutation BulkUpdateOrderTags($input: BulkUpdateOrderTagsInput!) {
+          bulkUpdateOrderTags(input: $input) {
+            __typename
+            ... on BulkUpdateOrderTagsCompleteFailure {
+              errorCode
+              errorMessage
+              failures {
+                displayMessage
+                errorCode
+                inputOrderId
+                retryable
+              }
+            }
+            ... on BulkUpdateOrderTagsPartialFailure {
+              errorCode
+              errorMessage
+              failures {
+                displayMessage
+                errorCode
+                inputOrderId
+                retryable
+              }
+              updatedOrders {
+                orderId
+                orderTags {
+                  tags
+                  sellerAcknowledged
+                }
+              }
+            }
+            ... on BulkUpdateOrderTagsSuccess {
+              updatedOrders {
+                orderId
+                orderTags {
+                  sellerAcknowledged
+                  tags
+                }
+              }
+            }
+          }
+        }
+        """;
+
+    public static final String COMMIT_TO_PURCHASE = """
+        mutation CommitToPurchase($input: CommitToPurchaseInput!) {
+          commitToPurchase(input: $input) {
+            __typename
+            ... on CommitToPurchaseBusinessRulesViolated {
+              errorCode
+              errorMessage
+              violations {
+                ruleDescription
+              }
+            }
+            ... on CommitToPurchaseSuccess {
+              commitment {
+                itemCommitmentId
+              }
+            }
+            ... on ReferenceArgumentsNotFound {
+              argumentNames
+              errorCode
+              errorMessage
+            }
+          }
         }
         """;
 

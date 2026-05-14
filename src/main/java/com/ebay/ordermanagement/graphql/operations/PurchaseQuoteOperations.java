@@ -3,12 +3,13 @@ package com.ebay.ordermanagement.graphql.operations;
 /**
  * GraphQL query and mutation constants for Purchase Quote operations.
  *
- * Contains 5 purchase quote operations:
+ * Contains 6 purchase quote operations:
  * - BULK_UPDATE_PURCHASE_QUOTES
  * - CREATE_PURCHASE_QUOTE
  * - PURCHASE_QUOTE_LINE_ITEMS_BY_IDS
  * - PURCHASE_QUOTES
  * - PURCHASE_QUOTES_BY_IDS
+ * - REQUEST_PURCHASE_QUOTE
  */
 public final class PurchaseQuoteOperations {
 
@@ -180,6 +181,24 @@ query PurchaseQuotesByIds($input: PurchaseQuotesByIdsInput!) {
         }
         ... on PurchaseQuotesByIdsCompleteFailure {
             failures { errorCode displayMessage inputPurchaseQuoteId retryable }
+        }
+    }
+}
+        """;
+
+    public static final String REQUEST_PURCHASE_QUOTE = """
+mutation RequestPurchaseQuote($input: RequestPurchaseQuoteInput!) {
+    requestPurchaseQuote(input: $input) {
+        __typename
+        ... on RequestPurchaseQuoteBusinessError {
+            errorCode
+            errorMessage
+            retryable
+        }
+        ... on RequestPurchaseQuoteSuccess {
+            purchaseQuote {
+                purchaseQuoteId
+            }
         }
     }
 }
