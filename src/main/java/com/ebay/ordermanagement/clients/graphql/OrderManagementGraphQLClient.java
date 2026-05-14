@@ -10,11 +10,11 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Typed GraphQL client for Order Management operations.
  *
- * This client provides access to 52 GraphQL operations across:
+ * This client provides access to 56 GraphQL operations across:
  * - Cancellations (7 operations)
- * - Item Commitments & Orders (8 operations)
+ * - Item Commitments & Orders (10 operations)
  * - Inquiries (6 operations)
- * - Purchase Quotes (5 operations)
+ * - Purchase Quotes (6 operations)
  * - Returns (26 operations)
  *
  * All methods accept:
@@ -162,6 +162,36 @@ public final class OrderManagementGraphQLClient {
     }
 
     // ── Item Commitments & Orders ─────────────────────────────────────────────
+
+    /**
+     * Bulk update order tags.
+     */
+    public CompletableFuture<JsonNode> bulkUpdateOrderTagsAsync(
+            Map<String, Object> input,
+            String accessToken,
+            RequestOptions requestOptions) {
+        return executeRawAsync(
+            OrderOperations.BULK_UPDATE_ORDER_TAGS,
+            Map.of("input", input),
+            accessToken,
+            requestOptions
+        );
+    }
+
+    /**
+     * Commit to purchase.
+     */
+    public CompletableFuture<JsonNode> commitToPurchaseAsync(
+            Map<String, Object> input,
+            String accessToken,
+            RequestOptions requestOptions) {
+        return executeRawAsync(
+            OrderOperations.COMMIT_TO_PURCHASE,
+            Map.of("input", input),
+            accessToken,
+            requestOptions
+        );
+    }
 
     /**
      * Bulk update item commitment tags.
@@ -445,6 +475,21 @@ public final class OrderManagementGraphQLClient {
             RequestOptions requestOptions) {
         return executeRawAsync(
             PurchaseQuoteOperations.PURCHASE_QUOTES_BY_IDS,
+            Map.of("input", input),
+            accessToken,
+            requestOptions
+        );
+    }
+
+    /**
+     * Request a purchase quote.
+     */
+    public CompletableFuture<JsonNode> requestPurchaseQuoteAsync(
+            Map<String, Object> input,
+            String accessToken,
+            RequestOptions requestOptions) {
+        return executeRawAsync(
+            PurchaseQuoteOperations.REQUEST_PURCHASE_QUOTE,
             Map.of("input", input),
             accessToken,
             requestOptions
