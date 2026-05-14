@@ -8,6 +8,7 @@ mutation CreateItemCommitmentCancellation($input: CreateItemCommitmentCancellati
           code
           displayText
         }
+        closedAt
       }
     }
     ... on ItemCommitmentCancellationEligibilityError {

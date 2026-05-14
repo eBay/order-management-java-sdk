@@ -8,6 +8,17 @@ mutation DeclineContractCancellation($input: DeclineContractCancellationInput!) 
           code
           displayText
         }
+        closedAt
+        reason {
+          code
+          displayText
+        }
+        refunds {
+          refundId
+        }
+        requestedAt
+        requester
+        requesterNote
       }
     }
     ... on ContractCancellationActionNotPermittedError {

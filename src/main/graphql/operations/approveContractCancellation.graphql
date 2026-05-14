@@ -10,6 +10,15 @@ mutation ApproveContractCancellation($input: ApproveContractCancellationInput!) 
         }
         closedAt
         requestedAt
+        reason {
+          code
+          displayText
+        }
+        refunds {
+          refundId
+        }
+        requester
+        requesterNote
       }
     }
     ... on ContractCancellationActionNotPermittedError {

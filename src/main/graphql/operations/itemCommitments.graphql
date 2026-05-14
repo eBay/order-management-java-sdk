@@ -28,6 +28,11 @@ query ItemCommitments($input: ItemCommitmentsInput!) {
         }
         cancellation {
           cancellationId
+          lineItems {
+            cancellationLineItemId
+            cancelledQuantity
+            requestedQuantity
+          }
         }
         refunds {
           refundId
