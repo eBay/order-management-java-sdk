@@ -1,0 +1,47 @@
+query PurchaseQuoteLineItemsByIds($input: PurchaseQuoteLineItemsByIdsInput!) {
+  purchaseQuoteLineItemsByIds(input: $input) {
+    __typename
+    ... on PurchaseQuoteLineItemsByIdsSuccess {
+      purchaseQuoteLineItems {
+        purchaseQuoteLineItemId
+        lineItemSource {
+          __typename
+          ... on ItemCommitment {
+            itemCommitmentId
+          }
+        }
+        totals {
+          total {
+            original {
+              value
+              currency
+            }
+          }
+        }
+      }
+    }
+    ... on PurchaseQuoteLineItemsByIdsPartialFailure {
+      purchaseQuoteLineItems {
+        purchaseQuoteLineItemId
+      }
+      failures {
+        errorCode
+        displayMessage
+        inputPurchaseQuoteLineItemId
+        retryable
+      }
+      errorMessage
+      errorCode
+    }
+    ... on PurchaseQuoteLineItemsByIdsCompleteFailure {
+      failures {
+        errorCode
+        displayMessage
+        inputPurchaseQuoteLineItemId
+        retryable
+      }
+      errorCode
+      errorMessage
+    }
+  }
+}

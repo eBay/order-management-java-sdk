@@ -1,0 +1,59 @@
+query OrdersByIds($input: OrdersByIdsInput!) {
+  ordersByIds(input: $input) {
+    __typename
+    ... on OrdersByIdsSuccess {
+      orders {
+        orderId
+        placedAt
+        updatedAt
+        logistics {
+          fulfillmentPlan {
+            planType
+            logisticsPlanSteps {
+              methodName {
+                id
+                displayName
+              }
+            }
+          }
+        }
+      }
+    }
+    ... on OrdersByIdsPartialFailure {
+      orders {
+        orderId
+        placedAt
+        updatedAt
+        logistics {
+          fulfillmentPlan {
+            planType
+            logisticsPlanSteps {
+              methodName {
+                id
+                displayName
+              }
+            }
+          }
+        }
+      }
+      failures {
+        errorCode
+        displayMessage
+        inputOrderId
+        retryable
+      }
+      errorMessage
+      errorCode
+    }
+    ... on OrdersByIdsCompleteFailure {
+      failures {
+        errorCode
+        displayMessage
+        inputOrderId
+        retryable
+      }
+      errorMessage
+      errorCode
+    }
+  }
+}

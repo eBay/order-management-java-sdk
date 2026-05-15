@@ -1,0 +1,102 @@
+mutation SubmitReturnReferral($input: SubmitReturnReferralInput!) {
+  submitReturnReferral(input: $input) {
+    __typename
+    ... on OrderReturn {
+      returnId
+      status {
+        __typename
+        code
+        displayText
+        ... on ReturnRequested {
+          code
+          displayText
+        }
+        ... on ReturnOpen {
+          code
+          displayText
+        }
+        ... on ReturnDeclined {
+          code
+          displayText
+        }
+        ... on ReturnCancelled {
+          code
+          displayText
+        }
+        ... on ReturnClosed {
+          code
+          displayText
+        }
+      }
+      closedAt
+    }
+    ... on ReturnNotFoundError {
+      errorCode
+      errorMessage
+      requestedReturnId
+    }
+    ... on ReturnActionNotPermittedError {
+      errorCode
+      errorMessage
+      availableActions {
+        code
+        displayText
+      }
+    }
+    ... on SubmitReturnReferralInputValidationError {
+      errorCode
+      errorMessage
+      violations {
+        __typename
+        code
+        displayMessage
+        ... on ReturnReferralReasonViolation {
+          code
+          displayMessage
+          invalidReferralReason
+          constraint {
+            validReferralReasons {
+              __typename
+              ... on UnresponsiveTradingPartner {
+                code
+                displayText
+              }
+              ... on UnableToReachAgreement {
+                code
+                displayText
+              }
+              ... on RefundNotReceived {
+                code
+                displayText
+              }
+              ... on NoRefundForReturnShipping {
+                code
+                displayText
+              }
+              ... on ReturnedWrongItem {
+                code
+                displayText
+              }
+              ... on ReturnNotReceived {
+                code
+                displayText
+              }
+              ... on ReceivedEmptyBox {
+                code
+                displayText
+              }
+              ... on DamagedItemReturned {
+                code
+                displayText
+              }
+              ... on OtherReferralReason {
+                code
+                displayText
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

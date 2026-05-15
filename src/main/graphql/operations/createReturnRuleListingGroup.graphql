@@ -1,0 +1,54 @@
+mutation CreateReturnRuleListingGroup($input: CreateReturnRuleListingGroupInput!) {
+  createReturnRuleListingGroup(input: $input) {
+    __typename
+    ... on ReturnRuleListingGroup {
+      returnRuleListingGroupId
+      groupName
+      listings {
+        listingId
+      }
+      pagination {
+        nextCursor
+        previousCursor
+      }
+    }
+    ... on ReturnRuleListingGroupInvalidNameError {
+      errorCode
+      errorMessage
+      containsInvalidCharacters
+      duplicateGroupName
+      nameConstraint {
+        characterLimit {
+          minLength
+          maxLength
+        }
+        allowedPattern
+      }
+    }
+    ... on ReturnRuleListingGroupDuplicateListingError {
+      errorCode
+      errorMessage
+      duplicateListingIds
+    }
+    ... on ReturnRuleListingGroupQuotaExceededError {
+      errorCode
+      errorMessage
+      maxAllowedLists
+    }
+    ... on ReturnRuleFeatureNotEnabledError {
+      errorMessage
+      errorCode
+    }
+    ... on ReturnRuleListingGroupMaxSizeExceededError {
+      errorCode
+      groupListingLimit
+      errorMessage
+    }
+    ... on ReturnRuleListingIdsPerRequestLimitExceededError {
+      errorCode
+      errorMessage
+      perRequestLimit
+      requestedCount
+    }
+  }
+}

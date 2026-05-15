@@ -1,0 +1,68 @@
+mutation ProvideRmaNumber($input: ProvideRmaNumberInput!) {
+  provideRmaNumber(input: $input) {
+    __typename
+    ... on OrderReturn {
+      returnId
+      status {
+        __typename
+        code
+        displayText
+        ... on ReturnRequested {
+          code
+          displayText
+        }
+        ... on ReturnOpen {
+          code
+          displayText
+        }
+        ... on ReturnDeclined {
+          code
+          displayText
+        }
+        ... on ReturnCancelled {
+          code
+          displayText
+        }
+        ... on ReturnClosed {
+          code
+          displayText
+        }
+      }
+    }
+    ... on ReturnNotFoundError {
+      errorCode
+      errorMessage
+      requestedReturnId
+    }
+    ... on ReturnActionNotPermittedError {
+      errorCode
+      errorMessage
+      availableActions {
+        code
+        displayText
+      }
+    }
+    ... on ProvideRmaNumberInputValidationError {
+      errorCode
+      errorMessage
+      violations {
+        __typename
+        code
+        displayMessage
+        ... on ReturnRmaNumberViolation {
+          code
+          displayMessage
+          containsInvalidCharacters
+          exceededLength
+          constraint {
+            rmaNumberRequired
+            characterLimit {
+              minLength
+              maxLength
+            }
+          }
+        }
+      }
+    }
+  }
+}

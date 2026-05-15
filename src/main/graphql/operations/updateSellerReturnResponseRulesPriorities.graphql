@@ -1,0 +1,75 @@
+mutation UpdateSellerReturnResponseRulesPriorities($input: UpdateSellerReturnResponseRulesPrioritiesInput!) {
+  updateSellerReturnResponseRulesPriorities(input: $input) {
+    __typename
+    ... on UpdateSellerReturnResponseRulesPrioritiesSuccess {
+      returnResponseRules {
+        ruleId
+        name
+        priority
+        status {
+          code
+          displayText
+        }
+        responseStrategy {
+          code
+          displayText
+        }
+        conditionSet {
+          operator
+          conditions {
+            __typename
+            ... on ReturnItemCategoryCondition {
+              categories {
+                categoryId
+              }
+            }
+            ... on ReturnItemLocationCountryCondition {
+              itemLocationCountries
+            }
+            ... on ReturnListingGroupCondition {
+              returnRuleListingGroupId
+            }
+            ... on ReturnReasonCondition {
+              returnReasonList {
+                code
+                displayText
+              }
+            }
+            ... on ReturnRefundRangeCondition {
+              maxRefundAmount {
+                currency
+                value
+              }
+              minRefundAmount {
+                currency
+                value
+              }
+            }
+            ... on ReturnShipmentOriginCountryCondition {
+              returnShipmentOriginCountries
+            }
+          }
+        }
+      }
+    }
+    ... on ReturnRuleMissingRuleIdsError {
+      errorCode
+      errorMessage
+      missingRuleIds
+    }
+    ... on ReturnRuleDuplicateRuleIdsError {
+      errorCode
+      errorMessage
+      duplicateRuleIds
+    }
+    ... on ReturnRuleInvalidRuleIdsError {
+      errorCode
+      errorMessage
+      invalidRuleIds
+    }
+    ... on ReturnRuleFeatureNotEnabledError {
+      errorCode
+      errorMessage
+    }
+  }
+}

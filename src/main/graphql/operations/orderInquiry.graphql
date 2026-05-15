@@ -1,0 +1,167 @@
+query OrderInquiry($input: OrderInquiryInput!) {
+  orderInquiry(input: $input) {
+    __typename
+    ... on OrderInquirySuccess {
+      orderInquiry {
+        __typename
+        closedAt
+        createdAt
+        initiator
+        inquiryId
+        responder
+        status {
+          code
+          displayText
+        }
+        providedInformation {
+          submittedAt
+          submittedInformation {
+            __typename
+            ... on OrderInquiryShipmentTracking {
+              shippingCarrier {
+                carrierCode
+                unsupportedCarrierName
+              }
+              trackingNumber
+            }
+            ... on OrderInquirySignatureConfirmation {
+              signatureConfirmationProof {
+                documentId
+                documentName
+                filenameExtension
+                uploadedAt
+              }
+              trackingNumber
+            }
+          }
+          submitter
+        }
+        requestedInformation {
+          requestedAt
+          requester
+        }
+        ... on ItemNotReceivedInquiry {
+          inquiryId
+          status {
+            __typename
+            ... on OrderInquiryOpen {
+              code
+              displayText
+            }
+            ... on OrderInquiryClosed {
+              code
+              displayText
+            }
+          }
+          createdAt
+          closedAt
+          initiator
+          responder
+          inquirers
+          lineItems {
+            inquiryLineItemId
+            quantity
+            orderLineItem {
+              orderLineItemId
+            }
+          }
+          sellerAvailableActions {
+            respondByAction {
+              respondAction {
+                code
+                displayText
+              }
+              responseDueAt
+            }
+            secondaryActions {
+              __typename
+              code
+              displayText
+              ... on OrderInquiryRefundAction {
+                code
+                displayText
+              }
+              ... on OrderInquiryReferralAction {
+                code
+                displayText
+                referralReasons {
+                  __typename
+                  ... on ConfirmedDelivery {
+                    code
+                    displayText
+                  }
+                  ... on BuyerConfirmedDelivery {
+                    code
+                    displayText
+                  }
+                  ... on RefundedBuyer {
+                    code
+                    displayText
+                  }
+                }
+              }
+            }
+          }
+          requestedInformation {
+            __typename
+            ... on ShipmentTrackingInformationRequested {
+              requester
+              requestedAt
+            }
+            ... on SignatureConfirmationRequested {
+              requester
+              requestedAt
+            }
+          }
+          providedInformation {
+            submitter
+            submittedAt
+            submittedInformation {
+              __typename
+              ... on OrderInquiryShipmentTracking {
+                trackingNumber
+                shippingCarrier {
+                  carrierCode
+                  unsupportedCarrierName
+                }
+              }
+              ... on OrderInquirySignatureConfirmation {
+                trackingNumber
+                signatureConfirmationProof {
+                  documentId
+                  filenameExtension
+                  documentName
+                  uploadedAt
+                }
+              }
+            }
+          }
+          cases {
+            caseId
+            status {
+              __typename
+              ... on PostPurchaseCaseOpen {
+                code
+                displayText
+              }
+              ... on PostPurchaseCaseClosed {
+                code
+                displayText
+              }
+            }
+            initiator
+            reason {
+              code
+              displayText
+            }
+          }
+        }
+      }
+    }
+    ... on OrderInquiryNotFoundError {
+      errorCode
+      errorMessage
+      inquiryId
+    }
+  }
+}

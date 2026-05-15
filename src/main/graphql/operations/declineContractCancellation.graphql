@@ -1,0 +1,73 @@
+mutation DeclineContractCancellation($input: DeclineContractCancellationInput!) {
+  declineContractCancellation(input: $input) {
+    __typename
+    ... on DeclineContractCancellationSuccess {
+      contractCancellation {
+        cancellationId
+        status {
+          code
+          displayText
+        }
+        closedAt
+        reason {
+          code
+          displayText
+        }
+        refunds {
+          refundId
+        }
+        requestedAt
+        requester
+        requesterNote
+      }
+    }
+    ... on ContractCancellationActionNotPermittedError {
+      errorCode
+      errorMessage
+      availableActions {
+        code
+        displayText
+      }
+    }
+    ... on ContractCancellationNotFoundError {
+      errorCode
+      errorMessage
+      requestedContractCancellationId
+    }
+    ... on DeclineCancellationInputValidationError {
+      errorCode
+      errorMessage
+      violations {
+        __typename
+        code
+        displayMessage
+        ... on CancellationTrackingNumberViolation {
+          constraint {
+            characterLimit {
+              minLength
+              maxLength
+            }
+          }
+          exceededLength
+          containsInvalidCharacters
+        }
+        ... on CancellationShippingCarrierCodeViolation {
+          constraint {
+            characterLimit {
+              minLength
+              maxLength
+            }
+          }
+          exceededLength
+          containsInvalidCharacters
+        }
+        ... on CancellationShippedDateViolation {
+          constraint {
+            fromDate
+            toDate
+          }
+        }
+      }
+    }
+  }
+}

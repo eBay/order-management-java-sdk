@@ -1,0 +1,134 @@
+mutation ProposeKeepItemWithPartialRefund($input: ProposeKeepItemWithPartialRefundInput!, $scenario: ExchangeAmountScenario!) {
+  proposeKeepItemWithPartialRefund(input: $input) {
+    __typename
+    ... on OrderReturn {
+      returnId
+      status {
+        __typename
+        code
+        displayText
+        ... on ReturnRequested {
+          code
+          displayText
+        }
+        ... on ReturnOpen {
+          code
+          displayText
+        }
+        ... on ReturnDeclined {
+          code
+          displayText
+        }
+        ... on ReturnCancelled {
+          code
+          displayText
+        }
+        ... on ReturnClosed {
+          code
+          displayText
+        }
+      }
+      returnNegotiation {
+        latestReturnOffer {
+          status {
+            __typename
+            code
+            displayText
+            ... on ReturnOfferPending {
+              code
+              displayText
+            }
+            ... on ReturnOfferAccepted {
+              code
+              displayText
+            }
+            ... on ReturnOfferDeclined {
+              code
+              displayText
+            }
+            ... on ReturnOfferExpired {
+              code
+              displayText
+            }
+          }
+          proposedTerm {
+            __typename
+            ... on KeepItemPartialRefundTerm {
+              refundAmount {
+                original {
+                  value
+                  currency
+                }
+                exchangeScenario(scenario: $scenario) {
+                  __typename
+                  ... on ExchangeAmount {
+                    amount {
+                      value
+                      currency
+                    }
+                    exchangeRate
+                    exchangeAt
+                  }
+                  ... on InvalidExchangeScenarioInputError {
+                    errorCode
+                    errorMessage
+                  }
+                }
+              }
+              itemPriceRefundPercentage
+              itemShippingPriceWaived
+              returnLineItem {
+                returnLineItemId
+                requestedQuantity
+                returnReason {
+                  code
+                  displayText
+                }
+                returnNote
+                orderLineItem {
+                  orderLineItemId
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    ... on ReturnNotFoundError {
+      errorCode
+      errorMessage
+      requestedReturnId
+    }
+    ... on ReturnActionNotPermittedError {
+      errorCode
+      errorMessage
+      availableActions {
+        code
+        displayText
+      }
+    }
+    ... on ReturnLineItemNotFoundError {
+      errorCode
+      errorMessage
+      requestedLineItemIds
+    }
+    ... on ReturnRefundTermsRequiredError {
+      errorCode
+      errorMessage
+    }
+    ... on MultipleRefundTermsNotAllowedError {
+      errorCode
+      errorMessage
+      maxAllowed
+      providedCount
+    }
+    ... on ProposeKeepItemWithPartialRefundInputValidationError {
+      errorCode
+      errorMessage
+      violations {
+        code
+        displayMessage
+      }
+    }
+  }
+}

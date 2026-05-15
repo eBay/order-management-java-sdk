@@ -1,0 +1,139 @@
+mutation UpdateSellerReturnRuleStatus($input: UpdateSellerReturnRuleStatusInput!) {
+  updateSellerReturnRuleStatus(input: $input) {
+    __typename
+    ... on ReturnToAddressRule {
+      ruleId
+      name
+      priority
+      status {
+        code
+        displayText
+      }
+      addressRoutingStrategy {
+        __typename
+        code
+        displayText
+        ... on ReturnToSpecificAddressStrategy {
+          code
+          displayText
+          returnAddress {
+            addressId
+            addressLine1
+            addressLine2
+            city
+            stateOrProvince
+            postalCode
+            countryCode
+          }
+        }
+        ... on ReturnToNearestSellerAddressStrategy {
+          code
+          displayText
+        }
+        ... on ReturnToOriginalShipFromAddressStrategy {
+          code
+          displayText
+        }
+      }
+      conditionSet {
+        conditions {
+          __typename
+          ... on ReturnItemCategoryCondition {
+            categories {
+              categoryId
+            }
+          }
+          ... on ReturnItemLocationCountryCondition {
+            itemLocationCountries
+          }
+          ... on ReturnListingGroupCondition {
+            returnRuleListingGroupId
+          }
+          ... on ReturnReasonCondition {
+            returnReasonList {
+              code
+              displayText
+            }
+          }
+          ... on ReturnRefundRangeCondition {
+            maxRefundAmount {
+              currency
+              value
+            }
+            minRefundAmount {
+              currency
+              value
+            }
+          }
+          ... on ReturnShipmentOriginCountryCondition {
+            returnShipmentOriginCountries
+          }
+        }
+        operator
+      }
+    }
+    ... on ReturnResponseRule {
+      ruleId
+      name
+      priority
+      status {
+        code
+        displayText
+      }
+      responseStrategy {
+        code
+        displayText
+      }
+      conditionSet {
+        conditions {
+          __typename
+          ... on ReturnItemCategoryCondition {
+            categories {
+              id
+            }
+          }
+          ... on ReturnItemLocationCountryCondition {
+            itemLocationCountries
+          }
+          ... on ReturnListingGroupCondition {
+            returnRuleListingGroupId
+          }
+          ... on ReturnReasonCondition {
+            returnReasonList {
+              code
+              displayText
+            }
+          }
+          ... on ReturnRefundRangeCondition {
+            maxRefundAmount {
+              currency
+              value
+            }
+            minRefundAmount {
+              currency
+              value
+            }
+          }
+          ... on ReturnShipmentOriginCountryCondition {
+            returnShipmentOriginCountries
+          }
+        }
+        operator
+      }
+    }
+    ... on ReturnRuleNotFoundError {
+      errorCode
+      errorMessage
+      requestedRuleId
+    }
+    ... on ReturnRuleStatusUpdateBlockedError {
+      errorCode
+      errorMessage
+      requestedRuleId
+    }
+    ... on ReturnRuleFeatureNotEnabledError {
+      errorCode
+      errorMessage
+    }
+  }
+}

@@ -1,0 +1,18 @@
+mutation DeleteSellerReturnRule($input: DeleteSellerReturnRuleInput!) {
+  deleteSellerReturnRule(input: $input) {
+    __typename
+    ... on DeleteSellerReturnRuleSuccess {
+      ruleId
+      name
+    }
+    ... on ReturnRuleNotFoundError {
+      errorCode
+      errorMessage
+      requestedRuleId
+    }
+    ... on ReturnRuleFeatureNotEnabledError {
+      errorCode
+      errorMessage
+    }
+  }
+}

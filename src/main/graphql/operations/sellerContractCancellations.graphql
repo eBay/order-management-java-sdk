@@ -1,0 +1,42 @@
+query SellerContractCancellations($input: SellerContractCancellationsInput!) {
+  sellerContractCancellations(input: $input) {
+    __typename
+    ... on ContractCancellationInvalidDateRangeError {
+      errorCode
+      errorMessage
+    }
+    ... on ContractCancellationInvalidPageSizeError {
+      errorCode
+      errorMessage
+      maxAllowedPageSize
+    }
+    ... on ContractCancellationInvalidSearchInputError {
+      errorCode
+      errorMessage
+    }
+    ... on SellerContractCancellationsSuccess {
+      contractCancellations {
+        cancellationId
+        closedAt
+        reason {
+          code
+          displayText
+        }
+        refunds {
+          refundId
+        }
+        requestedAt
+        requester
+        requesterNote
+        status {
+          code
+          displayText
+        }
+      }
+      pagination {
+        nextCursor
+        previousCursor
+      }
+    }
+  }
+}

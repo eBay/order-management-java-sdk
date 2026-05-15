@@ -1,0 +1,18 @@
+mutation DeleteReturnRuleListingGroup($input: DeleteReturnRuleListingGroupInput!) {
+  deleteReturnRuleListingGroup(input: $input) {
+    __typename
+    ... on DeleteReturnRuleListingGroupSuccess {
+      groupName
+      returnRuleListingGroupId
+    }
+    ... on ReturnRuleFeatureNotEnabledError {
+      errorCode
+      errorMessage
+    }
+    ... on ReturnRuleListingGroupNotFoundError {
+      errorCode
+      errorMessage
+      returnRuleListingGroupId
+    }
+  }
+}

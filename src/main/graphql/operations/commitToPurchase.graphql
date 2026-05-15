@@ -1,0 +1,22 @@
+mutation CommitToPurchase($input: CommitToPurchaseInput!) {
+  commitToPurchase(input: $input) {
+    __typename
+    ... on CommitToPurchaseBusinessRulesViolated {
+      errorCode
+      errorMessage
+      violations {
+        ruleDescription
+      }
+    }
+    ... on CommitToPurchaseSuccess {
+      commitment {
+        itemCommitmentId
+      }
+    }
+    ... on ReferenceArgumentsNotFound {
+      argumentNames
+      errorCode
+      errorMessage
+    }
+  }
+}

@@ -1,0 +1,94 @@
+mutation ProvideShipmentInfoForItemNotReceivedInquiry($input: ProvideShipmentInfoForItemNotReceivedInquiryInput!) {
+  provideShipmentInfoForItemNotReceivedInquiry(input: $input) {
+    __typename
+    ... on ProvideShipmentInfoForItemNotReceivedInquirySuccess {
+      orderInquiry {
+        __typename
+        closedAt
+        createdAt
+        initiator
+        inquirers
+        inquiryId
+        providedInformation {
+          submittedAt
+          submittedInformation {
+            __typename
+            ... on OrderInquiryShipmentTracking {
+              shippingCarrier {
+                carrierCode
+                unsupportedCarrierName
+              }
+              trackingNumber
+            }
+            ... on OrderInquirySignatureConfirmation {
+              signatureConfirmationProof {
+                documentId
+                documentName
+                filenameExtension
+                uploadedAt
+              }
+              trackingNumber
+            }
+          }
+          submitter
+        }
+        requestedInformation {
+          requestedAt
+          requester
+        }
+        responder
+        status {
+          code
+          displayText
+        }
+        ... on ItemNotReceivedInquiry {
+          inquiryId
+          providedInformation {
+            submitter
+            submittedAt
+            submittedInformation {
+              __typename
+              ... on OrderInquiryShipmentTracking {
+                trackingNumber
+                shippingCarrier {
+                  carrierCode
+                  unsupportedCarrierName
+                }
+              }
+              ... on OrderInquirySignatureConfirmation {
+                trackingNumber
+                signatureConfirmationProof {
+                  documentId
+                  filenameExtension
+                  documentName
+                  uploadedAt
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    ... on OrderInquiryActionNotPermittedError {
+      errorCode
+      errorMessage
+      availableActions {
+        code
+        displayText
+      }
+    }
+    ... on OrderInquiryNotFoundError {
+      errorCode
+      errorMessage
+      inquiryId
+    }
+    ... on ProvideShipmentInfoForInquiryInputValidationError {
+      errorCode
+      errorMessage
+      violations {
+        code
+        displayMessage
+      }
+    }
+  }
+}

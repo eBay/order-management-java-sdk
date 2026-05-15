@@ -1,0 +1,129 @@
+mutation MarkOrdersPaid($input: MarkOrdersPaidInput!) {
+  markOrdersPaid(input: $input) {
+    __typename
+    ... on MarkOrdersPaidSuccess {
+      markPaidOrders {
+        orderId
+        placedAt
+        updatedAt
+        logistics {
+          fulfillmentPlan {
+            planType
+            logisticsPlanSteps {
+              methodName {
+                id
+                displayName
+              }
+            }
+          }
+        }
+        orderState {
+          __typename
+          ... on OrderAbandoned {
+            label
+            abandonedAt
+            reason
+          }
+          ... on OrderCancelled {
+            label
+            cancelledAt
+            reason
+          }
+          ... on OrderConfirmed {
+            label
+            fundingState {
+              __typename
+              ... on PaymentsCompleted {
+                label
+              }
+              ... on PaymentsFailure {
+                label
+              }
+              ... on PaymentsInProgress {
+                label
+              }
+              ... on PaymentsNotStarted {
+                label
+              }
+            }
+            confirmedAt
+          }
+          ... on OrderPlaced {
+            label
+          }
+        }
+      }
+    }
+    ... on MarkOrdersPaidPartialFailure {
+      errorCode
+      errorMessage
+      markPaidOrders {
+        orderId
+        placedAt
+        updatedAt
+        logistics {
+          fulfillmentPlan {
+            planType
+            logisticsPlanSteps {
+              methodName {
+                id
+                displayName
+              }
+            }
+          }
+        }
+        orderState {
+          __typename
+          ... on OrderAbandoned {
+            label
+            abandonedAt
+            reason
+          }
+          ... on OrderCancelled {
+            label
+            cancelledAt
+            reason
+          }
+          ... on OrderConfirmed {
+            label
+            fundingState {
+              __typename
+              ... on PaymentsCompleted {
+                label
+              }
+              ... on PaymentsFailure {
+                label
+              }
+              ... on PaymentsInProgress {
+                label
+              }
+              ... on PaymentsNotStarted {
+                label
+              }
+            }
+            confirmedAt
+          }
+          ... on OrderPlaced {
+            label
+          }
+        }
+      }
+      failures {
+        errorCode
+        displayMessage
+        inputOrderId
+        retryable
+      }
+    }
+    ... on MarkOrdersPaidCompleteFailure {
+      failures {
+        errorCode
+        displayMessage
+        inputOrderId
+        retryable
+      }
+      errorCode
+      errorMessage
+    }
+  }
+}
