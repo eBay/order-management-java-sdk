@@ -455,12 +455,13 @@ class OrderManagementGraphQLClient @JvmOverloads internal constructor(
     }
 
     suspend fun purchaseQuotesAsync(
+        input: PurchaseQuotesInput,
         accessToken: String? = null
     ): PurchaseQuotesQuery.PurchaseQuotes? {
         val prev = TokenContext.CURRENT.get()
         TokenContext.CURRENT.set(accessToken ?: prev)
         try {
-            val response = apolloClient.query(PurchaseQuotesQuery()).execute()
+            val response = apolloClient.query(PurchaseQuotesQuery(input)).execute()
             if (response.hasErrors()) {
                 throw GraphQLException(response.errors!!.map { it.message })
             }
@@ -663,12 +664,13 @@ class OrderManagementGraphQLClient @JvmOverloads internal constructor(
 
     suspend fun orderReturnAsync(
         input: OrderReturnInput,
+        scenario: ExchangeAmountScenario,
         accessToken: String? = null
     ): OrderReturnQuery.OrderReturn? {
         val prev = TokenContext.CURRENT.get()
         TokenContext.CURRENT.set(accessToken ?: prev)
         try {
-            val response = apolloClient.query(OrderReturnQuery(input)).execute()
+            val response = apolloClient.query(OrderReturnQuery(input, scenario)).execute()
             if (response.hasErrors()) {
                 throw GraphQLException(response.errors!!.map { it.message })
             }
@@ -697,12 +699,13 @@ class OrderManagementGraphQLClient @JvmOverloads internal constructor(
 
     suspend fun proposeKeepItemWithPartialRefundAsync(
         input: ProposeKeepItemWithPartialRefundInput,
+        scenario: ExchangeAmountScenario,
         accessToken: String? = null
     ): ProposeKeepItemWithPartialRefundMutation.ProposeKeepItemWithPartialRefund? {
         val prev = TokenContext.CURRENT.get()
         TokenContext.CURRENT.set(accessToken ?: prev)
         try {
-            val response = apolloClient.mutation(ProposeKeepItemWithPartialRefundMutation(input)).execute()
+            val response = apolloClient.mutation(ProposeKeepItemWithPartialRefundMutation(input, scenario)).execute()
             if (response.hasErrors()) {
                 throw GraphQLException(response.errors!!.map { it.message })
             }
@@ -782,12 +785,13 @@ class OrderManagementGraphQLClient @JvmOverloads internal constructor(
 
     suspend fun sellerOrderReturnsAsync(
         input: SellerOrderReturnsInput,
+        scenario: ExchangeAmountScenario,
         accessToken: String? = null
     ): SellerOrderReturnsQuery.SellerOrderReturns? {
         val prev = TokenContext.CURRENT.get()
         TokenContext.CURRENT.set(accessToken ?: prev)
         try {
-            val response = apolloClient.query(SellerOrderReturnsQuery(input)).execute()
+            val response = apolloClient.query(SellerOrderReturnsQuery(input, scenario)).execute()
             if (response.hasErrors()) {
                 throw GraphQLException(response.errors!!.map { it.message })
             }
@@ -1009,8 +1013,8 @@ class OrderManagementGraphQLClient @JvmOverloads internal constructor(
         scope.future { createPurchaseQuoteAsync(input, accessToken) }
     fun purchaseQuoteLineItemsByIdsFuture(input: PurchaseQuoteLineItemsByIdsInput, accessToken: String?) =
         scope.future { purchaseQuoteLineItemsByIdsAsync(input, accessToken) }
-    fun purchaseQuotesFuture(accessToken: String?) =
-        scope.future { purchaseQuotesAsync(accessToken) }
+    fun purchaseQuotesFuture(input: PurchaseQuotesInput, accessToken: String?) =
+        scope.future { purchaseQuotesAsync(input, accessToken) }
     fun purchaseQuotesByIdsFuture(input: PurchaseQuotesByIdsInput, accessToken: String?) =
         scope.future { purchaseQuotesByIdsAsync(input, accessToken) }
 
@@ -1035,12 +1039,12 @@ class OrderManagementGraphQLClient @JvmOverloads internal constructor(
         scope.future { deleteReturnRuleListingGroupAsync(input, accessToken) }
     fun deleteSellerReturnRuleFuture(input: DeleteSellerReturnRuleInput, accessToken: String?) =
         scope.future { deleteSellerReturnRuleAsync(input, accessToken) }
-    fun orderReturnFuture(input: OrderReturnInput, accessToken: String?) =
-        scope.future { orderReturnAsync(input, accessToken) }
+    fun orderReturnFuture(input: OrderReturnInput, scenario: ExchangeAmountScenario, accessToken: String?) =
+        scope.future { orderReturnAsync(input, scenario, accessToken) }
     fun processReturnRefundFuture(input: ProcessReturnRefundInput, accessToken: String?) =
         scope.future { processReturnRefundAsync(input, accessToken) }
-    fun proposeKeepItemWithPartialRefundFuture(input: ProposeKeepItemWithPartialRefundInput, accessToken: String?) =
-        scope.future { proposeKeepItemWithPartialRefundAsync(input, accessToken) }
+    fun proposeKeepItemWithPartialRefundFuture(input: ProposeKeepItemWithPartialRefundInput, scenario: ExchangeAmountScenario, accessToken: String?) =
+        scope.future { proposeKeepItemWithPartialRefundAsync(input, scenario, accessToken) }
     fun provideRmaNumberFuture(input: ProvideRmaNumberInput, accessToken: String?) =
         scope.future { provideRmaNumberAsync(input, accessToken) }
     fun recordReturnLabelSentOfflineFuture(input: RecordReturnLabelSentOfflineInput, accessToken: String?) =
@@ -1049,8 +1053,8 @@ class OrderManagementGraphQLClient @JvmOverloads internal constructor(
         scope.future { recordReturnReceivedAsync(input, accessToken) }
     fun returnRuleListingGroupFuture(input: ReturnRuleListingGroupInput, accessToken: String?) =
         scope.future { returnRuleListingGroupAsync(input, accessToken) }
-    fun sellerOrderReturnsFuture(input: SellerOrderReturnsInput, accessToken: String?) =
-        scope.future { sellerOrderReturnsAsync(input, accessToken) }
+    fun sellerOrderReturnsFuture(input: SellerOrderReturnsInput, scenario: ExchangeAmountScenario, accessToken: String?) =
+        scope.future { sellerOrderReturnsAsync(input, scenario, accessToken) }
     fun sellerReturnPreferenceFuture(input: SellerReturnPreferenceInput, accessToken: String?) =
         scope.future { sellerReturnPreferenceAsync(input, accessToken) }
     fun sendReturnMessageFuture(input: SendReturnMessageInput, accessToken: String?) =
