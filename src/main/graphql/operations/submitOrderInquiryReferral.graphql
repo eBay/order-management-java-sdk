@@ -1,0 +1,129 @@
+mutation SubmitOrderInquiryReferral($input: SubmitOrderInquiryReferralInput!) {
+  submitOrderInquiryReferral(input: $input) {
+    __typename
+    ... on SubmitOrderInquiryReferralSuccess {
+      orderInquiry {
+        __typename
+        closedAt
+        createdAt
+        initiator
+        inquirers
+        inquiryId
+        providedInformation {
+          submittedInformation {
+            __typename
+            ... on OrderInquiryShipmentTracking {
+              shippingCarrier {
+                carrierCode
+                unsupportedCarrierName
+              }
+              trackingNumber
+            }
+            ... on OrderInquirySignatureConfirmation {
+              signatureConfirmationProof {
+                documentId
+                documentName
+                filenameExtension
+                uploadedAt
+              }
+              trackingNumber
+            }
+          }
+          submittedAt
+          submitter
+        }
+        requestedInformation {
+          requestedAt
+          requester
+        }
+        responder
+        status {
+          code
+          displayText
+        }
+        ... on ItemNotReceivedInquiry {
+          inquiryId
+          status {
+            __typename
+            ... on OrderInquiryOpen {
+              code
+              displayText
+            }
+            ... on OrderInquiryClosed {
+              code
+              displayText
+            }
+          }
+          createdAt
+          closedAt
+          initiator
+          responder
+          inquirers
+          lineItems {
+            inquiryLineItemId
+            quantity
+            orderLineItem {
+              orderLineItemId
+            }
+          }
+          sellerAvailableActions {
+            respondByAction {
+              respondAction {
+                code
+                displayText
+              }
+              responseDueAt
+            }
+            secondaryActions {
+              code
+              displayText
+            }
+          }
+          cases {
+            caseId
+            status {
+              __typename
+              ... on PostPurchaseCaseOpen {
+                code
+                displayText
+              }
+              ... on PostPurchaseCaseClosed {
+                code
+                displayText
+              }
+            }
+            initiator
+            reason {
+              code
+              displayText
+            }
+          }
+          refunds {
+            refundId
+          }
+        }
+      }
+    }
+    ... on OrderInquiryActionNotPermittedError {
+      errorCode
+      errorMessage
+      availableActions {
+        code
+        displayText
+      }
+    }
+    ... on OrderInquiryNotFoundError {
+      inquiryId
+      errorCode
+      errorMessage
+    }
+    ... on SubmitOrderInquiryReferralInputValidationError {
+      errorCode
+      errorMessage
+      violations {
+        code
+        displayMessage
+      }
+    }
+  }
+}

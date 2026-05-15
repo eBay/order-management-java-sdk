@@ -1,0 +1,45 @@
+query PurchaseQuotes($input: PurchaseQuotesInput!) {
+  purchaseQuotes {
+    sellerPurchaseQuotes(input: $input) {
+      pagination {
+        nextCursor
+        previousCursor
+      }
+      purchaseQuotes {
+        purchaseQuoteId
+        createdAt
+        updatedAt
+        state {
+          __typename
+          ... on PurchaseQuoteRequested {
+            label
+          }
+          ... on PurchaseQuoteActive {
+            label
+          }
+          ... on PurchaseQuoteCancelled {
+            label
+            cancelledAt
+            reason {
+              displayName
+              id
+            }
+          }
+          ... on PurchaseQuoteCompleted {
+            label
+          }
+          ... on PurchaseQuoteLocked {
+            label
+          }
+          ... on PurchaseQuoteInvalid {
+            label
+            reason {
+              displayName
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

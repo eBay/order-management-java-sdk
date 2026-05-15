@@ -1,0 +1,88 @@
+query ItemCommitments($input: ItemCommitmentsInput!) {
+  itemCommitments {
+    buyerItemCommitments(input: $input) {
+      itemCommitments {
+        itemCommitmentId
+        createdAt
+        updatedAt
+        committedMarketplace
+        state {
+          __typename
+          ... on ItemCommitmentActive {
+            label
+          }
+          ... on ItemCommitmentCancelled {
+            label
+            cancelledAt
+            reason
+          }
+          ... on ItemCommitmentLocked {
+            label
+          }
+          ... on ItemCommitmentCompleted {
+            label
+          }
+          ... on ItemCommitmentAbandoned {
+            label
+          }
+        }
+        cancellation {
+          cancellationId
+          lineItems {
+            cancellationLineItemId
+            cancelledQuantity
+            requestedQuantity
+          }
+        }
+        refunds {
+          refundId
+        }
+        buyer {
+          userId
+        }
+        seller {
+          userId
+        }
+        totals {
+          committedTotal {
+            original {
+              value
+              currency
+            }
+          }
+        }
+        lineItem {
+          quantity
+          item {
+            itemId
+          }
+          purchaseFlow {
+            __typename
+            ... on PurchaseFlowBuyItNow {
+              label
+            }
+            ... on PurchaseFlowAuction {
+              label
+            }
+            ... on PurchaseFlowCommitToBuy {
+              label
+            }
+            ... on PurchaseFlowSellerInitiatedOffer {
+              label
+            }
+            ... on PurchaseFlowBestOffer {
+              label
+            }
+            ... on PurchaseFlowRequestTotal {
+              label
+            }
+          }
+        }
+      }
+      pagination {
+        nextCursor
+        previousCursor
+      }
+    }
+  }
+}

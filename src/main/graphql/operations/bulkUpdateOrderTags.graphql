@@ -1,0 +1,41 @@
+mutation BulkUpdateOrderTags($input: BulkUpdateOrderTagsInput!) {
+  bulkUpdateOrderTags(input: $input) {
+    __typename
+    ... on BulkUpdateOrderTagsCompleteFailure {
+      errorCode
+      errorMessage
+      failures {
+        displayMessage
+        errorCode
+        inputOrderId
+        retryable
+      }
+    }
+    ... on BulkUpdateOrderTagsPartialFailure {
+      errorCode
+      errorMessage
+      failures {
+        displayMessage
+        errorCode
+        inputOrderId
+        retryable
+      }
+      updatedOrders {
+        orderId
+        orderTags {
+          tags
+          sellerAcknowledged
+        }
+      }
+    }
+    ... on BulkUpdateOrderTagsSuccess {
+      updatedOrders {
+        orderId
+        orderTags {
+          sellerAcknowledged
+          tags
+        }
+      }
+    }
+  }
+}

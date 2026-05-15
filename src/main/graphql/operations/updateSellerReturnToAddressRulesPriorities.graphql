@@ -1,0 +1,97 @@
+mutation UpdateSellerReturnToAddressRulesPriorities($input: UpdateSellerReturnToAddressRulesPrioritiesInput!) {
+  updateSellerReturnToAddressRulesPriorities(input: $input) {
+    __typename
+    ... on UpdateSellerReturnToAddressRulesPrioritiesSuccess {
+      returnToAddressRules {
+        ruleId
+        name
+        priority
+        status {
+          code
+          displayText
+        }
+        addressRoutingStrategy {
+          __typename
+          code
+          displayText
+          ... on ReturnToSpecificAddressStrategy {
+            code
+            displayText
+            returnAddress {
+              addressId
+              addressLine1
+              addressLine2
+              city
+              stateOrProvince
+              postalCode
+              countryCode
+            }
+          }
+          ... on ReturnToNearestSellerAddressStrategy {
+            code
+            displayText
+          }
+          ... on ReturnToOriginalShipFromAddressStrategy {
+            code
+            displayText
+          }
+        }
+        conditionSet {
+          operator
+          conditions {
+            __typename
+            ... on ReturnItemCategoryCondition {
+              categories {
+                categoryId
+              }
+            }
+            ... on ReturnItemLocationCountryCondition {
+              itemLocationCountries
+            }
+            ... on ReturnListingGroupCondition {
+              returnRuleListingGroupId
+            }
+            ... on ReturnReasonCondition {
+              returnReasonList {
+                displayText
+                code
+              }
+            }
+            ... on ReturnRefundRangeCondition {
+              maxRefundAmount {
+                currency
+                value
+              }
+              minRefundAmount {
+                currency
+                value
+              }
+            }
+            ... on ReturnShipmentOriginCountryCondition {
+              returnShipmentOriginCountries
+            }
+          }
+        }
+      }
+    }
+    ... on ReturnRuleMissingRuleIdsError {
+      errorCode
+      errorMessage
+      missingRuleIds
+    }
+    ... on ReturnRuleDuplicateRuleIdsError {
+      errorCode
+      errorMessage
+      duplicateRuleIds
+    }
+    ... on ReturnRuleInvalidRuleIdsError {
+      errorCode
+      errorMessage
+      invalidRuleIds
+    }
+    ... on ReturnRuleFeatureNotEnabledError {
+      errorCode
+      errorMessage
+    }
+  }
+}

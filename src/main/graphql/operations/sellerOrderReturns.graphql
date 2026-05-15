@@ -1,0 +1,141 @@
+query SellerOrderReturns($input: SellerOrderReturnsInput!, $scenario: ExchangeAmountScenario!) {
+  sellerOrderReturns(input: $input) {
+    __typename
+    ... on SellerOrderReturns {
+      orderReturns {
+        returnId
+        requester
+        requestedAt
+        closedAt
+        status {
+          __typename
+          code
+          displayText
+          ... on ReturnRequested {
+            code
+            displayText
+          }
+          ... on ReturnOpen {
+            code
+            displayText
+          }
+          ... on ReturnDeclined {
+            code
+            displayText
+          }
+          ... on ReturnCancelled {
+            code
+            displayText
+          }
+          ... on ReturnClosed {
+            code
+            displayText
+          }
+        }
+        returnLineItems {
+          returnLineItemId
+          requestedQuantity
+          returnReason {
+            code
+            displayText
+          }
+          returnNote
+          orderLineItem {
+            orderLineItemId
+          }
+          listingRestockTasks {
+            __typename
+            ... on PostPurchaseListingRelistTask {
+              relistStatus {
+                code
+                displayText
+              }
+              relistedListing {
+                __typename
+                ... on ListingReference {
+                  listingId
+                }
+              }
+            }
+          }
+        }
+        returnNegotiation {
+          latestReturnOffer {
+            status {
+              __typename
+              code
+              displayText
+              ... on ReturnOfferPending {
+                code
+                displayText
+              }
+              ... on ReturnOfferAccepted {
+                code
+                displayText
+              }
+              ... on ReturnOfferDeclined {
+                code
+                displayText
+              }
+              ... on ReturnOfferExpired {
+                code
+                displayText
+              }
+            }
+            proposedTerm {
+              __typename
+              ... on KeepItemPartialRefundTerm {
+                refundAmount {
+                  original {
+                    value
+                    currency
+                  }
+                  exchangeScenario(scenario: $scenario) {
+                    __typename
+                    ... on ExchangeAmount {
+                      amount {
+                        value
+                        currency
+                      }
+                      exchangeRate
+                      exchangeAt
+                    }
+                    ... on InvalidExchangeScenarioInputError {
+                      errorCode
+                      errorMessage
+                    }
+                  }
+                }
+                itemPriceRefundPercentage
+                itemShippingPriceWaived
+              }
+            }
+          }
+        }
+      }
+      pagination {
+        nextCursor
+        previousCursor
+      }
+    }
+    ... on ReturnActionNotPermittedError {
+      errorCode
+      errorMessage
+    }
+    ... on ReturnInvalidDateRangeError {
+      errorCode
+      errorMessage
+    }
+    ... on ReturnInvalidPageSizeError {
+      errorCode
+      errorMessage
+      maxAllowedPageSize
+      minAllowedPageSize
+      requestedPageSize
+    }
+    ... on ReturnInvalidSearchInputError {
+      errorCode
+      errorMessage
+    }
+  }
+}

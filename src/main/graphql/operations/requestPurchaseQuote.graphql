@@ -1,0 +1,15 @@
+mutation RequestPurchaseQuote($input: RequestPurchaseQuoteInput!) {
+  requestPurchaseQuote(input: $input) {
+    __typename
+    ... on RequestPurchaseQuoteBusinessError {
+      errorCode
+      errorMessage
+      retryable
+    }
+    ... on RequestPurchaseQuoteSuccess {
+      purchaseQuote {
+        purchaseQuoteId
+      }
+    }
+  }
+}

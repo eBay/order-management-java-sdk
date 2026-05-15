@@ -1,0 +1,35 @@
+mutation CreatePurchaseQuoteCancellation($input: CreatePurchaseQuoteCancellationInput!) {
+  createPurchaseQuoteCancellation(input: $input) {
+    __typename
+    ... on CreatePurchaseQuoteCancellationSuccess {
+      purchaseQuoteCancellation {
+        cancellationId
+        status {
+          code
+          displayText
+        }
+      }
+    }
+    ... on PurchaseQuoteCancellationEligibilityError {
+      errorCode
+      errorMessage
+      ineligibilityReasons {
+        __typename
+        code
+        displayMessage
+        purchaseQuoteId
+        ... on PurchaseQuoteCancellationReasonNotAllowed {
+          availableReasons {
+            code
+            displayText
+          }
+        }
+      }
+    }
+    ... on PurchaseQuoteNotFoundError {
+      errorCode
+      errorMessage
+      purchaseQuoteId
+    }
+  }
+}

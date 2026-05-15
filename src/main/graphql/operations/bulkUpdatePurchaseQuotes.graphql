@@ -1,0 +1,33 @@
+mutation BulkUpdatePurchaseQuotes($input: BulkUpdatePurchaseQuotesInput!) {
+  bulkUpdatePurchaseQuotes(input: $input) {
+    __typename
+    ... on BulkUpdatePurchaseQuotesSuccess {
+      updatedPurchaseQuotes {
+        purchaseQuoteId
+      }
+    }
+    ... on BulkUpdatePurchaseQuotesPartialFailure {
+      errorCode
+      errorMessage
+      updatedPurchaseQuotes {
+        purchaseQuoteId
+      }
+      failures {
+        inputPurchaseQuoteId
+        errorCode
+        displayMessage
+        retryable
+      }
+    }
+    ... on BulkUpdatePurchaseQuotesCompleteFailure {
+      errorCode
+      errorMessage
+      failures {
+        inputPurchaseQuoteId
+        errorCode
+        displayMessage
+        retryable
+      }
+    }
+  }
+}

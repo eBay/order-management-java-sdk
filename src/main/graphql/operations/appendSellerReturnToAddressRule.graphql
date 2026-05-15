@@ -1,0 +1,101 @@
+mutation AppendSellerReturnToAddressRule($input: AppendSellerReturnToAddressRuleInput!) {
+  appendSellerReturnToAddressRule(input: $input) {
+    __typename
+    ... on ReturnRuleFeatureNotEnabledError {
+      errorCode
+      errorMessage
+    }
+    ... on ReturnRuleInvalidConditionsError {
+      errorCode
+      errorMessage
+      ruleConditionViolation {
+        code
+        displayMessage
+      }
+    }
+    ... on ReturnRuleLimitExceededError {
+      errorCode
+      errorMessage
+      maxAllowed
+    }
+    ... on ReturnRuleMissingConditionError {
+      errorCode
+      errorMessage
+    }
+    ... on ReturnRuleNameError {
+      containsInvalidCharacters
+      duplicateRuleName
+      errorCode
+      errorMessage
+      nameConstraint {
+        allowedPattern
+        characterLimit {
+          maxLength
+          minLength
+        }
+      }
+    }
+    ... on ReturnToAddressRequiredError {
+      errorCode
+      addressRoutingStrategy {
+        displayText
+        code
+      }
+      errorMessage
+    }
+    ... on ReturnToAddressRule {
+      addressRoutingStrategy {
+        code
+        displayText
+      }
+      conditionSet {
+        conditions {
+          __typename
+          ... on ReturnItemCategoryCondition {
+            categories {
+              id
+            }
+          }
+          ... on ReturnItemLocationCountryCondition {
+            itemLocationCountries
+          }
+          ... on ReturnListingGroupCondition {
+            returnRuleListingGroupId
+          }
+          ... on ReturnReasonCondition {
+            returnReasonList {
+              code
+              displayText
+            }
+          }
+          ... on ReturnRefundRangeCondition {
+            maxRefundAmount {
+              currency
+              value
+            }
+            minRefundAmount {
+              currency
+              value
+            }
+          }
+          ... on ReturnShipmentOriginCountryCondition {
+            returnShipmentOriginCountries
+          }
+        }
+        operator
+      }
+      name
+      priority
+      ruleId
+      status {
+        code
+        displayText
+      }
+    }
+    ... on ReturnToAddressValidationError {
+      errorCode
+      errorMessage
+      invalidAddressId
+    }
+  }
+}

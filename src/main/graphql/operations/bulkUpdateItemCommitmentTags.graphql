@@ -1,0 +1,33 @@
+mutation BulkUpdateItemCommitmentTags($input: BulkUpdateItemCommitmentTagsInput!) {
+  bulkUpdateItemCommitmentTags(input: $input) {
+    __typename
+    ... on BulkUpdateItemCommitmentTagsSuccess {
+      updatedItemCommitments {
+        itemCommitmentId
+      }
+    }
+    ... on BulkUpdateItemCommitmentTagsPartialFailure {
+      errorCode
+      errorMessage
+      updatedItemCommitments {
+        itemCommitmentId
+      }
+      failures {
+        inputItemCommitmentId
+        errorCode
+        displayMessage
+        retryable
+      }
+    }
+    ... on BulkUpdateItemCommitmentTagsCompleteFailure {
+      errorCode
+      errorMessage
+      failures {
+        inputItemCommitmentId
+        errorCode
+        displayMessage
+        retryable
+      }
+    }
+  }
+}

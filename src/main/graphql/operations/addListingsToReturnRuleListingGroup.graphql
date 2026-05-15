@@ -1,0 +1,41 @@
+mutation AddListingsToReturnRuleListingGroup($input: AddListingsToReturnRuleListingGroupInput!) {
+  addListingsToReturnRuleListingGroup(input: $input) {
+    __typename
+    ... on ReturnRuleFeatureNotEnabledError {
+      errorCode
+      errorMessage
+    }
+    ... on ReturnRuleListingGroup {
+      listings {
+        listingId
+      }
+      groupName
+      pagination {
+        previousCursor
+        nextCursor
+      }
+      returnRuleListingGroupId
+    }
+    ... on ReturnRuleListingGroupDuplicateListingError {
+      duplicateListingIds
+      errorCode
+      errorMessage
+    }
+    ... on ReturnRuleListingGroupMaxSizeExceededError {
+      errorCode
+      errorMessage
+      groupListingLimit
+    }
+    ... on ReturnRuleListingGroupNotFoundError {
+      errorCode
+      errorMessage
+      returnRuleListingGroupId
+    }
+    ... on ReturnRuleListingIdsPerRequestLimitExceededError {
+      errorCode
+      errorMessage
+      perRequestLimit
+      requestedCount
+    }
+  }
+}

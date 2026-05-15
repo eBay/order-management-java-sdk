@@ -1,0 +1,106 @@
+mutation UpdateSellerReturnToAddressRuleCondition($input: UpdateSellerReturnToAddressRuleConditionInput!) {
+  updateSellerReturnToAddressRuleCondition(input: $input) {
+    __typename
+    ... on ReturnToAddressRule {
+      ruleId
+      name
+      priority
+      status {
+        code
+        displayText
+      }
+      addressRoutingStrategy {
+        __typename
+        code
+        displayText
+        ... on ReturnToSpecificAddressStrategy {
+          returnAddress {
+            addressLine1
+            city
+            stateOrProvince
+            postalCode
+            countryCode
+          }
+        }
+      }
+      conditionSet {
+        operator
+        conditions {
+          __typename
+          ... on ReturnShipmentOriginCountryCondition {
+            returnShipmentOriginCountries
+          }
+          ... on ReturnRefundRangeCondition {
+            minRefundAmount {
+              value
+              currency
+            }
+            maxRefundAmount {
+              value
+              currency
+            }
+          }
+          ... on ReturnReasonCondition {
+            returnReasonList {
+              code
+              displayText
+            }
+          }
+          ... on ReturnItemCategoryCondition {
+            categories {
+              categoryId
+            }
+          }
+          ... on ReturnListingGroupCondition {
+            returnRuleListingGroupId
+          }
+          ... on ReturnItemLocationCountryCondition {
+            itemLocationCountries
+          }
+        }
+      }
+    }
+    ... on ReturnRuleNotFoundError {
+      errorCode
+      errorMessage
+      requestedRuleId
+    }
+    ... on ReturnRuleInvalidConditionsError {
+      errorCode
+      errorMessage
+      ruleConditionViolation {
+        code
+        displayMessage
+      }
+    }
+    ... on ReturnRuleNameError {
+      errorCode
+      errorMessage
+      containsInvalidCharacters
+      duplicateRuleName
+      nameConstraint {
+        allowedPattern
+        characterLimit {
+          maxLength
+          minLength
+        }
+      }
+    }
+    ... on ReturnToAddressRequiredError {
+      errorCode
+      errorMessage
+      addressRoutingStrategy {
+        code
+        displayText
+      }
+    }
+    ... on ReturnRuleMissingConditionError {
+      errorCode
+      errorMessage
+    }
+    ... on ReturnRuleFeatureNotEnabledError {
+      errorCode
+      errorMessage
+    }
+  }
+}

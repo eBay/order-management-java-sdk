@@ -1,0 +1,30 @@
+query ContractCancellation($input: ContractCancellationInput!) {
+  contractCancellation(input: $input) {
+    __typename
+    ... on ContractCancellationNotFoundError {
+      errorCode
+      errorMessage
+      requestedContractCancellationId
+    }
+    ... on ContractCancellationSuccess {
+      contractCancellation {
+        cancellationId
+        closedAt
+        reason {
+          code
+          displayText
+        }
+        refunds {
+          refundId
+        }
+        requestedAt
+        requester
+        requesterNote
+        status {
+          code
+          displayText
+        }
+      }
+    }
+  }
+}

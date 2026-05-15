@@ -1,0 +1,37 @@
+query OrderLineItemsByIds($input: OrderLineItemsByIdsInput!) {
+  orderLineItemsByIds(input: $input) {
+    __typename
+    ... on OrderLineItemsByIdsSuccess {
+      lineItems {
+        orderLineItemId
+        createdAt
+        updatedAt
+      }
+    }
+    ... on OrderLineItemsByIdsPartialFailure {
+      lineItems {
+        orderLineItemId
+        createdAt
+        updatedAt
+      }
+      failures {
+        errorCode
+        displayMessage
+        inputLineItemId
+        retryable
+      }
+      errorCode
+      errorMessage
+    }
+    ... on OrderLineItemsByIdsCompleteFailure {
+      failures {
+        errorCode
+        displayMessage
+        inputLineItemId
+        retryable
+      }
+      errorCode
+      errorMessage
+    }
+  }
+}

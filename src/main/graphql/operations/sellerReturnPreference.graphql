@@ -1,0 +1,15 @@
+query SellerReturnPreference($input: SellerReturnPreferenceInput!) {
+  sellerReturnPreference(input: $input) {
+    __typename
+    ... on SellerReturnPreferences {
+      listingMarketplace
+      rmaPreference {
+        preferenceStatus
+      }
+    }
+    ... on ReturnPreferenceNotFoundError {
+      errorCode
+      errorMessage
+    }
+  }
+}

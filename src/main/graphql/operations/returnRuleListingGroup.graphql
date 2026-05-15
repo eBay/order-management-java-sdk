@@ -1,0 +1,21 @@
+query ReturnRuleListingGroup($input: ReturnRuleListingGroupInput!) {
+  returnRuleListingGroup(input: $input) {
+    __typename
+    ... on ReturnRuleListingGroup {
+      returnRuleListingGroupId
+      groupName
+      listings {
+        listingId
+      }
+      pagination {
+        nextCursor
+        previousCursor
+      }
+    }
+    ... on ReturnRuleListingGroupNotFoundError {
+      errorCode
+      errorMessage
+      returnRuleListingGroupId
+    }
+  }
+}
