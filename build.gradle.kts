@@ -34,7 +34,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     // JSON for DynamicGraphQLClient escape hatch
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.19.0")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.21.2")
 
     // Kotlin coroutines for Future integration (matches eBay Android)
     api(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.10.2"))
