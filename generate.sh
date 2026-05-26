@@ -13,4 +13,7 @@ kiota generate -l java -d specs/sell_logistics_v1_oas3.yaml \
   -c LogisticsApiClient -n com.ebay.ordermanagement.generated.logistics \
   -o src/main/java/com/ebay/ordermanagement/generated/logistics --ebc --co
 
+
+echo "Adding license headers to generated files..."
+./add-license-headers.sh ./src
 echo "Code generation complete!"
