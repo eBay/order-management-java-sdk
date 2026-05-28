@@ -46,7 +46,24 @@ public final class DynamicGraphQLClient {
     }
 
     /**
-     * Execute a GraphQL query or mutation.
+     * Execute a GraphQL query or mutation with raw query strings (escape hatch).
+     *
+     * <p><b>WARNING — GraphQL injection risk.</b> Never interpolate user-supplied input
+     * directly into the query parameter. Always pass dynamic values via the variables
+     * parameter so the server handles escaping.
+     *
+     * <p><b>Unsafe:</b>
+     * <pre>
+     * String query = "query { user(id: \"" + userId + "\") { name } }";  // ❌ INJECTION RISK
+     * </pre>
+     *
+     * <p><b>Safe:</b>
+     * <pre>
+     * String query = "query($id: ID!) { user(id: $id) { name } }";
+     * Map&lt;String, Object&gt; variables = Map.of("id", userId);  // ✅ SAFE
+     * executeRawUnsafe(query, variables, token, null);
+     * </pre>
+     *
      * @param query The GraphQL query string.
      * @param variables The variables object (or null).
      * @param accessToken Per-call token; overrides config fallback.
@@ -54,7 +71,7 @@ public final class DynamicGraphQLClient {
      * @return The GraphQL response data as JsonNode.
      * @throws GraphQLException if the response contains errors.
      */
-    public JsonNode execute(String query, Object variables, String accessToken, RequestOptions requestOptions) {
+    public JsonNode executeRawUnsafe(String query, Object variables, String accessToken, RequestOptions requestOptions) {
         String token = accessToken != null ? accessToken
             : TokenContext.CURRENT.get() != null ? TokenContext.CURRENT.get()
             : config.getAccessToken();
