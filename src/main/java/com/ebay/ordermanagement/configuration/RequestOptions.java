@@ -38,7 +38,25 @@ public final class RequestOptions {
      * @param value Header value (e.g., "EBAY_US")
      */
     public void addHeader(String name, String value) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Header name must not be null or empty");
+        }
+        if (containsLineSeparator(name) || containsLineSeparator(value)) {
+            throw new IllegalArgumentException("Header name and value must not contain CR, LF, or null bytes");
+        }
+        if (name.equalsIgnoreCase("Authorization")) {
+            throw new IllegalArgumentException("Authorization header cannot be overridden via RequestOptions");
+        }
         headers.put(name, value);
+    }
+
+    private static boolean containsLineSeparator(String s) {
+        if (s == null) return false;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == '\r' || c == '\n' || c == '\0') return true;
+        }
+        return false;
     }
 
     /**
