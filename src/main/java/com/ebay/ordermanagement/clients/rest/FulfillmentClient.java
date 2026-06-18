@@ -56,8 +56,8 @@ public final class FulfillmentClient {
      */
     public CompletableFuture<Order> getOrderAsync(
             String orderId, String fieldGroups, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("orderId", orderId);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.order().byOrderId(orderId).get(config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
@@ -65,7 +65,7 @@ public final class FulfillmentClient {
                     config.queryParameters.fieldGroups = fieldGroups;
                 }
             });
-        });
+        }));
     }
 
     /**
@@ -74,8 +74,7 @@ public final class FulfillmentClient {
     public CompletableFuture<OrderSearchPagedCollection> getOrdersAsync(
             String fieldGroups, String filter, String limit, String offset, String orderIds,
             String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.order().get(config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
@@ -95,7 +94,7 @@ public final class FulfillmentClient {
                     config.queryParameters.orderIds = orderIds;
                 }
             });
-        });
+        }));
     }
 
     /**
@@ -103,13 +102,13 @@ public final class FulfillmentClient {
      */
     public CompletableFuture<Refund> issueRefundAsync(
             String orderId, IssueRefundRequest body, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("orderId", orderId);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.order().byOrderId(orderId).issueRefund().post(body, config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 
     // ── Shipping Fulfillments ─────────────────────────────────────────────────
@@ -119,13 +118,13 @@ public final class FulfillmentClient {
      */
     public CompletableFuture<ShippingFulfillmentPagedCollection> getShippingFulfillmentsAsync(
             String orderId, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("orderId", orderId);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.order().byOrderId(orderId).shippingFulfillment().get(config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 
     /**
@@ -133,13 +132,13 @@ public final class FulfillmentClient {
      */
     public CompletableFuture<com.ebay.ordermanagement.generated.fulfillment.order.item.shipping_fulfillment.ShippingFulfillmentPostResponse> createShippingFulfillmentAsync(
             String orderId, ShippingFulfillmentDetails body, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("orderId", orderId);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.order().byOrderId(orderId).shippingFulfillment().post(body, config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 
     /**
@@ -147,13 +146,14 @@ public final class FulfillmentClient {
      */
     public CompletableFuture<ShippingFulfillment> getShippingFulfillmentAsync(
             String orderId, String fulfillmentId, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("orderId", orderId);
+        Params.requireValid("fulfillmentId", fulfillmentId);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.order().byOrderId(orderId).shippingFulfillment().byFulfillmentId(fulfillmentId).get(config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 
     // ── Payment Disputes ──────────────────────────────────────────────────────
@@ -163,13 +163,13 @@ public final class FulfillmentClient {
      */
     public CompletableFuture<PaymentDispute> getPaymentDisputeAsync(
             String paymentDisputeId, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("paymentDisputeId", paymentDisputeId);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.paymentDispute().byPayment_dispute_id(paymentDisputeId).get(config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 
     /**
@@ -178,8 +178,7 @@ public final class FulfillmentClient {
     public CompletableFuture<DisputeSummaryResponse> getPaymentDisputeSummariesAsync(
             String buyerUsername, String limit, String offset, String openDateFrom, String openDateTo,
             String orderId, String paymentDisputeStatus, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.paymentDisputeSummary().get(config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
@@ -205,7 +204,7 @@ public final class FulfillmentClient {
                     config.queryParameters.paymentDisputeStatus = paymentDisputeStatus;
                 }
             });
-        });
+        }));
     }
 
     /**
@@ -213,13 +212,13 @@ public final class FulfillmentClient {
      */
     public CompletableFuture<PaymentDisputeActivityHistory> getActivitiesAsync(
             String paymentDisputeId, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("paymentDisputeId", paymentDisputeId);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.paymentDispute().byPayment_dispute_id(paymentDisputeId).activity().get(config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 
     /**
@@ -227,13 +226,13 @@ public final class FulfillmentClient {
      */
     public CompletableFuture<Void> acceptPaymentDisputeAsync(
             String paymentDisputeId, AcceptPaymentDisputeRequest body, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.runAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("paymentDisputeId", paymentDisputeId);
+        return CompletableFuture.runAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             kiota.paymentDispute().byPayment_dispute_id(paymentDisputeId).accept().post(body, config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 
     /**
@@ -241,13 +240,13 @@ public final class FulfillmentClient {
      */
     public CompletableFuture<Void> contestPaymentDisputeAsync(
             String paymentDisputeId, ContestPaymentDisputeRequest body, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.runAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("paymentDisputeId", paymentDisputeId);
+        return CompletableFuture.runAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             kiota.paymentDispute().byPayment_dispute_id(paymentDisputeId).contest().post(body, config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 
     /**
@@ -255,13 +254,13 @@ public final class FulfillmentClient {
      */
     public CompletableFuture<AddEvidencePaymentDisputeResponse> addEvidenceAsync(
             String paymentDisputeId, AddEvidencePaymentDisputeRequest body, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("paymentDisputeId", paymentDisputeId);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.paymentDispute().byPayment_dispute_id(paymentDisputeId).addEvidence().post(body, config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 
     /**
@@ -269,13 +268,13 @@ public final class FulfillmentClient {
      */
     public CompletableFuture<Void> updateEvidenceAsync(
             String paymentDisputeId, UpdateEvidencePaymentDisputeRequest body, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.runAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("paymentDisputeId", paymentDisputeId);
+        return CompletableFuture.runAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             kiota.paymentDispute().byPayment_dispute_id(paymentDisputeId).updateEvidence().post(body, config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 
     /**
@@ -283,8 +282,8 @@ public final class FulfillmentClient {
      */
     public CompletableFuture<InputStream> fetchEvidenceContentAsync(
             String paymentDisputeId, String evidenceId, String fileId, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("paymentDisputeId", paymentDisputeId);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.paymentDispute().byPayment_dispute_id(paymentDisputeId).fetchEvidenceContent().get(config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
@@ -295,7 +294,7 @@ public final class FulfillmentClient {
                     config.queryParameters.fileId = fileId;
                 }
             });
-        });
+        }));
     }
 
     /**
@@ -303,12 +302,12 @@ public final class FulfillmentClient {
      */
     public CompletableFuture<FileEvidence> uploadEvidenceFileAsync(
             String paymentDisputeId, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("paymentDisputeId", paymentDisputeId);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.paymentDispute().byPayment_dispute_id(paymentDisputeId).uploadEvidenceFile().post(config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 }

@@ -56,13 +56,12 @@ public final class LogisticsClient {
      */
     public CompletableFuture<ShippingQuote> createShippingQuoteAsync(
             ShippingQuoteRequest body, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.shippingQuote().post(body, config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 
     /**
@@ -70,13 +69,13 @@ public final class LogisticsClient {
      */
     public CompletableFuture<ShippingQuote> getShippingQuoteAsync(
             String shippingQuoteId, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("shippingQuoteId", shippingQuoteId);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.shippingQuote().byShippingQuoteId(shippingQuoteId).get(config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 
     // ── Shipments ─────────────────────────────────────────────────────────────
@@ -86,13 +85,12 @@ public final class LogisticsClient {
      */
     public CompletableFuture<Shipment> createFromShippingQuoteAsync(
             CreateShipmentFromQuoteRequest body, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.shipment().createFromShippingQuote().post(body, config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 
     /**
@@ -100,13 +98,13 @@ public final class LogisticsClient {
      */
     public CompletableFuture<Shipment> getShipmentAsync(
             String shipmentId, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("shipmentId", shipmentId);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.shipment().byShipmentId(shipmentId).get(config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 
     /**
@@ -114,13 +112,13 @@ public final class LogisticsClient {
      */
     public CompletableFuture<Shipment> cancelShipmentAsync(
             String shipmentId, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("shipmentId", shipmentId);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.shipment().byShipmentId(shipmentId).cancel().post(config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 
     /**
@@ -128,12 +126,12 @@ public final class LogisticsClient {
      */
     public CompletableFuture<InputStream> downloadLabelFileAsync(
             String shipmentId, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("shipmentId", shipmentId);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.shipment().byShipmentId(shipmentId).downloadLabelFile().get(config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 }
