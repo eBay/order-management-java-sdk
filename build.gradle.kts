@@ -3,6 +3,7 @@ plugins {
     `maven-publish`
     embeddedKotlin("jvm")
     id("com.apollographql.apollo") version "4.3.1"
+    id("org.owasp.dependencycheck") version "12.1.3"
 }
 
 group = "com.ebay"
@@ -56,6 +57,25 @@ apollo {
 }
 
 tasks.test { useJUnitPlatform() }
+
+// SEC-011: CVE scanning — run with: ./gradlew dependencyCheckAnalyze
+dependencyCheck {
+    failBuildOnCVSS = 7.0f          // Fail on High (7.0+) and Critical CVEs
+    suppressionFile = "dependency-check-suppressions.xml"
+    analyzers {
+        assemblyEnabled = false     // Not needed for JVM-only project
+        ossIndexEnabled = false     // Requires Sonatype credentials — disabled
+    }
+    nvd {
+        apiKey = System.getenv("NVD_API_KEY") ?: ""
+    }
+}
+
+// SEC-011: Prevent unexpected transitive version upgrades
+// To generate lock files: ./gradlew dependencies --write-locks
+dependencyLocking {
+    lockAllConfigurations()
+}
 
 publishing {
     publications {
