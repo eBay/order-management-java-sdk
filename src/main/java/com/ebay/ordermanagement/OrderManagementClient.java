@@ -46,6 +46,7 @@ import java.util.concurrent.TimeUnit;
  */
 public final class OrderManagementClient implements Closeable {
     private final OkHttpClient sharedHttpClient;
+    private final OkHttpClient apolloHttpClient;
 
     public final FulfillmentClient fulfillment;
     public final LogisticsClient logistics;
@@ -71,13 +72,16 @@ public final class OrderManagementClient implements Closeable {
         logisticsAdapter.setBaseUrl(config.getLogisticsBaseUrl());
         this.logistics = new LogisticsClient(new LogisticsApiClient(logisticsAdapter), config);
 
-        // Apollo client with token interceptor for GraphQL
-        var apolloHttp = new OkHttpClient.Builder()
+        // Apollo client with token interceptor for GraphQL (SEC-004: stored as field for proper lifecycle)
+        this.apolloHttpClient = new OkHttpClient.Builder()
+            .connectTimeout(10, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
             .addInterceptor(new BearerTokenInterceptor(config))
             .build();
         var apolloClient = com.ebay.ordermanagement.clients.graphql.ApolloClientFactory.create(
             config.getGraphQLBaseUrl(),
-            apolloHttp
+            apolloHttpClient
         );
 
         // GraphQL client (Apollo Kotlin with type safety)
@@ -92,5 +96,7 @@ public final class OrderManagementClient implements Closeable {
     public void close() {
         sharedHttpClient.dispatcher().executorService().shutdown();
         sharedHttpClient.connectionPool().evictAll();
+        apolloHttpClient.dispatcher().executorService().shutdown();
+        apolloHttpClient.connectionPool().evictAll();
     }
 }
