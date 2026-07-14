@@ -26,7 +26,7 @@ dependencies {
     implementation("com.microsoft.kiota:microsoft-kiota-serialization-multipart:1.9.2")
 
     // Jakarta annotations (required by Kiota generated code)
-    implementation("jakarta.annotation:jakarta.annotation-api:2.1.1")
+    compileOnly("jakarta.annotation:jakarta.annotation-api:2.1.1")
 
     // GraphQL: Apollo Kotlin runtime
     implementation("com.apollographql.apollo:apollo-runtime:4.3.1")
