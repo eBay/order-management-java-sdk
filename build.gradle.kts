@@ -44,7 +44,6 @@ dependencies {
     // SLF4J for logging
     implementation("org.slf4j:slf4j-api:2.0.17")
 
-    testImplementation("org.junit.jupiter:junit-jupiter:5.12.2")
     testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
 }
 
