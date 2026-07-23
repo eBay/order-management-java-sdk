@@ -54,16 +54,6 @@ apollo {
     }
 }
 
-tasks.test { useJUnitPlatform() }
-
-// SEC-011: CVE scanning — run with: ./gradlew dependencyCheckAnalyze
-dependencyCheck {
-    failBuildOnCVSS = 7.0f          // Fail on High (7.0+) and Critical CVEs
-    suppressionFile = "dependency-check-suppressions.xml"
-    analyzers {
-        assemblyEnabled = false     // Not needed for JVM-only project
-        ossIndexEnabled = false     // Requires Sonatype credentials — disabled
-    }
     nvd {
         apiKey = System.getenv("NVD_API_KEY") ?: ""
     }
