@@ -19,11 +19,11 @@ kotlin {
 
 dependencies {
     // REST: Kiota runtime
-    api("com.microsoft.kiota:microsoft-kiota-bundle:1.9.2")
-    implementation("com.microsoft.kiota:microsoft-kiota-serialization-json:1.9.2")
-    implementation("com.microsoft.kiota:microsoft-kiota-serialization-text:1.9.2")
-    implementation("com.microsoft.kiota:microsoft-kiota-serialization-form:1.9.2")
-    implementation("com.microsoft.kiota:microsoft-kiota-serialization-multipart:1.9.2")
+    api("com.microsoft.kiota:microsoft-kiota-bundle:1.9.3")
+    implementation("com.microsoft.kiota:microsoft-kiota-serialization-json:1.9.3")
+    implementation("com.microsoft.kiota:microsoft-kiota-serialization-text:1.9.3")
+    implementation("com.microsoft.kiota:microsoft-kiota-serialization-form:1.9.3")
+    implementation("com.microsoft.kiota:microsoft-kiota-serialization-multipart:1.9.3")
 
     // Jakarta annotations (required by Kiota generated code)
     compileOnly("jakarta.annotation:jakarta.annotation-api:2.1.1")
