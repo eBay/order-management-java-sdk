@@ -1,18 +1,12 @@
 pluginManagement {
     repositories {
-        maven {
-            url = uri("https://artifactory.corp.ebay.com/artifactory/android/")
-        }
-        gradlePluginPortal()  // Fallback
+        gradlePluginPortal()
     }
 }
 
 dependencyResolutionManagement {
     repositories {
-        maven {
-            url = uri("https://artifactory.corp.ebay.com/artifactory/android/")
-        }
-        mavenCentral()  // Fallback
+        mavenCentral()
     }
 }
 
