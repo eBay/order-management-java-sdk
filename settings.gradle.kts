@@ -1,12 +1,12 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()  // Fallback
+        gradlePluginPortal()
     }
 }
 
 dependencyResolutionManagement {
     repositories {
-        mavenCentral()  // Fallback
+        mavenCentral()
     }
 }
 
