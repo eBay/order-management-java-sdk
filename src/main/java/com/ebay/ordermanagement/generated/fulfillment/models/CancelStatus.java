@@ -31,17 +31,17 @@ public class CancelStatus implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * The date and time the order was cancelled, if applicable. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * The date and time the order was cancelled, if applicable. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
     private String cancelledDate;
     /**
-     * This array contains details of one or more buyer requests to cancel the order. &lt;br&gt;&lt;br&gt;&lt;b&gt;For the getOrders call:&lt;/b&gt;  This array is returned but is always empty.&lt;br&gt;&lt;b&gt;For the getOrder call:&lt;/b&gt; This array is returned fully populated with information about any cancellation requests.
+     * This array contains details of one or more buyer requests to cancel the order. &lt;br&gt;&lt;br&gt;&lt;strong&gt;For the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call:&lt;/strong&gt;  This array is returned but is always empty.&lt;br&gt;&lt;br&gt;&lt;strong&gt;For the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder&quot; target=&quot;_blank&quot;&gt;getOrder&lt;/a&gt; call:&lt;/strong&gt; This array is returned fully populated with information about any cancellation requests.
      */
     private java.util.List<CancelRequest> cancelRequests;
     /**
-     * The state of the order with regard to cancellation. This field is always returned, and if there are no cancellation requests, a value of &lt;code&gt;NONE_REQUESTED&lt;/code&gt; is returned.  For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:CancelStateEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The state of the order with regard to cancellation. This field is always returned, and if there are no cancellation requests, a value of &lt;code&gt;NONE_REQUESTED&lt;/code&gt; is returned. 
      */
-    private String cancelState;
+    private CancelStateEnum cancelState;
     /**
      * Instantiates a new {@link CancelStatus} and sets the default values.
      */
@@ -67,7 +67,7 @@ public class CancelStatus implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the cancelledDate property value. The date and time the order was cancelled, if applicable. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * Gets the cancelledDate property value. The date and time the order was cancelled, if applicable. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -75,7 +75,7 @@ public class CancelStatus implements AdditionalDataHolder, Parsable {
         return this.cancelledDate;
     }
     /**
-     * Gets the cancelRequests property value. This array contains details of one or more buyer requests to cancel the order. &lt;br&gt;&lt;br&gt;&lt;b&gt;For the getOrders call:&lt;/b&gt;  This array is returned but is always empty.&lt;br&gt;&lt;b&gt;For the getOrder call:&lt;/b&gt; This array is returned fully populated with information about any cancellation requests.
+     * Gets the cancelRequests property value. This array contains details of one or more buyer requests to cancel the order. &lt;br&gt;&lt;br&gt;&lt;strong&gt;For the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call:&lt;/strong&gt;  This array is returned but is always empty.&lt;br&gt;&lt;br&gt;&lt;strong&gt;For the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder&quot; target=&quot;_blank&quot;&gt;getOrder&lt;/a&gt; call:&lt;/strong&gt; This array is returned fully populated with information about any cancellation requests.
      * @return a {@link java.util.List<CancelRequest>}
      */
     @jakarta.annotation.Nullable
@@ -83,11 +83,11 @@ public class CancelStatus implements AdditionalDataHolder, Parsable {
         return this.cancelRequests;
     }
     /**
-     * Gets the cancelState property value. The state of the order with regard to cancellation. This field is always returned, and if there are no cancellation requests, a value of &lt;code&gt;NONE_REQUESTED&lt;/code&gt; is returned.  For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:CancelStateEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the cancelState property value. The state of the order with regard to cancellation. This field is always returned, and if there are no cancellation requests, a value of &lt;code&gt;NONE_REQUESTED&lt;/code&gt; is returned. 
+     * @return a {@link CancelStateEnum}
      */
     @jakarta.annotation.Nullable
-    public String getCancelState() {
+    public CancelStateEnum getCancelState() {
         return this.cancelState;
     }
     /**
@@ -99,7 +99,7 @@ public class CancelStatus implements AdditionalDataHolder, Parsable {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(3);
         deserializerMap.put("cancelledDate", (n) -> { this.setCancelledDate(n.getStringValue()); });
         deserializerMap.put("cancelRequests", (n) -> { this.setCancelRequests(n.getCollectionOfObjectValues(CancelRequest::createFromDiscriminatorValue)); });
-        deserializerMap.put("cancelState", (n) -> { this.setCancelState(n.getStringValue()); });
+        deserializerMap.put("cancelState", (n) -> { this.setCancelState(n.getEnumValue(CancelStateEnum::forValue)); });
         return deserializerMap;
     }
     /**
@@ -110,7 +110,7 @@ public class CancelStatus implements AdditionalDataHolder, Parsable {
         Objects.requireNonNull(writer);
         writer.writeStringValue("cancelledDate", this.getCancelledDate());
         writer.writeCollectionOfObjectValues("cancelRequests", this.getCancelRequests());
-        writer.writeStringValue("cancelState", this.getCancelState());
+        writer.writeEnumValue("cancelState", this.getCancelState());
         writer.writeAdditionalData(this.getAdditionalData());
     }
     /**
@@ -121,24 +121,24 @@ public class CancelStatus implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the cancelledDate property value. The date and time the order was cancelled, if applicable. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * Sets the cancelledDate property value. The date and time the order was cancelled, if applicable. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the cancelledDate property.
      */
     public void setCancelledDate(@jakarta.annotation.Nullable final String value) {
         this.cancelledDate = value;
     }
     /**
-     * Sets the cancelRequests property value. This array contains details of one or more buyer requests to cancel the order. &lt;br&gt;&lt;br&gt;&lt;b&gt;For the getOrders call:&lt;/b&gt;  This array is returned but is always empty.&lt;br&gt;&lt;b&gt;For the getOrder call:&lt;/b&gt; This array is returned fully populated with information about any cancellation requests.
+     * Sets the cancelRequests property value. This array contains details of one or more buyer requests to cancel the order. &lt;br&gt;&lt;br&gt;&lt;strong&gt;For the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call:&lt;/strong&gt;  This array is returned but is always empty.&lt;br&gt;&lt;br&gt;&lt;strong&gt;For the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder&quot; target=&quot;_blank&quot;&gt;getOrder&lt;/a&gt; call:&lt;/strong&gt; This array is returned fully populated with information about any cancellation requests.
      * @param value Value to set for the cancelRequests property.
      */
     public void setCancelRequests(@jakarta.annotation.Nullable final java.util.List<CancelRequest> value) {
         this.cancelRequests = value;
     }
     /**
-     * Sets the cancelState property value. The state of the order with regard to cancellation. This field is always returned, and if there are no cancellation requests, a value of &lt;code&gt;NONE_REQUESTED&lt;/code&gt; is returned.  For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:CancelStateEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the cancelState property value. The state of the order with regard to cancellation. This field is always returned, and if there are no cancellation requests, a value of &lt;code&gt;NONE_REQUESTED&lt;/code&gt; is returned. 
      * @param value Value to set for the cancelState property.
      */
-    public void setCancelState(@jakarta.annotation.Nullable final String value) {
+    public void setCancelState(@jakarta.annotation.Nullable final CancelStateEnum value) {
         this.cancelState = value;
     }
 }

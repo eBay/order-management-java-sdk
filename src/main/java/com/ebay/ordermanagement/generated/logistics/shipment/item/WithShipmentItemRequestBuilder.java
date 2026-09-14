@@ -14,6 +14,7 @@
 
 package com.ebay.ordermanagement.generated.logistics.shipment.item;
 
+import com.ebay.ordermanagement.generated.logistics.models.Error;
 import com.ebay.ordermanagement.generated.logistics.models.Shipment;
 import com.ebay.ordermanagement.generated.logistics.shipment.item.cancel.CancelRequestBuilder;
 import com.ebay.ordermanagement.generated.logistics.shipment.item.download_label_file.DownloadLabelFileRequestBuilder;
@@ -67,25 +68,35 @@ public class WithShipmentItemRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/shipment/{shipmentId}", rawUrl);
     }
     /**
-     * This method retrieves the shipment details for the specified shipment ID. Call &lt;b&gt;createFromShippingQuote&lt;/b&gt; to generate a shipment ID.
+     * This method retrieves the shipment details for the specified shipment ID. Call &lt;strong&gt;createFromShippingQuote&lt;/strong&gt; to generate a shipment ID.
      * @return a {@link Shipment}
+     * @throws Error When receiving a 400 status code
+     * @throws Error When receiving a 404 status code
+     * @throws Error When receiving a 500 status code
      */
     @jakarta.annotation.Nullable
     public Shipment get() {
         return get(null);
     }
     /**
-     * This method retrieves the shipment details for the specified shipment ID. Call &lt;b&gt;createFromShippingQuote&lt;/b&gt; to generate a shipment ID.
+     * This method retrieves the shipment details for the specified shipment ID. Call &lt;strong&gt;createFromShippingQuote&lt;/strong&gt; to generate a shipment ID.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link Shipment}
+     * @throws Error When receiving a 400 status code
+     * @throws Error When receiving a 404 status code
+     * @throws Error When receiving a 500 status code
      */
     @jakarta.annotation.Nullable
     public Shipment get(@jakarta.annotation.Nullable final java.util.function.Consumer<GetRequestConfiguration> requestConfiguration) {
         final RequestInformation requestInfo = toGetRequestInformation(requestConfiguration);
-        return this.requestAdapter.send(requestInfo, null, Shipment::createFromDiscriminatorValue);
+        final HashMap<String, ParsableFactory<? extends Parsable>> errorMapping = new HashMap<String, ParsableFactory<? extends Parsable>>();
+        errorMapping.put("400", Error::createFromDiscriminatorValue);
+        errorMapping.put("404", Error::createFromDiscriminatorValue);
+        errorMapping.put("500", Error::createFromDiscriminatorValue);
+        return this.requestAdapter.send(requestInfo, errorMapping, Shipment::createFromDiscriminatorValue);
     }
     /**
-     * This method retrieves the shipment details for the specified shipment ID. Call &lt;b&gt;createFromShippingQuote&lt;/b&gt; to generate a shipment ID.
+     * This method retrieves the shipment details for the specified shipment ID. Call &lt;strong&gt;createFromShippingQuote&lt;/strong&gt; to generate a shipment ID.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -93,7 +104,7 @@ public class WithShipmentItemRequestBuilder extends BaseRequestBuilder {
         return toGetRequestInformation(null);
     }
     /**
-     * This method retrieves the shipment details for the specified shipment ID. Call &lt;b&gt;createFromShippingQuote&lt;/b&gt; to generate a shipment ID.
+     * This method retrieves the shipment details for the specified shipment ID. Call &lt;strong&gt;createFromShippingQuote&lt;/strong&gt; to generate a shipment ID.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */

@@ -31,7 +31,7 @@ public class Phone implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     *  The two-letter, &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html &quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; code associated with the seller&apos;s phone number. This field is needed if the buyer is located in a different country than the seller. It is also OK to provide if the buyer and seller are both located in the same country&lt;br&gt;&lt;br&gt;See &lt;a href=&quot;/api-docs/sell/fulfillment/types/ba:CountryCodeEnum &quot; target=&quot;_blank&quot;&gt;CountryCodeEnum&lt;/a&gt; for a list of supported values.
+     *  The two-letter, &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html&quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; code associated with the seller&apos;s phone number. This field is needed if the buyer is located in a different country than the seller. It is also OK to provide if the buyer and seller are both located in the same country&lt;br&gt;&lt;br&gt;See &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-acceptpaymentdispute.countrycodeenum&quot;&gt;CountryCodeEnum&lt;/a&gt; for a list of supported values.
      */
     private String countryCode;
     /**
@@ -63,7 +63,7 @@ public class Phone implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the countryCode property value.  The two-letter, &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html &quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; code associated with the seller&apos;s phone number. This field is needed if the buyer is located in a different country than the seller. It is also OK to provide if the buyer and seller are both located in the same country&lt;br&gt;&lt;br&gt;See &lt;a href=&quot;/api-docs/sell/fulfillment/types/ba:CountryCodeEnum &quot; target=&quot;_blank&quot;&gt;CountryCodeEnum&lt;/a&gt; for a list of supported values.
+     * Gets the countryCode property value.  The two-letter, &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html&quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; code associated with the seller&apos;s phone number. This field is needed if the buyer is located in a different country than the seller. It is also OK to provide if the buyer and seller are both located in the same country&lt;br&gt;&lt;br&gt;See &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-acceptpaymentdispute.countrycodeenum&quot;&gt;CountryCodeEnum&lt;/a&gt; for a list of supported values.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -107,7 +107,7 @@ public class Phone implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the countryCode property value.  The two-letter, &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html &quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; code associated with the seller&apos;s phone number. This field is needed if the buyer is located in a different country than the seller. It is also OK to provide if the buyer and seller are both located in the same country&lt;br&gt;&lt;br&gt;See &lt;a href=&quot;/api-docs/sell/fulfillment/types/ba:CountryCodeEnum &quot; target=&quot;_blank&quot;&gt;CountryCodeEnum&lt;/a&gt; for a list of supported values.
+     * Sets the countryCode property value.  The two-letter, &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html&quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; code associated with the seller&apos;s phone number. This field is needed if the buyer is located in a different country than the seller. It is also OK to provide if the buyer and seller are both located in the same country&lt;br&gt;&lt;br&gt;See &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-acceptpaymentdispute.countrycodeenum&quot;&gt;CountryCodeEnum&lt;/a&gt; for a list of supported values.
      * @param value Value to set for the countryCode property.
      */
     public void setCountryCode(@jakarta.annotation.Nullable final String value) {

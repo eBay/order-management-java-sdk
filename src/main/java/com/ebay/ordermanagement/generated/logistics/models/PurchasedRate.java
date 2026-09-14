@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * The &quot;rate&quot; that has been selected and purchased for the shipment, as referenced by the &lt;b&gt;rateId&lt;/b&gt; value.
+ * The &quot;rate&quot; that has been selected and purchased for the shipment, as referenced by the &lt;strong&gt;rateId&lt;/strong&gt; value.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class PurchasedRate implements AdditionalDataHolder, Parsable {
@@ -31,11 +31,11 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * An list of additional, optional features that have been purchased for the shipment.
+     * A list of additional, optional features that have been purchased for the shipment.
      */
     private java.util.List<AdditionalOption> additionalOptions;
     /**
-     * A complex type that describes the value of a monetary amount as represented by a global currency.
+     * The amount of the &quot;base cost&quot; for the shipment as set by the given carrier for the specified service. This cost excludes any additional costs accrued from the addition of any optional shipping options.
      */
     private Amount baseShippingCost;
     /**
@@ -43,11 +43,11 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
      */
     private String destinationTimeZone;
     /**
-     * A string value representing maximum (latest) estimated delivery time, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
+     * A string value representing maximum (latest) estimated delivery time, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
      */
     private String maxEstimatedDeliveryDate;
     /**
-     * A string value representing minimum (earliest) estimated delivery time, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt;ISO 8601&lt;/a&gt; UTC string.
+     * A string value representing minimum (earliest) estimated delivery time, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; UTC string.
      */
     private String minEstimatedDeliveryDate;
     /**
@@ -59,9 +59,9 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
      */
     private String pickupSlotId;
     /**
-     * The type of pickup or drop off configured for the shipment. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/logistics/types/api:PickupTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The type of pickup or drop-off configured for the shipment.
      */
-    private String pickupType;
+    private PickupTypeEnum pickupType;
     /**
      * The eBay-generated ID of the shipping rate that the seller has chosen to purchase for the shipment.
      */
@@ -75,7 +75,7 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
      */
     private String shippingCarrierName;
     /**
-     * The unique eBay-generated ID of the &lt;i&gt;shipping quote&lt;/i&gt; from which the seller selected a shipping rate (&lt;b&gt;rateId&lt;/b&gt;).
+     * The unique eBay-generated ID of the &lt;i&gt;shipping quote&lt;/i&gt; from which the seller selected a shipping rate (&lt;strong&gt;rateId&lt;/strong&gt;).
      */
     private String shippingQuoteId;
     /**
@@ -87,7 +87,7 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
      */
     private String shippingServiceName;
     /**
-     * A complex type that describes the value of a monetary amount as represented by a global currency.
+     * The total shipping cost, which is the sum cost of the base shipping cost and the cost of all the selected shipping options.
      */
     private Amount totalShippingCost;
     /**
@@ -115,7 +115,7 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the additionalOptions property value. An list of additional, optional features that have been purchased for the shipment.
+     * Gets the additionalOptions property value. A list of additional, optional features that have been purchased for the shipment.
      * @return a {@link java.util.List<AdditionalOption>}
      */
     @jakarta.annotation.Nullable
@@ -123,7 +123,7 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
         return this.additionalOptions;
     }
     /**
-     * Gets the baseShippingCost property value. A complex type that describes the value of a monetary amount as represented by a global currency.
+     * Gets the baseShippingCost property value. The amount of the &quot;base cost&quot; for the shipment as set by the given carrier for the specified service. This cost excludes any additional costs accrued from the addition of any optional shipping options.
      * @return a {@link Amount}
      */
     @jakarta.annotation.Nullable
@@ -152,7 +152,7 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
         deserializerMap.put("minEstimatedDeliveryDate", (n) -> { this.setMinEstimatedDeliveryDate(n.getStringValue()); });
         deserializerMap.put("pickupNetworks", (n) -> { this.setPickupNetworks(n.getCollectionOfPrimitiveValues(String.class)); });
         deserializerMap.put("pickupSlotId", (n) -> { this.setPickupSlotId(n.getStringValue()); });
-        deserializerMap.put("pickupType", (n) -> { this.setPickupType(n.getStringValue()); });
+        deserializerMap.put("pickupType", (n) -> { this.setPickupType(n.getEnumValue(PickupTypeEnum::forValue)); });
         deserializerMap.put("rateId", (n) -> { this.setRateId(n.getStringValue()); });
         deserializerMap.put("shippingCarrierCode", (n) -> { this.setShippingCarrierCode(n.getStringValue()); });
         deserializerMap.put("shippingCarrierName", (n) -> { this.setShippingCarrierName(n.getStringValue()); });
@@ -163,7 +163,7 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the maxEstimatedDeliveryDate property value. A string value representing maximum (latest) estimated delivery time, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
+     * Gets the maxEstimatedDeliveryDate property value. A string value representing maximum (latest) estimated delivery time, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -171,7 +171,7 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
         return this.maxEstimatedDeliveryDate;
     }
     /**
-     * Gets the minEstimatedDeliveryDate property value. A string value representing minimum (earliest) estimated delivery time, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt;ISO 8601&lt;/a&gt; UTC string.
+     * Gets the minEstimatedDeliveryDate property value. A string value representing minimum (earliest) estimated delivery time, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; UTC string.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -195,11 +195,11 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
         return this.pickupSlotId;
     }
     /**
-     * Gets the pickupType property value. The type of pickup or drop off configured for the shipment. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/logistics/types/api:PickupTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the pickupType property value. The type of pickup or drop-off configured for the shipment.
+     * @return a {@link PickupTypeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getPickupType() {
+    public PickupTypeEnum getPickupType() {
         return this.pickupType;
     }
     /**
@@ -227,7 +227,7 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
         return this.shippingCarrierName;
     }
     /**
-     * Gets the shippingQuoteId property value. The unique eBay-generated ID of the &lt;i&gt;shipping quote&lt;/i&gt; from which the seller selected a shipping rate (&lt;b&gt;rateId&lt;/b&gt;).
+     * Gets the shippingQuoteId property value. The unique eBay-generated ID of the &lt;i&gt;shipping quote&lt;/i&gt; from which the seller selected a shipping rate (&lt;strong&gt;rateId&lt;/strong&gt;).
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -251,7 +251,7 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
         return this.shippingServiceName;
     }
     /**
-     * Gets the totalShippingCost property value. A complex type that describes the value of a monetary amount as represented by a global currency.
+     * Gets the totalShippingCost property value. The total shipping cost, which is the sum cost of the base shipping cost and the cost of all the selected shipping options.
      * @return a {@link Amount}
      */
     @jakarta.annotation.Nullable
@@ -271,7 +271,7 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
         writer.writeStringValue("minEstimatedDeliveryDate", this.getMinEstimatedDeliveryDate());
         writer.writeCollectionOfPrimitiveValues("pickupNetworks", this.getPickupNetworks());
         writer.writeStringValue("pickupSlotId", this.getPickupSlotId());
-        writer.writeStringValue("pickupType", this.getPickupType());
+        writer.writeEnumValue("pickupType", this.getPickupType());
         writer.writeStringValue("rateId", this.getRateId());
         writer.writeStringValue("shippingCarrierCode", this.getShippingCarrierCode());
         writer.writeStringValue("shippingCarrierName", this.getShippingCarrierName());
@@ -289,14 +289,14 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the additionalOptions property value. An list of additional, optional features that have been purchased for the shipment.
+     * Sets the additionalOptions property value. A list of additional, optional features that have been purchased for the shipment.
      * @param value Value to set for the additionalOptions property.
      */
     public void setAdditionalOptions(@jakarta.annotation.Nullable final java.util.List<AdditionalOption> value) {
         this.additionalOptions = value;
     }
     /**
-     * Sets the baseShippingCost property value. A complex type that describes the value of a monetary amount as represented by a global currency.
+     * Sets the baseShippingCost property value. The amount of the &quot;base cost&quot; for the shipment as set by the given carrier for the specified service. This cost excludes any additional costs accrued from the addition of any optional shipping options.
      * @param value Value to set for the baseShippingCost property.
      */
     public void setBaseShippingCost(@jakarta.annotation.Nullable final Amount value) {
@@ -310,14 +310,14 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
         this.destinationTimeZone = value;
     }
     /**
-     * Sets the maxEstimatedDeliveryDate property value. A string value representing maximum (latest) estimated delivery time, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
+     * Sets the maxEstimatedDeliveryDate property value. A string value representing maximum (latest) estimated delivery time, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
      * @param value Value to set for the maxEstimatedDeliveryDate property.
      */
     public void setMaxEstimatedDeliveryDate(@jakarta.annotation.Nullable final String value) {
         this.maxEstimatedDeliveryDate = value;
     }
     /**
-     * Sets the minEstimatedDeliveryDate property value. A string value representing minimum (earliest) estimated delivery time, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt;ISO 8601&lt;/a&gt; UTC string.
+     * Sets the minEstimatedDeliveryDate property value. A string value representing minimum (earliest) estimated delivery time, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; UTC string.
      * @param value Value to set for the minEstimatedDeliveryDate property.
      */
     public void setMinEstimatedDeliveryDate(@jakarta.annotation.Nullable final String value) {
@@ -338,10 +338,10 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
         this.pickupSlotId = value;
     }
     /**
-     * Sets the pickupType property value. The type of pickup or drop off configured for the shipment. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/logistics/types/api:PickupTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the pickupType property value. The type of pickup or drop-off configured for the shipment.
      * @param value Value to set for the pickupType property.
      */
-    public void setPickupType(@jakarta.annotation.Nullable final String value) {
+    public void setPickupType(@jakarta.annotation.Nullable final PickupTypeEnum value) {
         this.pickupType = value;
     }
     /**
@@ -366,7 +366,7 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
         this.shippingCarrierName = value;
     }
     /**
-     * Sets the shippingQuoteId property value. The unique eBay-generated ID of the &lt;i&gt;shipping quote&lt;/i&gt; from which the seller selected a shipping rate (&lt;b&gt;rateId&lt;/b&gt;).
+     * Sets the shippingQuoteId property value. The unique eBay-generated ID of the &lt;i&gt;shipping quote&lt;/i&gt; from which the seller selected a shipping rate (&lt;strong&gt;rateId&lt;/strong&gt;).
      * @param value Value to set for the shippingQuoteId property.
      */
     public void setShippingQuoteId(@jakarta.annotation.Nullable final String value) {
@@ -387,7 +387,7 @@ public class PurchasedRate implements AdditionalDataHolder, Parsable {
         this.shippingServiceName = value;
     }
     /**
-     * Sets the totalShippingCost property value. A complex type that describes the value of a monetary amount as represented by a global currency.
+     * Sets the totalShippingCost property value. The total shipping cost, which is the sum cost of the base shipping cost and the cost of all the selected shipping options.
      * @param value Value to set for the totalShippingCost property.
      */
     public void setTotalShippingCost(@jakarta.annotation.Nullable final Amount value) {

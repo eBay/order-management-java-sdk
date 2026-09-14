@@ -15,6 +15,7 @@
 package com.ebay.ordermanagement.generated.fulfillment.payment_dispute.item.accept;
 
 import com.ebay.ordermanagement.generated.fulfillment.models.AcceptPaymentDisputeRequest;
+import com.ebay.ordermanagement.generated.fulfillment.models.ErrorResponse;
 import com.microsoft.kiota.BaseRequestBuilder;
 import com.microsoft.kiota.BaseRequestConfiguration;
 import com.microsoft.kiota.HttpMethod;
@@ -49,24 +50,34 @@ public class AcceptRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/payment_dispute/{payment_dispute_id}/accept", rawUrl);
     }
     /**
-     * This method is used if the seller wishes to accept a payment dispute. The unique identifier of the payment dispute is passed in as a path parameter, and unique identifiers for payment disputes can be retrieved with the &lt;strong&gt;getPaymentDisputeSummaries&lt;/strong&gt; method.&lt;br&gt;&lt;br&gt;The &lt;strong&gt;revision&lt;/strong&gt; field in the request payload is required, and the &lt;strong&gt;returnAddress&lt;/strong&gt; field should be supplied if the seller is expecting the buyer to return the item. See the Request Payload section for more information on theste fields.
+     * This method is used if the seller wishes to accept a payment dispute. The unique identifier of the payment dispute is passed in as a path parameter, and unique identifiers for payment disputes can be retrieved with the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; method.&lt;br&gt;&lt;br&gt;The &lt;strong&gt;revision&lt;/strong&gt; field in the request payload is required, and the &lt;strong&gt;returnAddress&lt;/strong&gt; field should be supplied if the seller is expecting the buyer to return the item. See the Request Payload section for more information on theste fields.
      * @param body This type is used by base request of the &lt;strong&gt;acceptPaymentDispute&lt;/strong&gt; method.
+     * @throws ErrorResponse When receiving a 400 status code
+     * @throws ErrorResponse When receiving a 409 status code
+     * @throws ErrorResponse When receiving a 500 status code
      */
     public void post(@jakarta.annotation.Nonnull final AcceptPaymentDisputeRequest body) {
         post(body, null);
     }
     /**
-     * This method is used if the seller wishes to accept a payment dispute. The unique identifier of the payment dispute is passed in as a path parameter, and unique identifiers for payment disputes can be retrieved with the &lt;strong&gt;getPaymentDisputeSummaries&lt;/strong&gt; method.&lt;br&gt;&lt;br&gt;The &lt;strong&gt;revision&lt;/strong&gt; field in the request payload is required, and the &lt;strong&gt;returnAddress&lt;/strong&gt; field should be supplied if the seller is expecting the buyer to return the item. See the Request Payload section for more information on theste fields.
+     * This method is used if the seller wishes to accept a payment dispute. The unique identifier of the payment dispute is passed in as a path parameter, and unique identifiers for payment disputes can be retrieved with the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; method.&lt;br&gt;&lt;br&gt;The &lt;strong&gt;revision&lt;/strong&gt; field in the request payload is required, and the &lt;strong&gt;returnAddress&lt;/strong&gt; field should be supplied if the seller is expecting the buyer to return the item. See the Request Payload section for more information on theste fields.
      * @param body This type is used by base request of the &lt;strong&gt;acceptPaymentDispute&lt;/strong&gt; method.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @throws ErrorResponse When receiving a 400 status code
+     * @throws ErrorResponse When receiving a 409 status code
+     * @throws ErrorResponse When receiving a 500 status code
      */
     public void post(@jakarta.annotation.Nonnull final AcceptPaymentDisputeRequest body, @jakarta.annotation.Nullable final java.util.function.Consumer<PostRequestConfiguration> requestConfiguration) {
         Objects.requireNonNull(body);
         final RequestInformation requestInfo = toPostRequestInformation(body, requestConfiguration);
-        this.requestAdapter.sendPrimitive(requestInfo, null, Void.class);
+        final HashMap<String, ParsableFactory<? extends Parsable>> errorMapping = new HashMap<String, ParsableFactory<? extends Parsable>>();
+        errorMapping.put("400", ErrorResponse::createFromDiscriminatorValue);
+        errorMapping.put("409", ErrorResponse::createFromDiscriminatorValue);
+        errorMapping.put("500", ErrorResponse::createFromDiscriminatorValue);
+        this.requestAdapter.sendPrimitive(requestInfo, errorMapping, Void.class);
     }
     /**
-     * This method is used if the seller wishes to accept a payment dispute. The unique identifier of the payment dispute is passed in as a path parameter, and unique identifiers for payment disputes can be retrieved with the &lt;strong&gt;getPaymentDisputeSummaries&lt;/strong&gt; method.&lt;br&gt;&lt;br&gt;The &lt;strong&gt;revision&lt;/strong&gt; field in the request payload is required, and the &lt;strong&gt;returnAddress&lt;/strong&gt; field should be supplied if the seller is expecting the buyer to return the item. See the Request Payload section for more information on theste fields.
+     * This method is used if the seller wishes to accept a payment dispute. The unique identifier of the payment dispute is passed in as a path parameter, and unique identifiers for payment disputes can be retrieved with the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; method.&lt;br&gt;&lt;br&gt;The &lt;strong&gt;revision&lt;/strong&gt; field in the request payload is required, and the &lt;strong&gt;returnAddress&lt;/strong&gt; field should be supplied if the seller is expecting the buyer to return the item. See the Request Payload section for more information on theste fields.
      * @param body This type is used by base request of the &lt;strong&gt;acceptPaymentDispute&lt;/strong&gt; method.
      * @return a {@link RequestInformation}
      */
@@ -75,7 +86,7 @@ public class AcceptRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * This method is used if the seller wishes to accept a payment dispute. The unique identifier of the payment dispute is passed in as a path parameter, and unique identifiers for payment disputes can be retrieved with the &lt;strong&gt;getPaymentDisputeSummaries&lt;/strong&gt; method.&lt;br&gt;&lt;br&gt;The &lt;strong&gt;revision&lt;/strong&gt; field in the request payload is required, and the &lt;strong&gt;returnAddress&lt;/strong&gt; field should be supplied if the seller is expecting the buyer to return the item. See the Request Payload section for more information on theste fields.
+     * This method is used if the seller wishes to accept a payment dispute. The unique identifier of the payment dispute is passed in as a path parameter, and unique identifiers for payment disputes can be retrieved with the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; method.&lt;br&gt;&lt;br&gt;The &lt;strong&gt;revision&lt;/strong&gt; field in the request payload is required, and the &lt;strong&gt;returnAddress&lt;/strong&gt; field should be supplied if the seller is expecting the buyer to return the item. See the Request Payload section for more information on theste fields.
      * @param body This type is used by base request of the &lt;strong&gt;acceptPaymentDispute&lt;/strong&gt; method.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
@@ -85,6 +96,7 @@ public class AcceptRequestBuilder extends BaseRequestBuilder {
         Objects.requireNonNull(body);
         final RequestInformation requestInfo = new RequestInformation(HttpMethod.POST, urlTemplate, pathParameters);
         requestInfo.configure(requestConfiguration, PostRequestConfiguration::new);
+        requestInfo.headers.tryAdd("Accept", "application/json");
         requestInfo.setContentFromParsable(requestAdapter, "application/json", body);
         return requestInfo;
     }

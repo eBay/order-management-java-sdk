@@ -31,23 +31,23 @@ public class DeliveryCost implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * The amount of any shipping discount that has been applied to the line item. This container is returned only if a shipping discount applies to the line item.
      */
     private Amount discountAmount;
     /**
-     * This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * The amount of any handing cost that has been applied to the line item. This container is returned only if a handling cost applies to the line item.
      */
     private Amount handlingCost;
     /**
-     * This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * The amount of any import charges applied to international shipping of the line item. This container is only returned if import charges apply to the line item.
      */
     private Amount importCharges;
     /**
-     * This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * The total cost of shipping all units of the line item. This container is always returned even when the shipping cost is free, in which case the &lt;strong&gt;value&lt;/strong&gt; field will show &lt;code&gt;0.0&lt;/code&gt; (dollars).
      */
     private Amount shippingCost;
     /**
-     * This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * This field shows the fee due to eBay&apos;s international shipping provider for a line item that is being shipped through the Global Shipping Program.&lt;br&gt;&lt;br&gt;This container is only returned for line items being shipped internationally through the Global Shipping Program, which is currently only supported in the US and UK marketplaces.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The value returned for this field will always be &lt;code&gt;0.0&lt;/code&gt; for line items sold in the UK marketplace.&lt;/span&gt;
      */
     private Amount shippingIntermediationFee;
     /**
@@ -75,7 +75,7 @@ public class DeliveryCost implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the discountAmount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the discountAmount property value. The amount of any shipping discount that has been applied to the line item. This container is returned only if a shipping discount applies to the line item.
      * @return a {@link Amount}
      */
     @jakarta.annotation.Nullable
@@ -97,7 +97,7 @@ public class DeliveryCost implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the handlingCost property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the handlingCost property value. The amount of any handing cost that has been applied to the line item. This container is returned only if a handling cost applies to the line item.
      * @return a {@link Amount}
      */
     @jakarta.annotation.Nullable
@@ -105,7 +105,7 @@ public class DeliveryCost implements AdditionalDataHolder, Parsable {
         return this.handlingCost;
     }
     /**
-     * Gets the importCharges property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the importCharges property value. The amount of any import charges applied to international shipping of the line item. This container is only returned if import charges apply to the line item.
      * @return a {@link Amount}
      */
     @jakarta.annotation.Nullable
@@ -113,7 +113,7 @@ public class DeliveryCost implements AdditionalDataHolder, Parsable {
         return this.importCharges;
     }
     /**
-     * Gets the shippingCost property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the shippingCost property value. The total cost of shipping all units of the line item. This container is always returned even when the shipping cost is free, in which case the &lt;strong&gt;value&lt;/strong&gt; field will show &lt;code&gt;0.0&lt;/code&gt; (dollars).
      * @return a {@link Amount}
      */
     @jakarta.annotation.Nullable
@@ -121,7 +121,7 @@ public class DeliveryCost implements AdditionalDataHolder, Parsable {
         return this.shippingCost;
     }
     /**
-     * Gets the shippingIntermediationFee property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the shippingIntermediationFee property value. This field shows the fee due to eBay&apos;s international shipping provider for a line item that is being shipped through the Global Shipping Program.&lt;br&gt;&lt;br&gt;This container is only returned for line items being shipped internationally through the Global Shipping Program, which is currently only supported in the US and UK marketplaces.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The value returned for this field will always be &lt;code&gt;0.0&lt;/code&gt; for line items sold in the UK marketplace.&lt;/span&gt;
      * @return a {@link Amount}
      */
     @jakarta.annotation.Nullable
@@ -149,35 +149,35 @@ public class DeliveryCost implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the discountAmount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the discountAmount property value. The amount of any shipping discount that has been applied to the line item. This container is returned only if a shipping discount applies to the line item.
      * @param value Value to set for the discountAmount property.
      */
     public void setDiscountAmount(@jakarta.annotation.Nullable final Amount value) {
         this.discountAmount = value;
     }
     /**
-     * Sets the handlingCost property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the handlingCost property value. The amount of any handing cost that has been applied to the line item. This container is returned only if a handling cost applies to the line item.
      * @param value Value to set for the handlingCost property.
      */
     public void setHandlingCost(@jakarta.annotation.Nullable final Amount value) {
         this.handlingCost = value;
     }
     /**
-     * Sets the importCharges property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the importCharges property value. The amount of any import charges applied to international shipping of the line item. This container is only returned if import charges apply to the line item.
      * @param value Value to set for the importCharges property.
      */
     public void setImportCharges(@jakarta.annotation.Nullable final Amount value) {
         this.importCharges = value;
     }
     /**
-     * Sets the shippingCost property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the shippingCost property value. The total cost of shipping all units of the line item. This container is always returned even when the shipping cost is free, in which case the &lt;strong&gt;value&lt;/strong&gt; field will show &lt;code&gt;0.0&lt;/code&gt; (dollars).
      * @param value Value to set for the shippingCost property.
      */
     public void setShippingCost(@jakarta.annotation.Nullable final Amount value) {
         this.shippingCost = value;
     }
     /**
-     * Sets the shippingIntermediationFee property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the shippingIntermediationFee property value. This field shows the fee due to eBay&apos;s international shipping provider for a line item that is being shipped through the Global Shipping Program.&lt;br&gt;&lt;br&gt;This container is only returned for line items being shipped internationally through the Global Shipping Program, which is currently only supported in the US and UK marketplaces.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The value returned for this field will always be &lt;code&gt;0.0&lt;/code&gt; for line items sold in the UK marketplace.&lt;/span&gt;
      * @param value Value to set for the shippingIntermediationFee property.
      */
     public void setShippingIntermediationFee(@jakarta.annotation.Nullable final Amount value) {

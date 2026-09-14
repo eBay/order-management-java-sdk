@@ -31,7 +31,7 @@ public class InfoFromBuyer implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * When the value of this field is &lt;code&gt;true&lt;/code&gt; it indicates that the buyer&apos;s note regarding the payment dispute (i.e., the &lt;b&gt;buyerProvided.note&lt;/b&gt; field,) is on hold. When this is the case, the &lt;b&gt;buyerProvided.note&lt;/b&gt; field will not be returned.&lt;br&gt;&lt;br&gt;When the value of this field is &lt;code&gt;false&lt;/code&gt;, it is not returned.
+     * When the value of this field is &lt;code&gt;true&lt;/code&gt; it indicates that the buyer&apos;s note regarding the payment dispute (i.e., the &lt;strong&gt;buyerProvided.note&lt;/strong&gt; field,) is on hold. When this is the case, the &lt;strong&gt;buyerProvided.note&lt;/strong&gt; field will not be returned.&lt;br&gt;&lt;br&gt;When the value of this field is &lt;code&gt;false&lt;/code&gt;, it is not returned.
      */
     private Boolean contentOnHold;
     /**
@@ -67,7 +67,7 @@ public class InfoFromBuyer implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the contentOnHold property value. When the value of this field is &lt;code&gt;true&lt;/code&gt; it indicates that the buyer&apos;s note regarding the payment dispute (i.e., the &lt;b&gt;buyerProvided.note&lt;/b&gt; field,) is on hold. When this is the case, the &lt;b&gt;buyerProvided.note&lt;/b&gt; field will not be returned.&lt;br&gt;&lt;br&gt;When the value of this field is &lt;code&gt;false&lt;/code&gt;, it is not returned.
+     * Gets the contentOnHold property value. When the value of this field is &lt;code&gt;true&lt;/code&gt; it indicates that the buyer&apos;s note regarding the payment dispute (i.e., the &lt;strong&gt;buyerProvided.note&lt;/strong&gt; field,) is on hold. When this is the case, the &lt;strong&gt;buyerProvided.note&lt;/strong&gt; field will not be returned.&lt;br&gt;&lt;br&gt;When the value of this field is &lt;code&gt;false&lt;/code&gt;, it is not returned.
      * @return a {@link Boolean}
      */
     @jakarta.annotation.Nullable
@@ -121,7 +121,7 @@ public class InfoFromBuyer implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the contentOnHold property value. When the value of this field is &lt;code&gt;true&lt;/code&gt; it indicates that the buyer&apos;s note regarding the payment dispute (i.e., the &lt;b&gt;buyerProvided.note&lt;/b&gt; field,) is on hold. When this is the case, the &lt;b&gt;buyerProvided.note&lt;/b&gt; field will not be returned.&lt;br&gt;&lt;br&gt;When the value of this field is &lt;code&gt;false&lt;/code&gt;, it is not returned.
+     * Sets the contentOnHold property value. When the value of this field is &lt;code&gt;true&lt;/code&gt; it indicates that the buyer&apos;s note regarding the payment dispute (i.e., the &lt;strong&gt;buyerProvided.note&lt;/strong&gt; field,) is on hold. When this is the case, the &lt;strong&gt;buyerProvided.note&lt;/strong&gt; field will not be returned.&lt;br&gt;&lt;br&gt;When the value of this field is &lt;code&gt;false&lt;/code&gt;, it is not returned.
      * @param value Value to set for the contentOnHold property.
      */
     public void setContentOnHold(@jakarta.annotation.Nullable final Boolean value) {

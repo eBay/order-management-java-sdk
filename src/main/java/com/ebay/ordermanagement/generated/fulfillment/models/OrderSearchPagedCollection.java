@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * This type contains the specifications for the collection of orders that match the search or filter criteria of a &lt;b&gt;getOrders&lt;/b&gt; call. The collection is grouped into a result set, and based on the query parameters that are set (including the &lt;strong&gt;limit&lt;/strong&gt; and &lt;strong&gt;offset&lt;/strong&gt; parameters), the result set may included multiple pages, but only one page of the result set can be viewed at a time.
+ * This type contains the specifications for the collection of orders that match the search or filter criteria of a &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call. The collection is grouped into a result set, and based on the query parameters that are set (including the &lt;strong&gt;limit&lt;/strong&gt; and &lt;strong&gt;offset&lt;/strong&gt; parameters), the result set may included multiple pages, but only one page of the result set can be viewed at a time.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class OrderSearchPagedCollection implements AdditionalDataHolder, Parsable {
@@ -31,19 +31,19 @@ public class OrderSearchPagedCollection implements AdditionalDataHolder, Parsabl
      */
     private Map<String, Object> additionalData;
     /**
-     * The URI of the &lt;b&gt;getOrders&lt;/b&gt; call request that produced the current page of the result set.
+     * The URI of the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call request that produced the current page of the result set.
      */
     private String href;
     /**
-     * The maximum number of orders returned per page of the result set. The &lt;strong&gt;limit&lt;/strong&gt; value can be passed in as a query parameter, or if omitted, its value defaults to &lt;code&gt;50&lt;/code&gt;. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; If this is the last or only page of the result set, the page may contain fewer orders than the &lt;strong&gt;limit&lt;/strong&gt; value.  To determine the number of pages in a result set, divide the &lt;b&gt;total&lt;/b&gt; value (total number of orders matching input criteria) by this &lt;strong&gt;limit&lt;/strong&gt; value, and then round up to the next integer. For example, if the &lt;b&gt;total&lt;/b&gt; value was &lt;code&gt;120&lt;/code&gt; (120 total orders) and the &lt;strong&gt;limit&lt;/strong&gt; value was &lt;code&gt;50&lt;/code&gt; (show 50 orders per page), the total number of pages in the result set is three, so the seller would have to make three separate &lt;strong&gt;getOrders&lt;/strong&gt; calls to view all orders matching the input criteria. &lt;/span&gt;&lt;b&gt;Default:&lt;/b&gt; &lt;code&gt;50&lt;/code&gt;
+     * The maximum number of orders returned per page of the result set. The &lt;strong&gt;limit&lt;/strong&gt; value can be passed in as a query parameter, or if omitted, its value defaults to &lt;code&gt;50&lt;/code&gt;. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; If this is the last or only page of the result set, the page may contain fewer orders than the &lt;strong&gt;limit&lt;/strong&gt; value.  To determine the number of pages in a result set, divide the &lt;strong&gt;total&lt;/strong&gt; value (total number of orders matching input criteria) by this &lt;strong&gt;limit&lt;/strong&gt; value, and then round up to the next integer. For example, if the &lt;strong&gt;total&lt;/strong&gt; value was &lt;code&gt;120&lt;/code&gt; (120 total orders) and the &lt;strong&gt;limit&lt;/strong&gt; value was &lt;code&gt;50&lt;/code&gt; (show 50 orders per page), the total number of pages in the result set is three, so the seller would have to make three separate &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; calls to view all orders matching the input criteria. &lt;/span&gt;&lt;strong&gt;Default:&lt;/strong&gt; &lt;code&gt;50&lt;/code&gt;
      */
     private Integer limit;
     /**
-     * The &lt;b&gt;getOrders&lt;/b&gt; call URI to use if you wish to view the  next page of the result set. For example, the following URI returns records 41 thru 50 from the collection of orders: &lt;br&gt;&lt;br&gt;&lt;code&gt;&lt;i&gt;path&lt;/i&gt;/order?limit=10&amp;offset=40 &lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a next page of results to view based on the current input criteria.&lt;br&gt;
+     * The &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call URI to use if you wish to view the  next page of the result set. For example, the following URI returns records 41 through 50 from the collection of orders: &lt;br&gt;&lt;br&gt;&lt;code&gt;&lt;i&gt;path&lt;/i&gt;/order?limit=10&amp;offset=40 &lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a next page of results to view based on the current input criteria.&lt;br&gt;
      */
     private String next;
     /**
-     * The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the &lt;b&gt;offset&lt;/b&gt; query parameter. &lt;p class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;The items in a paginated result set use a zero-based list where the first item in the list has an offset of &lt;code&gt;0&lt;/code&gt;.&lt;/p&gt;
+     * The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the &lt;strong&gt;offset&lt;/strong&gt; query parameter. &lt;p class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;The items in a paginated result set use a zero-based list where the first item in the list has an offset of &lt;code&gt;0&lt;/code&gt;.&lt;/p&gt;
      */
     private Integer offset;
     /**
@@ -51,7 +51,7 @@ public class OrderSearchPagedCollection implements AdditionalDataHolder, Parsabl
      */
     private java.util.List<Order> orders;
     /**
-     * The &lt;b&gt;getOrders&lt;/b&gt; call URI for the previous result set. For example, the following URI returns orders 21 thru 30 from the collection of orders: &lt;br&gt;&lt;br&gt;&lt;code&gt;&lt;i&gt;path&lt;/i&gt;/order?limit=10&amp;offset=20&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a previous page of results to view based on the current input criteria.
+     * The &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call URI for the previous result set. For example, the following URI returns orders 21 through 30 from the collection of orders: &lt;br&gt;&lt;br&gt;&lt;code&gt;&lt;i&gt;path&lt;/i&gt;/order?limit=10&amp;offset=20&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a previous page of results to view based on the current input criteria.
      */
     private String prev;
     /**
@@ -61,7 +61,7 @@ public class OrderSearchPagedCollection implements AdditionalDataHolder, Parsabl
     /**
      * This array is returned if one or more errors or warnings occur with the call request.
      */
-    private java.util.List<Error> warnings;
+    private java.util.List<ErrorDetailV3> warnings;
     /**
      * Instantiates a new {@link OrderSearchPagedCollection} and sets the default values.
      */
@@ -100,11 +100,11 @@ public class OrderSearchPagedCollection implements AdditionalDataHolder, Parsabl
         deserializerMap.put("orders", (n) -> { this.setOrders(n.getCollectionOfObjectValues(Order::createFromDiscriminatorValue)); });
         deserializerMap.put("prev", (n) -> { this.setPrev(n.getStringValue()); });
         deserializerMap.put("total", (n) -> { this.setTotal(n.getIntegerValue()); });
-        deserializerMap.put("warnings", (n) -> { this.setWarnings(n.getCollectionOfObjectValues(Error::createFromDiscriminatorValue)); });
+        deserializerMap.put("warnings", (n) -> { this.setWarnings(n.getCollectionOfObjectValues(ErrorDetailV3::createFromDiscriminatorValue)); });
         return deserializerMap;
     }
     /**
-     * Gets the href property value. The URI of the &lt;b&gt;getOrders&lt;/b&gt; call request that produced the current page of the result set.
+     * Gets the href property value. The URI of the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call request that produced the current page of the result set.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -112,7 +112,7 @@ public class OrderSearchPagedCollection implements AdditionalDataHolder, Parsabl
         return this.href;
     }
     /**
-     * Gets the limit property value. The maximum number of orders returned per page of the result set. The &lt;strong&gt;limit&lt;/strong&gt; value can be passed in as a query parameter, or if omitted, its value defaults to &lt;code&gt;50&lt;/code&gt;. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; If this is the last or only page of the result set, the page may contain fewer orders than the &lt;strong&gt;limit&lt;/strong&gt; value.  To determine the number of pages in a result set, divide the &lt;b&gt;total&lt;/b&gt; value (total number of orders matching input criteria) by this &lt;strong&gt;limit&lt;/strong&gt; value, and then round up to the next integer. For example, if the &lt;b&gt;total&lt;/b&gt; value was &lt;code&gt;120&lt;/code&gt; (120 total orders) and the &lt;strong&gt;limit&lt;/strong&gt; value was &lt;code&gt;50&lt;/code&gt; (show 50 orders per page), the total number of pages in the result set is three, so the seller would have to make three separate &lt;strong&gt;getOrders&lt;/strong&gt; calls to view all orders matching the input criteria. &lt;/span&gt;&lt;b&gt;Default:&lt;/b&gt; &lt;code&gt;50&lt;/code&gt;
+     * Gets the limit property value. The maximum number of orders returned per page of the result set. The &lt;strong&gt;limit&lt;/strong&gt; value can be passed in as a query parameter, or if omitted, its value defaults to &lt;code&gt;50&lt;/code&gt;. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; If this is the last or only page of the result set, the page may contain fewer orders than the &lt;strong&gt;limit&lt;/strong&gt; value.  To determine the number of pages in a result set, divide the &lt;strong&gt;total&lt;/strong&gt; value (total number of orders matching input criteria) by this &lt;strong&gt;limit&lt;/strong&gt; value, and then round up to the next integer. For example, if the &lt;strong&gt;total&lt;/strong&gt; value was &lt;code&gt;120&lt;/code&gt; (120 total orders) and the &lt;strong&gt;limit&lt;/strong&gt; value was &lt;code&gt;50&lt;/code&gt; (show 50 orders per page), the total number of pages in the result set is three, so the seller would have to make three separate &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; calls to view all orders matching the input criteria. &lt;/span&gt;&lt;strong&gt;Default:&lt;/strong&gt; &lt;code&gt;50&lt;/code&gt;
      * @return a {@link Integer}
      */
     @jakarta.annotation.Nullable
@@ -120,7 +120,7 @@ public class OrderSearchPagedCollection implements AdditionalDataHolder, Parsabl
         return this.limit;
     }
     /**
-     * Gets the next property value. The &lt;b&gt;getOrders&lt;/b&gt; call URI to use if you wish to view the  next page of the result set. For example, the following URI returns records 41 thru 50 from the collection of orders: &lt;br&gt;&lt;br&gt;&lt;code&gt;&lt;i&gt;path&lt;/i&gt;/order?limit=10&amp;offset=40 &lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a next page of results to view based on the current input criteria.&lt;br&gt;
+     * Gets the next property value. The &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call URI to use if you wish to view the  next page of the result set. For example, the following URI returns records 41 through 50 from the collection of orders: &lt;br&gt;&lt;br&gt;&lt;code&gt;&lt;i&gt;path&lt;/i&gt;/order?limit=10&amp;offset=40 &lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a next page of results to view based on the current input criteria.&lt;br&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -128,7 +128,7 @@ public class OrderSearchPagedCollection implements AdditionalDataHolder, Parsabl
         return this.next;
     }
     /**
-     * Gets the offset property value. The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the &lt;b&gt;offset&lt;/b&gt; query parameter. &lt;p class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;The items in a paginated result set use a zero-based list where the first item in the list has an offset of &lt;code&gt;0&lt;/code&gt;.&lt;/p&gt;
+     * Gets the offset property value. The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the &lt;strong&gt;offset&lt;/strong&gt; query parameter. &lt;p class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;The items in a paginated result set use a zero-based list where the first item in the list has an offset of &lt;code&gt;0&lt;/code&gt;.&lt;/p&gt;
      * @return a {@link Integer}
      */
     @jakarta.annotation.Nullable
@@ -144,7 +144,7 @@ public class OrderSearchPagedCollection implements AdditionalDataHolder, Parsabl
         return this.orders;
     }
     /**
-     * Gets the prev property value. The &lt;b&gt;getOrders&lt;/b&gt; call URI for the previous result set. For example, the following URI returns orders 21 thru 30 from the collection of orders: &lt;br&gt;&lt;br&gt;&lt;code&gt;&lt;i&gt;path&lt;/i&gt;/order?limit=10&amp;offset=20&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a previous page of results to view based on the current input criteria.
+     * Gets the prev property value. The &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call URI for the previous result set. For example, the following URI returns orders 21 through 30 from the collection of orders: &lt;br&gt;&lt;br&gt;&lt;code&gt;&lt;i&gt;path&lt;/i&gt;/order?limit=10&amp;offset=20&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a previous page of results to view based on the current input criteria.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -161,10 +161,10 @@ public class OrderSearchPagedCollection implements AdditionalDataHolder, Parsabl
     }
     /**
      * Gets the warnings property value. This array is returned if one or more errors or warnings occur with the call request.
-     * @return a {@link java.util.List<Error>}
+     * @return a {@link java.util.List<ErrorDetailV3>}
      */
     @jakarta.annotation.Nullable
-    public java.util.List<Error> getWarnings() {
+    public java.util.List<ErrorDetailV3> getWarnings() {
         return this.warnings;
     }
     /**
@@ -191,28 +191,28 @@ public class OrderSearchPagedCollection implements AdditionalDataHolder, Parsabl
         this.additionalData = value;
     }
     /**
-     * Sets the href property value. The URI of the &lt;b&gt;getOrders&lt;/b&gt; call request that produced the current page of the result set.
+     * Sets the href property value. The URI of the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call request that produced the current page of the result set.
      * @param value Value to set for the href property.
      */
     public void setHref(@jakarta.annotation.Nullable final String value) {
         this.href = value;
     }
     /**
-     * Sets the limit property value. The maximum number of orders returned per page of the result set. The &lt;strong&gt;limit&lt;/strong&gt; value can be passed in as a query parameter, or if omitted, its value defaults to &lt;code&gt;50&lt;/code&gt;. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; If this is the last or only page of the result set, the page may contain fewer orders than the &lt;strong&gt;limit&lt;/strong&gt; value.  To determine the number of pages in a result set, divide the &lt;b&gt;total&lt;/b&gt; value (total number of orders matching input criteria) by this &lt;strong&gt;limit&lt;/strong&gt; value, and then round up to the next integer. For example, if the &lt;b&gt;total&lt;/b&gt; value was &lt;code&gt;120&lt;/code&gt; (120 total orders) and the &lt;strong&gt;limit&lt;/strong&gt; value was &lt;code&gt;50&lt;/code&gt; (show 50 orders per page), the total number of pages in the result set is three, so the seller would have to make three separate &lt;strong&gt;getOrders&lt;/strong&gt; calls to view all orders matching the input criteria. &lt;/span&gt;&lt;b&gt;Default:&lt;/b&gt; &lt;code&gt;50&lt;/code&gt;
+     * Sets the limit property value. The maximum number of orders returned per page of the result set. The &lt;strong&gt;limit&lt;/strong&gt; value can be passed in as a query parameter, or if omitted, its value defaults to &lt;code&gt;50&lt;/code&gt;. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; If this is the last or only page of the result set, the page may contain fewer orders than the &lt;strong&gt;limit&lt;/strong&gt; value.  To determine the number of pages in a result set, divide the &lt;strong&gt;total&lt;/strong&gt; value (total number of orders matching input criteria) by this &lt;strong&gt;limit&lt;/strong&gt; value, and then round up to the next integer. For example, if the &lt;strong&gt;total&lt;/strong&gt; value was &lt;code&gt;120&lt;/code&gt; (120 total orders) and the &lt;strong&gt;limit&lt;/strong&gt; value was &lt;code&gt;50&lt;/code&gt; (show 50 orders per page), the total number of pages in the result set is three, so the seller would have to make three separate &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; calls to view all orders matching the input criteria. &lt;/span&gt;&lt;strong&gt;Default:&lt;/strong&gt; &lt;code&gt;50&lt;/code&gt;
      * @param value Value to set for the limit property.
      */
     public void setLimit(@jakarta.annotation.Nullable final Integer value) {
         this.limit = value;
     }
     /**
-     * Sets the next property value. The &lt;b&gt;getOrders&lt;/b&gt; call URI to use if you wish to view the  next page of the result set. For example, the following URI returns records 41 thru 50 from the collection of orders: &lt;br&gt;&lt;br&gt;&lt;code&gt;&lt;i&gt;path&lt;/i&gt;/order?limit=10&amp;offset=40 &lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a next page of results to view based on the current input criteria.&lt;br&gt;
+     * Sets the next property value. The &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call URI to use if you wish to view the  next page of the result set. For example, the following URI returns records 41 through 50 from the collection of orders: &lt;br&gt;&lt;br&gt;&lt;code&gt;&lt;i&gt;path&lt;/i&gt;/order?limit=10&amp;offset=40 &lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a next page of results to view based on the current input criteria.&lt;br&gt;
      * @param value Value to set for the next property.
      */
     public void setNext(@jakarta.annotation.Nullable final String value) {
         this.next = value;
     }
     /**
-     * Sets the offset property value. The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the &lt;b&gt;offset&lt;/b&gt; query parameter. &lt;p class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;The items in a paginated result set use a zero-based list where the first item in the list has an offset of &lt;code&gt;0&lt;/code&gt;.&lt;/p&gt;
+     * Sets the offset property value. The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the &lt;strong&gt;offset&lt;/strong&gt; query parameter. &lt;p class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note: &lt;/strong&gt;The items in a paginated result set use a zero-based list where the first item in the list has an offset of &lt;code&gt;0&lt;/code&gt;.&lt;/p&gt;
      * @param value Value to set for the offset property.
      */
     public void setOffset(@jakarta.annotation.Nullable final Integer value) {
@@ -226,7 +226,7 @@ public class OrderSearchPagedCollection implements AdditionalDataHolder, Parsabl
         this.orders = value;
     }
     /**
-     * Sets the prev property value. The &lt;b&gt;getOrders&lt;/b&gt; call URI for the previous result set. For example, the following URI returns orders 21 thru 30 from the collection of orders: &lt;br&gt;&lt;br&gt;&lt;code&gt;&lt;i&gt;path&lt;/i&gt;/order?limit=10&amp;offset=20&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a previous page of results to view based on the current input criteria.
+     * Sets the prev property value. The &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call URI for the previous result set. For example, the following URI returns orders 21 through 30 from the collection of orders: &lt;br&gt;&lt;br&gt;&lt;code&gt;&lt;i&gt;path&lt;/i&gt;/order?limit=10&amp;offset=20&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a previous page of results to view based on the current input criteria.
      * @param value Value to set for the prev property.
      */
     public void setPrev(@jakarta.annotation.Nullable final String value) {
@@ -243,7 +243,7 @@ public class OrderSearchPagedCollection implements AdditionalDataHolder, Parsabl
      * Sets the warnings property value. This array is returned if one or more errors or warnings occur with the call request.
      * @param value Value to set for the warnings property.
      */
-    public void setWarnings(@jakarta.annotation.Nullable final java.util.List<Error> value) {
+    public void setWarnings(@jakarta.annotation.Nullable final java.util.List<ErrorDetailV3> value) {
         this.warnings = value;
     }
 }

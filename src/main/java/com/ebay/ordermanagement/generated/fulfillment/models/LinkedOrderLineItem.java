@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * This type contains data on a line item that is related to, but not a part of the order.
+ * This type contains data on a line item that is related to, but not a part of, the order.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class LinkedOrderLineItem implements AdditionalDataHolder, Parsable {
@@ -31,7 +31,7 @@ public class LinkedOrderLineItem implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This array contains the complete set of items aspects for the linked line item. For example:&lt;br&gt;&lt;pre&gt;&quot;lineItemAspects&quot;: [&lt;br&gt;    {&lt;br&gt;        &quot;name&quot;: &quot;Tire Type&quot;,&lt;br&gt;        &quot;value&quot;: &quot;All Season&quot;&lt;br&gt;    },&lt;br&gt;&lt;br&gt;    ...&lt;br&gt; &lt;br&gt;    {&lt;br&gt;        &quot;name&quot;: &quot;Car Type&quot;,&lt;br&gt;        &quot;value&quot;: &quot;Performance&quot;&lt;br&gt;    }&lt;br&gt;]&lt;/pre&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; All item specifics for the listing are returned. The name/value pairs returned are in the language of the linked line item&apos;s listing site, which may vary from the seller&apos;s language.&lt;/span&gt;
+     * This array contains the complete set of item aspects for the linked line item. For example:&lt;br&gt;&lt;pre&gt;&quot;lineItemAspects&quot;: [&lt;br&gt;    {&lt;br&gt;        &quot;name&quot;: &quot;Tire Type&quot;,&lt;br&gt;        &quot;value&quot;: &quot;All Season&quot;&lt;br&gt;    },&lt;br&gt;&lt;br&gt;    ...&lt;br&gt; &lt;br&gt;    {&lt;br&gt;        &quot;name&quot;: &quot;Car Type&quot;,&lt;br&gt;        &quot;value&quot;: &quot;Performance&quot;&lt;br&gt;    }&lt;br&gt;]&lt;/pre&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; All item specifics for the listing are returned. The name/value pairs returned are in the language of the linked line item&apos;s listing site, which may vary from the seller&apos;s language.&lt;/span&gt;
      */
     private java.util.List<NameValuePair> lineItemAspects;
     /**
@@ -51,7 +51,7 @@ public class LinkedOrderLineItem implements AdditionalDataHolder, Parsable {
      */
     private String orderId;
     /**
-     * The eBay user ID of the seller who sold the linked line item. For example, the user ID of the tire seller.
+     * The eBay user ID of the seller who sold the linked line item. For example, the user ID of the tire seller.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to &lt;a href=&quot;/api-docs/static/data-handling-update.html&quot; target=&quot;_blank&quot;&gt;Data Handling Compliance&lt;/a&gt;. &lt;/span&gt;
      */
     private String sellerId;
     /**
@@ -59,7 +59,7 @@ public class LinkedOrderLineItem implements AdditionalDataHolder, Parsable {
      */
     private java.util.List<TrackingInfo> shipments;
     /**
-     * The listing title of the linked line item.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; The Item ID value for the listing will be returned in this field instead of the actual title if this particular listing is on-hold due to an eBay policy violation.&lt;/span&gt;
+     * The listing title of the linked line item.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The Item ID value for the listing will be returned in this field instead of the actual title if this particular listing is on-hold due to an eBay policy violation.&lt;/span&gt;
      */
     private String title;
     /**
@@ -104,7 +104,7 @@ public class LinkedOrderLineItem implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the lineItemAspects property value. This array contains the complete set of items aspects for the linked line item. For example:&lt;br&gt;&lt;pre&gt;&quot;lineItemAspects&quot;: [&lt;br&gt;    {&lt;br&gt;        &quot;name&quot;: &quot;Tire Type&quot;,&lt;br&gt;        &quot;value&quot;: &quot;All Season&quot;&lt;br&gt;    },&lt;br&gt;&lt;br&gt;    ...&lt;br&gt; &lt;br&gt;    {&lt;br&gt;        &quot;name&quot;: &quot;Car Type&quot;,&lt;br&gt;        &quot;value&quot;: &quot;Performance&quot;&lt;br&gt;    }&lt;br&gt;]&lt;/pre&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; All item specifics for the listing are returned. The name/value pairs returned are in the language of the linked line item&apos;s listing site, which may vary from the seller&apos;s language.&lt;/span&gt;
+     * Gets the lineItemAspects property value. This array contains the complete set of item aspects for the linked line item. For example:&lt;br&gt;&lt;pre&gt;&quot;lineItemAspects&quot;: [&lt;br&gt;    {&lt;br&gt;        &quot;name&quot;: &quot;Tire Type&quot;,&lt;br&gt;        &quot;value&quot;: &quot;All Season&quot;&lt;br&gt;    },&lt;br&gt;&lt;br&gt;    ...&lt;br&gt; &lt;br&gt;    {&lt;br&gt;        &quot;name&quot;: &quot;Car Type&quot;,&lt;br&gt;        &quot;value&quot;: &quot;Performance&quot;&lt;br&gt;    }&lt;br&gt;]&lt;/pre&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; All item specifics for the listing are returned. The name/value pairs returned are in the language of the linked line item&apos;s listing site, which may vary from the seller&apos;s language.&lt;/span&gt;
      * @return a {@link java.util.List<NameValuePair>}
      */
     @jakarta.annotation.Nullable
@@ -144,7 +144,7 @@ public class LinkedOrderLineItem implements AdditionalDataHolder, Parsable {
         return this.orderId;
     }
     /**
-     * Gets the sellerId property value. The eBay user ID of the seller who sold the linked line item. For example, the user ID of the tire seller.
+     * Gets the sellerId property value. The eBay user ID of the seller who sold the linked line item. For example, the user ID of the tire seller.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to &lt;a href=&quot;/api-docs/static/data-handling-update.html&quot; target=&quot;_blank&quot;&gt;Data Handling Compliance&lt;/a&gt;. &lt;/span&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -160,7 +160,7 @@ public class LinkedOrderLineItem implements AdditionalDataHolder, Parsable {
         return this.shipments;
     }
     /**
-     * Gets the title property value. The listing title of the linked line item.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; The Item ID value for the listing will be returned in this field instead of the actual title if this particular listing is on-hold due to an eBay policy violation.&lt;/span&gt;
+     * Gets the title property value. The listing title of the linked line item.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The Item ID value for the listing will be returned in this field instead of the actual title if this particular listing is on-hold due to an eBay policy violation.&lt;/span&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -191,7 +191,7 @@ public class LinkedOrderLineItem implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the lineItemAspects property value. This array contains the complete set of items aspects for the linked line item. For example:&lt;br&gt;&lt;pre&gt;&quot;lineItemAspects&quot;: [&lt;br&gt;    {&lt;br&gt;        &quot;name&quot;: &quot;Tire Type&quot;,&lt;br&gt;        &quot;value&quot;: &quot;All Season&quot;&lt;br&gt;    },&lt;br&gt;&lt;br&gt;    ...&lt;br&gt; &lt;br&gt;    {&lt;br&gt;        &quot;name&quot;: &quot;Car Type&quot;,&lt;br&gt;        &quot;value&quot;: &quot;Performance&quot;&lt;br&gt;    }&lt;br&gt;]&lt;/pre&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; All item specifics for the listing are returned. The name/value pairs returned are in the language of the linked line item&apos;s listing site, which may vary from the seller&apos;s language.&lt;/span&gt;
+     * Sets the lineItemAspects property value. This array contains the complete set of item aspects for the linked line item. For example:&lt;br&gt;&lt;pre&gt;&quot;lineItemAspects&quot;: [&lt;br&gt;    {&lt;br&gt;        &quot;name&quot;: &quot;Tire Type&quot;,&lt;br&gt;        &quot;value&quot;: &quot;All Season&quot;&lt;br&gt;    },&lt;br&gt;&lt;br&gt;    ...&lt;br&gt; &lt;br&gt;    {&lt;br&gt;        &quot;name&quot;: &quot;Car Type&quot;,&lt;br&gt;        &quot;value&quot;: &quot;Performance&quot;&lt;br&gt;    }&lt;br&gt;]&lt;/pre&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; All item specifics for the listing are returned. The name/value pairs returned are in the language of the linked line item&apos;s listing site, which may vary from the seller&apos;s language.&lt;/span&gt;
      * @param value Value to set for the lineItemAspects property.
      */
     public void setLineItemAspects(@jakarta.annotation.Nullable final java.util.List<NameValuePair> value) {
@@ -226,7 +226,7 @@ public class LinkedOrderLineItem implements AdditionalDataHolder, Parsable {
         this.orderId = value;
     }
     /**
-     * Sets the sellerId property value. The eBay user ID of the seller who sold the linked line item. For example, the user ID of the tire seller.
+     * Sets the sellerId property value. The eBay user ID of the seller who sold the linked line item. For example, the user ID of the tire seller.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to &lt;a href=&quot;/api-docs/static/data-handling-update.html&quot; target=&quot;_blank&quot;&gt;Data Handling Compliance&lt;/a&gt;. &lt;/span&gt;
      * @param value Value to set for the sellerId property.
      */
     public void setSellerId(@jakarta.annotation.Nullable final String value) {
@@ -240,7 +240,7 @@ public class LinkedOrderLineItem implements AdditionalDataHolder, Parsable {
         this.shipments = value;
     }
     /**
-     * Sets the title property value. The listing title of the linked line item.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; The Item ID value for the listing will be returned in this field instead of the actual title if this particular listing is on-hold due to an eBay policy violation.&lt;/span&gt;
+     * Sets the title property value. The listing title of the linked line item.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The Item ID value for the listing will be returned in this field instead of the actual title if this particular listing is on-hold due to an eBay policy violation.&lt;/span&gt;
      * @param value Value to set for the title property.
      */
     public void setTitle(@jakarta.annotation.Nullable final String value) {

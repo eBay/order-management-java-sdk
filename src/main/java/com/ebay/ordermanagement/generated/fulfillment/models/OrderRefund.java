@@ -31,15 +31,15 @@ public class OrderRefund implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * This field shows the refund amount for an order. This container is always returned for each refund.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The refund amount shown is the seller&apos;s &lt;em&gt;net amount&lt;/em&gt; received from the sale/transaction. eBay-collected tax will not be included in this amount, so the actual amount of the buyer&apos;s refund may be higher than this value.&lt;/span&gt;
      */
     private Amount amount;
     /**
-     * The date and time that the refund was issued. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * The date and time that the refund was issued. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
     private String refundDate;
     /**
-     * Unique identifier of a refund that was initiated for an order through the &lt;b&gt;issueRefund&lt;/b&gt; method. If the &lt;b&gt;issueRefund&lt;/b&gt; method was used to issue one or more refunds at the line item level, these refund identifiers are returned at the line item level instead (&lt;b&gt;lineItems.refunds.refundId&lt;/b&gt; field).&lt;br&gt;&lt;br&gt; A &lt;b&gt;refundId&lt;/b&gt; value is returned in the response of the &lt;b&gt;issueRefund&lt;/b&gt; method, and this same value will be returned in the &lt;b&gt;getOrders&lt;/b&gt; and &lt;b&gt;getOrders&lt;/b&gt; responses for pending and completed refunds. For other refunds, see the &lt;b&gt;refundReferenceId&lt;/b&gt; field.
+     * Unique identifier of a refund that was initiated for an order through the &lt;strong&gt;issueRefund&lt;/strong&gt; method. If the &lt;strong&gt;issueRefund&lt;/strong&gt; method was used to issue one or more refunds at the line item level, these refund identifiers are returned at the line item level instead (&lt;strong&gt;lineItems.refunds.refundId&lt;/strong&gt; field).&lt;br&gt;&lt;br&gt; A &lt;strong&gt;refundId&lt;/strong&gt; value is returned in the response of the &lt;strong&gt;issueRefund&lt;/strong&gt; method, and this same value will be returned in the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder&quot; target=&quot;_blank&quot;&gt;getOrder&lt;/a&gt; and &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; responses for pending and completed refunds. For other refunds, see the &lt;strong&gt;refundReferenceId&lt;/strong&gt; field.
      */
     private String refundId;
     /**
@@ -47,9 +47,9 @@ public class OrderRefund implements AdditionalDataHolder, Parsable {
      */
     private String refundReferenceId;
     /**
-     * This enumeration value indicates the current status of the refund to the buyer. This container is always returned for each refund. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:RefundStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * This enumeration value indicates the current status of the refund to the buyer. This container is always returned for each refund.
      */
-    private String refundStatus;
+    private RefundStatusEnum refundStatus;
     /**
      * Instantiates a new {@link OrderRefund} and sets the default values.
      */
@@ -75,7 +75,7 @@ public class OrderRefund implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the amount property value. This field shows the refund amount for an order. This container is always returned for each refund.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The refund amount shown is the seller&apos;s &lt;em&gt;net amount&lt;/em&gt; received from the sale/transaction. eBay-collected tax will not be included in this amount, so the actual amount of the buyer&apos;s refund may be higher than this value.&lt;/span&gt;
      * @return a {@link Amount}
      */
     @jakarta.annotation.Nullable
@@ -93,11 +93,11 @@ public class OrderRefund implements AdditionalDataHolder, Parsable {
         deserializerMap.put("refundDate", (n) -> { this.setRefundDate(n.getStringValue()); });
         deserializerMap.put("refundId", (n) -> { this.setRefundId(n.getStringValue()); });
         deserializerMap.put("refundReferenceId", (n) -> { this.setRefundReferenceId(n.getStringValue()); });
-        deserializerMap.put("refundStatus", (n) -> { this.setRefundStatus(n.getStringValue()); });
+        deserializerMap.put("refundStatus", (n) -> { this.setRefundStatus(n.getEnumValue(RefundStatusEnum::forValue)); });
         return deserializerMap;
     }
     /**
-     * Gets the refundDate property value. The date and time that the refund was issued. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * Gets the refundDate property value. The date and time that the refund was issued. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -105,7 +105,7 @@ public class OrderRefund implements AdditionalDataHolder, Parsable {
         return this.refundDate;
     }
     /**
-     * Gets the refundId property value. Unique identifier of a refund that was initiated for an order through the &lt;b&gt;issueRefund&lt;/b&gt; method. If the &lt;b&gt;issueRefund&lt;/b&gt; method was used to issue one or more refunds at the line item level, these refund identifiers are returned at the line item level instead (&lt;b&gt;lineItems.refunds.refundId&lt;/b&gt; field).&lt;br&gt;&lt;br&gt; A &lt;b&gt;refundId&lt;/b&gt; value is returned in the response of the &lt;b&gt;issueRefund&lt;/b&gt; method, and this same value will be returned in the &lt;b&gt;getOrders&lt;/b&gt; and &lt;b&gt;getOrders&lt;/b&gt; responses for pending and completed refunds. For other refunds, see the &lt;b&gt;refundReferenceId&lt;/b&gt; field.
+     * Gets the refundId property value. Unique identifier of a refund that was initiated for an order through the &lt;strong&gt;issueRefund&lt;/strong&gt; method. If the &lt;strong&gt;issueRefund&lt;/strong&gt; method was used to issue one or more refunds at the line item level, these refund identifiers are returned at the line item level instead (&lt;strong&gt;lineItems.refunds.refundId&lt;/strong&gt; field).&lt;br&gt;&lt;br&gt; A &lt;strong&gt;refundId&lt;/strong&gt; value is returned in the response of the &lt;strong&gt;issueRefund&lt;/strong&gt; method, and this same value will be returned in the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder&quot; target=&quot;_blank&quot;&gt;getOrder&lt;/a&gt; and &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; responses for pending and completed refunds. For other refunds, see the &lt;strong&gt;refundReferenceId&lt;/strong&gt; field.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -121,11 +121,11 @@ public class OrderRefund implements AdditionalDataHolder, Parsable {
         return this.refundReferenceId;
     }
     /**
-     * Gets the refundStatus property value. This enumeration value indicates the current status of the refund to the buyer. This container is always returned for each refund. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:RefundStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the refundStatus property value. This enumeration value indicates the current status of the refund to the buyer. This container is always returned for each refund.
+     * @return a {@link RefundStatusEnum}
      */
     @jakarta.annotation.Nullable
-    public String getRefundStatus() {
+    public RefundStatusEnum getRefundStatus() {
         return this.refundStatus;
     }
     /**
@@ -138,7 +138,7 @@ public class OrderRefund implements AdditionalDataHolder, Parsable {
         writer.writeStringValue("refundDate", this.getRefundDate());
         writer.writeStringValue("refundId", this.getRefundId());
         writer.writeStringValue("refundReferenceId", this.getRefundReferenceId());
-        writer.writeStringValue("refundStatus", this.getRefundStatus());
+        writer.writeEnumValue("refundStatus", this.getRefundStatus());
         writer.writeAdditionalData(this.getAdditionalData());
     }
     /**
@@ -149,21 +149,21 @@ public class OrderRefund implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the amount property value. This field shows the refund amount for an order. This container is always returned for each refund.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The refund amount shown is the seller&apos;s &lt;em&gt;net amount&lt;/em&gt; received from the sale/transaction. eBay-collected tax will not be included in this amount, so the actual amount of the buyer&apos;s refund may be higher than this value.&lt;/span&gt;
      * @param value Value to set for the amount property.
      */
     public void setAmount(@jakarta.annotation.Nullable final Amount value) {
         this.amount = value;
     }
     /**
-     * Sets the refundDate property value. The date and time that the refund was issued. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * Sets the refundDate property value. The date and time that the refund was issued. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the refundDate property.
      */
     public void setRefundDate(@jakarta.annotation.Nullable final String value) {
         this.refundDate = value;
     }
     /**
-     * Sets the refundId property value. Unique identifier of a refund that was initiated for an order through the &lt;b&gt;issueRefund&lt;/b&gt; method. If the &lt;b&gt;issueRefund&lt;/b&gt; method was used to issue one or more refunds at the line item level, these refund identifiers are returned at the line item level instead (&lt;b&gt;lineItems.refunds.refundId&lt;/b&gt; field).&lt;br&gt;&lt;br&gt; A &lt;b&gt;refundId&lt;/b&gt; value is returned in the response of the &lt;b&gt;issueRefund&lt;/b&gt; method, and this same value will be returned in the &lt;b&gt;getOrders&lt;/b&gt; and &lt;b&gt;getOrders&lt;/b&gt; responses for pending and completed refunds. For other refunds, see the &lt;b&gt;refundReferenceId&lt;/b&gt; field.
+     * Sets the refundId property value. Unique identifier of a refund that was initiated for an order through the &lt;strong&gt;issueRefund&lt;/strong&gt; method. If the &lt;strong&gt;issueRefund&lt;/strong&gt; method was used to issue one or more refunds at the line item level, these refund identifiers are returned at the line item level instead (&lt;strong&gt;lineItems.refunds.refundId&lt;/strong&gt; field).&lt;br&gt;&lt;br&gt; A &lt;strong&gt;refundId&lt;/strong&gt; value is returned in the response of the &lt;strong&gt;issueRefund&lt;/strong&gt; method, and this same value will be returned in the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder&quot; target=&quot;_blank&quot;&gt;getOrder&lt;/a&gt; and &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; responses for pending and completed refunds. For other refunds, see the &lt;strong&gt;refundReferenceId&lt;/strong&gt; field.
      * @param value Value to set for the refundId property.
      */
     public void setRefundId(@jakarta.annotation.Nullable final String value) {
@@ -177,10 +177,10 @@ public class OrderRefund implements AdditionalDataHolder, Parsable {
         this.refundReferenceId = value;
     }
     /**
-     * Sets the refundStatus property value. This enumeration value indicates the current status of the refund to the buyer. This container is always returned for each refund. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:RefundStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the refundStatus property value. This enumeration value indicates the current status of the refund to the buyer. This container is always returned for each refund.
      * @param value Value to set for the refundStatus property.
      */
-    public void setRefundStatus(@jakarta.annotation.Nullable final String value) {
+    public void setRefundStatus(@jakarta.annotation.Nullable final RefundStatusEnum value) {
         this.refundStatus = value;
     }
 }

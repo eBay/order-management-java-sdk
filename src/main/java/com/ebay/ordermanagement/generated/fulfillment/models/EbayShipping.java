@@ -31,7 +31,7 @@ public class EbayShipping implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This field contains the shipping label provider. If &lt;code&gt;EBAY&lt;/code&gt;, this order is managed by eBay shipping and a free shipping label by eBay is downloadable by the seller via the eBay website.
+     * This field contains the shipping label provider. If &lt;code&gt;EBAY&lt;/code&gt;, this order is managed by eBay shipping and a free shipping label created by eBay is downloadable by the seller via the eBay website.
      */
     private String shippingLabelProvidedBy;
     /**
@@ -69,7 +69,7 @@ public class EbayShipping implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the shippingLabelProvidedBy property value. This field contains the shipping label provider. If &lt;code&gt;EBAY&lt;/code&gt;, this order is managed by eBay shipping and a free shipping label by eBay is downloadable by the seller via the eBay website.
+     * Gets the shippingLabelProvidedBy property value. This field contains the shipping label provider. If &lt;code&gt;EBAY&lt;/code&gt;, this order is managed by eBay shipping and a free shipping label created by eBay is downloadable by the seller via the eBay website.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -93,7 +93,7 @@ public class EbayShipping implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the shippingLabelProvidedBy property value. This field contains the shipping label provider. If &lt;code&gt;EBAY&lt;/code&gt;, this order is managed by eBay shipping and a free shipping label by eBay is downloadable by the seller via the eBay website.
+     * Sets the shippingLabelProvidedBy property value. This field contains the shipping label provider. If &lt;code&gt;EBAY&lt;/code&gt;, this order is managed by eBay shipping and a free shipping label created by eBay is downloadable by the seller via the eBay website.
      * @param value Value to set for the shippingLabelProvidedBy property.
      */
     public void setShippingLabelProvidedBy(@jakarta.annotation.Nullable final String value) {

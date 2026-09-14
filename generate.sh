@@ -20,14 +20,19 @@ echo "Generating Order Management Java SDK with Kiota..."
 rm -rf src/main/java/com/ebay/ordermanagement/generated
 
 echo "Generating FulfillmentApiClient..."
-kiota generate -l java -d specs/openapi/fulfillment.yaml \
+kiota generate -l java -d specs/openapi/fulfillment.json \
   -c FulfillmentApiClient -n com.ebay.ordermanagement.generated.fulfillment \
   -o src/main/java/com/ebay/ordermanagement/generated/fulfillment --ebc --co
 
 echo "Generating LogisticsApiClient..."
-kiota generate -l java -d specs/openapi/logistics.yaml \
+kiota generate -l java -d specs/openapi/logistics.json \
   -c LogisticsApiClient -n com.ebay.ordermanagement.generated.logistics \
   -o src/main/java/com/ebay/ordermanagement/generated/logistics --ebc --co
+
+echo "Generating PostOrderApiApiClient..."
+kiota generate -l java -d specs/openapi/post-order-api.json \
+  -c PostOrderApiApiClient -n com.ebay.ordermanagement.generated.postorderapi \
+  -o src/main/java/com/ebay/ordermanagement/generated/postorderapi --ebc --co
 
 echo "Adding license headers to generated files..."
 ./add-license-headers.sh ./src

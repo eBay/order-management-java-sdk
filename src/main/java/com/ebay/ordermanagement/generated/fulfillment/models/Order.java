@@ -31,27 +31,27 @@ public class Order implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This type contains information about the order&apos;s buyer.
+     * This container consists of information about the order&apos;s buyer. At this time, only the buyer&apos;s eBay user ID is returned, but it&apos;s possible that more buyer information can be added to this container in the future.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to &lt;a href=&quot;/api-docs/static/data-handling-update.html&quot; target=&quot;_blank&quot;&gt;Data Handling Compliance&lt;/a&gt;. &lt;/span&gt;
      */
     private Buyer buyer;
     /**
-     * This field contains any comments that the buyer left for the seller about the order during checkout process. This field is only returned if a buyer left comments at checkout time. 
+     * This field contains any comments that the buyer left for the seller about the order during the checkout process. This field is only returned if a buyer left comments at checkout time. 
      */
     private String buyerCheckoutNotes;
     /**
-     * This type contains information about any requests that have been made to cancel an order.
+     * This container consists of order cancellation information if a cancel request has been made. This container is always returned, and if no cancel request has been made, the &lt;strong&gt;cancelState&lt;/strong&gt; field is returned with a value of &lt;code&gt;NONE_REQUESTED&lt;/code&gt;, and an empty &lt;strong&gt;cancelRequests&lt;/strong&gt; array is also returned.
      */
     private CancelStatus cancelStatus;
     /**
-     * The date and time that the order was created. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * The date and time that the order was created. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
     private String creationDate;
     /**
-     * This field is only returned if &lt;code&gt;true&lt;/code&gt;, and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, &apos;Goods and Services&apos; tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer&apos;s residence. If this field is returned, the seller should search for one or more &lt;strong&gt;ebayCollectAndRemitTaxes&lt;/strong&gt; containers at the line item level to get more information about the type of tax and the amount.
+     * This field is only returned if &lt;code&gt;true&lt;/code&gt; and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, &apos;Goods and Services&apos; tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer&apos;s residence. If this field is returned, the seller should search for one or more &lt;strong&gt;ebayCollectAndRemitTaxes&lt;/strong&gt; containers at the line item level to get more information about the type of tax and the amount.
      */
     private Boolean ebayCollectAndRemitTax;
     /**
-     * This array contains a list of one or more &lt;strong&gt;getShippingFulfillment&lt;/strong&gt; call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.
+     * This array contains a list of one or more &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-getshippingfulfillment&quot; target=&quot;_blank&quot;&gt;getShippingFulfillment&lt;/a&gt; call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.
      */
     private java.util.List<String> fulfillmentHrefs;
     /**
@@ -59,7 +59,7 @@ public class Order implements AdditionalDataHolder, Parsable {
      */
     private java.util.List<FulfillmentStartInstruction> fulfillmentStartInstructions;
     /**
-     * The date and time that the order was last modified. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * The date and time that the order was last modified. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
     private String lastModifiedDate;
     /**
@@ -67,27 +67,27 @@ public class Order implements AdditionalDataHolder, Parsable {
      */
     private java.util.List<LineItem> lineItems;
     /**
-     * The degree to which fulfillment of the order is complete. See the &lt;strong&gt;OrderFulfillmentStatus&lt;/strong&gt; type definition for more information about each possible fulfillment state. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderFulfillmentStatus&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The degree to which fulfillment of the order is complete. See the &lt;strong&gt;OrderFulfillmentStatus&lt;/strong&gt; type definition for more information about each possible fulfillment state.
      */
-    private String orderFulfillmentStatus;
+    private OrderFulfillmentStatus orderFulfillmentStatus;
     /**
      * The unique identifier of the order. This field is always returned.
      */
     private String orderId;
     /**
-     * The enumeration value returned in this field indicates the current payment status of an order, or in case of a refund request, the current status of the refund. See the &lt;strong&gt;OrderPaymentStatusEnum&lt;/strong&gt; type definition for more information about each possible payment/refund state. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderPaymentStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The enumeration value returned in this field indicates the current payment status of an order, or in case of a refund request, the current status of the refund. See the &lt;strong&gt;OrderPaymentStatusEnum&lt;/strong&gt; type definition for more information about each possible payment/refund state.
      */
-    private String orderPaymentStatus;
+    private OrderPaymentStatusEnum orderPaymentStatus;
     /**
-     * This type contains information about the various monetary exchanges that apply to the net balance due for the order.
+     * This container consists of detailed payment information for the order, including buyer payment for the order, refund information (if applicable), and seller payment holds (if applicable).
      */
     private PaymentSummary paymentSummary;
     /**
-     * This type contains a summary of cumulative costs and charges for all line items of an order, including item price, price adjustments, sales taxes, delivery costs, and order discounts.
+     * This container consists of a summary of cumulative costs and charges for all line items of an order, including item price, price adjustments, sales taxes, delivery costs, and order discounts.
      */
     private PricingSummary pricingSummary;
     /**
-     * This type is returned for order line items eligible for the Authenticity Guarantee service and/or for order line items fulfilled by the eBay Fulfillment program or eBay shipping.
+     * This container is returned for orders that are eligible for eBay&apos;s Authenticity Guarantee service. The seller ships Authenticity Guarantee service items to the authentication partner instead of the buyer. The authenticator address is found in the &lt;code&gt;fulfillmentStartInstructions.shippingStep.shipTo&lt;/code&gt; container. If the item is successfully authenticated, the authenticator will ship the item to the buyer.
      */
     private Program program;
     /**
@@ -95,15 +95,15 @@ public class Order implements AdditionalDataHolder, Parsable {
      */
     private String salesRecordReference;
     /**
-     * The unique eBay user ID of the seller who sold the order.
+     * The unique eBay user ID of the seller who sold the order.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to &lt;a href=&quot;/api-docs/static/data-handling-update.html&quot; target=&quot;_blank&quot;&gt;Data Handling Compliance&lt;/a&gt;. &lt;/span&gt;
      */
     private String sellerId;
     /**
-     * This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * This is the cumulative base amount used to calculate the final value fees for each order. The final value fees are deducted from the seller payout associated with the order. Final value fees are calculated as a percentage of order cost (item cost + shipping cost) and the percentage rate can vary by eBay category. 
      */
     private Amount totalFeeBasisAmount;
     /**
-     * This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * This is the cumulative fees accrued for the order and deducted from the seller payout.
      */
     private Amount totalMarketplaceFee;
     /**
@@ -131,7 +131,7 @@ public class Order implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the buyer property value. This type contains information about the order&apos;s buyer.
+     * Gets the buyer property value. This container consists of information about the order&apos;s buyer. At this time, only the buyer&apos;s eBay user ID is returned, but it&apos;s possible that more buyer information can be added to this container in the future.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to &lt;a href=&quot;/api-docs/static/data-handling-update.html&quot; target=&quot;_blank&quot;&gt;Data Handling Compliance&lt;/a&gt;. &lt;/span&gt;
      * @return a {@link Buyer}
      */
     @jakarta.annotation.Nullable
@@ -139,7 +139,7 @@ public class Order implements AdditionalDataHolder, Parsable {
         return this.buyer;
     }
     /**
-     * Gets the buyerCheckoutNotes property value. This field contains any comments that the buyer left for the seller about the order during checkout process. This field is only returned if a buyer left comments at checkout time. 
+     * Gets the buyerCheckoutNotes property value. This field contains any comments that the buyer left for the seller about the order during the checkout process. This field is only returned if a buyer left comments at checkout time. 
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -147,7 +147,7 @@ public class Order implements AdditionalDataHolder, Parsable {
         return this.buyerCheckoutNotes;
     }
     /**
-     * Gets the cancelStatus property value. This type contains information about any requests that have been made to cancel an order.
+     * Gets the cancelStatus property value. This container consists of order cancellation information if a cancel request has been made. This container is always returned, and if no cancel request has been made, the &lt;strong&gt;cancelState&lt;/strong&gt; field is returned with a value of &lt;code&gt;NONE_REQUESTED&lt;/code&gt;, and an empty &lt;strong&gt;cancelRequests&lt;/strong&gt; array is also returned.
      * @return a {@link CancelStatus}
      */
     @jakarta.annotation.Nullable
@@ -155,7 +155,7 @@ public class Order implements AdditionalDataHolder, Parsable {
         return this.cancelStatus;
     }
     /**
-     * Gets the creationDate property value. The date and time that the order was created. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * Gets the creationDate property value. The date and time that the order was created. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -163,7 +163,7 @@ public class Order implements AdditionalDataHolder, Parsable {
         return this.creationDate;
     }
     /**
-     * Gets the ebayCollectAndRemitTax property value. This field is only returned if &lt;code&gt;true&lt;/code&gt;, and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, &apos;Goods and Services&apos; tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer&apos;s residence. If this field is returned, the seller should search for one or more &lt;strong&gt;ebayCollectAndRemitTaxes&lt;/strong&gt; containers at the line item level to get more information about the type of tax and the amount.
+     * Gets the ebayCollectAndRemitTax property value. This field is only returned if &lt;code&gt;true&lt;/code&gt; and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, &apos;Goods and Services&apos; tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer&apos;s residence. If this field is returned, the seller should search for one or more &lt;strong&gt;ebayCollectAndRemitTaxes&lt;/strong&gt; containers at the line item level to get more information about the type of tax and the amount.
      * @return a {@link Boolean}
      */
     @jakarta.annotation.Nullable
@@ -186,9 +186,9 @@ public class Order implements AdditionalDataHolder, Parsable {
         deserializerMap.put("fulfillmentStartInstructions", (n) -> { this.setFulfillmentStartInstructions(n.getCollectionOfObjectValues(FulfillmentStartInstruction::createFromDiscriminatorValue)); });
         deserializerMap.put("lastModifiedDate", (n) -> { this.setLastModifiedDate(n.getStringValue()); });
         deserializerMap.put("lineItems", (n) -> { this.setLineItems(n.getCollectionOfObjectValues(LineItem::createFromDiscriminatorValue)); });
-        deserializerMap.put("orderFulfillmentStatus", (n) -> { this.setOrderFulfillmentStatus(n.getStringValue()); });
+        deserializerMap.put("orderFulfillmentStatus", (n) -> { this.setOrderFulfillmentStatus(n.getEnumValue(OrderFulfillmentStatus::forValue)); });
         deserializerMap.put("orderId", (n) -> { this.setOrderId(n.getStringValue()); });
-        deserializerMap.put("orderPaymentStatus", (n) -> { this.setOrderPaymentStatus(n.getStringValue()); });
+        deserializerMap.put("orderPaymentStatus", (n) -> { this.setOrderPaymentStatus(n.getEnumValue(OrderPaymentStatusEnum::forValue)); });
         deserializerMap.put("paymentSummary", (n) -> { this.setPaymentSummary(n.getObjectValue(PaymentSummary::createFromDiscriminatorValue)); });
         deserializerMap.put("pricingSummary", (n) -> { this.setPricingSummary(n.getObjectValue(PricingSummary::createFromDiscriminatorValue)); });
         deserializerMap.put("program", (n) -> { this.setProgram(n.getObjectValue(Program::createFromDiscriminatorValue)); });
@@ -199,7 +199,7 @@ public class Order implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the fulfillmentHrefs property value. This array contains a list of one or more &lt;strong&gt;getShippingFulfillment&lt;/strong&gt; call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.
+     * Gets the fulfillmentHrefs property value. This array contains a list of one or more &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-getshippingfulfillment&quot; target=&quot;_blank&quot;&gt;getShippingFulfillment&lt;/a&gt; call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.
      * @return a {@link java.util.List<String>}
      */
     @jakarta.annotation.Nullable
@@ -215,7 +215,7 @@ public class Order implements AdditionalDataHolder, Parsable {
         return this.fulfillmentStartInstructions;
     }
     /**
-     * Gets the lastModifiedDate property value. The date and time that the order was last modified. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * Gets the lastModifiedDate property value. The date and time that the order was last modified. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -231,11 +231,11 @@ public class Order implements AdditionalDataHolder, Parsable {
         return this.lineItems;
     }
     /**
-     * Gets the orderFulfillmentStatus property value. The degree to which fulfillment of the order is complete. See the &lt;strong&gt;OrderFulfillmentStatus&lt;/strong&gt; type definition for more information about each possible fulfillment state. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderFulfillmentStatus&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the orderFulfillmentStatus property value. The degree to which fulfillment of the order is complete. See the &lt;strong&gt;OrderFulfillmentStatus&lt;/strong&gt; type definition for more information about each possible fulfillment state.
+     * @return a {@link OrderFulfillmentStatus}
      */
     @jakarta.annotation.Nullable
-    public String getOrderFulfillmentStatus() {
+    public OrderFulfillmentStatus getOrderFulfillmentStatus() {
         return this.orderFulfillmentStatus;
     }
     /**
@@ -247,15 +247,15 @@ public class Order implements AdditionalDataHolder, Parsable {
         return this.orderId;
     }
     /**
-     * Gets the orderPaymentStatus property value. The enumeration value returned in this field indicates the current payment status of an order, or in case of a refund request, the current status of the refund. See the &lt;strong&gt;OrderPaymentStatusEnum&lt;/strong&gt; type definition for more information about each possible payment/refund state. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderPaymentStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the orderPaymentStatus property value. The enumeration value returned in this field indicates the current payment status of an order, or in case of a refund request, the current status of the refund. See the &lt;strong&gt;OrderPaymentStatusEnum&lt;/strong&gt; type definition for more information about each possible payment/refund state.
+     * @return a {@link OrderPaymentStatusEnum}
      */
     @jakarta.annotation.Nullable
-    public String getOrderPaymentStatus() {
+    public OrderPaymentStatusEnum getOrderPaymentStatus() {
         return this.orderPaymentStatus;
     }
     /**
-     * Gets the paymentSummary property value. This type contains information about the various monetary exchanges that apply to the net balance due for the order.
+     * Gets the paymentSummary property value. This container consists of detailed payment information for the order, including buyer payment for the order, refund information (if applicable), and seller payment holds (if applicable).
      * @return a {@link PaymentSummary}
      */
     @jakarta.annotation.Nullable
@@ -263,7 +263,7 @@ public class Order implements AdditionalDataHolder, Parsable {
         return this.paymentSummary;
     }
     /**
-     * Gets the pricingSummary property value. This type contains a summary of cumulative costs and charges for all line items of an order, including item price, price adjustments, sales taxes, delivery costs, and order discounts.
+     * Gets the pricingSummary property value. This container consists of a summary of cumulative costs and charges for all line items of an order, including item price, price adjustments, sales taxes, delivery costs, and order discounts.
      * @return a {@link PricingSummary}
      */
     @jakarta.annotation.Nullable
@@ -271,7 +271,7 @@ public class Order implements AdditionalDataHolder, Parsable {
         return this.pricingSummary;
     }
     /**
-     * Gets the program property value. This type is returned for order line items eligible for the Authenticity Guarantee service and/or for order line items fulfilled by the eBay Fulfillment program or eBay shipping.
+     * Gets the program property value. This container is returned for orders that are eligible for eBay&apos;s Authenticity Guarantee service. The seller ships Authenticity Guarantee service items to the authentication partner instead of the buyer. The authenticator address is found in the &lt;code&gt;fulfillmentStartInstructions.shippingStep.shipTo&lt;/code&gt; container. If the item is successfully authenticated, the authenticator will ship the item to the buyer.
      * @return a {@link Program}
      */
     @jakarta.annotation.Nullable
@@ -287,7 +287,7 @@ public class Order implements AdditionalDataHolder, Parsable {
         return this.salesRecordReference;
     }
     /**
-     * Gets the sellerId property value. The unique eBay user ID of the seller who sold the order.
+     * Gets the sellerId property value. The unique eBay user ID of the seller who sold the order.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to &lt;a href=&quot;/api-docs/static/data-handling-update.html&quot; target=&quot;_blank&quot;&gt;Data Handling Compliance&lt;/a&gt;. &lt;/span&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -295,7 +295,7 @@ public class Order implements AdditionalDataHolder, Parsable {
         return this.sellerId;
     }
     /**
-     * Gets the totalFeeBasisAmount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the totalFeeBasisAmount property value. This is the cumulative base amount used to calculate the final value fees for each order. The final value fees are deducted from the seller payout associated with the order. Final value fees are calculated as a percentage of order cost (item cost + shipping cost) and the percentage rate can vary by eBay category. 
      * @return a {@link Amount}
      */
     @jakarta.annotation.Nullable
@@ -303,7 +303,7 @@ public class Order implements AdditionalDataHolder, Parsable {
         return this.totalFeeBasisAmount;
     }
     /**
-     * Gets the totalMarketplaceFee property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the totalMarketplaceFee property value. This is the cumulative fees accrued for the order and deducted from the seller payout.
      * @return a {@link Amount}
      */
     @jakarta.annotation.Nullable
@@ -325,9 +325,9 @@ public class Order implements AdditionalDataHolder, Parsable {
         writer.writeCollectionOfObjectValues("fulfillmentStartInstructions", this.getFulfillmentStartInstructions());
         writer.writeStringValue("lastModifiedDate", this.getLastModifiedDate());
         writer.writeCollectionOfObjectValues("lineItems", this.getLineItems());
-        writer.writeStringValue("orderFulfillmentStatus", this.getOrderFulfillmentStatus());
+        writer.writeEnumValue("orderFulfillmentStatus", this.getOrderFulfillmentStatus());
         writer.writeStringValue("orderId", this.getOrderId());
-        writer.writeStringValue("orderPaymentStatus", this.getOrderPaymentStatus());
+        writer.writeEnumValue("orderPaymentStatus", this.getOrderPaymentStatus());
         writer.writeObjectValue("paymentSummary", this.getPaymentSummary());
         writer.writeObjectValue("pricingSummary", this.getPricingSummary());
         writer.writeObjectValue("program", this.getProgram());
@@ -345,42 +345,42 @@ public class Order implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the buyer property value. This type contains information about the order&apos;s buyer.
+     * Sets the buyer property value. This container consists of information about the order&apos;s buyer. At this time, only the buyer&apos;s eBay user ID is returned, but it&apos;s possible that more buyer information can be added to this container in the future.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to &lt;a href=&quot;/api-docs/static/data-handling-update.html&quot; target=&quot;_blank&quot;&gt;Data Handling Compliance&lt;/a&gt;. &lt;/span&gt;
      * @param value Value to set for the buyer property.
      */
     public void setBuyer(@jakarta.annotation.Nullable final Buyer value) {
         this.buyer = value;
     }
     /**
-     * Sets the buyerCheckoutNotes property value. This field contains any comments that the buyer left for the seller about the order during checkout process. This field is only returned if a buyer left comments at checkout time. 
+     * Sets the buyerCheckoutNotes property value. This field contains any comments that the buyer left for the seller about the order during the checkout process. This field is only returned if a buyer left comments at checkout time. 
      * @param value Value to set for the buyerCheckoutNotes property.
      */
     public void setBuyerCheckoutNotes(@jakarta.annotation.Nullable final String value) {
         this.buyerCheckoutNotes = value;
     }
     /**
-     * Sets the cancelStatus property value. This type contains information about any requests that have been made to cancel an order.
+     * Sets the cancelStatus property value. This container consists of order cancellation information if a cancel request has been made. This container is always returned, and if no cancel request has been made, the &lt;strong&gt;cancelState&lt;/strong&gt; field is returned with a value of &lt;code&gt;NONE_REQUESTED&lt;/code&gt;, and an empty &lt;strong&gt;cancelRequests&lt;/strong&gt; array is also returned.
      * @param value Value to set for the cancelStatus property.
      */
     public void setCancelStatus(@jakarta.annotation.Nullable final CancelStatus value) {
         this.cancelStatus = value;
     }
     /**
-     * Sets the creationDate property value. The date and time that the order was created. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * Sets the creationDate property value. The date and time that the order was created. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the creationDate property.
      */
     public void setCreationDate(@jakarta.annotation.Nullable final String value) {
         this.creationDate = value;
     }
     /**
-     * Sets the ebayCollectAndRemitTax property value. This field is only returned if &lt;code&gt;true&lt;/code&gt;, and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, &apos;Goods and Services&apos; tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer&apos;s residence. If this field is returned, the seller should search for one or more &lt;strong&gt;ebayCollectAndRemitTaxes&lt;/strong&gt; containers at the line item level to get more information about the type of tax and the amount.
+     * Sets the ebayCollectAndRemitTax property value. This field is only returned if &lt;code&gt;true&lt;/code&gt; and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, &apos;Goods and Services&apos; tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer&apos;s residence. If this field is returned, the seller should search for one or more &lt;strong&gt;ebayCollectAndRemitTaxes&lt;/strong&gt; containers at the line item level to get more information about the type of tax and the amount.
      * @param value Value to set for the ebayCollectAndRemitTax property.
      */
     public void setEbayCollectAndRemitTax(@jakarta.annotation.Nullable final Boolean value) {
         this.ebayCollectAndRemitTax = value;
     }
     /**
-     * Sets the fulfillmentHrefs property value. This array contains a list of one or more &lt;strong&gt;getShippingFulfillment&lt;/strong&gt; call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.
+     * Sets the fulfillmentHrefs property value. This array contains a list of one or more &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-getshippingfulfillment&quot; target=&quot;_blank&quot;&gt;getShippingFulfillment&lt;/a&gt; call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.
      * @param value Value to set for the fulfillmentHrefs property.
      */
     public void setFulfillmentHrefs(@jakarta.annotation.Nullable final java.util.List<String> value) {
@@ -394,7 +394,7 @@ public class Order implements AdditionalDataHolder, Parsable {
         this.fulfillmentStartInstructions = value;
     }
     /**
-     * Sets the lastModifiedDate property value. The date and time that the order was last modified. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * Sets the lastModifiedDate property value. The date and time that the order was last modified. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the lastModifiedDate property.
      */
     public void setLastModifiedDate(@jakarta.annotation.Nullable final String value) {
@@ -408,10 +408,10 @@ public class Order implements AdditionalDataHolder, Parsable {
         this.lineItems = value;
     }
     /**
-     * Sets the orderFulfillmentStatus property value. The degree to which fulfillment of the order is complete. See the &lt;strong&gt;OrderFulfillmentStatus&lt;/strong&gt; type definition for more information about each possible fulfillment state. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderFulfillmentStatus&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the orderFulfillmentStatus property value. The degree to which fulfillment of the order is complete. See the &lt;strong&gt;OrderFulfillmentStatus&lt;/strong&gt; type definition for more information about each possible fulfillment state.
      * @param value Value to set for the orderFulfillmentStatus property.
      */
-    public void setOrderFulfillmentStatus(@jakarta.annotation.Nullable final String value) {
+    public void setOrderFulfillmentStatus(@jakarta.annotation.Nullable final OrderFulfillmentStatus value) {
         this.orderFulfillmentStatus = value;
     }
     /**
@@ -422,28 +422,28 @@ public class Order implements AdditionalDataHolder, Parsable {
         this.orderId = value;
     }
     /**
-     * Sets the orderPaymentStatus property value. The enumeration value returned in this field indicates the current payment status of an order, or in case of a refund request, the current status of the refund. See the &lt;strong&gt;OrderPaymentStatusEnum&lt;/strong&gt; type definition for more information about each possible payment/refund state. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderPaymentStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the orderPaymentStatus property value. The enumeration value returned in this field indicates the current payment status of an order, or in case of a refund request, the current status of the refund. See the &lt;strong&gt;OrderPaymentStatusEnum&lt;/strong&gt; type definition for more information about each possible payment/refund state.
      * @param value Value to set for the orderPaymentStatus property.
      */
-    public void setOrderPaymentStatus(@jakarta.annotation.Nullable final String value) {
+    public void setOrderPaymentStatus(@jakarta.annotation.Nullable final OrderPaymentStatusEnum value) {
         this.orderPaymentStatus = value;
     }
     /**
-     * Sets the paymentSummary property value. This type contains information about the various monetary exchanges that apply to the net balance due for the order.
+     * Sets the paymentSummary property value. This container consists of detailed payment information for the order, including buyer payment for the order, refund information (if applicable), and seller payment holds (if applicable).
      * @param value Value to set for the paymentSummary property.
      */
     public void setPaymentSummary(@jakarta.annotation.Nullable final PaymentSummary value) {
         this.paymentSummary = value;
     }
     /**
-     * Sets the pricingSummary property value. This type contains a summary of cumulative costs and charges for all line items of an order, including item price, price adjustments, sales taxes, delivery costs, and order discounts.
+     * Sets the pricingSummary property value. This container consists of a summary of cumulative costs and charges for all line items of an order, including item price, price adjustments, sales taxes, delivery costs, and order discounts.
      * @param value Value to set for the pricingSummary property.
      */
     public void setPricingSummary(@jakarta.annotation.Nullable final PricingSummary value) {
         this.pricingSummary = value;
     }
     /**
-     * Sets the program property value. This type is returned for order line items eligible for the Authenticity Guarantee service and/or for order line items fulfilled by the eBay Fulfillment program or eBay shipping.
+     * Sets the program property value. This container is returned for orders that are eligible for eBay&apos;s Authenticity Guarantee service. The seller ships Authenticity Guarantee service items to the authentication partner instead of the buyer. The authenticator address is found in the &lt;code&gt;fulfillmentStartInstructions.shippingStep.shipTo&lt;/code&gt; container. If the item is successfully authenticated, the authenticator will ship the item to the buyer.
      * @param value Value to set for the program property.
      */
     public void setProgram(@jakarta.annotation.Nullable final Program value) {
@@ -457,21 +457,21 @@ public class Order implements AdditionalDataHolder, Parsable {
         this.salesRecordReference = value;
     }
     /**
-     * Sets the sellerId property value. The unique eBay user ID of the seller who sold the order.
+     * Sets the sellerId property value. The unique eBay user ID of the seller who sold the order.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to &lt;a href=&quot;/api-docs/static/data-handling-update.html&quot; target=&quot;_blank&quot;&gt;Data Handling Compliance&lt;/a&gt;. &lt;/span&gt;
      * @param value Value to set for the sellerId property.
      */
     public void setSellerId(@jakarta.annotation.Nullable final String value) {
         this.sellerId = value;
     }
     /**
-     * Sets the totalFeeBasisAmount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the totalFeeBasisAmount property value. This is the cumulative base amount used to calculate the final value fees for each order. The final value fees are deducted from the seller payout associated with the order. Final value fees are calculated as a percentage of order cost (item cost + shipping cost) and the percentage rate can vary by eBay category. 
      * @param value Value to set for the totalFeeBasisAmount property.
      */
     public void setTotalFeeBasisAmount(@jakarta.annotation.Nullable final Amount value) {
         this.totalFeeBasisAmount = value;
     }
     /**
-     * Sets the totalMarketplaceFee property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the totalMarketplaceFee property value. This is the cumulative fees accrued for the order and deducted from the seller payout.
      * @param value Value to set for the totalMarketplaceFee property.
      */
     public void setTotalMarketplaceFee(@jakarta.annotation.Nullable final Amount value) {

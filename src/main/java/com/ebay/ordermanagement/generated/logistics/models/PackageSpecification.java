@@ -31,11 +31,11 @@ public class PackageSpecification implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This complex type defines the dimensions of a package to be shipped.
+     * Declares the height, length, width, and unit of measure for the package to be shipped.
      */
     private Dimensions dimensions;
     /**
-     * This complex type contains information about the weight of an object such as a shipping package.
+     * Declares the weight of the package.
      */
     private Weight weight;
     /**
@@ -63,7 +63,7 @@ public class PackageSpecification implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the dimensions property value. This complex type defines the dimensions of a package to be shipped.
+     * Gets the dimensions property value. Declares the height, length, width, and unit of measure for the package to be shipped.
      * @return a {@link Dimensions}
      */
     @jakarta.annotation.Nullable
@@ -82,7 +82,7 @@ public class PackageSpecification implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the weight property value. This complex type contains information about the weight of an object such as a shipping package.
+     * Gets the weight property value. Declares the weight of the package.
      * @return a {@link Weight}
      */
     @jakarta.annotation.Nullable
@@ -107,14 +107,14 @@ public class PackageSpecification implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the dimensions property value. This complex type defines the dimensions of a package to be shipped.
+     * Sets the dimensions property value. Declares the height, length, width, and unit of measure for the package to be shipped.
      * @param value Value to set for the dimensions property.
      */
     public void setDimensions(@jakarta.annotation.Nullable final Dimensions value) {
         this.dimensions = value;
     }
     /**
-     * Sets the weight property value. This complex type contains information about the weight of an object such as a shipping package.
+     * Sets the weight property value. Declares the weight of the package.
      * @param value Value to set for the weight property.
      */
     public void setWeight(@jakarta.annotation.Nullable final Weight value) {

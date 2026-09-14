@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * This type defines the base response payload of the &lt;strong&gt;getPaymentDisputeSummaries&lt;/strong&gt; method. Each payment dispute that matches the input criteria is returned under the &lt;strong&gt;paymentDisputeSummaries&lt;/strong&gt; array.
+ * This type defines the base response payload of the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; method. Each payment dispute that matches the input criteria is returned under the &lt;strong&gt;paymentDisputeSummaries&lt;/strong&gt; array.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class DisputeSummaryResponse implements AdditionalDataHolder, Parsable {
@@ -31,15 +31,15 @@ public class DisputeSummaryResponse implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * The URI of the &lt;strong&gt;getPaymentDisputeSummaries&lt;/strong&gt; call request that produced the current page of the result set.
+     * The URI of the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; call request that produced the current page of the result set.
      */
     private String href;
     /**
-     * This value shows the maximum number of payment disputes that will appear on one page of the result set. The &lt;strong&gt;limit&lt;/strong&gt; value can be passed in as a query parameter in the request, or if it is not used, it defaults to &lt;code&gt;200&lt;/code&gt;. If the value in the &lt;strong&gt;total&lt;/strong&gt; field exceeds this &lt;strong&gt;limit&lt;/strong&gt; value, there are multiple pages in the current result set.&lt;br&gt;&lt;br&gt;&lt;b&gt;Min&lt;/b&gt;: 1; &lt;b&gt;Max&lt;/b&gt;: 200; &lt;b&gt;Default&lt;/b&gt;: 200
+     * This value shows the maximum number of payment disputes that will appear on one page of the result set. The &lt;strong&gt;limit&lt;/strong&gt; value can be passed in as a query parameter in the request, or if it is not used, it defaults to &lt;code&gt;200&lt;/code&gt;. If the value in the &lt;strong&gt;total&lt;/strong&gt; field exceeds this &lt;strong&gt;limit&lt;/strong&gt; value, there are multiple pages in the current result set.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Min&lt;/strong&gt;: 1; &lt;strong&gt;Max&lt;/strong&gt;: 200; &lt;strong&gt;Default&lt;/strong&gt;: 200
      */
     private Integer limit;
     /**
-     * The &lt;strong&gt;getPaymentDisputeSummaries&lt;/strong&gt; call URI to use if you wish to view the next page of the result set. For example, the following URI returns records 11 thru 20 from the collection of payment disputes:&lt;br&gt;&lt;br&gt;&lt;code&gt;path/payment_dispute_summary?limit=10&amp;offset=10&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a next page of results to view based on the current input criteria.
+     * The &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; call URI to use if you wish to view the next page of the result set. For example, the following URI returns records 11 through 20 from the collection of payment disputes:&lt;br&gt;&lt;br&gt;&lt;code&gt;path/payment_dispute_summary?limit=10&amp;offset=10&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a next page of results to view based on the current input criteria.
      */
     private String next;
     /**
@@ -51,7 +51,7 @@ public class DisputeSummaryResponse implements AdditionalDataHolder, Parsable {
      */
     private java.util.List<PaymentDisputeSummary> paymentDisputeSummaries;
     /**
-     * The &lt;strong&gt;getPaymentDisputeSummaries&lt;/strong&gt; call URI to use if you wish to view the previous page of the result set. For example, the following URI returns records 1 thru 10 from the collection of payment disputes:&lt;br&gt;&lt;br&gt;&lt;code&gt;path/payment_dispute_summary?limit=10&amp;offset=0&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a previous page of results to view based on the current input criteria.
+     * The &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; call URI to use if you wish to view the previous page of the result set. For example, the following URI returns records 1 through 10 from the collection of payment disputes:&lt;br&gt;&lt;br&gt;&lt;code&gt;path/payment_dispute_summary?limit=10&amp;offset=0&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a previous page of results to view based on the current input criteria.
      */
     private String prev;
     /**
@@ -99,7 +99,7 @@ public class DisputeSummaryResponse implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the href property value. The URI of the &lt;strong&gt;getPaymentDisputeSummaries&lt;/strong&gt; call request that produced the current page of the result set.
+     * Gets the href property value. The URI of the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; call request that produced the current page of the result set.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -107,7 +107,7 @@ public class DisputeSummaryResponse implements AdditionalDataHolder, Parsable {
         return this.href;
     }
     /**
-     * Gets the limit property value. This value shows the maximum number of payment disputes that will appear on one page of the result set. The &lt;strong&gt;limit&lt;/strong&gt; value can be passed in as a query parameter in the request, or if it is not used, it defaults to &lt;code&gt;200&lt;/code&gt;. If the value in the &lt;strong&gt;total&lt;/strong&gt; field exceeds this &lt;strong&gt;limit&lt;/strong&gt; value, there are multiple pages in the current result set.&lt;br&gt;&lt;br&gt;&lt;b&gt;Min&lt;/b&gt;: 1; &lt;b&gt;Max&lt;/b&gt;: 200; &lt;b&gt;Default&lt;/b&gt;: 200
+     * Gets the limit property value. This value shows the maximum number of payment disputes that will appear on one page of the result set. The &lt;strong&gt;limit&lt;/strong&gt; value can be passed in as a query parameter in the request, or if it is not used, it defaults to &lt;code&gt;200&lt;/code&gt;. If the value in the &lt;strong&gt;total&lt;/strong&gt; field exceeds this &lt;strong&gt;limit&lt;/strong&gt; value, there are multiple pages in the current result set.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Min&lt;/strong&gt;: 1; &lt;strong&gt;Max&lt;/strong&gt;: 200; &lt;strong&gt;Default&lt;/strong&gt;: 200
      * @return a {@link Integer}
      */
     @jakarta.annotation.Nullable
@@ -115,7 +115,7 @@ public class DisputeSummaryResponse implements AdditionalDataHolder, Parsable {
         return this.limit;
     }
     /**
-     * Gets the next property value. The &lt;strong&gt;getPaymentDisputeSummaries&lt;/strong&gt; call URI to use if you wish to view the next page of the result set. For example, the following URI returns records 11 thru 20 from the collection of payment disputes:&lt;br&gt;&lt;br&gt;&lt;code&gt;path/payment_dispute_summary?limit=10&amp;offset=10&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a next page of results to view based on the current input criteria.
+     * Gets the next property value. The &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; call URI to use if you wish to view the next page of the result set. For example, the following URI returns records 11 through 20 from the collection of payment disputes:&lt;br&gt;&lt;br&gt;&lt;code&gt;path/payment_dispute_summary?limit=10&amp;offset=10&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a next page of results to view based on the current input criteria.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -139,7 +139,7 @@ public class DisputeSummaryResponse implements AdditionalDataHolder, Parsable {
         return this.paymentDisputeSummaries;
     }
     /**
-     * Gets the prev property value. The &lt;strong&gt;getPaymentDisputeSummaries&lt;/strong&gt; call URI to use if you wish to view the previous page of the result set. For example, the following URI returns records 1 thru 10 from the collection of payment disputes:&lt;br&gt;&lt;br&gt;&lt;code&gt;path/payment_dispute_summary?limit=10&amp;offset=0&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a previous page of results to view based on the current input criteria.
+     * Gets the prev property value. The &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; call URI to use if you wish to view the previous page of the result set. For example, the following URI returns records 1 through 10 from the collection of payment disputes:&lt;br&gt;&lt;br&gt;&lt;code&gt;path/payment_dispute_summary?limit=10&amp;offset=0&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a previous page of results to view based on the current input criteria.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -177,21 +177,21 @@ public class DisputeSummaryResponse implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the href property value. The URI of the &lt;strong&gt;getPaymentDisputeSummaries&lt;/strong&gt; call request that produced the current page of the result set.
+     * Sets the href property value. The URI of the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; call request that produced the current page of the result set.
      * @param value Value to set for the href property.
      */
     public void setHref(@jakarta.annotation.Nullable final String value) {
         this.href = value;
     }
     /**
-     * Sets the limit property value. This value shows the maximum number of payment disputes that will appear on one page of the result set. The &lt;strong&gt;limit&lt;/strong&gt; value can be passed in as a query parameter in the request, or if it is not used, it defaults to &lt;code&gt;200&lt;/code&gt;. If the value in the &lt;strong&gt;total&lt;/strong&gt; field exceeds this &lt;strong&gt;limit&lt;/strong&gt; value, there are multiple pages in the current result set.&lt;br&gt;&lt;br&gt;&lt;b&gt;Min&lt;/b&gt;: 1; &lt;b&gt;Max&lt;/b&gt;: 200; &lt;b&gt;Default&lt;/b&gt;: 200
+     * Sets the limit property value. This value shows the maximum number of payment disputes that will appear on one page of the result set. The &lt;strong&gt;limit&lt;/strong&gt; value can be passed in as a query parameter in the request, or if it is not used, it defaults to &lt;code&gt;200&lt;/code&gt;. If the value in the &lt;strong&gt;total&lt;/strong&gt; field exceeds this &lt;strong&gt;limit&lt;/strong&gt; value, there are multiple pages in the current result set.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Min&lt;/strong&gt;: 1; &lt;strong&gt;Max&lt;/strong&gt;: 200; &lt;strong&gt;Default&lt;/strong&gt;: 200
      * @param value Value to set for the limit property.
      */
     public void setLimit(@jakarta.annotation.Nullable final Integer value) {
         this.limit = value;
     }
     /**
-     * Sets the next property value. The &lt;strong&gt;getPaymentDisputeSummaries&lt;/strong&gt; call URI to use if you wish to view the next page of the result set. For example, the following URI returns records 11 thru 20 from the collection of payment disputes:&lt;br&gt;&lt;br&gt;&lt;code&gt;path/payment_dispute_summary?limit=10&amp;offset=10&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a next page of results to view based on the current input criteria.
+     * Sets the next property value. The &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; call URI to use if you wish to view the next page of the result set. For example, the following URI returns records 11 through 20 from the collection of payment disputes:&lt;br&gt;&lt;br&gt;&lt;code&gt;path/payment_dispute_summary?limit=10&amp;offset=10&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a next page of results to view based on the current input criteria.
      * @param value Value to set for the next property.
      */
     public void setNext(@jakarta.annotation.Nullable final String value) {
@@ -212,7 +212,7 @@ public class DisputeSummaryResponse implements AdditionalDataHolder, Parsable {
         this.paymentDisputeSummaries = value;
     }
     /**
-     * Sets the prev property value. The &lt;strong&gt;getPaymentDisputeSummaries&lt;/strong&gt; call URI to use if you wish to view the previous page of the result set. For example, the following URI returns records 1 thru 10 from the collection of payment disputes:&lt;br&gt;&lt;br&gt;&lt;code&gt;path/payment_dispute_summary?limit=10&amp;offset=0&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a previous page of results to view based on the current input criteria.
+     * Sets the prev property value. The &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; call URI to use if you wish to view the previous page of the result set. For example, the following URI returns records 1 through 10 from the collection of payment disputes:&lt;br&gt;&lt;br&gt;&lt;code&gt;path/payment_dispute_summary?limit=10&amp;offset=0&lt;/code&gt;&lt;br&gt;&lt;br&gt;This field is only returned if there is a previous page of results to view based on the current input criteria.
      * @param value Value to set for the prev property.
      */
     public void setPrev(@jakarta.annotation.Nullable final String value) {

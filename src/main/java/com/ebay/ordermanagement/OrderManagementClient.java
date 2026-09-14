@@ -20,10 +20,12 @@ import com.ebay.ordermanagement.clients.graphql.DynamicGraphQLClient;
 import com.ebay.ordermanagement.clients.graphql.OrderManagementGraphQLClient;
 import com.ebay.ordermanagement.clients.rest.FulfillmentClient;
 import com.ebay.ordermanagement.clients.rest.LogisticsClient;
+import com.ebay.ordermanagement.clients.rest.PostOrderApiClient;
 import com.ebay.ordermanagement.configuration.KiotaAuthProvider;
 import com.ebay.ordermanagement.configuration.OrderManagementConfiguration;
 import com.ebay.ordermanagement.generated.fulfillment.FulfillmentApiClient;
 import com.ebay.ordermanagement.generated.logistics.LogisticsApiClient;
+import com.ebay.ordermanagement.generated.postorderapi.PostOrderApiApiClient;
 import com.microsoft.kiota.authentication.BaseBearerTokenAuthenticationProvider;
 import com.microsoft.kiota.http.OkHttpRequestAdapter;
 import okhttp3.OkHttpClient;
@@ -39,6 +41,7 @@ public final class OrderManagementClient implements Closeable {
 
     public final FulfillmentClient fulfillment;
     public final LogisticsClient logistics;
+    public final PostOrderApiClient postOrderApi;
     public final OrderManagementGraphQLClient graphQL;
 
     public OrderManagementClient(OrderManagementConfiguration config) {
@@ -57,6 +60,10 @@ public final class OrderManagementClient implements Closeable {
         var logisticsAdapter = new OkHttpRequestAdapter(authProvider, null, null, sharedHttpClient);
         logisticsAdapter.setBaseUrl(config.getLogisticsBaseUrl());
         this.logistics = new LogisticsClient(new LogisticsApiClient(logisticsAdapter), config);
+
+        var postOrderApiAdapter = new OkHttpRequestAdapter(authProvider, null, null, sharedHttpClient);
+        postOrderApiAdapter.setBaseUrl(config.getPostOrderApiBaseUrl());
+        this.postOrderApi = new PostOrderApiClient(new PostOrderApiApiClient(postOrderApiAdapter), config);
 
         this.apolloHttpClient = new OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)

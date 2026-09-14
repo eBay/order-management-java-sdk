@@ -26,7 +26,7 @@ import java.util.Objects;
 public class PaymentDisputeRequestBuilder extends BaseRequestBuilder {
     /**
      * Gets an item from the com.ebay.ordermanagement.generated.fulfillment.payment_dispute.item collection
-     * @param payment_dispute_id This parameter is used to specify the unique identifier of the payment dispute being retrieved.&lt;br&gt;&lt;br&gt; Use the &lt;a href=&quot;/api-docs/sell/fulfillment/resources/payment_dispute/methods/getPaymentDisputeSummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; method to retrieve payment dispute IDs.
+     * @param payment_dispute_id This parameter is used to specify the unique identifier of the payment dispute being retrieved.&lt;br&gt;&lt;br&gt; Use the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; method to retrieve payment dispute IDs.
      * @return a {@link WithPaymentDisputeItemRequestBuilder}
      */
     @jakarta.annotation.Nonnull

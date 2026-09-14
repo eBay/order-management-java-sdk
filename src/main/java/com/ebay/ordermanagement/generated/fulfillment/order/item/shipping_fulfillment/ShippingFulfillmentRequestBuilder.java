@@ -36,7 +36,7 @@ import java.util.Objects;
 public class ShippingFulfillmentRequestBuilder extends BaseRequestBuilder {
     /**
      * Gets an item from the com.ebay.ordermanagement.generated.fulfillment.order.item.shipping_fulfillment.item collection
-     * @param fulfillmentId This path parameter is used to specify the unique identifier of the shipping fulfillment being retrieved.&lt;br&gt;&lt;br&gt;Use the &lt;a href=&quot;/api-docs/sell/fulfillment/resources/order/shipping_fulfillment/methods/getShippingFulfillments&quot; target=&quot;_blank &quot;&gt;getShippingFulfillments&lt;/a&gt; method to retrieved fulfillment IDs.
+     * @param fulfillmentId This path parameter is used to specify the unique identifier of the shipping fulfillment being retrieved.&lt;br&gt;&lt;br&gt;Use the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-getshippingfulfillments&quot; target=&quot;_blank&quot;&gt;getShippingFulfillments&lt;/a&gt; method to retrieve fulfillment IDs.
      * @return a {@link WithFulfillmentItemRequestBuilder}
      */
     @jakarta.annotation.Nonnull
@@ -63,7 +63,7 @@ public class ShippingFulfillmentRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/order/{order%2Did}/shipping_fulfillment", rawUrl);
     }
     /**
-     * Use this call to retrieve the contents of all fulfillments currently defined for a specified order based on the order&apos;s unique identifier, &lt;b&gt;orderId&lt;/b&gt;. This value is returned in the &lt;b&gt;getOrders&lt;/b&gt; call&apos;s &lt;b&gt;members.orderId&lt;/b&gt; field when you search for orders by creation date or shipment status.
+     * Use this call to retrieve the contents of all fulfillments currently defined for a specified order based on the order&apos;s unique identifier, &lt;strong&gt;orderId&lt;/strong&gt;. This value is returned in the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call&apos;s &lt;strong&gt;members.orderId&lt;/strong&gt; field when you search for orders by creation date or shipment status.
      * @return a {@link ShippingFulfillmentPagedCollection}
      */
     @jakarta.annotation.Nullable
@@ -71,7 +71,7 @@ public class ShippingFulfillmentRequestBuilder extends BaseRequestBuilder {
         return get(null);
     }
     /**
-     * Use this call to retrieve the contents of all fulfillments currently defined for a specified order based on the order&apos;s unique identifier, &lt;b&gt;orderId&lt;/b&gt;. This value is returned in the &lt;b&gt;getOrders&lt;/b&gt; call&apos;s &lt;b&gt;members.orderId&lt;/b&gt; field when you search for orders by creation date or shipment status.
+     * Use this call to retrieve the contents of all fulfillments currently defined for a specified order based on the order&apos;s unique identifier, &lt;strong&gt;orderId&lt;/strong&gt;. This value is returned in the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call&apos;s &lt;strong&gt;members.orderId&lt;/strong&gt; field when you search for orders by creation date or shipment status.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link ShippingFulfillmentPagedCollection}
      */
@@ -81,8 +81,8 @@ public class ShippingFulfillmentRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, null, ShippingFulfillmentPagedCollection::createFromDiscriminatorValue);
     }
     /**
-     * When you group an order&apos;s line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is a &lt;i&gt;shipping fulfillment&lt;/i&gt;. For each package, execute this call once to generate a shipping fulfillment associated with that package. &lt;br&gt;&lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; A single line item in an order can consist of multiple units of a purchased item, and one unit can consist of multiple parts or components. Although these components might be provided by the manufacturer in separate packaging, the seller must include all components of a given line item in the same package.&lt;/span&gt; &lt;br&gt;&lt;br&gt;Before using this call for a given package, you must determine which line items are in the package. If the package has been shipped, you should provide the date of shipment in the request. If not provided, it will default to the current date and time.
-     * @param body This type contains the details for creating a fulfillment for an order.
+     * When you group an order&apos;s line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is &lt;i&gt;shipping fulfillment&lt;/i&gt;. For each package, execute this call once to generate the shipping fulfillment associated with that package. &lt;br&gt;&lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; A single line item in an order can consist of multiple units of a purchased item, and one unit can consist of multiple parts or components. Although these components might be provided by the manufacturer in separate packaging, the seller must include all components of a given line item in the same package.&lt;/span&gt;&lt;br&gt;Before using this call for a given package, you must determine which line items are in the package. If the package has been shipped, you should provide the date of shipment in the request. If not provided, it will default to the current date and time.&lt;br&gt;&lt;br&gt;This method can also be used to provide proof of delivery for contested payment disputes. To do so, use this method to create a shipping fulfillment and provide shipment tracking information for all line items involved in the dispute. EBay will then pick up this information for the dispute directly.
+     * @param body fulfillment payload
      * @return a {@link ShippingFulfillmentPostResponse}
      */
     @jakarta.annotation.Nullable
@@ -90,8 +90,8 @@ public class ShippingFulfillmentRequestBuilder extends BaseRequestBuilder {
         return post(body, null);
     }
     /**
-     * When you group an order&apos;s line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is a &lt;i&gt;shipping fulfillment&lt;/i&gt;. For each package, execute this call once to generate a shipping fulfillment associated with that package. &lt;br&gt;&lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; A single line item in an order can consist of multiple units of a purchased item, and one unit can consist of multiple parts or components. Although these components might be provided by the manufacturer in separate packaging, the seller must include all components of a given line item in the same package.&lt;/span&gt; &lt;br&gt;&lt;br&gt;Before using this call for a given package, you must determine which line items are in the package. If the package has been shipped, you should provide the date of shipment in the request. If not provided, it will default to the current date and time.
-     * @param body This type contains the details for creating a fulfillment for an order.
+     * When you group an order&apos;s line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is &lt;i&gt;shipping fulfillment&lt;/i&gt;. For each package, execute this call once to generate the shipping fulfillment associated with that package. &lt;br&gt;&lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; A single line item in an order can consist of multiple units of a purchased item, and one unit can consist of multiple parts or components. Although these components might be provided by the manufacturer in separate packaging, the seller must include all components of a given line item in the same package.&lt;/span&gt;&lt;br&gt;Before using this call for a given package, you must determine which line items are in the package. If the package has been shipped, you should provide the date of shipment in the request. If not provided, it will default to the current date and time.&lt;br&gt;&lt;br&gt;This method can also be used to provide proof of delivery for contested payment disputes. To do so, use this method to create a shipping fulfillment and provide shipment tracking information for all line items involved in the dispute. EBay will then pick up this information for the dispute directly.
+     * @param body fulfillment payload
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link ShippingFulfillmentPostResponse}
      */
@@ -102,7 +102,7 @@ public class ShippingFulfillmentRequestBuilder extends BaseRequestBuilder {
         return this.requestAdapter.send(requestInfo, null, ShippingFulfillmentPostResponse::createFromDiscriminatorValue);
     }
     /**
-     * Use this call to retrieve the contents of all fulfillments currently defined for a specified order based on the order&apos;s unique identifier, &lt;b&gt;orderId&lt;/b&gt;. This value is returned in the &lt;b&gt;getOrders&lt;/b&gt; call&apos;s &lt;b&gt;members.orderId&lt;/b&gt; field when you search for orders by creation date or shipment status.
+     * Use this call to retrieve the contents of all fulfillments currently defined for a specified order based on the order&apos;s unique identifier, &lt;strong&gt;orderId&lt;/strong&gt;. This value is returned in the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call&apos;s &lt;strong&gt;members.orderId&lt;/strong&gt; field when you search for orders by creation date or shipment status.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -110,7 +110,7 @@ public class ShippingFulfillmentRequestBuilder extends BaseRequestBuilder {
         return toGetRequestInformation(null);
     }
     /**
-     * Use this call to retrieve the contents of all fulfillments currently defined for a specified order based on the order&apos;s unique identifier, &lt;b&gt;orderId&lt;/b&gt;. This value is returned in the &lt;b&gt;getOrders&lt;/b&gt; call&apos;s &lt;b&gt;members.orderId&lt;/b&gt; field when you search for orders by creation date or shipment status.
+     * Use this call to retrieve the contents of all fulfillments currently defined for a specified order based on the order&apos;s unique identifier, &lt;strong&gt;orderId&lt;/strong&gt;. This value is returned in the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call&apos;s &lt;strong&gt;members.orderId&lt;/strong&gt; field when you search for orders by creation date or shipment status.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */
@@ -122,8 +122,8 @@ public class ShippingFulfillmentRequestBuilder extends BaseRequestBuilder {
         return requestInfo;
     }
     /**
-     * When you group an order&apos;s line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is a &lt;i&gt;shipping fulfillment&lt;/i&gt;. For each package, execute this call once to generate a shipping fulfillment associated with that package. &lt;br&gt;&lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; A single line item in an order can consist of multiple units of a purchased item, and one unit can consist of multiple parts or components. Although these components might be provided by the manufacturer in separate packaging, the seller must include all components of a given line item in the same package.&lt;/span&gt; &lt;br&gt;&lt;br&gt;Before using this call for a given package, you must determine which line items are in the package. If the package has been shipped, you should provide the date of shipment in the request. If not provided, it will default to the current date and time.
-     * @param body This type contains the details for creating a fulfillment for an order.
+     * When you group an order&apos;s line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is &lt;i&gt;shipping fulfillment&lt;/i&gt;. For each package, execute this call once to generate the shipping fulfillment associated with that package. &lt;br&gt;&lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; A single line item in an order can consist of multiple units of a purchased item, and one unit can consist of multiple parts or components. Although these components might be provided by the manufacturer in separate packaging, the seller must include all components of a given line item in the same package.&lt;/span&gt;&lt;br&gt;Before using this call for a given package, you must determine which line items are in the package. If the package has been shipped, you should provide the date of shipment in the request. If not provided, it will default to the current date and time.&lt;br&gt;&lt;br&gt;This method can also be used to provide proof of delivery for contested payment disputes. To do so, use this method to create a shipping fulfillment and provide shipment tracking information for all line items involved in the dispute. EBay will then pick up this information for the dispute directly.
+     * @param body fulfillment payload
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -131,8 +131,8 @@ public class ShippingFulfillmentRequestBuilder extends BaseRequestBuilder {
         return toPostRequestInformation(body, null);
     }
     /**
-     * When you group an order&apos;s line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is a &lt;i&gt;shipping fulfillment&lt;/i&gt;. For each package, execute this call once to generate a shipping fulfillment associated with that package. &lt;br&gt;&lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; A single line item in an order can consist of multiple units of a purchased item, and one unit can consist of multiple parts or components. Although these components might be provided by the manufacturer in separate packaging, the seller must include all components of a given line item in the same package.&lt;/span&gt; &lt;br&gt;&lt;br&gt;Before using this call for a given package, you must determine which line items are in the package. If the package has been shipped, you should provide the date of shipment in the request. If not provided, it will default to the current date and time.
-     * @param body This type contains the details for creating a fulfillment for an order.
+     * When you group an order&apos;s line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is &lt;i&gt;shipping fulfillment&lt;/i&gt;. For each package, execute this call once to generate the shipping fulfillment associated with that package. &lt;br&gt;&lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; A single line item in an order can consist of multiple units of a purchased item, and one unit can consist of multiple parts or components. Although these components might be provided by the manufacturer in separate packaging, the seller must include all components of a given line item in the same package.&lt;/span&gt;&lt;br&gt;Before using this call for a given package, you must determine which line items are in the package. If the package has been shipped, you should provide the date of shipment in the request. If not provided, it will default to the current date and time.&lt;br&gt;&lt;br&gt;This method can also be used to provide proof of delivery for contested payment disputes. To do so, use this method to create a shipping fulfillment and provide shipment tracking information for all line items involved in the dispute. EBay will then pick up this information for the dispute directly.
+     * @param body fulfillment payload
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */

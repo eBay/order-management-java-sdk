@@ -35,19 +35,19 @@ public class EvidenceRequest implements AdditionalDataHolder, Parsable {
      */
     private String evidenceId;
     /**
-     * This enumeration value shows the type of evidential document provided. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:EvidenceTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * This enumeration value shows the type of evidential document provided.
      */
-    private String evidenceType;
+    private EvidenceTypeEnum evidenceType;
     /**
      * This array shows one or more order line items associated with the evidential document that has been provided.
      */
     private java.util.List<OrderLineItems> lineItems;
     /**
-     * The timestamp in this field shows the date/time when eBay requested the evidential document from the seller in response to a payment dispute. &lt;br&gt;&lt;br&gt;The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
+     * The timestamp in this field shows the date/time when eBay requested the evidential document from the seller in response to a payment dispute. &lt;br&gt;&lt;br&gt;The timestamps returned here use the &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
      */
     private String requestDate;
     /**
-     * The timestamp in this field shows the date/time when the seller is expected to provide a requested evidential document to eBay.  &lt;br&gt;&lt;br&gt;The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
+     * The timestamp in this field shows the date/time when the seller is expected to provide a requested evidential document to eBay.  &lt;br&gt;&lt;br&gt;The timestamps returned here use the &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
      */
     private String respondByDate;
     /**
@@ -83,11 +83,11 @@ public class EvidenceRequest implements AdditionalDataHolder, Parsable {
         return this.evidenceId;
     }
     /**
-     * Gets the evidenceType property value. This enumeration value shows the type of evidential document provided. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:EvidenceTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the evidenceType property value. This enumeration value shows the type of evidential document provided.
+     * @return a {@link EvidenceTypeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getEvidenceType() {
+    public EvidenceTypeEnum getEvidenceType() {
         return this.evidenceType;
     }
     /**
@@ -98,7 +98,7 @@ public class EvidenceRequest implements AdditionalDataHolder, Parsable {
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(5);
         deserializerMap.put("evidenceId", (n) -> { this.setEvidenceId(n.getStringValue()); });
-        deserializerMap.put("evidenceType", (n) -> { this.setEvidenceType(n.getStringValue()); });
+        deserializerMap.put("evidenceType", (n) -> { this.setEvidenceType(n.getEnumValue(EvidenceTypeEnum::forValue)); });
         deserializerMap.put("lineItems", (n) -> { this.setLineItems(n.getCollectionOfObjectValues(OrderLineItems::createFromDiscriminatorValue)); });
         deserializerMap.put("requestDate", (n) -> { this.setRequestDate(n.getStringValue()); });
         deserializerMap.put("respondByDate", (n) -> { this.setRespondByDate(n.getStringValue()); });
@@ -113,7 +113,7 @@ public class EvidenceRequest implements AdditionalDataHolder, Parsable {
         return this.lineItems;
     }
     /**
-     * Gets the requestDate property value. The timestamp in this field shows the date/time when eBay requested the evidential document from the seller in response to a payment dispute. &lt;br&gt;&lt;br&gt;The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
+     * Gets the requestDate property value. The timestamp in this field shows the date/time when eBay requested the evidential document from the seller in response to a payment dispute. &lt;br&gt;&lt;br&gt;The timestamps returned here use the &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -121,7 +121,7 @@ public class EvidenceRequest implements AdditionalDataHolder, Parsable {
         return this.requestDate;
     }
     /**
-     * Gets the respondByDate property value. The timestamp in this field shows the date/time when the seller is expected to provide a requested evidential document to eBay.  &lt;br&gt;&lt;br&gt;The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
+     * Gets the respondByDate property value. The timestamp in this field shows the date/time when the seller is expected to provide a requested evidential document to eBay.  &lt;br&gt;&lt;br&gt;The timestamps returned here use the &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -135,7 +135,7 @@ public class EvidenceRequest implements AdditionalDataHolder, Parsable {
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
         writer.writeStringValue("evidenceId", this.getEvidenceId());
-        writer.writeStringValue("evidenceType", this.getEvidenceType());
+        writer.writeEnumValue("evidenceType", this.getEvidenceType());
         writer.writeCollectionOfObjectValues("lineItems", this.getLineItems());
         writer.writeStringValue("requestDate", this.getRequestDate());
         writer.writeStringValue("respondByDate", this.getRespondByDate());
@@ -156,10 +156,10 @@ public class EvidenceRequest implements AdditionalDataHolder, Parsable {
         this.evidenceId = value;
     }
     /**
-     * Sets the evidenceType property value. This enumeration value shows the type of evidential document provided. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:EvidenceTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the evidenceType property value. This enumeration value shows the type of evidential document provided.
      * @param value Value to set for the evidenceType property.
      */
-    public void setEvidenceType(@jakarta.annotation.Nullable final String value) {
+    public void setEvidenceType(@jakarta.annotation.Nullable final EvidenceTypeEnum value) {
         this.evidenceType = value;
     }
     /**
@@ -170,14 +170,14 @@ public class EvidenceRequest implements AdditionalDataHolder, Parsable {
         this.lineItems = value;
     }
     /**
-     * Sets the requestDate property value. The timestamp in this field shows the date/time when eBay requested the evidential document from the seller in response to a payment dispute. &lt;br&gt;&lt;br&gt;The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
+     * Sets the requestDate property value. The timestamp in this field shows the date/time when eBay requested the evidential document from the seller in response to a payment dispute. &lt;br&gt;&lt;br&gt;The timestamps returned here use the &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
      * @param value Value to set for the requestDate property.
      */
     public void setRequestDate(@jakarta.annotation.Nullable final String value) {
         this.requestDate = value;
     }
     /**
-     * Sets the respondByDate property value. The timestamp in this field shows the date/time when the seller is expected to provide a requested evidential document to eBay.  &lt;br&gt;&lt;br&gt;The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
+     * Sets the respondByDate property value. The timestamp in this field shows the date/time when the seller is expected to provide a requested evidential document to eBay.  &lt;br&gt;&lt;br&gt;The timestamps returned here use the &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
      * @param value Value to set for the respondByDate property.
      */
     public void setRespondByDate(@jakarta.annotation.Nullable final String value) {

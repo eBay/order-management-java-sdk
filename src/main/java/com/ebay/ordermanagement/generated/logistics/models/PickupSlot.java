@@ -31,19 +31,19 @@ public class PickupSlot implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * The date and time the pickup slot ends, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
+     * The date and time the pickup slot ends, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
      */
     private String pickupSlotEndTime;
     /**
-     * Seller-defined name for the pickup slot. &lt;!-- Max characters? --&gt;
+     * Seller-defined name for the pickup slot.
      */
     private String pickupSlotId;
     /**
-     * The date and time the pickup slot begins, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; UTC string.
+     * The date and time the pickup slot begins, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; UTC string.
      */
     private String pickupSlotStartTime;
     /**
-     * The time zone of the pickup location, returned as &lt;a href=&quot;https://www.iana.org/time-zones &quot; target=&quot;_blank&quot;&gt;Time Zone Database&lt;/a&gt; ID (also know as an Olson time zone ID).
+     * The time zone of the pickup location, returned as &lt;a href=&quot;https://www.iana.org/time-zones &quot; target=&quot;_blank&quot;&gt;Time Zone Database&lt;/a&gt; ID (also known as an Olson time zone ID).
      */
     private String pickupSlotTimeZone;
     /**
@@ -84,7 +84,7 @@ public class PickupSlot implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the pickupSlotEndTime property value. The date and time the pickup slot ends, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
+     * Gets the pickupSlotEndTime property value. The date and time the pickup slot ends, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -92,7 +92,7 @@ public class PickupSlot implements AdditionalDataHolder, Parsable {
         return this.pickupSlotEndTime;
     }
     /**
-     * Gets the pickupSlotId property value. Seller-defined name for the pickup slot. &lt;!-- Max characters? --&gt;
+     * Gets the pickupSlotId property value. Seller-defined name for the pickup slot.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -100,7 +100,7 @@ public class PickupSlot implements AdditionalDataHolder, Parsable {
         return this.pickupSlotId;
     }
     /**
-     * Gets the pickupSlotStartTime property value. The date and time the pickup slot begins, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; UTC string.
+     * Gets the pickupSlotStartTime property value. The date and time the pickup slot begins, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; UTC string.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -108,7 +108,7 @@ public class PickupSlot implements AdditionalDataHolder, Parsable {
         return this.pickupSlotStartTime;
     }
     /**
-     * Gets the pickupSlotTimeZone property value. The time zone of the pickup location, returned as &lt;a href=&quot;https://www.iana.org/time-zones &quot; target=&quot;_blank&quot;&gt;Time Zone Database&lt;/a&gt; ID (also know as an Olson time zone ID).
+     * Gets the pickupSlotTimeZone property value. The time zone of the pickup location, returned as &lt;a href=&quot;https://www.iana.org/time-zones &quot; target=&quot;_blank&quot;&gt;Time Zone Database&lt;/a&gt; ID (also known as an Olson time zone ID).
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -135,28 +135,28 @@ public class PickupSlot implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the pickupSlotEndTime property value. The date and time the pickup slot ends, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
+     * Sets the pickupSlotEndTime property value. The date and time the pickup slot ends, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
      * @param value Value to set for the pickupSlotEndTime property.
      */
     public void setPickupSlotEndTime(@jakarta.annotation.Nullable final String value) {
         this.pickupSlotEndTime = value;
     }
     /**
-     * Sets the pickupSlotId property value. Seller-defined name for the pickup slot. &lt;!-- Max characters? --&gt;
+     * Sets the pickupSlotId property value. Seller-defined name for the pickup slot.
      * @param value Value to set for the pickupSlotId property.
      */
     public void setPickupSlotId(@jakarta.annotation.Nullable final String value) {
         this.pickupSlotId = value;
     }
     /**
-     * Sets the pickupSlotStartTime property value. The date and time the pickup slot begins, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; UTC string.
+     * Sets the pickupSlotStartTime property value. The date and time the pickup slot begins, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; UTC string.
      * @param value Value to set for the pickupSlotStartTime property.
      */
     public void setPickupSlotStartTime(@jakarta.annotation.Nullable final String value) {
         this.pickupSlotStartTime = value;
     }
     /**
-     * Sets the pickupSlotTimeZone property value. The time zone of the pickup location, returned as &lt;a href=&quot;https://www.iana.org/time-zones &quot; target=&quot;_blank&quot;&gt;Time Zone Database&lt;/a&gt; ID (also know as an Olson time zone ID).
+     * Sets the pickupSlotTimeZone property value. The time zone of the pickup location, returned as &lt;a href=&quot;https://www.iana.org/time-zones &quot; target=&quot;_blank&quot;&gt;Time Zone Database&lt;/a&gt; ID (also known as an Olson time zone ID).
      * @param value Value to set for the pickupSlotTimeZone property.
      */
     public void setPickupSlotTimeZone(@jakarta.annotation.Nullable final String value) {

@@ -31,7 +31,7 @@ public class AcceptPaymentDisputeRequest implements AdditionalDataHolder, Parsab
      */
     private Map<String, Object> additionalData;
     /**
-     * This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * This container is used if the seller wishes to provide a return address to the buyer. This container should be used if the seller is requesting that the buyer return the item.
      */
     private ReturnAddress returnAddress;
     /**
@@ -74,7 +74,7 @@ public class AcceptPaymentDisputeRequest implements AdditionalDataHolder, Parsab
         return deserializerMap;
     }
     /**
-     * Gets the returnAddress property value. This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * Gets the returnAddress property value. This container is used if the seller wishes to provide a return address to the buyer. This container should be used if the seller is requesting that the buyer return the item.
      * @return a {@link ReturnAddress}
      */
     @jakarta.annotation.Nullable
@@ -107,7 +107,7 @@ public class AcceptPaymentDisputeRequest implements AdditionalDataHolder, Parsab
         this.additionalData = value;
     }
     /**
-     * Sets the returnAddress property value. This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * Sets the returnAddress property value. This container is used if the seller wishes to provide a return address to the buyer. This container should be used if the seller is requesting that the buyer return the item.
      * @param value Value to set for the returnAddress property.
      */
     public void setReturnAddress(@jakarta.annotation.Nullable final ReturnAddress value) {
