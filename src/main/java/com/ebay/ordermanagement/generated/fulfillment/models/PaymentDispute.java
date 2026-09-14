@@ -31,23 +31,23 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This type defines the monetary value of the payment dispute, and the currency used.
+     * This container shows the dollar value associated with the payment dispute in the currency used by the seller&apos;s marketplace.
      */
     private SimpleAmount amount;
     /**
      * The value(s) returned in this array indicate the choices that the seller has when responding to the payment dispute. Once the seller has responded to the payment dispute, this field will no longer be shown, and instead, the &lt;strong&gt;sellerResponse&lt;/strong&gt; field will show the decision that the seller made.
      */
-    private java.util.List<String> availableChoices;
+    private java.util.List<SellerDecisionEnum> availableChoices;
     /**
      * This container is returned if the buyer is returning one or more line items in an order that is associated with the payment dispute, and that buyer has provided return shipping tracking information and/or a note about the return.
      */
     private InfoFromBuyer buyerProvided;
     /**
-     * This is the eBay user ID of the buyer that initiated the payment dispute.
+     * This is the eBay user ID of the buyer that initiated the payment dispute.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to &lt;a href=&quot;/api-docs/static/data-handling-update.html&quot; target=&quot;_blank&quot;&gt;Data Handling Compliance&lt;/a&gt;. &lt;/span&gt;
      */
     private String buyerUsername;
     /**
-     * The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the &lt;code&gt;CLOSED&lt;/code&gt; state.&lt;br&gt;&lt;br&gt;The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
+     * The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the &lt;code&gt;CLOSED&lt;/code&gt; state.&lt;br&gt;&lt;br&gt;The timestamps returned here use the &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
      */
     private String closedDate;
     /**
@@ -59,7 +59,7 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
      */
     private java.util.List<EvidenceRequest> evidenceRequests;
     /**
-     * This array is used to identify one or more order line items associated with the payment dispute. There will always be at least one &lt;b&gt;itemId&lt;/b&gt;/&lt;b&gt;lineItemId&lt;/b&gt; pair returned in this array.
+     * This array is used to identify one or more order line items associated with the payment dispute. There will always be at least one &lt;strong&gt;itemId&lt;/strong&gt;/&lt;strong&gt;lineItemId&lt;/strong&gt; pair returned in this array.
      */
     private java.util.List<OrderLineItems> lineItems;
     /**
@@ -71,7 +71,7 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
      */
     private String note;
     /**
-     * The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.&lt;br&gt;&lt;br&gt;The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
+     * The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.&lt;br&gt;&lt;br&gt;The timestamps returned here use the &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
      */
     private String openDate;
     /**
@@ -83,23 +83,23 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
      */
     private String paymentDisputeId;
     /**
-     * The enumeration value in this field gives the current status of the payment dispute. The status of a payment dispute partially determines other fields that are returned in the response. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeStateEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The enumeration value in this field gives the current status of the payment dispute. The status of a payment dispute partially determines other fields that are returned in the response.
      */
-    private String paymentDisputeStatus;
+    private DisputeStateEnum paymentDisputeStatus;
     /**
-     * The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See &lt;strong&gt;DisputeReasonEnum&lt;/strong&gt; type for a description of the supported reasons that buyers can give for initiating a payment dispute. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeReasonEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See &lt;strong&gt;DisputeReasonEnum&lt;/strong&gt; type for a description of the supported reasons that buyers can give for initiating a payment dispute.
      */
-    private String reason;
+    private DisputeReasonEnum reason;
     /**
-     * This type is used by the &lt;strong&gt;resolution&lt;/strong&gt; container that is returned for payment disputes that have been resolved.
+     * This container gives details about a payment dispute that has been resolved. This container is only returned for resolved/closed payment disputes.
      */
     private PaymentDisputeOutcomeDetail resolution;
     /**
-     * The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the &lt;code&gt;ACTION_NEEDED&lt;/code&gt; state. For payment disputes that currently require action by the seller, that same seller should look at the &lt;strong&gt;availableChoices&lt;/strong&gt; array to see the available actions.&lt;br&gt;&lt;br&gt;The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
+     * The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the &lt;code&gt;ACTION_NEEDED&lt;/code&gt; state. For payment disputes that currently require action by the seller, that same seller should look at the &lt;strong&gt;availableChoices&lt;/strong&gt; array to see the available actions.&lt;br&gt;&lt;br&gt;The timestamps returned here use the &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
      */
     private String respondByDate;
     /**
-     * This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * This container gives the address where the order will be returned to. This container is returned if the seller is accepting the payment dispute and will issue a refund to the buyer once the item is returned to this address.
      */
     private ReturnAddress returnAddress;
     /**
@@ -107,9 +107,9 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
      */
     private Integer revision;
     /**
-     * The enumeration value returned in this field indicates how the seller has responded to the payment dispute. The seller has the option of accepting the payment dispute and agreeing to issue a refund, accepting the payment dispute and agreeing to issue a refund as long as the buyer returns the item, or contesting the payment dispute. This field is returned as soon as the seller makes an initial decision on the payment dispute. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:SellerResponseEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The enumeration value returned in this field indicates how the seller has responded to the payment dispute. The seller has the option of accepting the payment dispute and agreeing to issue a refund, accepting the payment dispute and agreeing to issue a refund as long as the buyer returns the item, or contesting the payment dispute. This field is returned as soon as the seller makes an initial decision on the payment dispute.
      */
-    private String sellerResponse;
+    private SellerResponseEnum sellerResponse;
     /**
      * Instantiates a new {@link PaymentDispute} and sets the default values.
      */
@@ -135,7 +135,7 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the amount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Gets the amount property value. This container shows the dollar value associated with the payment dispute in the currency used by the seller&apos;s marketplace.
      * @return a {@link SimpleAmount}
      */
     @jakarta.annotation.Nullable
@@ -144,10 +144,10 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
     }
     /**
      * Gets the availableChoices property value. The value(s) returned in this array indicate the choices that the seller has when responding to the payment dispute. Once the seller has responded to the payment dispute, this field will no longer be shown, and instead, the &lt;strong&gt;sellerResponse&lt;/strong&gt; field will show the decision that the seller made.
-     * @return a {@link java.util.List<String>}
+     * @return a {@link java.util.List<SellerDecisionEnum>}
      */
     @jakarta.annotation.Nullable
-    public java.util.List<String> getAvailableChoices() {
+    public java.util.List<SellerDecisionEnum> getAvailableChoices() {
         return this.availableChoices;
     }
     /**
@@ -159,7 +159,7 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
         return this.buyerProvided;
     }
     /**
-     * Gets the buyerUsername property value. This is the eBay user ID of the buyer that initiated the payment dispute.
+     * Gets the buyerUsername property value. This is the eBay user ID of the buyer that initiated the payment dispute.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to &lt;a href=&quot;/api-docs/static/data-handling-update.html&quot; target=&quot;_blank&quot;&gt;Data Handling Compliance&lt;/a&gt;. &lt;/span&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -167,7 +167,7 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
         return this.buyerUsername;
     }
     /**
-     * Gets the closedDate property value. The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the &lt;code&gt;CLOSED&lt;/code&gt; state.&lt;br&gt;&lt;br&gt;The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
+     * Gets the closedDate property value. The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the &lt;code&gt;CLOSED&lt;/code&gt; state.&lt;br&gt;&lt;br&gt;The timestamps returned here use the &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -198,7 +198,7 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(20);
         deserializerMap.put("amount", (n) -> { this.setAmount(n.getObjectValue(SimpleAmount::createFromDiscriminatorValue)); });
-        deserializerMap.put("availableChoices", (n) -> { this.setAvailableChoices(n.getCollectionOfPrimitiveValues(String.class)); });
+        deserializerMap.put("availableChoices", (n) -> { this.setAvailableChoices(n.getCollectionOfEnumValues(SellerDecisionEnum::forValue)); });
         deserializerMap.put("buyerProvided", (n) -> { this.setBuyerProvided(n.getObjectValue(InfoFromBuyer::createFromDiscriminatorValue)); });
         deserializerMap.put("buyerUsername", (n) -> { this.setBuyerUsername(n.getStringValue()); });
         deserializerMap.put("closedDate", (n) -> { this.setClosedDate(n.getStringValue()); });
@@ -210,17 +210,17 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
         deserializerMap.put("openDate", (n) -> { this.setOpenDate(n.getStringValue()); });
         deserializerMap.put("orderId", (n) -> { this.setOrderId(n.getStringValue()); });
         deserializerMap.put("paymentDisputeId", (n) -> { this.setPaymentDisputeId(n.getStringValue()); });
-        deserializerMap.put("paymentDisputeStatus", (n) -> { this.setPaymentDisputeStatus(n.getStringValue()); });
-        deserializerMap.put("reason", (n) -> { this.setReason(n.getStringValue()); });
+        deserializerMap.put("paymentDisputeStatus", (n) -> { this.setPaymentDisputeStatus(n.getEnumValue(DisputeStateEnum::forValue)); });
+        deserializerMap.put("reason", (n) -> { this.setReason(n.getEnumValue(DisputeReasonEnum::forValue)); });
         deserializerMap.put("resolution", (n) -> { this.setResolution(n.getObjectValue(PaymentDisputeOutcomeDetail::createFromDiscriminatorValue)); });
         deserializerMap.put("respondByDate", (n) -> { this.setRespondByDate(n.getStringValue()); });
         deserializerMap.put("returnAddress", (n) -> { this.setReturnAddress(n.getObjectValue(ReturnAddress::createFromDiscriminatorValue)); });
         deserializerMap.put("revision", (n) -> { this.setRevision(n.getIntegerValue()); });
-        deserializerMap.put("sellerResponse", (n) -> { this.setSellerResponse(n.getStringValue()); });
+        deserializerMap.put("sellerResponse", (n) -> { this.setSellerResponse(n.getEnumValue(SellerResponseEnum::forValue)); });
         return deserializerMap;
     }
     /**
-     * Gets the lineItems property value. This array is used to identify one or more order line items associated with the payment dispute. There will always be at least one &lt;b&gt;itemId&lt;/b&gt;/&lt;b&gt;lineItemId&lt;/b&gt; pair returned in this array.
+     * Gets the lineItems property value. This array is used to identify one or more order line items associated with the payment dispute. There will always be at least one &lt;strong&gt;itemId&lt;/strong&gt;/&lt;strong&gt;lineItemId&lt;/strong&gt; pair returned in this array.
      * @return a {@link java.util.List<OrderLineItems>}
      */
     @jakarta.annotation.Nullable
@@ -244,7 +244,7 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
         return this.note;
     }
     /**
-     * Gets the openDate property value. The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.&lt;br&gt;&lt;br&gt;The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
+     * Gets the openDate property value. The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.&lt;br&gt;&lt;br&gt;The timestamps returned here use the &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -268,23 +268,23 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
         return this.paymentDisputeId;
     }
     /**
-     * Gets the paymentDisputeStatus property value. The enumeration value in this field gives the current status of the payment dispute. The status of a payment dispute partially determines other fields that are returned in the response. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeStateEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the paymentDisputeStatus property value. The enumeration value in this field gives the current status of the payment dispute. The status of a payment dispute partially determines other fields that are returned in the response.
+     * @return a {@link DisputeStateEnum}
      */
     @jakarta.annotation.Nullable
-    public String getPaymentDisputeStatus() {
+    public DisputeStateEnum getPaymentDisputeStatus() {
         return this.paymentDisputeStatus;
     }
     /**
-     * Gets the reason property value. The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See &lt;strong&gt;DisputeReasonEnum&lt;/strong&gt; type for a description of the supported reasons that buyers can give for initiating a payment dispute. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeReasonEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the reason property value. The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See &lt;strong&gt;DisputeReasonEnum&lt;/strong&gt; type for a description of the supported reasons that buyers can give for initiating a payment dispute.
+     * @return a {@link DisputeReasonEnum}
      */
     @jakarta.annotation.Nullable
-    public String getReason() {
+    public DisputeReasonEnum getReason() {
         return this.reason;
     }
     /**
-     * Gets the resolution property value. This type is used by the &lt;strong&gt;resolution&lt;/strong&gt; container that is returned for payment disputes that have been resolved.
+     * Gets the resolution property value. This container gives details about a payment dispute that has been resolved. This container is only returned for resolved/closed payment disputes.
      * @return a {@link PaymentDisputeOutcomeDetail}
      */
     @jakarta.annotation.Nullable
@@ -292,7 +292,7 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
         return this.resolution;
     }
     /**
-     * Gets the respondByDate property value. The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the &lt;code&gt;ACTION_NEEDED&lt;/code&gt; state. For payment disputes that currently require action by the seller, that same seller should look at the &lt;strong&gt;availableChoices&lt;/strong&gt; array to see the available actions.&lt;br&gt;&lt;br&gt;The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
+     * Gets the respondByDate property value. The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the &lt;code&gt;ACTION_NEEDED&lt;/code&gt; state. For payment disputes that currently require action by the seller, that same seller should look at the &lt;strong&gt;availableChoices&lt;/strong&gt; array to see the available actions.&lt;br&gt;&lt;br&gt;The timestamps returned here use the &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -300,7 +300,7 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
         return this.respondByDate;
     }
     /**
-     * Gets the returnAddress property value. This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * Gets the returnAddress property value. This container gives the address where the order will be returned to. This container is returned if the seller is accepting the payment dispute and will issue a refund to the buyer once the item is returned to this address.
      * @return a {@link ReturnAddress}
      */
     @jakarta.annotation.Nullable
@@ -316,11 +316,11 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
         return this.revision;
     }
     /**
-     * Gets the sellerResponse property value. The enumeration value returned in this field indicates how the seller has responded to the payment dispute. The seller has the option of accepting the payment dispute and agreeing to issue a refund, accepting the payment dispute and agreeing to issue a refund as long as the buyer returns the item, or contesting the payment dispute. This field is returned as soon as the seller makes an initial decision on the payment dispute. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:SellerResponseEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the sellerResponse property value. The enumeration value returned in this field indicates how the seller has responded to the payment dispute. The seller has the option of accepting the payment dispute and agreeing to issue a refund, accepting the payment dispute and agreeing to issue a refund as long as the buyer returns the item, or contesting the payment dispute. This field is returned as soon as the seller makes an initial decision on the payment dispute.
+     * @return a {@link SellerResponseEnum}
      */
     @jakarta.annotation.Nullable
-    public String getSellerResponse() {
+    public SellerResponseEnum getSellerResponse() {
         return this.sellerResponse;
     }
     /**
@@ -330,7 +330,7 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
         writer.writeObjectValue("amount", this.getAmount());
-        writer.writeCollectionOfPrimitiveValues("availableChoices", this.getAvailableChoices());
+        writer.writeCollectionOfEnumValues("availableChoices", this.getAvailableChoices());
         writer.writeObjectValue("buyerProvided", this.getBuyerProvided());
         writer.writeStringValue("buyerUsername", this.getBuyerUsername());
         writer.writeStringValue("closedDate", this.getClosedDate());
@@ -342,13 +342,13 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
         writer.writeStringValue("openDate", this.getOpenDate());
         writer.writeStringValue("orderId", this.getOrderId());
         writer.writeStringValue("paymentDisputeId", this.getPaymentDisputeId());
-        writer.writeStringValue("paymentDisputeStatus", this.getPaymentDisputeStatus());
-        writer.writeStringValue("reason", this.getReason());
+        writer.writeEnumValue("paymentDisputeStatus", this.getPaymentDisputeStatus());
+        writer.writeEnumValue("reason", this.getReason());
         writer.writeObjectValue("resolution", this.getResolution());
         writer.writeStringValue("respondByDate", this.getRespondByDate());
         writer.writeObjectValue("returnAddress", this.getReturnAddress());
         writer.writeIntegerValue("revision", this.getRevision());
-        writer.writeStringValue("sellerResponse", this.getSellerResponse());
+        writer.writeEnumValue("sellerResponse", this.getSellerResponse());
         writer.writeAdditionalData(this.getAdditionalData());
     }
     /**
@@ -359,7 +359,7 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the amount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Sets the amount property value. This container shows the dollar value associated with the payment dispute in the currency used by the seller&apos;s marketplace.
      * @param value Value to set for the amount property.
      */
     public void setAmount(@jakarta.annotation.Nullable final SimpleAmount value) {
@@ -369,7 +369,7 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
      * Sets the availableChoices property value. The value(s) returned in this array indicate the choices that the seller has when responding to the payment dispute. Once the seller has responded to the payment dispute, this field will no longer be shown, and instead, the &lt;strong&gt;sellerResponse&lt;/strong&gt; field will show the decision that the seller made.
      * @param value Value to set for the availableChoices property.
      */
-    public void setAvailableChoices(@jakarta.annotation.Nullable final java.util.List<String> value) {
+    public void setAvailableChoices(@jakarta.annotation.Nullable final java.util.List<SellerDecisionEnum> value) {
         this.availableChoices = value;
     }
     /**
@@ -380,14 +380,14 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
         this.buyerProvided = value;
     }
     /**
-     * Sets the buyerUsername property value. This is the eBay user ID of the buyer that initiated the payment dispute.
+     * Sets the buyerUsername property value. This is the eBay user ID of the buyer that initiated the payment dispute.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to &lt;a href=&quot;/api-docs/static/data-handling-update.html&quot; target=&quot;_blank&quot;&gt;Data Handling Compliance&lt;/a&gt;. &lt;/span&gt;
      * @param value Value to set for the buyerUsername property.
      */
     public void setBuyerUsername(@jakarta.annotation.Nullable final String value) {
         this.buyerUsername = value;
     }
     /**
-     * Sets the closedDate property value. The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the &lt;code&gt;CLOSED&lt;/code&gt; state.&lt;br&gt;&lt;br&gt;The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
+     * Sets the closedDate property value. The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the &lt;code&gt;CLOSED&lt;/code&gt; state.&lt;br&gt;&lt;br&gt;The timestamps returned here use the &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
      * @param value Value to set for the closedDate property.
      */
     public void setClosedDate(@jakarta.annotation.Nullable final String value) {
@@ -408,7 +408,7 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
         this.evidenceRequests = value;
     }
     /**
-     * Sets the lineItems property value. This array is used to identify one or more order line items associated with the payment dispute. There will always be at least one &lt;b&gt;itemId&lt;/b&gt;/&lt;b&gt;lineItemId&lt;/b&gt; pair returned in this array.
+     * Sets the lineItems property value. This array is used to identify one or more order line items associated with the payment dispute. There will always be at least one &lt;strong&gt;itemId&lt;/strong&gt;/&lt;strong&gt;lineItemId&lt;/strong&gt; pair returned in this array.
      * @param value Value to set for the lineItems property.
      */
     public void setLineItems(@jakarta.annotation.Nullable final java.util.List<OrderLineItems> value) {
@@ -429,7 +429,7 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
         this.note = value;
     }
     /**
-     * Sets the openDate property value. The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.&lt;br&gt;&lt;br&gt;The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
+     * Sets the openDate property value. The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.&lt;br&gt;&lt;br&gt;The timestamps returned here use the &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
      * @param value Value to set for the openDate property.
      */
     public void setOpenDate(@jakarta.annotation.Nullable final String value) {
@@ -450,35 +450,35 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
         this.paymentDisputeId = value;
     }
     /**
-     * Sets the paymentDisputeStatus property value. The enumeration value in this field gives the current status of the payment dispute. The status of a payment dispute partially determines other fields that are returned in the response. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeStateEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the paymentDisputeStatus property value. The enumeration value in this field gives the current status of the payment dispute. The status of a payment dispute partially determines other fields that are returned in the response.
      * @param value Value to set for the paymentDisputeStatus property.
      */
-    public void setPaymentDisputeStatus(@jakarta.annotation.Nullable final String value) {
+    public void setPaymentDisputeStatus(@jakarta.annotation.Nullable final DisputeStateEnum value) {
         this.paymentDisputeStatus = value;
     }
     /**
-     * Sets the reason property value. The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See &lt;strong&gt;DisputeReasonEnum&lt;/strong&gt; type for a description of the supported reasons that buyers can give for initiating a payment dispute. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeReasonEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the reason property value. The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See &lt;strong&gt;DisputeReasonEnum&lt;/strong&gt; type for a description of the supported reasons that buyers can give for initiating a payment dispute.
      * @param value Value to set for the reason property.
      */
-    public void setReason(@jakarta.annotation.Nullable final String value) {
+    public void setReason(@jakarta.annotation.Nullable final DisputeReasonEnum value) {
         this.reason = value;
     }
     /**
-     * Sets the resolution property value. This type is used by the &lt;strong&gt;resolution&lt;/strong&gt; container that is returned for payment disputes that have been resolved.
+     * Sets the resolution property value. This container gives details about a payment dispute that has been resolved. This container is only returned for resolved/closed payment disputes.
      * @param value Value to set for the resolution property.
      */
     public void setResolution(@jakarta.annotation.Nullable final PaymentDisputeOutcomeDetail value) {
         this.resolution = value;
     }
     /**
-     * Sets the respondByDate property value. The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the &lt;code&gt;ACTION_NEEDED&lt;/code&gt; state. For payment disputes that currently require action by the seller, that same seller should look at the &lt;strong&gt;availableChoices&lt;/strong&gt; array to see the available actions.&lt;br&gt;&lt;br&gt;The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
+     * Sets the respondByDate property value. The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the &lt;code&gt;ACTION_NEEDED&lt;/code&gt; state. For payment disputes that currently require action by the seller, that same seller should look at the &lt;strong&gt;availableChoices&lt;/strong&gt; array to see the available actions.&lt;br&gt;&lt;br&gt;The timestamps returned here use the &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: &lt;em&gt;yyyy-MM-ddThh:mm.ss.sssZ&lt;/em&gt;. An example would be &lt;code&gt;2019-08-04T19:09:02.768Z&lt;/code&gt;.
      * @param value Value to set for the respondByDate property.
      */
     public void setRespondByDate(@jakarta.annotation.Nullable final String value) {
         this.respondByDate = value;
     }
     /**
-     * Sets the returnAddress property value. This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * Sets the returnAddress property value. This container gives the address where the order will be returned to. This container is returned if the seller is accepting the payment dispute and will issue a refund to the buyer once the item is returned to this address.
      * @param value Value to set for the returnAddress property.
      */
     public void setReturnAddress(@jakarta.annotation.Nullable final ReturnAddress value) {
@@ -492,10 +492,10 @@ public class PaymentDispute implements AdditionalDataHolder, Parsable {
         this.revision = value;
     }
     /**
-     * Sets the sellerResponse property value. The enumeration value returned in this field indicates how the seller has responded to the payment dispute. The seller has the option of accepting the payment dispute and agreeing to issue a refund, accepting the payment dispute and agreeing to issue a refund as long as the buyer returns the item, or contesting the payment dispute. This field is returned as soon as the seller makes an initial decision on the payment dispute. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:SellerResponseEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the sellerResponse property value. The enumeration value returned in this field indicates how the seller has responded to the payment dispute. The seller has the option of accepting the payment dispute and agreeing to issue a refund, accepting the payment dispute and agreeing to issue a refund as long as the buyer returns the item, or contesting the payment dispute. This field is returned as soon as the seller makes an initial decision on the payment dispute.
      * @param value Value to set for the sellerResponse property.
      */
-    public void setSellerResponse(@jakarta.annotation.Nullable final String value) {
+    public void setSellerResponse(@jakarta.annotation.Nullable final SellerResponseEnum value) {
         this.sellerResponse = value;
     }
 }

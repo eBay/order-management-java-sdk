@@ -31,19 +31,19 @@ public class Amount implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * A three-letter ISO 4217 code that indicates the currency of the amount in the &lt;b&gt;convertedFromValue&lt;/b&gt; field. This value is required or returned only if currency conversion/localization is required, and represents the pre-conversion currency. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * A three-letter &lt;a href=&quot;https://www.iso.org/iso-4217-currency-codes.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 4217&lt;/a&gt; code that indicates the currency of the amount in the &lt;strong&gt;convertedFromValue&lt;/strong&gt; field. This value is required or returned only if currency conversion/localization is required and represents the pre-conversion currency.
      */
-    private String convertedFromCurrency;
+    private CurrencyCodeEnum convertedFromCurrency;
     /**
-     * The monetary amount before any conversion is performed, in the currency specified by the &lt;b&gt;convertedFromCurrency&lt;/b&gt; field. This value is required or returned only if currency conversion/localization is required. The &lt;b&gt;value&lt;/b&gt; field contains the converted amount of this value, in the currency specified by the &lt;b&gt;currency&lt;/b&gt; field.
+     * The monetary amount, before any conversion is performed, in the currency specified by the &lt;strong&gt;convertedFromCurrency&lt;/strong&gt; field. This value is required or returned only if currency conversion/localization is required. The &lt;strong&gt;value&lt;/strong&gt; field contains the converted amount of this value in the currency specified by the &lt;strong&gt;currency&lt;/strong&gt; field.
      */
     private String convertedFromValue;
     /**
-     * A three-letter ISO 4217 code that indicates the currency of the amount in the &lt;b&gt;value&lt;/b&gt; field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the &lt;b&gt;value&lt;/b&gt; field.&lt;br&gt;&lt;br&gt;&lt;b&gt;Default:&lt;/b&gt; The default currency of the eBay marketplace that hosts the listing. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * A three-letter &lt;a href=&quot;https://www.iso.org/iso-4217-currency-codes.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 4217&lt;/a&gt; code that indicates the currency of the amount in the &lt;strong&gt;value&lt;/strong&gt; field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the &lt;strong&gt;value&lt;/strong&gt; field.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Default:&lt;/strong&gt; The default currency with be that of the eBay marketplace that hosts the listing.
      */
-    private String currency;
+    private CurrencyCodeEnum currency;
     /**
-     * The monetary amount, in the currency specified by the &lt;b&gt;currency&lt;/b&gt; field. If currency conversion/localization is required, this value is the converted amount, and the &lt;b&gt;convertedFromValue&lt;/b&gt; field contains the amount in the original currency.  &lt;br&gt;&lt;br&gt;&lt;i&gt;Required in&lt;/i&gt; the &lt;b&gt;amount&lt;/b&gt; type.
+     * The monetary amount in the currency specified by the &lt;strong&gt;currency&lt;/strong&gt; field. If currency conversion/localization is required, this value is the converted amount, and the &lt;strong&gt;convertedFromValue&lt;/strong&gt; field contains the amount in the original currency.  &lt;br&gt;&lt;br&gt;&lt;em&gt;Required&lt;/em&gt; in the &lt;strong&gt;amount&lt;/strong&gt; type.
      */
     private String value;
     /**
@@ -71,15 +71,15 @@ public class Amount implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the convertedFromCurrency property value. A three-letter ISO 4217 code that indicates the currency of the amount in the &lt;b&gt;convertedFromValue&lt;/b&gt; field. This value is required or returned only if currency conversion/localization is required, and represents the pre-conversion currency. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the convertedFromCurrency property value. A three-letter &lt;a href=&quot;https://www.iso.org/iso-4217-currency-codes.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 4217&lt;/a&gt; code that indicates the currency of the amount in the &lt;strong&gt;convertedFromValue&lt;/strong&gt; field. This value is required or returned only if currency conversion/localization is required and represents the pre-conversion currency.
+     * @return a {@link CurrencyCodeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getConvertedFromCurrency() {
+    public CurrencyCodeEnum getConvertedFromCurrency() {
         return this.convertedFromCurrency;
     }
     /**
-     * Gets the convertedFromValue property value. The monetary amount before any conversion is performed, in the currency specified by the &lt;b&gt;convertedFromCurrency&lt;/b&gt; field. This value is required or returned only if currency conversion/localization is required. The &lt;b&gt;value&lt;/b&gt; field contains the converted amount of this value, in the currency specified by the &lt;b&gt;currency&lt;/b&gt; field.
+     * Gets the convertedFromValue property value. The monetary amount, before any conversion is performed, in the currency specified by the &lt;strong&gt;convertedFromCurrency&lt;/strong&gt; field. This value is required or returned only if currency conversion/localization is required. The &lt;strong&gt;value&lt;/strong&gt; field contains the converted amount of this value in the currency specified by the &lt;strong&gt;currency&lt;/strong&gt; field.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -87,11 +87,11 @@ public class Amount implements AdditionalDataHolder, Parsable {
         return this.convertedFromValue;
     }
     /**
-     * Gets the currency property value. A three-letter ISO 4217 code that indicates the currency of the amount in the &lt;b&gt;value&lt;/b&gt; field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the &lt;b&gt;value&lt;/b&gt; field.&lt;br&gt;&lt;br&gt;&lt;b&gt;Default:&lt;/b&gt; The default currency of the eBay marketplace that hosts the listing. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the currency property value. A three-letter &lt;a href=&quot;https://www.iso.org/iso-4217-currency-codes.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 4217&lt;/a&gt; code that indicates the currency of the amount in the &lt;strong&gt;value&lt;/strong&gt; field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the &lt;strong&gt;value&lt;/strong&gt; field.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Default:&lt;/strong&gt; The default currency with be that of the eBay marketplace that hosts the listing.
+     * @return a {@link CurrencyCodeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getCurrency() {
+    public CurrencyCodeEnum getCurrency() {
         return this.currency;
     }
     /**
@@ -101,14 +101,14 @@ public class Amount implements AdditionalDataHolder, Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(4);
-        deserializerMap.put("convertedFromCurrency", (n) -> { this.setConvertedFromCurrency(n.getStringValue()); });
+        deserializerMap.put("convertedFromCurrency", (n) -> { this.setConvertedFromCurrency(n.getEnumValue(CurrencyCodeEnum::forValue)); });
         deserializerMap.put("convertedFromValue", (n) -> { this.setConvertedFromValue(n.getStringValue()); });
-        deserializerMap.put("currency", (n) -> { this.setCurrency(n.getStringValue()); });
+        deserializerMap.put("currency", (n) -> { this.setCurrency(n.getEnumValue(CurrencyCodeEnum::forValue)); });
         deserializerMap.put("value", (n) -> { this.setValue(n.getStringValue()); });
         return deserializerMap;
     }
     /**
-     * Gets the value property value. The monetary amount, in the currency specified by the &lt;b&gt;currency&lt;/b&gt; field. If currency conversion/localization is required, this value is the converted amount, and the &lt;b&gt;convertedFromValue&lt;/b&gt; field contains the amount in the original currency.  &lt;br&gt;&lt;br&gt;&lt;i&gt;Required in&lt;/i&gt; the &lt;b&gt;amount&lt;/b&gt; type.
+     * Gets the value property value. The monetary amount in the currency specified by the &lt;strong&gt;currency&lt;/strong&gt; field. If currency conversion/localization is required, this value is the converted amount, and the &lt;strong&gt;convertedFromValue&lt;/strong&gt; field contains the amount in the original currency.  &lt;br&gt;&lt;br&gt;&lt;em&gt;Required&lt;/em&gt; in the &lt;strong&gt;amount&lt;/strong&gt; type.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -121,9 +121,9 @@ public class Amount implements AdditionalDataHolder, Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeStringValue("convertedFromCurrency", this.getConvertedFromCurrency());
+        writer.writeEnumValue("convertedFromCurrency", this.getConvertedFromCurrency());
         writer.writeStringValue("convertedFromValue", this.getConvertedFromValue());
-        writer.writeStringValue("currency", this.getCurrency());
+        writer.writeEnumValue("currency", this.getCurrency());
         writer.writeStringValue("value", this.getValue());
         writer.writeAdditionalData(this.getAdditionalData());
     }
@@ -135,28 +135,28 @@ public class Amount implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the convertedFromCurrency property value. A three-letter ISO 4217 code that indicates the currency of the amount in the &lt;b&gt;convertedFromValue&lt;/b&gt; field. This value is required or returned only if currency conversion/localization is required, and represents the pre-conversion currency. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the convertedFromCurrency property value. A three-letter &lt;a href=&quot;https://www.iso.org/iso-4217-currency-codes.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 4217&lt;/a&gt; code that indicates the currency of the amount in the &lt;strong&gt;convertedFromValue&lt;/strong&gt; field. This value is required or returned only if currency conversion/localization is required and represents the pre-conversion currency.
      * @param value Value to set for the convertedFromCurrency property.
      */
-    public void setConvertedFromCurrency(@jakarta.annotation.Nullable final String value) {
+    public void setConvertedFromCurrency(@jakarta.annotation.Nullable final CurrencyCodeEnum value) {
         this.convertedFromCurrency = value;
     }
     /**
-     * Sets the convertedFromValue property value. The monetary amount before any conversion is performed, in the currency specified by the &lt;b&gt;convertedFromCurrency&lt;/b&gt; field. This value is required or returned only if currency conversion/localization is required. The &lt;b&gt;value&lt;/b&gt; field contains the converted amount of this value, in the currency specified by the &lt;b&gt;currency&lt;/b&gt; field.
+     * Sets the convertedFromValue property value. The monetary amount, before any conversion is performed, in the currency specified by the &lt;strong&gt;convertedFromCurrency&lt;/strong&gt; field. This value is required or returned only if currency conversion/localization is required. The &lt;strong&gt;value&lt;/strong&gt; field contains the converted amount of this value in the currency specified by the &lt;strong&gt;currency&lt;/strong&gt; field.
      * @param value Value to set for the convertedFromValue property.
      */
     public void setConvertedFromValue(@jakarta.annotation.Nullable final String value) {
         this.convertedFromValue = value;
     }
     /**
-     * Sets the currency property value. A three-letter ISO 4217 code that indicates the currency of the amount in the &lt;b&gt;value&lt;/b&gt; field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the &lt;b&gt;value&lt;/b&gt; field.&lt;br&gt;&lt;br&gt;&lt;b&gt;Default:&lt;/b&gt; The default currency of the eBay marketplace that hosts the listing. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the currency property value. A three-letter &lt;a href=&quot;https://www.iso.org/iso-4217-currency-codes.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 4217&lt;/a&gt; code that indicates the currency of the amount in the &lt;strong&gt;value&lt;/strong&gt; field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the &lt;strong&gt;value&lt;/strong&gt; field.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Default:&lt;/strong&gt; The default currency with be that of the eBay marketplace that hosts the listing.
      * @param value Value to set for the currency property.
      */
-    public void setCurrency(@jakarta.annotation.Nullable final String value) {
+    public void setCurrency(@jakarta.annotation.Nullable final CurrencyCodeEnum value) {
         this.currency = value;
     }
     /**
-     * Sets the value property value. The monetary amount, in the currency specified by the &lt;b&gt;currency&lt;/b&gt; field. If currency conversion/localization is required, this value is the converted amount, and the &lt;b&gt;convertedFromValue&lt;/b&gt; field contains the amount in the original currency.  &lt;br&gt;&lt;br&gt;&lt;i&gt;Required in&lt;/i&gt; the &lt;b&gt;amount&lt;/b&gt; type.
+     * Sets the value property value. The monetary amount in the currency specified by the &lt;strong&gt;currency&lt;/strong&gt; field. If currency conversion/localization is required, this value is the converted amount, and the &lt;strong&gt;convertedFromValue&lt;/strong&gt; field contains the amount in the original currency.  &lt;br&gt;&lt;br&gt;&lt;em&gt;Required&lt;/em&gt; in the &lt;strong&gt;amount&lt;/strong&gt; type.
      * @param value Value to set for the value property.
      */
     public void setValue(@jakarta.annotation.Nullable final String value) {

@@ -181,7 +181,7 @@ public final class FulfillmentClient {
         }));
     }
 
-    public CompletableFuture<FileEvidence> uploadEvidenceFileAsync(
+    public CompletableFuture<UploadEvidenceFilePaymentDisputeResponse> uploadEvidenceFileAsync(
             String paymentDisputeId, byte[] body, String accessToken, RequestOptions requestOptions) {
         return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);

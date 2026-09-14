@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * Type defining the &lt;b&gt;legacyReference&lt;/b&gt; container. This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID and transaction ID to identify the order line item.
+ * Type defining the legacyReference container. This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID and transaction ID to identify the order line item.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class LegacyReference implements AdditionalDataHolder, Parsable {
@@ -31,11 +31,11 @@ public class LegacyReference implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * The unique identifier of a listing.&lt;br&gt;&lt;br&gt; This value can be found in the &lt;a href=&quot;/devzone/xml/docs/reference/ebay/getorders.html#Response.OrderArray.Order.TransactionArray.Transaction&quot; target=&quot;_blank&quot;&gt;Transaction&lt;/a&gt; container in the response of the &lt;a href=&quot;/devzone/xml/docs/reference/ebay/getorders.html&quot; target=&quot;_blank&quot;&gt;getOrder&lt;/a&gt; call of the &lt;b&gt;Trading API&lt;/b&gt;.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Both &lt;b&gt;legacyItemId&lt;/b&gt; and &lt;b&gt;legacyTransactionId&lt;/b&gt; are needed to identify an order line item. &lt;/span&gt;
+     * The unique identifier of a listing. This value can be found in the Transaction container in the response of the getOrder call of the Trading API. Note: Both legacyItemId and legacyTransactionId are needed to identify an order line item.
      */
     private String legacyItemId;
     /**
-     * The unique identifier of a sale/transaction in legacy/Trading API format. A &apos;transaction ID&apos; is created once a buyer purchases a &apos;Buy It Now&apos; item or if an auction listing ends with a winning bidder.&lt;br&gt;&lt;br&gt; This value can be found in the &lt;a href=&quot;/devzone/xml/docs/reference/ebay/getorders.html#Response.OrderArray.Order.TransactionArray.Transaction&quot; target=&quot;_blank&quot;&gt;Transaction&lt;/a&gt; container in the response of the &lt;a href=&quot;/devzone/xml/docs/reference/ebay/getorders.html&quot; target=&quot;_blank&quot;&gt;getOrder&lt;/a&gt; call of the &lt;b&gt;Trading API&lt;/b&gt;. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Both &lt;b&gt;legacyItemId&lt;/b&gt; and &lt;b&gt;legacyTransactionId&lt;/b&gt; are needed to identify an order line item. &lt;/span&gt;
+     * The unique identifier of a sale/transaction in legacy/Trading API format. A &apos;transaction ID&apos; is created once a buyer purchases a &apos;Buy It Now&apos; item or if an auction listing ends with a winning bidder. This value can be found in the Transaction container in the response of the getOrder call of the Trading API. Note: Both legacyItemId and legacyTransactionId are needed to identify an order line item.
      */
     private String legacyTransactionId;
     /**
@@ -74,7 +74,7 @@ public class LegacyReference implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the legacyItemId property value. The unique identifier of a listing.&lt;br&gt;&lt;br&gt; This value can be found in the &lt;a href=&quot;/devzone/xml/docs/reference/ebay/getorders.html#Response.OrderArray.Order.TransactionArray.Transaction&quot; target=&quot;_blank&quot;&gt;Transaction&lt;/a&gt; container in the response of the &lt;a href=&quot;/devzone/xml/docs/reference/ebay/getorders.html&quot; target=&quot;_blank&quot;&gt;getOrder&lt;/a&gt; call of the &lt;b&gt;Trading API&lt;/b&gt;.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Both &lt;b&gt;legacyItemId&lt;/b&gt; and &lt;b&gt;legacyTransactionId&lt;/b&gt; are needed to identify an order line item. &lt;/span&gt;
+     * Gets the legacyItemId property value. The unique identifier of a listing. This value can be found in the Transaction container in the response of the getOrder call of the Trading API. Note: Both legacyItemId and legacyTransactionId are needed to identify an order line item.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -82,7 +82,7 @@ public class LegacyReference implements AdditionalDataHolder, Parsable {
         return this.legacyItemId;
     }
     /**
-     * Gets the legacyTransactionId property value. The unique identifier of a sale/transaction in legacy/Trading API format. A &apos;transaction ID&apos; is created once a buyer purchases a &apos;Buy It Now&apos; item or if an auction listing ends with a winning bidder.&lt;br&gt;&lt;br&gt; This value can be found in the &lt;a href=&quot;/devzone/xml/docs/reference/ebay/getorders.html#Response.OrderArray.Order.TransactionArray.Transaction&quot; target=&quot;_blank&quot;&gt;Transaction&lt;/a&gt; container in the response of the &lt;a href=&quot;/devzone/xml/docs/reference/ebay/getorders.html&quot; target=&quot;_blank&quot;&gt;getOrder&lt;/a&gt; call of the &lt;b&gt;Trading API&lt;/b&gt;. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Both &lt;b&gt;legacyItemId&lt;/b&gt; and &lt;b&gt;legacyTransactionId&lt;/b&gt; are needed to identify an order line item. &lt;/span&gt;
+     * Gets the legacyTransactionId property value. The unique identifier of a sale/transaction in legacy/Trading API format. A &apos;transaction ID&apos; is created once a buyer purchases a &apos;Buy It Now&apos; item or if an auction listing ends with a winning bidder. This value can be found in the Transaction container in the response of the getOrder call of the Trading API. Note: Both legacyItemId and legacyTransactionId are needed to identify an order line item.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -107,14 +107,14 @@ public class LegacyReference implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the legacyItemId property value. The unique identifier of a listing.&lt;br&gt;&lt;br&gt; This value can be found in the &lt;a href=&quot;/devzone/xml/docs/reference/ebay/getorders.html#Response.OrderArray.Order.TransactionArray.Transaction&quot; target=&quot;_blank&quot;&gt;Transaction&lt;/a&gt; container in the response of the &lt;a href=&quot;/devzone/xml/docs/reference/ebay/getorders.html&quot; target=&quot;_blank&quot;&gt;getOrder&lt;/a&gt; call of the &lt;b&gt;Trading API&lt;/b&gt;.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Both &lt;b&gt;legacyItemId&lt;/b&gt; and &lt;b&gt;legacyTransactionId&lt;/b&gt; are needed to identify an order line item. &lt;/span&gt;
+     * Sets the legacyItemId property value. The unique identifier of a listing. This value can be found in the Transaction container in the response of the getOrder call of the Trading API. Note: Both legacyItemId and legacyTransactionId are needed to identify an order line item.
      * @param value Value to set for the legacyItemId property.
      */
     public void setLegacyItemId(@jakarta.annotation.Nullable final String value) {
         this.legacyItemId = value;
     }
     /**
-     * Sets the legacyTransactionId property value. The unique identifier of a sale/transaction in legacy/Trading API format. A &apos;transaction ID&apos; is created once a buyer purchases a &apos;Buy It Now&apos; item or if an auction listing ends with a winning bidder.&lt;br&gt;&lt;br&gt; This value can be found in the &lt;a href=&quot;/devzone/xml/docs/reference/ebay/getorders.html#Response.OrderArray.Order.TransactionArray.Transaction&quot; target=&quot;_blank&quot;&gt;Transaction&lt;/a&gt; container in the response of the &lt;a href=&quot;/devzone/xml/docs/reference/ebay/getorders.html&quot; target=&quot;_blank&quot;&gt;getOrder&lt;/a&gt; call of the &lt;b&gt;Trading API&lt;/b&gt;. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Both &lt;b&gt;legacyItemId&lt;/b&gt; and &lt;b&gt;legacyTransactionId&lt;/b&gt; are needed to identify an order line item. &lt;/span&gt;
+     * Sets the legacyTransactionId property value. The unique identifier of a sale/transaction in legacy/Trading API format. A &apos;transaction ID&apos; is created once a buyer purchases a &apos;Buy It Now&apos; item or if an auction listing ends with a winning bidder. This value can be found in the Transaction container in the response of the getOrder call of the Trading API. Note: Both legacyItemId and legacyTransactionId are needed to identify an order line item.
      * @param value Value to set for the legacyTransactionId property.
      */
     public void setLegacyTransactionId(@jakarta.annotation.Nullable final String value) {

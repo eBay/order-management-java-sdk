@@ -43,9 +43,9 @@ public class ContactAddress implements AdditionalDataHolder, Parsable {
      */
     private String city;
     /**
-     * The country of the address, represented as two-letter &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; country code. For example, &lt;code&gt;US&lt;/code&gt; represents the United States and &lt;code&gt;DE&lt;/code&gt; represents Germany. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/logistics/types/bas:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The country of the address, represented as two-letter &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; country code. For example, &lt;code&gt;US&lt;/code&gt; represents the United States and &lt;code&gt;DE&lt;/code&gt; represents Germany.
      */
-    private String countryCode;
+    private CountryCodeEnum countryCode;
     /**
      * The county (not country) in which the address is located. Counties typically contain multiple cities or towns.
      */
@@ -107,11 +107,11 @@ public class ContactAddress implements AdditionalDataHolder, Parsable {
         return this.city;
     }
     /**
-     * Gets the countryCode property value. The country of the address, represented as two-letter &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; country code. For example, &lt;code&gt;US&lt;/code&gt; represents the United States and &lt;code&gt;DE&lt;/code&gt; represents Germany. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/logistics/types/bas:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the countryCode property value. The country of the address, represented as two-letter &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; country code. For example, &lt;code&gt;US&lt;/code&gt; represents the United States and &lt;code&gt;DE&lt;/code&gt; represents Germany.
+     * @return a {@link CountryCodeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getCountryCode() {
+    public CountryCodeEnum getCountryCode() {
         return this.countryCode;
     }
     /**
@@ -132,7 +132,7 @@ public class ContactAddress implements AdditionalDataHolder, Parsable {
         deserializerMap.put("addressLine1", (n) -> { this.setAddressLine1(n.getStringValue()); });
         deserializerMap.put("addressLine2", (n) -> { this.setAddressLine2(n.getStringValue()); });
         deserializerMap.put("city", (n) -> { this.setCity(n.getStringValue()); });
-        deserializerMap.put("countryCode", (n) -> { this.setCountryCode(n.getStringValue()); });
+        deserializerMap.put("countryCode", (n) -> { this.setCountryCode(n.getEnumValue(CountryCodeEnum::forValue)); });
         deserializerMap.put("county", (n) -> { this.setCounty(n.getStringValue()); });
         deserializerMap.put("postalCode", (n) -> { this.setPostalCode(n.getStringValue()); });
         deserializerMap.put("stateOrProvince", (n) -> { this.setStateOrProvince(n.getStringValue()); });
@@ -163,7 +163,7 @@ public class ContactAddress implements AdditionalDataHolder, Parsable {
         writer.writeStringValue("addressLine1", this.getAddressLine1());
         writer.writeStringValue("addressLine2", this.getAddressLine2());
         writer.writeStringValue("city", this.getCity());
-        writer.writeStringValue("countryCode", this.getCountryCode());
+        writer.writeEnumValue("countryCode", this.getCountryCode());
         writer.writeStringValue("county", this.getCounty());
         writer.writeStringValue("postalCode", this.getPostalCode());
         writer.writeStringValue("stateOrProvince", this.getStateOrProvince());
@@ -198,10 +198,10 @@ public class ContactAddress implements AdditionalDataHolder, Parsable {
         this.city = value;
     }
     /**
-     * Sets the countryCode property value. The country of the address, represented as two-letter &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; country code. For example, &lt;code&gt;US&lt;/code&gt; represents the United States and &lt;code&gt;DE&lt;/code&gt; represents Germany. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/logistics/types/bas:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the countryCode property value. The country of the address, represented as two-letter &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; country code. For example, &lt;code&gt;US&lt;/code&gt; represents the United States and &lt;code&gt;DE&lt;/code&gt; represents Germany.
      * @param value Value to set for the countryCode property.
      */
-    public void setCountryCode(@jakarta.annotation.Nullable final String value) {
+    public void setCountryCode(@jakarta.annotation.Nullable final CountryCodeEnum value) {
         this.countryCode = value;
     }
     /**

@@ -31,11 +31,11 @@ public class LineItemReference implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This is the unique identifier of the eBay order line item that is part of the shipping fulfillment.&lt;br&gt;&lt;br&gt;Line item Ids can be found in the lineItems.&lt;b&gt;lineItemId&lt;/b&gt; field of the &lt;a href=&quot;/api-docs/sell/fulfillment/resources/order/methods/getOrders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; response.
+     * This is the unique identifier of the eBay order line item that is part of the shipping fulfillment.&lt;br&gt;&lt;br&gt;Line item Ids can be found in the &lt;strong&gt;lineItems.lineItemId&lt;/strong&gt; field of the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; response.
      */
     private String lineItemId;
     /**
-     * This is the number of lineItems associated with the &lt;a href=&quot;#request.trackingNumber&quot;&gt;trackingNumber&lt;/a&gt; specified by the seller. This must be a whole number greater than zero (0).&lt;br&gt;&lt;br&gt;&lt;b&gt;Default:&lt;/b&gt; 1
+     * This is the number of lineItems associated with the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-createshippingfulfillment.shippingfulfillmentdetails.trackingnumber&quot; target=&quot;_blank&quot;&gt;trackingNumber&lt;/a&gt; specified by the seller. This must be a whole number greater than zero (0).&lt;br&gt;&lt;br&gt;&lt;strong&gt;Default:&lt;/strong&gt; 1
      */
     private Integer quantity;
     /**
@@ -74,7 +74,7 @@ public class LineItemReference implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the lineItemId property value. This is the unique identifier of the eBay order line item that is part of the shipping fulfillment.&lt;br&gt;&lt;br&gt;Line item Ids can be found in the lineItems.&lt;b&gt;lineItemId&lt;/b&gt; field of the &lt;a href=&quot;/api-docs/sell/fulfillment/resources/order/methods/getOrders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; response.
+     * Gets the lineItemId property value. This is the unique identifier of the eBay order line item that is part of the shipping fulfillment.&lt;br&gt;&lt;br&gt;Line item Ids can be found in the &lt;strong&gt;lineItems.lineItemId&lt;/strong&gt; field of the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; response.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -82,7 +82,7 @@ public class LineItemReference implements AdditionalDataHolder, Parsable {
         return this.lineItemId;
     }
     /**
-     * Gets the quantity property value. This is the number of lineItems associated with the &lt;a href=&quot;#request.trackingNumber&quot;&gt;trackingNumber&lt;/a&gt; specified by the seller. This must be a whole number greater than zero (0).&lt;br&gt;&lt;br&gt;&lt;b&gt;Default:&lt;/b&gt; 1
+     * Gets the quantity property value. This is the number of lineItems associated with the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-createshippingfulfillment.shippingfulfillmentdetails.trackingnumber&quot; target=&quot;_blank&quot;&gt;trackingNumber&lt;/a&gt; specified by the seller. This must be a whole number greater than zero (0).&lt;br&gt;&lt;br&gt;&lt;strong&gt;Default:&lt;/strong&gt; 1
      * @return a {@link Integer}
      */
     @jakarta.annotation.Nullable
@@ -107,14 +107,14 @@ public class LineItemReference implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the lineItemId property value. This is the unique identifier of the eBay order line item that is part of the shipping fulfillment.&lt;br&gt;&lt;br&gt;Line item Ids can be found in the lineItems.&lt;b&gt;lineItemId&lt;/b&gt; field of the &lt;a href=&quot;/api-docs/sell/fulfillment/resources/order/methods/getOrders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; response.
+     * Sets the lineItemId property value. This is the unique identifier of the eBay order line item that is part of the shipping fulfillment.&lt;br&gt;&lt;br&gt;Line item Ids can be found in the &lt;strong&gt;lineItems.lineItemId&lt;/strong&gt; field of the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; response.
      * @param value Value to set for the lineItemId property.
      */
     public void setLineItemId(@jakarta.annotation.Nullable final String value) {
         this.lineItemId = value;
     }
     /**
-     * Sets the quantity property value. This is the number of lineItems associated with the &lt;a href=&quot;#request.trackingNumber&quot;&gt;trackingNumber&lt;/a&gt; specified by the seller. This must be a whole number greater than zero (0).&lt;br&gt;&lt;br&gt;&lt;b&gt;Default:&lt;/b&gt; 1
+     * Sets the quantity property value. This is the number of lineItems associated with the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-createshippingfulfillment.shippingfulfillmentdetails.trackingnumber&quot; target=&quot;_blank&quot;&gt;trackingNumber&lt;/a&gt; specified by the seller. This must be a whole number greater than zero (0).&lt;br&gt;&lt;br&gt;&lt;strong&gt;Default:&lt;/strong&gt; 1
      * @param value Value to set for the quantity property.
      */
     public void setQuantity(@jakarta.annotation.Nullable final Integer value) {

@@ -35,7 +35,7 @@ public class Rate implements AdditionalDataHolder, Parsable {
      */
     private java.util.List<AdditionalOption> additionalOptions;
     /**
-     * A complex type that describes the value of a monetary amount as represented by a global currency.
+     * A live quote for the cost that the carrier (identified by &lt;strong&gt;shippingCarrierCode&lt;/strong&gt;) is charging for the shipping service being offered (identified by &lt;strong&gt;shippingServiceCode&lt;/strong&gt;), excluding any additional shipping options.
      */
     private Amount baseShippingCost;
     /**
@@ -43,7 +43,7 @@ public class Rate implements AdditionalDataHolder, Parsable {
      */
     private String destinationTimeZone;
     /**
-     * The latest stated date and time the shipment will be delivered at this rate.  &lt;br&gt;&lt;br&gt;The time stamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
+     * The latest stated date and time the shipment will be delivered at this rate.  &lt;br&gt;&lt;br&gt;The time stamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
      */
     private String maxEstimatedDeliveryDate;
     /**
@@ -59,9 +59,9 @@ public class Rate implements AdditionalDataHolder, Parsable {
      */
     private java.util.List<PickupSlot> pickupSlots;
     /**
-     * The type of pickup or drop-off service associated with the &lt;b&gt;pickupSlots&lt;/b&gt; time frames. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/logistics/types/api:PickupTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The type of pickup or drop-off service associated with the &lt;strong&gt;pickupSlots&lt;/strong&gt; time frames.
      */
-    private String pickupType;
+    private PickupTypeEnum pickupType;
     /**
      * The unique eBay-assigned ID for this shipping rate.
      */
@@ -69,9 +69,9 @@ public class Rate implements AdditionalDataHolder, Parsable {
     /**
      * A list of reasons this rate is recommended. Available values are: &lt;ul&gt; &lt;li&gt;&lt;code&gt;BUYER_CHOSEN&lt;/code&gt; &amp;mdash; The rate meets or exceeds the requirements of the buyer&apos;s preferred shipping option.&lt;/li&gt; &lt;li&gt;&lt;code&gt;CHEAPEST_ON_TIME&lt;/code&gt; &amp;mdash; The rate is the cheapest rate available that will provide delivery within the seller&apos;s time frame commitment.&lt;/li&gt;  &lt;li&gt;&lt;code&gt;EBAY_PLUS_OK&lt;/code&gt; &amp;mdash; The rate complies with the shipping requirements of the eBay Plus program.&lt;/li&gt; &lt;li&gt;&lt;code&gt;FASTEST_ON_TIME&lt;/code&gt; &amp;mdash; The rate has the fastest shipping time, and will provide delivery within the seller&apos;s time frame commitment.&lt;/li&gt; &lt;li&gt;&lt;code&gt;GUARANTEED_DELIVERY_OK&lt;/code&gt; &amp;mdash; The rate complies with the shipping requirements of the eBay Guaranteed Delivery program.&lt;/li&gt;&lt;/ul&gt;
      */
-    private java.util.List<String> rateRecommendation;
+    private java.util.List<RateRecommendationEnum> rateRecommendation;
     /**
-     * The code name of the shipping carrier who will provide the service identified by &lt;b&gt;shippingServiceCode&lt;/b&gt;.
+     * The code name of the shipping carrier who will provide the service identified by &lt;strong&gt;shippingServiceCode&lt;/strong&gt;.
      */
     private String shippingCarrierCode;
     /**
@@ -79,7 +79,7 @@ public class Rate implements AdditionalDataHolder, Parsable {
      */
     private String shippingCarrierName;
     /**
-     * The code name of the shipping service to be provided by the carrier identified by &lt;b&gt;shippingCarrierCode&lt;/b&gt;.
+     * The code name of the shipping service to be provided by the carrier identified by &lt;strong&gt;shippingCarrierCode&lt;/strong&gt;.
      */
     private String shippingServiceCode;
     /**
@@ -119,7 +119,7 @@ public class Rate implements AdditionalDataHolder, Parsable {
         return this.additionalOptions;
     }
     /**
-     * Gets the baseShippingCost property value. A complex type that describes the value of a monetary amount as represented by a global currency.
+     * Gets the baseShippingCost property value. A live quote for the cost that the carrier (identified by &lt;strong&gt;shippingCarrierCode&lt;/strong&gt;) is charging for the shipping service being offered (identified by &lt;strong&gt;shippingServiceCode&lt;/strong&gt;), excluding any additional shipping options.
      * @return a {@link Amount}
      */
     @jakarta.annotation.Nullable
@@ -148,9 +148,9 @@ public class Rate implements AdditionalDataHolder, Parsable {
         deserializerMap.put("minEstimatedDeliveryDate", (n) -> { this.setMinEstimatedDeliveryDate(n.getStringValue()); });
         deserializerMap.put("pickupNetworks", (n) -> { this.setPickupNetworks(n.getCollectionOfPrimitiveValues(String.class)); });
         deserializerMap.put("pickupSlots", (n) -> { this.setPickupSlots(n.getCollectionOfObjectValues(PickupSlot::createFromDiscriminatorValue)); });
-        deserializerMap.put("pickupType", (n) -> { this.setPickupType(n.getStringValue()); });
+        deserializerMap.put("pickupType", (n) -> { this.setPickupType(n.getEnumValue(PickupTypeEnum::forValue)); });
         deserializerMap.put("rateId", (n) -> { this.setRateId(n.getStringValue()); });
-        deserializerMap.put("rateRecommendation", (n) -> { this.setRateRecommendation(n.getCollectionOfPrimitiveValues(String.class)); });
+        deserializerMap.put("rateRecommendation", (n) -> { this.setRateRecommendation(n.getCollectionOfEnumValues(RateRecommendationEnum::forValue)); });
         deserializerMap.put("shippingCarrierCode", (n) -> { this.setShippingCarrierCode(n.getStringValue()); });
         deserializerMap.put("shippingCarrierName", (n) -> { this.setShippingCarrierName(n.getStringValue()); });
         deserializerMap.put("shippingServiceCode", (n) -> { this.setShippingServiceCode(n.getStringValue()); });
@@ -158,7 +158,7 @@ public class Rate implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the maxEstimatedDeliveryDate property value. The latest stated date and time the shipment will be delivered at this rate.  &lt;br&gt;&lt;br&gt;The time stamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
+     * Gets the maxEstimatedDeliveryDate property value. The latest stated date and time the shipment will be delivered at this rate.  &lt;br&gt;&lt;br&gt;The time stamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -190,11 +190,11 @@ public class Rate implements AdditionalDataHolder, Parsable {
         return this.pickupSlots;
     }
     /**
-     * Gets the pickupType property value. The type of pickup or drop-off service associated with the &lt;b&gt;pickupSlots&lt;/b&gt; time frames. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/logistics/types/api:PickupTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the pickupType property value. The type of pickup or drop-off service associated with the &lt;strong&gt;pickupSlots&lt;/strong&gt; time frames.
+     * @return a {@link PickupTypeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getPickupType() {
+    public PickupTypeEnum getPickupType() {
         return this.pickupType;
     }
     /**
@@ -207,14 +207,14 @@ public class Rate implements AdditionalDataHolder, Parsable {
     }
     /**
      * Gets the rateRecommendation property value. A list of reasons this rate is recommended. Available values are: &lt;ul&gt; &lt;li&gt;&lt;code&gt;BUYER_CHOSEN&lt;/code&gt; &amp;mdash; The rate meets or exceeds the requirements of the buyer&apos;s preferred shipping option.&lt;/li&gt; &lt;li&gt;&lt;code&gt;CHEAPEST_ON_TIME&lt;/code&gt; &amp;mdash; The rate is the cheapest rate available that will provide delivery within the seller&apos;s time frame commitment.&lt;/li&gt;  &lt;li&gt;&lt;code&gt;EBAY_PLUS_OK&lt;/code&gt; &amp;mdash; The rate complies with the shipping requirements of the eBay Plus program.&lt;/li&gt; &lt;li&gt;&lt;code&gt;FASTEST_ON_TIME&lt;/code&gt; &amp;mdash; The rate has the fastest shipping time, and will provide delivery within the seller&apos;s time frame commitment.&lt;/li&gt; &lt;li&gt;&lt;code&gt;GUARANTEED_DELIVERY_OK&lt;/code&gt; &amp;mdash; The rate complies with the shipping requirements of the eBay Guaranteed Delivery program.&lt;/li&gt;&lt;/ul&gt;
-     * @return a {@link java.util.List<String>}
+     * @return a {@link java.util.List<RateRecommendationEnum>}
      */
     @jakarta.annotation.Nullable
-    public java.util.List<String> getRateRecommendation() {
+    public java.util.List<RateRecommendationEnum> getRateRecommendation() {
         return this.rateRecommendation;
     }
     /**
-     * Gets the shippingCarrierCode property value. The code name of the shipping carrier who will provide the service identified by &lt;b&gt;shippingServiceCode&lt;/b&gt;.
+     * Gets the shippingCarrierCode property value. The code name of the shipping carrier who will provide the service identified by &lt;strong&gt;shippingServiceCode&lt;/strong&gt;.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -230,7 +230,7 @@ public class Rate implements AdditionalDataHolder, Parsable {
         return this.shippingCarrierName;
     }
     /**
-     * Gets the shippingServiceCode property value. The code name of the shipping service to be provided by the carrier identified by &lt;b&gt;shippingCarrierCode&lt;/b&gt;.
+     * Gets the shippingServiceCode property value. The code name of the shipping service to be provided by the carrier identified by &lt;strong&gt;shippingCarrierCode&lt;/strong&gt;.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -258,9 +258,9 @@ public class Rate implements AdditionalDataHolder, Parsable {
         writer.writeStringValue("minEstimatedDeliveryDate", this.getMinEstimatedDeliveryDate());
         writer.writeCollectionOfPrimitiveValues("pickupNetworks", this.getPickupNetworks());
         writer.writeCollectionOfObjectValues("pickupSlots", this.getPickupSlots());
-        writer.writeStringValue("pickupType", this.getPickupType());
+        writer.writeEnumValue("pickupType", this.getPickupType());
         writer.writeStringValue("rateId", this.getRateId());
-        writer.writeCollectionOfPrimitiveValues("rateRecommendation", this.getRateRecommendation());
+        writer.writeCollectionOfEnumValues("rateRecommendation", this.getRateRecommendation());
         writer.writeStringValue("shippingCarrierCode", this.getShippingCarrierCode());
         writer.writeStringValue("shippingCarrierName", this.getShippingCarrierName());
         writer.writeStringValue("shippingServiceCode", this.getShippingServiceCode());
@@ -282,7 +282,7 @@ public class Rate implements AdditionalDataHolder, Parsable {
         this.additionalOptions = value;
     }
     /**
-     * Sets the baseShippingCost property value. A complex type that describes the value of a monetary amount as represented by a global currency.
+     * Sets the baseShippingCost property value. A live quote for the cost that the carrier (identified by &lt;strong&gt;shippingCarrierCode&lt;/strong&gt;) is charging for the shipping service being offered (identified by &lt;strong&gt;shippingServiceCode&lt;/strong&gt;), excluding any additional shipping options.
      * @param value Value to set for the baseShippingCost property.
      */
     public void setBaseShippingCost(@jakarta.annotation.Nullable final Amount value) {
@@ -296,7 +296,7 @@ public class Rate implements AdditionalDataHolder, Parsable {
         this.destinationTimeZone = value;
     }
     /**
-     * Sets the maxEstimatedDeliveryDate property value. The latest stated date and time the shipment will be delivered at this rate.  &lt;br&gt;&lt;br&gt;The time stamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
+     * Sets the maxEstimatedDeliveryDate property value. The latest stated date and time the shipment will be delivered at this rate.  &lt;br&gt;&lt;br&gt;The time stamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
      * @param value Value to set for the maxEstimatedDeliveryDate property.
      */
     public void setMaxEstimatedDeliveryDate(@jakarta.annotation.Nullable final String value) {
@@ -324,10 +324,10 @@ public class Rate implements AdditionalDataHolder, Parsable {
         this.pickupSlots = value;
     }
     /**
-     * Sets the pickupType property value. The type of pickup or drop-off service associated with the &lt;b&gt;pickupSlots&lt;/b&gt; time frames. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/logistics/types/api:PickupTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the pickupType property value. The type of pickup or drop-off service associated with the &lt;strong&gt;pickupSlots&lt;/strong&gt; time frames.
      * @param value Value to set for the pickupType property.
      */
-    public void setPickupType(@jakarta.annotation.Nullable final String value) {
+    public void setPickupType(@jakarta.annotation.Nullable final PickupTypeEnum value) {
         this.pickupType = value;
     }
     /**
@@ -341,11 +341,11 @@ public class Rate implements AdditionalDataHolder, Parsable {
      * Sets the rateRecommendation property value. A list of reasons this rate is recommended. Available values are: &lt;ul&gt; &lt;li&gt;&lt;code&gt;BUYER_CHOSEN&lt;/code&gt; &amp;mdash; The rate meets or exceeds the requirements of the buyer&apos;s preferred shipping option.&lt;/li&gt; &lt;li&gt;&lt;code&gt;CHEAPEST_ON_TIME&lt;/code&gt; &amp;mdash; The rate is the cheapest rate available that will provide delivery within the seller&apos;s time frame commitment.&lt;/li&gt;  &lt;li&gt;&lt;code&gt;EBAY_PLUS_OK&lt;/code&gt; &amp;mdash; The rate complies with the shipping requirements of the eBay Plus program.&lt;/li&gt; &lt;li&gt;&lt;code&gt;FASTEST_ON_TIME&lt;/code&gt; &amp;mdash; The rate has the fastest shipping time, and will provide delivery within the seller&apos;s time frame commitment.&lt;/li&gt; &lt;li&gt;&lt;code&gt;GUARANTEED_DELIVERY_OK&lt;/code&gt; &amp;mdash; The rate complies with the shipping requirements of the eBay Guaranteed Delivery program.&lt;/li&gt;&lt;/ul&gt;
      * @param value Value to set for the rateRecommendation property.
      */
-    public void setRateRecommendation(@jakarta.annotation.Nullable final java.util.List<String> value) {
+    public void setRateRecommendation(@jakarta.annotation.Nullable final java.util.List<RateRecommendationEnum> value) {
         this.rateRecommendation = value;
     }
     /**
-     * Sets the shippingCarrierCode property value. The code name of the shipping carrier who will provide the service identified by &lt;b&gt;shippingServiceCode&lt;/b&gt;.
+     * Sets the shippingCarrierCode property value. The code name of the shipping carrier who will provide the service identified by &lt;strong&gt;shippingServiceCode&lt;/strong&gt;.
      * @param value Value to set for the shippingCarrierCode property.
      */
     public void setShippingCarrierCode(@jakarta.annotation.Nullable final String value) {
@@ -359,7 +359,7 @@ public class Rate implements AdditionalDataHolder, Parsable {
         this.shippingCarrierName = value;
     }
     /**
-     * Sets the shippingServiceCode property value. The code name of the shipping service to be provided by the carrier identified by &lt;b&gt;shippingCarrierCode&lt;/b&gt;.
+     * Sets the shippingServiceCode property value. The code name of the shipping service to be provided by the carrier identified by &lt;strong&gt;shippingCarrierCode&lt;/strong&gt;.
      * @param value Value to set for the shippingServiceCode property.
      */
     public void setShippingServiceCode(@jakarta.annotation.Nullable final String value) {

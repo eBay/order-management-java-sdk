@@ -35,19 +35,19 @@ public class ExtendedContact implements AdditionalDataHolder, Parsable {
      */
     private String companyName;
     /**
-     * This type contains the details of a geographical address.
+     * This container shows the shipping address of the buyer or eBay shipping partner.
      */
     private Address contactAddress;
     /**
-     * This field contains the email address of the buyer. This address will be returned for up to 14 days from order creation. If an order is more than 14 days old, no address is returned.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt;Note:&lt;/strong&gt; If returned, this field contains the email address of the buyer, even for Global Shipping Program shipments.&lt;br&gt;&lt;br&gt;The &lt;b&gt;email&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * This field contains the email address of the buyer. This address will be returned for up to 14 days from order creation. If an order is more than 14 days old, no address is returned.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt;Note:&lt;/strong&gt; If returned, this field contains the email address of the buyer, even for Global Shipping Program shipments.&lt;br&gt;&lt;br&gt;The &lt;strong&gt;email&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      */
     private String email;
     /**
-     * The full name of the buyer or eBay shipping partner.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;b&gt;fullName&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * The full name of the buyer or eBay shipping partner.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;fullName&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      */
     private String fullName;
     /**
-     * This type contains a string field representing a telephone number.
+     * The primary telephone number of the buyer or eBay shipping partner.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;primaryPhone&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      */
     private PhoneNumber primaryPhone;
     /**
@@ -83,7 +83,7 @@ public class ExtendedContact implements AdditionalDataHolder, Parsable {
         return this.companyName;
     }
     /**
-     * Gets the contactAddress property value. This type contains the details of a geographical address.
+     * Gets the contactAddress property value. This container shows the shipping address of the buyer or eBay shipping partner.
      * @return a {@link Address}
      */
     @jakarta.annotation.Nullable
@@ -91,7 +91,7 @@ public class ExtendedContact implements AdditionalDataHolder, Parsable {
         return this.contactAddress;
     }
     /**
-     * Gets the email property value. This field contains the email address of the buyer. This address will be returned for up to 14 days from order creation. If an order is more than 14 days old, no address is returned.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt;Note:&lt;/strong&gt; If returned, this field contains the email address of the buyer, even for Global Shipping Program shipments.&lt;br&gt;&lt;br&gt;The &lt;b&gt;email&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * Gets the email property value. This field contains the email address of the buyer. This address will be returned for up to 14 days from order creation. If an order is more than 14 days old, no address is returned.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt;Note:&lt;/strong&gt; If returned, this field contains the email address of the buyer, even for Global Shipping Program shipments.&lt;br&gt;&lt;br&gt;The &lt;strong&gt;email&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -113,7 +113,7 @@ public class ExtendedContact implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the fullName property value. The full name of the buyer or eBay shipping partner.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;b&gt;fullName&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * Gets the fullName property value. The full name of the buyer or eBay shipping partner.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;fullName&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -121,7 +121,7 @@ public class ExtendedContact implements AdditionalDataHolder, Parsable {
         return this.fullName;
     }
     /**
-     * Gets the primaryPhone property value. This type contains a string field representing a telephone number.
+     * Gets the primaryPhone property value. The primary telephone number of the buyer or eBay shipping partner.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;primaryPhone&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      * @return a {@link PhoneNumber}
      */
     @jakarta.annotation.Nullable
@@ -156,28 +156,28 @@ public class ExtendedContact implements AdditionalDataHolder, Parsable {
         this.companyName = value;
     }
     /**
-     * Sets the contactAddress property value. This type contains the details of a geographical address.
+     * Sets the contactAddress property value. This container shows the shipping address of the buyer or eBay shipping partner.
      * @param value Value to set for the contactAddress property.
      */
     public void setContactAddress(@jakarta.annotation.Nullable final Address value) {
         this.contactAddress = value;
     }
     /**
-     * Sets the email property value. This field contains the email address of the buyer. This address will be returned for up to 14 days from order creation. If an order is more than 14 days old, no address is returned.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt;Note:&lt;/strong&gt; If returned, this field contains the email address of the buyer, even for Global Shipping Program shipments.&lt;br&gt;&lt;br&gt;The &lt;b&gt;email&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * Sets the email property value. This field contains the email address of the buyer. This address will be returned for up to 14 days from order creation. If an order is more than 14 days old, no address is returned.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt;Note:&lt;/strong&gt; If returned, this field contains the email address of the buyer, even for Global Shipping Program shipments.&lt;br&gt;&lt;br&gt;The &lt;strong&gt;email&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      * @param value Value to set for the email property.
      */
     public void setEmail(@jakarta.annotation.Nullable final String value) {
         this.email = value;
     }
     /**
-     * Sets the fullName property value. The full name of the buyer or eBay shipping partner.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;b&gt;fullName&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * Sets the fullName property value. The full name of the buyer or eBay shipping partner.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;fullName&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      * @param value Value to set for the fullName property.
      */
     public void setFullName(@jakarta.annotation.Nullable final String value) {
         this.fullName = value;
     }
     /**
-     * Sets the primaryPhone property value. This type contains a string field representing a telephone number.
+     * Sets the primaryPhone property value. The primary telephone number of the buyer or eBay shipping partner.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;primaryPhone&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      * @param value Value to set for the primaryPhone property.
      */
     public void setPrimaryPhone(@jakarta.annotation.Nullable final PhoneNumber value) {

@@ -24,20 +24,24 @@ public final class OrderManagementConfiguration {
 
     private final String fulfillmentBaseUrl;
     private final String logisticsBaseUrl;
+    private final String postOrderApiBaseUrl;
     private final String graphQLBaseUrl;
 
     public OrderManagementConfiguration() {
-        this.fulfillmentBaseUrl = "https://api.ebay.com/sell/fulfillment/v1";
+        this.fulfillmentBaseUrl = "https://apiz.ebay.com/sell/fulfillment/v1";
         this.logisticsBaseUrl = "https://api.ebay.com/sell/logistics/v1_beta";
+        this.postOrderApiBaseUrl = "https://api.ebay.com/post-order/v2";
         this.graphQLBaseUrl = "https://api.ebay.com/graphql";
     }
 
     public OrderManagementConfiguration(
             String fulfillmentBaseUrl,
             String logisticsBaseUrl,
+            String postOrderApiBaseUrl,
             String graphQLBaseUrl) {
         this.fulfillmentBaseUrl = validateHost(fulfillmentBaseUrl);
         this.logisticsBaseUrl = validateHost(logisticsBaseUrl);
+        this.postOrderApiBaseUrl = validateHost(postOrderApiBaseUrl);
         this.graphQLBaseUrl = validateHost(graphQLBaseUrl);
     }
 
@@ -76,6 +80,7 @@ public final class OrderManagementConfiguration {
     public Set<String> getAllowedHosts() {
         Set<String> hosts = new HashSet<>();
         hosts.add("api.ebay.com");
+        hosts.add("apiz.ebay.com");
         return hosts;
     }
 
@@ -85,6 +90,10 @@ public final class OrderManagementConfiguration {
 
     public String getLogisticsBaseUrl() {
         return logisticsBaseUrl;
+    }
+
+    public String getPostOrderApiBaseUrl() {
+        return postOrderApiBaseUrl;
     }
 
     public String getGraphQLBaseUrl() {

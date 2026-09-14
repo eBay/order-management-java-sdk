@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * This type is used to indicate the merchant&apos;s store where the buyer will pickup their In-Store Pickup order. The &lt;b&gt;pickupStep&lt;/b&gt; container is only returned for In-Store Pickup orders. The In-Store Pickup feature is supported in the US, Canada, UK, Germany, and Australia marketplaces.
+ * This type is used to indicate the merchant&apos;s store where the buyer will pickup their In-Store Pickup order. The &lt;strong&gt;pickupStep&lt;/strong&gt; container is only returned for In-Store Pickup orders. The In-Store Pickup feature is supported in the US, Canada, UK, Germany, and Australia marketplaces.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class PickupStep implements AdditionalDataHolder, Parsable {
@@ -31,7 +31,7 @@ public class PickupStep implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * A merchant-defined unique identifier of the merchant&apos;s store where the buyer will pick up their In-Store Pickup order.&lt;br&gt;&lt;br&gt; This field is always returned with the &lt;b&gt;pickupStep&lt;/b&gt; container.
+     * A merchant-defined unique identifier of the merchant&apos;s store where the buyer will pick up their In-Store Pickup order.&lt;br&gt;&lt;br&gt; This field is always returned with the &lt;strong&gt;pickupStep&lt;/strong&gt; container.
      */
     private String merchantLocationKey;
     /**
@@ -69,7 +69,7 @@ public class PickupStep implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the merchantLocationKey property value. A merchant-defined unique identifier of the merchant&apos;s store where the buyer will pick up their In-Store Pickup order.&lt;br&gt;&lt;br&gt; This field is always returned with the &lt;b&gt;pickupStep&lt;/b&gt; container.
+     * Gets the merchantLocationKey property value. A merchant-defined unique identifier of the merchant&apos;s store where the buyer will pick up their In-Store Pickup order.&lt;br&gt;&lt;br&gt; This field is always returned with the &lt;strong&gt;pickupStep&lt;/strong&gt; container.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -93,7 +93,7 @@ public class PickupStep implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the merchantLocationKey property value. A merchant-defined unique identifier of the merchant&apos;s store where the buyer will pick up their In-Store Pickup order.&lt;br&gt;&lt;br&gt; This field is always returned with the &lt;b&gt;pickupStep&lt;/b&gt; container.
+     * Sets the merchantLocationKey property value. A merchant-defined unique identifier of the merchant&apos;s store where the buyer will pick up their In-Store Pickup order.&lt;br&gt;&lt;br&gt; This field is always returned with the &lt;strong&gt;pickupStep&lt;/strong&gt; container.
      * @param value Value to set for the merchantLocationKey property.
      */
     public void setMerchantLocationKey(@jakarta.annotation.Nullable final String value) {

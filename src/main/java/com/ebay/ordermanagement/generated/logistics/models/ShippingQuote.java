@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * This complex type describes a &quot;shipping quote,&quot; which contains the parameters for a package shipment. The shipping quote contains a list of &quot;live quotes&quot; or &lt;i&gt;rates&lt;/i&gt; for the shipment. Rates are offerd by a carrier for a particular service, of set of services, for shipping the package. Included in the shipping quote are the package specifications, the shipment&apos;s origin and destination addresses, and the shipping parameters specified by the seller.  &lt;br&gt;&lt;br&gt;Use the &lt;b&gt;rateId&lt;/b&gt; value to select the specific service you want when you create a shipment by calling &lt;b&gt;createFromShippingQuote&lt;/b&gt;.
+ * This complex type describes a &quot;shipping quote,&quot; which contains the parameters for a package shipment. The shipping quote contains a list of &quot;live quotes&quot; or &lt;i&gt;rates&lt;/i&gt; for the shipment. Rates are offered by a carrier for a particular service, or set of services, for shipping the package. Included in the shipping quote are the package specifications, the shipment&apos;s origin and destination addresses, and the shipping parameters specified by the seller.  &lt;br&gt;&lt;br&gt;Use the &lt;strong&gt;rateId&lt;/strong&gt; value to select the specific service you want when you create a shipment by calling &lt;strong&gt;createFromShippingQuote&lt;/strong&gt;.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class ShippingQuote implements AdditionalDataHolder, Parsable {
@@ -43,15 +43,15 @@ public class ShippingQuote implements AdditionalDataHolder, Parsable {
      */
     private java.util.List<Order> orders;
     /**
-     * This complex type specifies the dimensions and weight of a package.
+     * The weight and dimensions of the package covered by this shipping quote.
      */
     private PackageSpecification packageSpecification;
     /**
-     * A list of &lt;i&gt;rates&lt;/i&gt; where each rate, as identified by a &lt;b&gt;rateId&lt;/b&gt;, contains information about a specific shipping service offered by a carrier.  Rates include shipping carrier and service, the to and from locations, the pickup and delivery windows, the seller&apos;s shipping parameters, the service constraints, and the cost for the base service and a list of additional shipping options.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; The Logistics API only supports USPS shipping rates and labels.&lt;/span&gt;&lt;br&gt;Each rate offered is supported by a label service where you can purchase the rate, and associated shipping label, via a call to &lt;b&gt;createFromShippingQuote&lt;/b&gt;.
+     * A list of &lt;i&gt;rates&lt;/i&gt; where each rate, as identified by a &lt;strong&gt;rateId&lt;/strong&gt;, contains information about a specific shipping service offered by a carrier.  Rates include shipping carrier and service, the to and from locations, the pickup and delivery windows, the seller&apos;s shipping parameters, the service constraints, and the cost for the base service and a list of additional shipping options.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The Logistics API only supports USPS shipping rates and labels.&lt;/span&gt;&lt;br&gt;Each rate offered is supported by a label service where you can purchase the rate, and associated shipping label, via a call to &lt;strong&gt;createFromShippingQuote&lt;/strong&gt;.
      */
     private java.util.List<Rate> rates;
     /**
-     * This complex type contains contact information for an individual buyer or seller.
+     * The address and contact details for the origin of the shipment.
      */
     private Contact shipFrom;
     /**
@@ -59,13 +59,13 @@ public class ShippingQuote implements AdditionalDataHolder, Parsable {
      */
     private String shippingQuoteId;
     /**
-     * This complex type contains contact information for an individual buyer or seller.
+     * The address and contact details for the destination of the shipment.
      */
     private Contact shipTo;
     /**
      * A list of any warnings triggered by the request.
      */
-    private java.util.List<Error> warnings;
+    private java.util.List<ErrorDetailV3> warnings;
     /**
      * Instantiates a new {@link ShippingQuote} and sets the default values.
      */
@@ -121,7 +121,7 @@ public class ShippingQuote implements AdditionalDataHolder, Parsable {
         deserializerMap.put("shipFrom", (n) -> { this.setShipFrom(n.getObjectValue(Contact::createFromDiscriminatorValue)); });
         deserializerMap.put("shippingQuoteId", (n) -> { this.setShippingQuoteId(n.getStringValue()); });
         deserializerMap.put("shipTo", (n) -> { this.setShipTo(n.getObjectValue(Contact::createFromDiscriminatorValue)); });
-        deserializerMap.put("warnings", (n) -> { this.setWarnings(n.getCollectionOfObjectValues(Error::createFromDiscriminatorValue)); });
+        deserializerMap.put("warnings", (n) -> { this.setWarnings(n.getCollectionOfObjectValues(ErrorDetailV3::createFromDiscriminatorValue)); });
         return deserializerMap;
     }
     /**
@@ -133,7 +133,7 @@ public class ShippingQuote implements AdditionalDataHolder, Parsable {
         return this.orders;
     }
     /**
-     * Gets the packageSpecification property value. This complex type specifies the dimensions and weight of a package.
+     * Gets the packageSpecification property value. The weight and dimensions of the package covered by this shipping quote.
      * @return a {@link PackageSpecification}
      */
     @jakarta.annotation.Nullable
@@ -141,7 +141,7 @@ public class ShippingQuote implements AdditionalDataHolder, Parsable {
         return this.packageSpecification;
     }
     /**
-     * Gets the rates property value. A list of &lt;i&gt;rates&lt;/i&gt; where each rate, as identified by a &lt;b&gt;rateId&lt;/b&gt;, contains information about a specific shipping service offered by a carrier.  Rates include shipping carrier and service, the to and from locations, the pickup and delivery windows, the seller&apos;s shipping parameters, the service constraints, and the cost for the base service and a list of additional shipping options.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; The Logistics API only supports USPS shipping rates and labels.&lt;/span&gt;&lt;br&gt;Each rate offered is supported by a label service where you can purchase the rate, and associated shipping label, via a call to &lt;b&gt;createFromShippingQuote&lt;/b&gt;.
+     * Gets the rates property value. A list of &lt;i&gt;rates&lt;/i&gt; where each rate, as identified by a &lt;strong&gt;rateId&lt;/strong&gt;, contains information about a specific shipping service offered by a carrier.  Rates include shipping carrier and service, the to and from locations, the pickup and delivery windows, the seller&apos;s shipping parameters, the service constraints, and the cost for the base service and a list of additional shipping options.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The Logistics API only supports USPS shipping rates and labels.&lt;/span&gt;&lt;br&gt;Each rate offered is supported by a label service where you can purchase the rate, and associated shipping label, via a call to &lt;strong&gt;createFromShippingQuote&lt;/strong&gt;.
      * @return a {@link java.util.List<Rate>}
      */
     @jakarta.annotation.Nullable
@@ -149,7 +149,7 @@ public class ShippingQuote implements AdditionalDataHolder, Parsable {
         return this.rates;
     }
     /**
-     * Gets the shipFrom property value. This complex type contains contact information for an individual buyer or seller.
+     * Gets the shipFrom property value. The address and contact details for the origin of the shipment.
      * @return a {@link Contact}
      */
     @jakarta.annotation.Nullable
@@ -165,7 +165,7 @@ public class ShippingQuote implements AdditionalDataHolder, Parsable {
         return this.shippingQuoteId;
     }
     /**
-     * Gets the shipTo property value. This complex type contains contact information for an individual buyer or seller.
+     * Gets the shipTo property value. The address and contact details for the destination of the shipment.
      * @return a {@link Contact}
      */
     @jakarta.annotation.Nullable
@@ -174,10 +174,10 @@ public class ShippingQuote implements AdditionalDataHolder, Parsable {
     }
     /**
      * Gets the warnings property value. A list of any warnings triggered by the request.
-     * @return a {@link java.util.List<Error>}
+     * @return a {@link java.util.List<ErrorDetailV3>}
      */
     @jakarta.annotation.Nullable
-    public java.util.List<Error> getWarnings() {
+    public java.util.List<ErrorDetailV3> getWarnings() {
         return this.warnings;
     }
     /**
@@ -226,21 +226,21 @@ public class ShippingQuote implements AdditionalDataHolder, Parsable {
         this.orders = value;
     }
     /**
-     * Sets the packageSpecification property value. This complex type specifies the dimensions and weight of a package.
+     * Sets the packageSpecification property value. The weight and dimensions of the package covered by this shipping quote.
      * @param value Value to set for the packageSpecification property.
      */
     public void setPackageSpecification(@jakarta.annotation.Nullable final PackageSpecification value) {
         this.packageSpecification = value;
     }
     /**
-     * Sets the rates property value. A list of &lt;i&gt;rates&lt;/i&gt; where each rate, as identified by a &lt;b&gt;rateId&lt;/b&gt;, contains information about a specific shipping service offered by a carrier.  Rates include shipping carrier and service, the to and from locations, the pickup and delivery windows, the seller&apos;s shipping parameters, the service constraints, and the cost for the base service and a list of additional shipping options.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; The Logistics API only supports USPS shipping rates and labels.&lt;/span&gt;&lt;br&gt;Each rate offered is supported by a label service where you can purchase the rate, and associated shipping label, via a call to &lt;b&gt;createFromShippingQuote&lt;/b&gt;.
+     * Sets the rates property value. A list of &lt;i&gt;rates&lt;/i&gt; where each rate, as identified by a &lt;strong&gt;rateId&lt;/strong&gt;, contains information about a specific shipping service offered by a carrier.  Rates include shipping carrier and service, the to and from locations, the pickup and delivery windows, the seller&apos;s shipping parameters, the service constraints, and the cost for the base service and a list of additional shipping options.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The Logistics API only supports USPS shipping rates and labels.&lt;/span&gt;&lt;br&gt;Each rate offered is supported by a label service where you can purchase the rate, and associated shipping label, via a call to &lt;strong&gt;createFromShippingQuote&lt;/strong&gt;.
      * @param value Value to set for the rates property.
      */
     public void setRates(@jakarta.annotation.Nullable final java.util.List<Rate> value) {
         this.rates = value;
     }
     /**
-     * Sets the shipFrom property value. This complex type contains contact information for an individual buyer or seller.
+     * Sets the shipFrom property value. The address and contact details for the origin of the shipment.
      * @param value Value to set for the shipFrom property.
      */
     public void setShipFrom(@jakarta.annotation.Nullable final Contact value) {
@@ -254,7 +254,7 @@ public class ShippingQuote implements AdditionalDataHolder, Parsable {
         this.shippingQuoteId = value;
     }
     /**
-     * Sets the shipTo property value. This complex type contains contact information for an individual buyer or seller.
+     * Sets the shipTo property value. The address and contact details for the destination of the shipment.
      * @param value Value to set for the shipTo property.
      */
     public void setShipTo(@jakarta.annotation.Nullable final Contact value) {
@@ -264,7 +264,7 @@ public class ShippingQuote implements AdditionalDataHolder, Parsable {
      * Sets the warnings property value. A list of any warnings triggered by the request.
      * @param value Value to set for the warnings property.
      */
-    public void setWarnings(@jakarta.annotation.Nullable final java.util.List<Error> value) {
+    public void setWarnings(@jakarta.annotation.Nullable final java.util.List<ErrorDetailV3> value) {
         this.warnings = value;
     }
 }
