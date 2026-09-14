@@ -1,22 +1,13 @@
 # ChangeLog
 
-## 1.1.0 (09/14/2026)
+## 0.2.0 (09/14/2026)
 
-- The following clients were added:
-  - `PostOrderApiClient`
-- The following members were added to `OrderManagementClient`:
-  - `postOrderApi`
+Consolidated experimental release.
 
-## 1.0.0 (09/14/2026)
+- REST clients: `FulfillmentClient`, `LogisticsClient`, `PostOrderApiClient`.
+- GraphQL support for 56 checked-in operations.
+- Includes the current API definitions, regenerated clients, and wrapper updates.
+- Preserves existing wrapper parameter order where signatures allow it.
+- Aligns wrapper query parameter types with the generated Kiota clients.
 
-**Breaking changes**
-- The following operations changed signature on `FulfillmentClient`:
-  - `uploadEvidenceFileAsync`: `(String, String, RequestOptions)` → `(String, byte[], String, RequestOptions)`
-- The following operations changed signature on `LogisticsClient`:
-  - `createFromShippingQuoteAsync`: `(CreateShipmentFromQuoteRequest, String, RequestOptions)` → `(CreateShipmentFromQuoteRequest, String, String, RequestOptions)`
-  - `createShippingQuoteAsync`: `(ShippingQuoteRequest, String, RequestOptions)` → `(ShippingQuoteRequest, String, String, RequestOptions)`
-
-- The following operations were added to `OrderManagementGraphQLClient`:
-  - `bulkUpdateOrderTagsAsync`
-  - `commitToPurchaseAsync`
-  - `requestPurchaseQuoteAsync`
+This entry establishes the consolidated experimental baseline.

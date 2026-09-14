@@ -37,7 +37,7 @@ src/main/java/com/ebay/ordermanagement/
 
 ```kotlin
 dependencies {
-    implementation("com.ebay:order-management-java-sdk:1.0.0")
+    implementation("com.ebay:order-management-java-sdk:0.2.0")
 }
 ```
 
