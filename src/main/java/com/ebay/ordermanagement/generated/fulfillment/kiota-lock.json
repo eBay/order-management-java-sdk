@@ -2,7 +2,7 @@
   "descriptionHash": "121E8A225FC146C3BE8923278BA218907445FA15537EF8A065D5BCA373F791C5E946E9D879718EFE0352496517762DC27EA9C779E93429936A9D091F73172181",
   "descriptionLocation": "../../../../../../../../specs/openapi/fulfillment.yaml",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.35.0",
+  "kiotaVersion": "1.31.1",
   "clientClassName": "FulfillmentApiClient",
   "typeAccessModifier": "Public",
   "clientNamespaceName": "com.ebay.ordermanagement.generated.fulfillment",
@@ -30,6 +30,5 @@
   ],
   "includePatterns": [],
   "excludePatterns": [],
-  "disabledValidationRules": [],
-  "allowedExternalOrigins": []
+  "disabledValidationRules": []
 }

@@ -2,7 +2,7 @@
   "descriptionHash": "2403771CCE58D5B37D0CDC3F3D6C8B72F14A00016E18436EB124C25C8FA9A7184288D39C821B0937204C2730DF17C1DEC1047420C629B499385DEC6C218DAE85",
   "descriptionLocation": "../../../../../../../../specs/openapi/logistics.yaml",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.35.0",
+  "kiotaVersion": "1.31.1",
   "clientClassName": "LogisticsApiClient",
   "typeAccessModifier": "Public",
   "clientNamespaceName": "com.ebay.ordermanagement.generated.logistics",
@@ -30,6 +30,5 @@
   ],
   "includePatterns": [],
   "excludePatterns": [],
-  "disabledValidationRules": [],
-  "allowedExternalOrigins": []
+  "disabledValidationRules": []
 }
