@@ -29,10 +29,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Dynamic GraphQL client for executing arbitrary GraphQL queries.
- * Returns raw JsonNode for flexible response handling.
- */
 public final class DynamicGraphQLClient {
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private static final ObjectMapper MAPPER = new ObjectMapper();
@@ -51,27 +47,8 @@ public final class DynamicGraphQLClient {
      * <p><b>WARNING — GraphQL injection risk.</b> Never interpolate user-supplied input
      * directly into the query parameter. Always pass dynamic values via the variables
      * parameter so the server handles escaping.
-     *
-     * <p><b>Unsafe:</b>
-     * <pre>
-     * String query = "query { user(id: \"" + userId + "\") { name } }";  // ❌ INJECTION RISK
-     * </pre>
-     *
-     * <p><b>Safe:</b>
-     * <pre>
-     * String query = "query($id: ID!) { user(id: $id) { name } }";
-     * Map&lt;String, Object&gt; variables = Map.of("id", userId);  // ✅ SAFE
-     * executeRawUnsafe(query, variables, token, null);
-     * </pre>
-     *
-     * @param query The GraphQL query string.
-     * @param variables The variables object (or null).
-     * @param accessToken Per-call token; overrides config fallback.
-     * @param requestOptions Optional custom headers for this request.
-     * @return The GraphQL response data as JsonNode.
-     * @throws GraphQLException if the response contains errors.
      */
-    public JsonNode executeRawUnsafe(String query, Object variables, String accessToken, RequestOptions requestOptions) {
+    JsonNode executeRawUnsafe(String query, Object variables, String accessToken, RequestOptions requestOptions) {
         String token = accessToken != null ? accessToken
             : TokenContext.CURRENT.get() != null ? TokenContext.CURRENT.get()
             : config.getAccessToken();
@@ -80,7 +57,6 @@ public final class DynamicGraphQLClient {
                 "No access token. Pass accessToken or set OrderManagementConfiguration.accessToken.");
         }
 
-        // Merge default headers + per-request headers
         Map<String, String> headers = new HashMap<>(config.getDefaultRequestOptions().getHeaders());
         if (requestOptions != null) {
             headers.putAll(requestOptions.getHeaders());
@@ -99,7 +75,6 @@ public final class DynamicGraphQLClient {
                 .addHeader("Content-Type", "application/json")
                 .post(RequestBody.create(MAPPER.writeValueAsBytes(body), JSON));
 
-            // Add custom headers
             headers.forEach(requestBuilder::addHeader);
 
             Request request = requestBuilder.build();
@@ -117,7 +92,6 @@ public final class DynamicGraphQLClient {
                     throw new GraphQLException(msgs);
                 }
 
-                // Return the data field
                 return root.get("data");
             }
         } catch (IOException e) {
