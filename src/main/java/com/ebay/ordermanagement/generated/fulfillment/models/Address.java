@@ -31,11 +31,11 @@ public class Address implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * The first line of the street address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;b&gt;addressLine1&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * The first line of the street address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;strong&gt;addressLine1&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      */
     private String addressLine1;
     /**
-     * The second line of the street address. This field can be used for additional address information, such as a suite or apartment number. This field will be returned if defined for the shipping address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;b&gt;addressLine2&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * The second line of the street address. This field can be used for additional address information, such as a suite or apartment number. This field will be returned if defined for the shipping address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;strong&gt;addressLine2&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      */
     private String addressLine2;
     /**
@@ -43,15 +43,15 @@ public class Address implements AdditionalDataHolder, Parsable {
      */
     private String city;
     /**
-     * The country of the shipping destination, represented as a two-letter ISO 3166-1 alpha-2 country code. For example, &lt;code&gt;US&lt;/code&gt; represents the United States, and &lt;code&gt;DE&lt;/code&gt; represents Germany. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The country of the shipping destination, represented as a two-letter ISO 3166&amp;#8209;1 alpha&amp;#8209;2 country code. For example, &lt;code&gt;US&lt;/code&gt; represents the United States, and &lt;code&gt;DE&lt;/code&gt; represents Germany.
      */
-    private String countryCode;
+    private CountryCodeEnum countryCode;
     /**
      * The county of the shipping destination. Counties typically, but not always, contain multiple cities or towns. This field is returned if known/available.
      */
     private String county;
     /**
-     * The postal code of the shipping destination. Usually referred to as Zip codes in the US. Most countries have postal codes, but not all. The postal code will be returned if applicable.
+     * The postal code of the shipping destination. This is usually referred to as ZIP codes in the US. Most countries have postal codes, but not all. The postal code will be returned, if applicable.
      */
     private String postalCode;
     /**
@@ -83,7 +83,7 @@ public class Address implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the addressLine1 property value. The first line of the street address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;b&gt;addressLine1&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * Gets the addressLine1 property value. The first line of the street address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;strong&gt;addressLine1&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -91,7 +91,7 @@ public class Address implements AdditionalDataHolder, Parsable {
         return this.addressLine1;
     }
     /**
-     * Gets the addressLine2 property value. The second line of the street address. This field can be used for additional address information, such as a suite or apartment number. This field will be returned if defined for the shipping address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;b&gt;addressLine2&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * Gets the addressLine2 property value. The second line of the street address. This field can be used for additional address information, such as a suite or apartment number. This field will be returned if defined for the shipping address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;strong&gt;addressLine2&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -107,11 +107,11 @@ public class Address implements AdditionalDataHolder, Parsable {
         return this.city;
     }
     /**
-     * Gets the countryCode property value. The country of the shipping destination, represented as a two-letter ISO 3166-1 alpha-2 country code. For example, &lt;code&gt;US&lt;/code&gt; represents the United States, and &lt;code&gt;DE&lt;/code&gt; represents Germany. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the countryCode property value. The country of the shipping destination, represented as a two-letter ISO 3166&amp;#8209;1 alpha&amp;#8209;2 country code. For example, &lt;code&gt;US&lt;/code&gt; represents the United States, and &lt;code&gt;DE&lt;/code&gt; represents Germany.
+     * @return a {@link CountryCodeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getCountryCode() {
+    public CountryCodeEnum getCountryCode() {
         return this.countryCode;
     }
     /**
@@ -132,14 +132,14 @@ public class Address implements AdditionalDataHolder, Parsable {
         deserializerMap.put("addressLine1", (n) -> { this.setAddressLine1(n.getStringValue()); });
         deserializerMap.put("addressLine2", (n) -> { this.setAddressLine2(n.getStringValue()); });
         deserializerMap.put("city", (n) -> { this.setCity(n.getStringValue()); });
-        deserializerMap.put("countryCode", (n) -> { this.setCountryCode(n.getStringValue()); });
+        deserializerMap.put("countryCode", (n) -> { this.setCountryCode(n.getEnumValue(CountryCodeEnum::forValue)); });
         deserializerMap.put("county", (n) -> { this.setCounty(n.getStringValue()); });
         deserializerMap.put("postalCode", (n) -> { this.setPostalCode(n.getStringValue()); });
         deserializerMap.put("stateOrProvince", (n) -> { this.setStateOrProvince(n.getStringValue()); });
         return deserializerMap;
     }
     /**
-     * Gets the postalCode property value. The postal code of the shipping destination. Usually referred to as Zip codes in the US. Most countries have postal codes, but not all. The postal code will be returned if applicable.
+     * Gets the postalCode property value. The postal code of the shipping destination. This is usually referred to as ZIP codes in the US. Most countries have postal codes, but not all. The postal code will be returned, if applicable.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -163,7 +163,7 @@ public class Address implements AdditionalDataHolder, Parsable {
         writer.writeStringValue("addressLine1", this.getAddressLine1());
         writer.writeStringValue("addressLine2", this.getAddressLine2());
         writer.writeStringValue("city", this.getCity());
-        writer.writeStringValue("countryCode", this.getCountryCode());
+        writer.writeEnumValue("countryCode", this.getCountryCode());
         writer.writeStringValue("county", this.getCounty());
         writer.writeStringValue("postalCode", this.getPostalCode());
         writer.writeStringValue("stateOrProvince", this.getStateOrProvince());
@@ -177,14 +177,14 @@ public class Address implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the addressLine1 property value. The first line of the street address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;b&gt;addressLine1&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * Sets the addressLine1 property value. The first line of the street address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;strong&gt;addressLine1&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      * @param value Value to set for the addressLine1 property.
      */
     public void setAddressLine1(@jakarta.annotation.Nullable final String value) {
         this.addressLine1 = value;
     }
     /**
-     * Sets the addressLine2 property value. The second line of the street address. This field can be used for additional address information, such as a suite or apartment number. This field will be returned if defined for the shipping address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;b&gt;addressLine2&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * Sets the addressLine2 property value. The second line of the street address. This field can be used for additional address information, such as a suite or apartment number. This field will be returned if defined for the shipping address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;strong&gt;addressLine2&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      * @param value Value to set for the addressLine2 property.
      */
     public void setAddressLine2(@jakarta.annotation.Nullable final String value) {
@@ -198,10 +198,10 @@ public class Address implements AdditionalDataHolder, Parsable {
         this.city = value;
     }
     /**
-     * Sets the countryCode property value. The country of the shipping destination, represented as a two-letter ISO 3166-1 alpha-2 country code. For example, &lt;code&gt;US&lt;/code&gt; represents the United States, and &lt;code&gt;DE&lt;/code&gt; represents Germany. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the countryCode property value. The country of the shipping destination, represented as a two-letter ISO 3166&amp;#8209;1 alpha&amp;#8209;2 country code. For example, &lt;code&gt;US&lt;/code&gt; represents the United States, and &lt;code&gt;DE&lt;/code&gt; represents Germany.
      * @param value Value to set for the countryCode property.
      */
-    public void setCountryCode(@jakarta.annotation.Nullable final String value) {
+    public void setCountryCode(@jakarta.annotation.Nullable final CountryCodeEnum value) {
         this.countryCode = value;
     }
     /**
@@ -212,7 +212,7 @@ public class Address implements AdditionalDataHolder, Parsable {
         this.county = value;
     }
     /**
-     * Sets the postalCode property value. The postal code of the shipping destination. Usually referred to as Zip codes in the US. Most countries have postal codes, but not all. The postal code will be returned if applicable.
+     * Sets the postalCode property value. The postal code of the shipping destination. This is usually referred to as ZIP codes in the US. Most countries have postal codes, but not all. The postal code will be returned, if applicable.
      * @param value Value to set for the postalCode property.
      */
     public void setPostalCode(@jakarta.annotation.Nullable final String value) {

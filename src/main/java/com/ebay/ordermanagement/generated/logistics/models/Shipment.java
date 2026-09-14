@@ -31,11 +31,11 @@ public class Shipment implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This type defines a shipment cancellation by the date and time the cancellation request was made and the current status of the request.
+     * Cancellation status for the package, if one exists.
      */
     private ShipmentCancellation cancellation;
     /**
-     * The date and time the shipment was created, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
+     * The date and time the shipment was created, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
      */
     private String creationDate;
     /**
@@ -47,7 +47,7 @@ public class Shipment implements AdditionalDataHolder, Parsable {
      */
     private String labelDownloadUrl;
     /**
-     * The seller&apos;s desired label size. The support for multi-sized labels is shipping-carrier specific and if the size requested in the &lt;b&gt;creaateFromShippingQuote&lt;/b&gt; call matches a size the carrier supports, the value will be represented here in the shipment. &lt;br&gt;&lt;br&gt;Currently, the only valid value is: &lt;code&gt;4&quot;x6&quot;&lt;/code&gt;
+     * The seller&apos;s desired label size. The support for multi-sized labels is shipping-carrier specific and if the size requested in the &lt;strong&gt;createFromShippingQuote&lt;/strong&gt; call matches a size the carrier supports, the value will be represented here in the shipment. &lt;br&gt;&lt;br&gt;Currently, the only valid value is: &lt;code&gt;4&quot;x6&quot;&lt;/code&gt;
      */
     private String labelSize;
     /**
@@ -55,23 +55,23 @@ public class Shipment implements AdditionalDataHolder, Parsable {
      */
     private java.util.List<Order> orders;
     /**
-     * This complex type specifies the dimensions and weight of a package.
+     * The weight and dimensions of the package.
      */
     private PackageSpecification packageSpecification;
     /**
-     * The &quot;rate&quot; that has been selected and purchased for the shipment, as referenced by the &lt;b&gt;rateId&lt;/b&gt; value.
+     * The shipping rate that the seller has chosen to purchase for this shipment. Each rate, identified by a &lt;strong&gt;rateId&lt;/strong&gt;, contains the offered base service, options, and shipping parameters that were selected for the package shipment.
      */
     private PurchasedRate rate;
     /**
-     * This complex type contains contact information for an individual buyer or seller.
+     * The address and contact details that should be used for item returns. Sellers have the option to define a return address that is different from their &lt;strong&gt;shipFrom&lt;/strong&gt; address. If not specified, the return address defaults to the &lt;strong&gt;shipFrom&lt;/strong&gt; address in the shipping quote.
      */
     private Contact returnTo;
     /**
-     * This complex type contains contact information for an individual buyer or seller.
+     * The address and contact details for the origin of the package shipment.
      */
     private Contact shipFrom;
     /**
-     * The unique eBay-assigned ID for the shipment. The ID is generated when the shipment is created by a call to &lt;b&gt;createFromShippingQuote&lt;/b&gt;.
+     * The unique eBay-assigned ID for the shipment. The ID is generated when the shipment is created by a call to &lt;strong&gt;createFromShippingQuote&lt;/strong&gt;.
      */
     private String shipmentId;
     /**
@@ -79,7 +79,7 @@ public class Shipment implements AdditionalDataHolder, Parsable {
      */
     private String shipmentTrackingNumber;
     /**
-     * This complex type contains contact information for an individual buyer or seller.
+     * The address and contact details for the destination of the shipment.
      */
     private Contact shipTo;
     /**
@@ -107,7 +107,7 @@ public class Shipment implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the cancellation property value. This type defines a shipment cancellation by the date and time the cancellation request was made and the current status of the request.
+     * Gets the cancellation property value. Cancellation status for the package, if one exists.
      * @return a {@link ShipmentCancellation}
      */
     @jakarta.annotation.Nullable
@@ -115,7 +115,7 @@ public class Shipment implements AdditionalDataHolder, Parsable {
         return this.cancellation;
     }
     /**
-     * Gets the creationDate property value. The date and time the shipment was created, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
+     * Gets the creationDate property value. The date and time the shipment was created, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -161,7 +161,7 @@ public class Shipment implements AdditionalDataHolder, Parsable {
         return this.labelDownloadUrl;
     }
     /**
-     * Gets the labelSize property value. The seller&apos;s desired label size. The support for multi-sized labels is shipping-carrier specific and if the size requested in the &lt;b&gt;creaateFromShippingQuote&lt;/b&gt; call matches a size the carrier supports, the value will be represented here in the shipment. &lt;br&gt;&lt;br&gt;Currently, the only valid value is: &lt;code&gt;4&quot;x6&quot;&lt;/code&gt;
+     * Gets the labelSize property value. The seller&apos;s desired label size. The support for multi-sized labels is shipping-carrier specific and if the size requested in the &lt;strong&gt;createFromShippingQuote&lt;/strong&gt; call matches a size the carrier supports, the value will be represented here in the shipment. &lt;br&gt;&lt;br&gt;Currently, the only valid value is: &lt;code&gt;4&quot;x6&quot;&lt;/code&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -177,7 +177,7 @@ public class Shipment implements AdditionalDataHolder, Parsable {
         return this.orders;
     }
     /**
-     * Gets the packageSpecification property value. This complex type specifies the dimensions and weight of a package.
+     * Gets the packageSpecification property value. The weight and dimensions of the package.
      * @return a {@link PackageSpecification}
      */
     @jakarta.annotation.Nullable
@@ -185,7 +185,7 @@ public class Shipment implements AdditionalDataHolder, Parsable {
         return this.packageSpecification;
     }
     /**
-     * Gets the rate property value. The &quot;rate&quot; that has been selected and purchased for the shipment, as referenced by the &lt;b&gt;rateId&lt;/b&gt; value.
+     * Gets the rate property value. The shipping rate that the seller has chosen to purchase for this shipment. Each rate, identified by a &lt;strong&gt;rateId&lt;/strong&gt;, contains the offered base service, options, and shipping parameters that were selected for the package shipment.
      * @return a {@link PurchasedRate}
      */
     @jakarta.annotation.Nullable
@@ -193,7 +193,7 @@ public class Shipment implements AdditionalDataHolder, Parsable {
         return this.rate;
     }
     /**
-     * Gets the returnTo property value. This complex type contains contact information for an individual buyer or seller.
+     * Gets the returnTo property value. The address and contact details that should be used for item returns. Sellers have the option to define a return address that is different from their &lt;strong&gt;shipFrom&lt;/strong&gt; address. If not specified, the return address defaults to the &lt;strong&gt;shipFrom&lt;/strong&gt; address in the shipping quote.
      * @return a {@link Contact}
      */
     @jakarta.annotation.Nullable
@@ -201,7 +201,7 @@ public class Shipment implements AdditionalDataHolder, Parsable {
         return this.returnTo;
     }
     /**
-     * Gets the shipFrom property value. This complex type contains contact information for an individual buyer or seller.
+     * Gets the shipFrom property value. The address and contact details for the origin of the package shipment.
      * @return a {@link Contact}
      */
     @jakarta.annotation.Nullable
@@ -209,7 +209,7 @@ public class Shipment implements AdditionalDataHolder, Parsable {
         return this.shipFrom;
     }
     /**
-     * Gets the shipmentId property value. The unique eBay-assigned ID for the shipment. The ID is generated when the shipment is created by a call to &lt;b&gt;createFromShippingQuote&lt;/b&gt;.
+     * Gets the shipmentId property value. The unique eBay-assigned ID for the shipment. The ID is generated when the shipment is created by a call to &lt;strong&gt;createFromShippingQuote&lt;/strong&gt;.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -225,7 +225,7 @@ public class Shipment implements AdditionalDataHolder, Parsable {
         return this.shipmentTrackingNumber;
     }
     /**
-     * Gets the shipTo property value. This complex type contains contact information for an individual buyer or seller.
+     * Gets the shipTo property value. The address and contact details for the destination of the shipment.
      * @return a {@link Contact}
      */
     @jakarta.annotation.Nullable
@@ -261,14 +261,14 @@ public class Shipment implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the cancellation property value. This type defines a shipment cancellation by the date and time the cancellation request was made and the current status of the request.
+     * Sets the cancellation property value. Cancellation status for the package, if one exists.
      * @param value Value to set for the cancellation property.
      */
     public void setCancellation(@jakarta.annotation.Nullable final ShipmentCancellation value) {
         this.cancellation = value;
     }
     /**
-     * Sets the creationDate property value. The date and time the shipment was created, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
+     * Sets the creationDate property value. The date and time the shipment was created, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
      * @param value Value to set for the creationDate property.
      */
     public void setCreationDate(@jakarta.annotation.Nullable final String value) {
@@ -289,7 +289,7 @@ public class Shipment implements AdditionalDataHolder, Parsable {
         this.labelDownloadUrl = value;
     }
     /**
-     * Sets the labelSize property value. The seller&apos;s desired label size. The support for multi-sized labels is shipping-carrier specific and if the size requested in the &lt;b&gt;creaateFromShippingQuote&lt;/b&gt; call matches a size the carrier supports, the value will be represented here in the shipment. &lt;br&gt;&lt;br&gt;Currently, the only valid value is: &lt;code&gt;4&quot;x6&quot;&lt;/code&gt;
+     * Sets the labelSize property value. The seller&apos;s desired label size. The support for multi-sized labels is shipping-carrier specific and if the size requested in the &lt;strong&gt;createFromShippingQuote&lt;/strong&gt; call matches a size the carrier supports, the value will be represented here in the shipment. &lt;br&gt;&lt;br&gt;Currently, the only valid value is: &lt;code&gt;4&quot;x6&quot;&lt;/code&gt;
      * @param value Value to set for the labelSize property.
      */
     public void setLabelSize(@jakarta.annotation.Nullable final String value) {
@@ -303,35 +303,35 @@ public class Shipment implements AdditionalDataHolder, Parsable {
         this.orders = value;
     }
     /**
-     * Sets the packageSpecification property value. This complex type specifies the dimensions and weight of a package.
+     * Sets the packageSpecification property value. The weight and dimensions of the package.
      * @param value Value to set for the packageSpecification property.
      */
     public void setPackageSpecification(@jakarta.annotation.Nullable final PackageSpecification value) {
         this.packageSpecification = value;
     }
     /**
-     * Sets the rate property value. The &quot;rate&quot; that has been selected and purchased for the shipment, as referenced by the &lt;b&gt;rateId&lt;/b&gt; value.
+     * Sets the rate property value. The shipping rate that the seller has chosen to purchase for this shipment. Each rate, identified by a &lt;strong&gt;rateId&lt;/strong&gt;, contains the offered base service, options, and shipping parameters that were selected for the package shipment.
      * @param value Value to set for the rate property.
      */
     public void setRate(@jakarta.annotation.Nullable final PurchasedRate value) {
         this.rate = value;
     }
     /**
-     * Sets the returnTo property value. This complex type contains contact information for an individual buyer or seller.
+     * Sets the returnTo property value. The address and contact details that should be used for item returns. Sellers have the option to define a return address that is different from their &lt;strong&gt;shipFrom&lt;/strong&gt; address. If not specified, the return address defaults to the &lt;strong&gt;shipFrom&lt;/strong&gt; address in the shipping quote.
      * @param value Value to set for the returnTo property.
      */
     public void setReturnTo(@jakarta.annotation.Nullable final Contact value) {
         this.returnTo = value;
     }
     /**
-     * Sets the shipFrom property value. This complex type contains contact information for an individual buyer or seller.
+     * Sets the shipFrom property value. The address and contact details for the origin of the package shipment.
      * @param value Value to set for the shipFrom property.
      */
     public void setShipFrom(@jakarta.annotation.Nullable final Contact value) {
         this.shipFrom = value;
     }
     /**
-     * Sets the shipmentId property value. The unique eBay-assigned ID for the shipment. The ID is generated when the shipment is created by a call to &lt;b&gt;createFromShippingQuote&lt;/b&gt;.
+     * Sets the shipmentId property value. The unique eBay-assigned ID for the shipment. The ID is generated when the shipment is created by a call to &lt;strong&gt;createFromShippingQuote&lt;/strong&gt;.
      * @param value Value to set for the shipmentId property.
      */
     public void setShipmentId(@jakarta.annotation.Nullable final String value) {
@@ -345,7 +345,7 @@ public class Shipment implements AdditionalDataHolder, Parsable {
         this.shipmentTrackingNumber = value;
     }
     /**
-     * Sets the shipTo property value. This complex type contains contact information for an individual buyer or seller.
+     * Sets the shipTo property value. The address and contact details for the destination of the shipment.
      * @param value Value to set for the shipTo property.
      */
     public void setShipTo(@jakarta.annotation.Nullable final Contact value) {

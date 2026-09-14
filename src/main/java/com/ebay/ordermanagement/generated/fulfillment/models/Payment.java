@@ -31,11 +31,11 @@ public class Payment implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * The amount that seller receives for the order via the payment method mentioned in &lt;strong&gt;Payment.paymentMethod&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; For orders that are subject to eBay &apos;Collect and Remit&apos; tax, which includes US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, &apos;Good and Services&apos; tax in Canada, Australia, and New Zealand, and VAT collected for UK or EU, the &apos;Collect and Remit&apos; tax amount for the order will be included in this &lt;strong&gt;amount.value&lt;/strong&gt; field (and in the &lt;strong&gt;amount.convertedFromValue&lt;/strong&gt; field if currency conversion is applicable).&lt;br&gt;&lt;br&gt; To determine if &apos;Collect and Remit&apos; taxes were added into this &lt;strong&gt;totalDueSeller&lt;/strong&gt; value, the user can check for the corresponding &lt;strong&gt;lineItems.ebayCollectAndRemitTaxes&lt;/strong&gt; and the &lt;strong&gt;lineItems.taxes&lt;/strong&gt; containers in the response. If both of these containers appear for one or more line items in the response with the following &lt;strong&gt;taxType&lt;/strong&gt; values, the &apos;Collect and Remit&apos; tax amount that the buyer paid is included in this amount:&lt;ul&gt;&lt;li&gt;&lt;code&gt;STATE_SALES_TAX&lt;/code&gt;: US&lt;/li&gt;&lt;li&gt;&lt;code&gt;PROVINCE_SALES_TAX&lt;/code&gt;: Provincial Sales Tax in Canada&lt;/li&gt;&lt;li&gt;&lt;code&gt;GST&lt;/code&gt;: Canada, Australia, and New Zealand&lt;/li&gt;&lt;li&gt;&lt;code&gt;VAT&lt;/code&gt;: UK and EU countries&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
      */
     private Amount amount;
     /**
-     * The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
     private String paymentDate;
     /**
@@ -43,17 +43,17 @@ public class Payment implements AdditionalDataHolder, Parsable {
      */
     private java.util.List<PaymentHold> paymentHolds;
     /**
-     * The payment method used to pay for the order. See the &lt;strong&gt;PaymentMethodTypeEnum&lt;/strong&gt; type for more information on the payment methods. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:PaymentMethodTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The payment method used to pay for the order. See the &lt;strong&gt;PaymentMethodTypeEnum&lt;/strong&gt; type for more information on the payment methods.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Effective September 26, 2025, access to buyer payment details for U.S. users will be limited to select developers. All other developers will receive a value of &quot;CustomCode&quot; in place of buyer payment details. For more information, please refer to &lt;a href=&quot;/api-docs/static/data-handling-update.html&quot; target=&quot;_blank&quot;&gt;Data Handling Compliance&lt;/a&gt;.&lt;/span&gt;
      */
-    private String paymentMethod;
+    private PaymentMethodTypeEnum paymentMethod;
     /**
      * This field is only returned if payment has been made by the buyer, and the &lt;strong&gt;paymentMethod&lt;/strong&gt; is &lt;code&gt;ESCROW&lt;/code&gt;. This field contains a special ID for ESCROW.
      */
     private String paymentReferenceId;
     /**
-     * The enumeration value returned in this field indicates the status of the payment for the order. See the &lt;strong&gt;PaymentStatusEnum&lt;/strong&gt; type definition for more information on the possible payment states. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:PaymentStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The enumeration value returned in this field indicates the status of the payment for the order. See the &lt;strong&gt;PaymentStatusEnum&lt;/strong&gt; type definition for more information on the possible payment states.
      */
-    private String paymentStatus;
+    private PaymentStatusEnum paymentStatus;
     /**
      * Instantiates a new {@link Payment} and sets the default values.
      */
@@ -79,7 +79,7 @@ public class Payment implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the amount property value. The amount that seller receives for the order via the payment method mentioned in &lt;strong&gt;Payment.paymentMethod&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; For orders that are subject to eBay &apos;Collect and Remit&apos; tax, which includes US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, &apos;Good and Services&apos; tax in Canada, Australia, and New Zealand, and VAT collected for UK or EU, the &apos;Collect and Remit&apos; tax amount for the order will be included in this &lt;strong&gt;amount.value&lt;/strong&gt; field (and in the &lt;strong&gt;amount.convertedFromValue&lt;/strong&gt; field if currency conversion is applicable).&lt;br&gt;&lt;br&gt; To determine if &apos;Collect and Remit&apos; taxes were added into this &lt;strong&gt;totalDueSeller&lt;/strong&gt; value, the user can check for the corresponding &lt;strong&gt;lineItems.ebayCollectAndRemitTaxes&lt;/strong&gt; and the &lt;strong&gt;lineItems.taxes&lt;/strong&gt; containers in the response. If both of these containers appear for one or more line items in the response with the following &lt;strong&gt;taxType&lt;/strong&gt; values, the &apos;Collect and Remit&apos; tax amount that the buyer paid is included in this amount:&lt;ul&gt;&lt;li&gt;&lt;code&gt;STATE_SALES_TAX&lt;/code&gt;: US&lt;/li&gt;&lt;li&gt;&lt;code&gt;PROVINCE_SALES_TAX&lt;/code&gt;: Provincial Sales Tax in Canada&lt;/li&gt;&lt;li&gt;&lt;code&gt;GST&lt;/code&gt;: Canada, Australia, and New Zealand&lt;/li&gt;&lt;li&gt;&lt;code&gt;VAT&lt;/code&gt;: UK and EU countries&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
      * @return a {@link Amount}
      */
     @jakarta.annotation.Nullable
@@ -96,13 +96,13 @@ public class Payment implements AdditionalDataHolder, Parsable {
         deserializerMap.put("amount", (n) -> { this.setAmount(n.getObjectValue(Amount::createFromDiscriminatorValue)); });
         deserializerMap.put("paymentDate", (n) -> { this.setPaymentDate(n.getStringValue()); });
         deserializerMap.put("paymentHolds", (n) -> { this.setPaymentHolds(n.getCollectionOfObjectValues(PaymentHold::createFromDiscriminatorValue)); });
-        deserializerMap.put("paymentMethod", (n) -> { this.setPaymentMethod(n.getStringValue()); });
+        deserializerMap.put("paymentMethod", (n) -> { this.setPaymentMethod(n.getEnumValue(PaymentMethodTypeEnum::forValue)); });
         deserializerMap.put("paymentReferenceId", (n) -> { this.setPaymentReferenceId(n.getStringValue()); });
-        deserializerMap.put("paymentStatus", (n) -> { this.setPaymentStatus(n.getStringValue()); });
+        deserializerMap.put("paymentStatus", (n) -> { this.setPaymentStatus(n.getEnumValue(PaymentStatusEnum::forValue)); });
         return deserializerMap;
     }
     /**
-     * Gets the paymentDate property value. The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * Gets the paymentDate property value. The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -118,11 +118,11 @@ public class Payment implements AdditionalDataHolder, Parsable {
         return this.paymentHolds;
     }
     /**
-     * Gets the paymentMethod property value. The payment method used to pay for the order. See the &lt;strong&gt;PaymentMethodTypeEnum&lt;/strong&gt; type for more information on the payment methods. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:PaymentMethodTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the paymentMethod property value. The payment method used to pay for the order. See the &lt;strong&gt;PaymentMethodTypeEnum&lt;/strong&gt; type for more information on the payment methods.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Effective September 26, 2025, access to buyer payment details for U.S. users will be limited to select developers. All other developers will receive a value of &quot;CustomCode&quot; in place of buyer payment details. For more information, please refer to &lt;a href=&quot;/api-docs/static/data-handling-update.html&quot; target=&quot;_blank&quot;&gt;Data Handling Compliance&lt;/a&gt;.&lt;/span&gt;
+     * @return a {@link PaymentMethodTypeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getPaymentMethod() {
+    public PaymentMethodTypeEnum getPaymentMethod() {
         return this.paymentMethod;
     }
     /**
@@ -134,11 +134,11 @@ public class Payment implements AdditionalDataHolder, Parsable {
         return this.paymentReferenceId;
     }
     /**
-     * Gets the paymentStatus property value. The enumeration value returned in this field indicates the status of the payment for the order. See the &lt;strong&gt;PaymentStatusEnum&lt;/strong&gt; type definition for more information on the possible payment states. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:PaymentStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the paymentStatus property value. The enumeration value returned in this field indicates the status of the payment for the order. See the &lt;strong&gt;PaymentStatusEnum&lt;/strong&gt; type definition for more information on the possible payment states.
+     * @return a {@link PaymentStatusEnum}
      */
     @jakarta.annotation.Nullable
-    public String getPaymentStatus() {
+    public PaymentStatusEnum getPaymentStatus() {
         return this.paymentStatus;
     }
     /**
@@ -150,9 +150,9 @@ public class Payment implements AdditionalDataHolder, Parsable {
         writer.writeObjectValue("amount", this.getAmount());
         writer.writeStringValue("paymentDate", this.getPaymentDate());
         writer.writeCollectionOfObjectValues("paymentHolds", this.getPaymentHolds());
-        writer.writeStringValue("paymentMethod", this.getPaymentMethod());
+        writer.writeEnumValue("paymentMethod", this.getPaymentMethod());
         writer.writeStringValue("paymentReferenceId", this.getPaymentReferenceId());
-        writer.writeStringValue("paymentStatus", this.getPaymentStatus());
+        writer.writeEnumValue("paymentStatus", this.getPaymentStatus());
         writer.writeAdditionalData(this.getAdditionalData());
     }
     /**
@@ -163,14 +163,14 @@ public class Payment implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the amount property value. The amount that seller receives for the order via the payment method mentioned in &lt;strong&gt;Payment.paymentMethod&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; For orders that are subject to eBay &apos;Collect and Remit&apos; tax, which includes US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, &apos;Good and Services&apos; tax in Canada, Australia, and New Zealand, and VAT collected for UK or EU, the &apos;Collect and Remit&apos; tax amount for the order will be included in this &lt;strong&gt;amount.value&lt;/strong&gt; field (and in the &lt;strong&gt;amount.convertedFromValue&lt;/strong&gt; field if currency conversion is applicable).&lt;br&gt;&lt;br&gt; To determine if &apos;Collect and Remit&apos; taxes were added into this &lt;strong&gt;totalDueSeller&lt;/strong&gt; value, the user can check for the corresponding &lt;strong&gt;lineItems.ebayCollectAndRemitTaxes&lt;/strong&gt; and the &lt;strong&gt;lineItems.taxes&lt;/strong&gt; containers in the response. If both of these containers appear for one or more line items in the response with the following &lt;strong&gt;taxType&lt;/strong&gt; values, the &apos;Collect and Remit&apos; tax amount that the buyer paid is included in this amount:&lt;ul&gt;&lt;li&gt;&lt;code&gt;STATE_SALES_TAX&lt;/code&gt;: US&lt;/li&gt;&lt;li&gt;&lt;code&gt;PROVINCE_SALES_TAX&lt;/code&gt;: Provincial Sales Tax in Canada&lt;/li&gt;&lt;li&gt;&lt;code&gt;GST&lt;/code&gt;: Canada, Australia, and New Zealand&lt;/li&gt;&lt;li&gt;&lt;code&gt;VAT&lt;/code&gt;: UK and EU countries&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
      * @param value Value to set for the amount property.
      */
     public void setAmount(@jakarta.annotation.Nullable final Amount value) {
         this.amount = value;
     }
     /**
-     * Sets the paymentDate property value. The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * Sets the paymentDate property value. The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the paymentDate property.
      */
     public void setPaymentDate(@jakarta.annotation.Nullable final String value) {
@@ -184,10 +184,10 @@ public class Payment implements AdditionalDataHolder, Parsable {
         this.paymentHolds = value;
     }
     /**
-     * Sets the paymentMethod property value. The payment method used to pay for the order. See the &lt;strong&gt;PaymentMethodTypeEnum&lt;/strong&gt; type for more information on the payment methods. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:PaymentMethodTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the paymentMethod property value. The payment method used to pay for the order. See the &lt;strong&gt;PaymentMethodTypeEnum&lt;/strong&gt; type for more information on the payment methods.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Effective September 26, 2025, access to buyer payment details for U.S. users will be limited to select developers. All other developers will receive a value of &quot;CustomCode&quot; in place of buyer payment details. For more information, please refer to &lt;a href=&quot;/api-docs/static/data-handling-update.html&quot; target=&quot;_blank&quot;&gt;Data Handling Compliance&lt;/a&gt;.&lt;/span&gt;
      * @param value Value to set for the paymentMethod property.
      */
-    public void setPaymentMethod(@jakarta.annotation.Nullable final String value) {
+    public void setPaymentMethod(@jakarta.annotation.Nullable final PaymentMethodTypeEnum value) {
         this.paymentMethod = value;
     }
     /**
@@ -198,10 +198,10 @@ public class Payment implements AdditionalDataHolder, Parsable {
         this.paymentReferenceId = value;
     }
     /**
-     * Sets the paymentStatus property value. The enumeration value returned in this field indicates the status of the payment for the order. See the &lt;strong&gt;PaymentStatusEnum&lt;/strong&gt; type definition for more information on the possible payment states. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:PaymentStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the paymentStatus property value. The enumeration value returned in this field indicates the status of the payment for the order. See the &lt;strong&gt;PaymentStatusEnum&lt;/strong&gt; type definition for more information on the possible payment states.
      * @param value Value to set for the paymentStatus property.
      */
-    public void setPaymentStatus(@jakarta.annotation.Nullable final String value) {
+    public void setPaymentStatus(@jakarta.annotation.Nullable final PaymentStatusEnum value) {
         this.paymentStatus = value;
     }
 }

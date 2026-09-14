@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * This type contains the name-value specifics of a multi-variation listing (&lt;b&gt;variationAspects&lt;/b&gt;) or the name-value specifics for all item aspects of a linked line item (&lt;b&gt;linkedOrderLineItems&lt;/b&gt;).
+ * This type contains the name-value specifics of a multi-variation listing (&lt;strong&gt;variationAspects&lt;/strong&gt;) or the name-value specifics for all item aspects of a linked line item (&lt;strong&gt;linkedOrderLineItems&lt;/strong&gt;).
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class NameValuePair implements AdditionalDataHolder, Parsable {
@@ -31,11 +31,11 @@ public class NameValuePair implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * The text representing the name of the aspect for the name-value pair. For example, &lt;code&gt;color&lt;/code&gt;, or &lt;code&gt;Tire Type&lt;/code&gt;.
+     * The text representing the name of the aspect for the name-value pair. For example, &lt;code&gt;color&lt;/code&gt; or &lt;code&gt;Tire Type&lt;/code&gt;.
      */
     private String name;
     /**
-     * The value of the aspect for the name-value pair. For example, &lt;code&gt;red&lt;/code&gt;, or &lt;code&gt;All Season&lt;/code&gt;.
+     * The value of the aspect for the name-value pair. For example, &lt;code&gt;red&lt;/code&gt; or &lt;code&gt;All Season&lt;/code&gt;.
      */
     private String value;
     /**
@@ -74,7 +74,7 @@ public class NameValuePair implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the name property value. The text representing the name of the aspect for the name-value pair. For example, &lt;code&gt;color&lt;/code&gt;, or &lt;code&gt;Tire Type&lt;/code&gt;.
+     * Gets the name property value. The text representing the name of the aspect for the name-value pair. For example, &lt;code&gt;color&lt;/code&gt; or &lt;code&gt;Tire Type&lt;/code&gt;.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -82,7 +82,7 @@ public class NameValuePair implements AdditionalDataHolder, Parsable {
         return this.name;
     }
     /**
-     * Gets the value property value. The value of the aspect for the name-value pair. For example, &lt;code&gt;red&lt;/code&gt;, or &lt;code&gt;All Season&lt;/code&gt;.
+     * Gets the value property value. The value of the aspect for the name-value pair. For example, &lt;code&gt;red&lt;/code&gt; or &lt;code&gt;All Season&lt;/code&gt;.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -107,14 +107,14 @@ public class NameValuePair implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the name property value. The text representing the name of the aspect for the name-value pair. For example, &lt;code&gt;color&lt;/code&gt;, or &lt;code&gt;Tire Type&lt;/code&gt;.
+     * Sets the name property value. The text representing the name of the aspect for the name-value pair. For example, &lt;code&gt;color&lt;/code&gt; or &lt;code&gt;Tire Type&lt;/code&gt;.
      * @param value Value to set for the name property.
      */
     public void setName(@jakarta.annotation.Nullable final String value) {
         this.name = value;
     }
     /**
-     * Sets the value property value. The value of the aspect for the name-value pair. For example, &lt;code&gt;red&lt;/code&gt;, or &lt;code&gt;All Season&lt;/code&gt;.
+     * Sets the value property value. The value of the aspect for the name-value pair. For example, &lt;code&gt;red&lt;/code&gt; or &lt;code&gt;All Season&lt;/code&gt;.
      * @param value Value to set for the value property.
      */
     public void setValue(@jakarta.annotation.Nullable final String value) {

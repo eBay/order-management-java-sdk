@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * This type contains the specifications for the entire collection of shipping fulfillments that are associated with the order specified by a &lt;b&gt;getShippingFulfillments&lt;/b&gt; call. The &lt;b&gt;fulfillments&lt;/b&gt; container returns an array of all the fulfillments in the collection.
+ * This type contains the specifications for the entire collection of shipping fulfillments that are associated with the order specified by a &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-getshippingfulfillments&quot; target=&quot;_blank&quot;&gt;getShippingFulfillments&lt;/a&gt; call. The &lt;strong&gt;fulfillments&lt;/strong&gt; container returns an array of all the fulfillments in the collection.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class ShippingFulfillmentPagedCollection implements AdditionalDataHolder, Parsable {
@@ -41,7 +41,7 @@ public class ShippingFulfillmentPagedCollection implements AdditionalDataHolder,
     /**
      * This array is only returned if one or more errors or warnings occur with the call request.
      */
-    private java.util.List<Error> warnings;
+    private java.util.List<ErrorDetailV3> warnings;
     /**
      * Instantiates a new {@link ShippingFulfillmentPagedCollection} and sets the default values.
      */
@@ -75,7 +75,7 @@ public class ShippingFulfillmentPagedCollection implements AdditionalDataHolder,
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(3);
         deserializerMap.put("fulfillments", (n) -> { this.setFulfillments(n.getCollectionOfObjectValues(ShippingFulfillment::createFromDiscriminatorValue)); });
         deserializerMap.put("total", (n) -> { this.setTotal(n.getIntegerValue()); });
-        deserializerMap.put("warnings", (n) -> { this.setWarnings(n.getCollectionOfObjectValues(Error::createFromDiscriminatorValue)); });
+        deserializerMap.put("warnings", (n) -> { this.setWarnings(n.getCollectionOfObjectValues(ErrorDetailV3::createFromDiscriminatorValue)); });
         return deserializerMap;
     }
     /**
@@ -96,10 +96,10 @@ public class ShippingFulfillmentPagedCollection implements AdditionalDataHolder,
     }
     /**
      * Gets the warnings property value. This array is only returned if one or more errors or warnings occur with the call request.
-     * @return a {@link java.util.List<Error>}
+     * @return a {@link java.util.List<ErrorDetailV3>}
      */
     @jakarta.annotation.Nullable
-    public java.util.List<Error> getWarnings() {
+    public java.util.List<ErrorDetailV3> getWarnings() {
         return this.warnings;
     }
     /**
@@ -138,7 +138,7 @@ public class ShippingFulfillmentPagedCollection implements AdditionalDataHolder,
      * Sets the warnings property value. This array is only returned if one or more errors or warnings occur with the call request.
      * @param value Value to set for the warnings property.
      */
-    public void setWarnings(@jakarta.annotation.Nullable final java.util.List<Error> value) {
+    public void setWarnings(@jakarta.annotation.Nullable final java.util.List<ErrorDetailV3> value) {
         this.warnings = value;
     }
 }

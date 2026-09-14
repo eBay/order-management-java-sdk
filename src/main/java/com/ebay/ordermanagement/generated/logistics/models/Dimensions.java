@@ -39,9 +39,9 @@ public class Dimensions implements AdditionalDataHolder, Parsable {
      */
     private String length;
     /**
-     * The unit of measure used to express the height, length, and width of the package. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/logistics/types/api:LengthUnitOfMeasureEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The unit of measure used to express the height, length, and width of the package.
      */
-    private String unit;
+    private LengthUnitOfMeasureEnum unit;
     /**
      * The numeric value of the width of the package.
      */
@@ -79,7 +79,7 @@ public class Dimensions implements AdditionalDataHolder, Parsable {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(4);
         deserializerMap.put("height", (n) -> { this.setHeight(n.getStringValue()); });
         deserializerMap.put("length", (n) -> { this.setLength(n.getStringValue()); });
-        deserializerMap.put("unit", (n) -> { this.setUnit(n.getStringValue()); });
+        deserializerMap.put("unit", (n) -> { this.setUnit(n.getEnumValue(LengthUnitOfMeasureEnum::forValue)); });
         deserializerMap.put("width", (n) -> { this.setWidth(n.getStringValue()); });
         return deserializerMap;
     }
@@ -100,11 +100,11 @@ public class Dimensions implements AdditionalDataHolder, Parsable {
         return this.length;
     }
     /**
-     * Gets the unit property value. The unit of measure used to express the height, length, and width of the package. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/logistics/types/api:LengthUnitOfMeasureEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the unit property value. The unit of measure used to express the height, length, and width of the package.
+     * @return a {@link LengthUnitOfMeasureEnum}
      */
     @jakarta.annotation.Nullable
-    public String getUnit() {
+    public LengthUnitOfMeasureEnum getUnit() {
         return this.unit;
     }
     /**
@@ -123,7 +123,7 @@ public class Dimensions implements AdditionalDataHolder, Parsable {
         Objects.requireNonNull(writer);
         writer.writeStringValue("height", this.getHeight());
         writer.writeStringValue("length", this.getLength());
-        writer.writeStringValue("unit", this.getUnit());
+        writer.writeEnumValue("unit", this.getUnit());
         writer.writeStringValue("width", this.getWidth());
         writer.writeAdditionalData(this.getAdditionalData());
     }
@@ -149,10 +149,10 @@ public class Dimensions implements AdditionalDataHolder, Parsable {
         this.length = value;
     }
     /**
-     * Sets the unit property value. The unit of measure used to express the height, length, and width of the package. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/logistics/types/api:LengthUnitOfMeasureEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the unit property value. The unit of measure used to express the height, length, and width of the package.
      * @param value Value to set for the unit property.
      */
-    public void setUnit(@jakarta.annotation.Nullable final String value) {
+    public void setUnit(@jakarta.annotation.Nullable final LengthUnitOfMeasureEnum value) {
         this.unit = value;
     }
     /**

@@ -31,23 +31,23 @@ public class Program implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This type is used to provide the status and outcome of an order line item going through the Authenticity Guarantee verification process.
+     * This field is returned when the third-party authenticator performs the authentication verification inspection on the order line item. Different values will be returned based on whether the item passed or failed the authentication verification inspection.
      */
     private PostSaleAuthenticationProgram authenticityVerification;
     /**
-     * This type is used to provide details about an order line item being managed through eBay International Shipping.
+     * This container is returned if the order is being fulfilled through eBay International Shipping.
      */
     private EbayInternationalShipping ebayInternationalShipping;
     /**
-     * This type contains information about the management of the shipping for the order.
+     * This container is returned only if the order is an eBay shipping order. It consists of a field that indicates the provider of a shipping label for this order.
      */
     private EbayShipping ebayShipping;
     /**
-     * The ebayVault property
+     * This field provides information about the eBay vault program that has been selected for an order. This is returned only for those items that are eligible for the eBay Vault Program.
      */
     private EbayVaultProgram ebayVault;
     /**
-     * This type is used to provide details about an order line item being fulfilled by eBay or an eBay fulfillment partner.
+     * This field provides details about an order line item being handled by eBay fulfillment. It is only returned for paid orders being fulfilled by eBay or an eBay fulfillment partner.
      */
     private EbayFulfillmentProgram fulfillmentProgram;
     /**
@@ -75,7 +75,7 @@ public class Program implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the authenticityVerification property value. This type is used to provide the status and outcome of an order line item going through the Authenticity Guarantee verification process.
+     * Gets the authenticityVerification property value. This field is returned when the third-party authenticator performs the authentication verification inspection on the order line item. Different values will be returned based on whether the item passed or failed the authentication verification inspection.
      * @return a {@link PostSaleAuthenticationProgram}
      */
     @jakarta.annotation.Nullable
@@ -83,7 +83,7 @@ public class Program implements AdditionalDataHolder, Parsable {
         return this.authenticityVerification;
     }
     /**
-     * Gets the ebayInternationalShipping property value. This type is used to provide details about an order line item being managed through eBay International Shipping.
+     * Gets the ebayInternationalShipping property value. This container is returned if the order is being fulfilled through eBay International Shipping.
      * @return a {@link EbayInternationalShipping}
      */
     @jakarta.annotation.Nullable
@@ -91,7 +91,7 @@ public class Program implements AdditionalDataHolder, Parsable {
         return this.ebayInternationalShipping;
     }
     /**
-     * Gets the ebayShipping property value. This type contains information about the management of the shipping for the order.
+     * Gets the ebayShipping property value. This container is returned only if the order is an eBay shipping order. It consists of a field that indicates the provider of a shipping label for this order.
      * @return a {@link EbayShipping}
      */
     @jakarta.annotation.Nullable
@@ -99,7 +99,7 @@ public class Program implements AdditionalDataHolder, Parsable {
         return this.ebayShipping;
     }
     /**
-     * Gets the ebayVault property value. The ebayVault property
+     * Gets the ebayVault property value. This field provides information about the eBay vault program that has been selected for an order. This is returned only for those items that are eligible for the eBay Vault Program.
      * @return a {@link EbayVaultProgram}
      */
     @jakarta.annotation.Nullable
@@ -121,7 +121,7 @@ public class Program implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the fulfillmentProgram property value. This type is used to provide details about an order line item being fulfilled by eBay or an eBay fulfillment partner.
+     * Gets the fulfillmentProgram property value. This field provides details about an order line item being handled by eBay fulfillment. It is only returned for paid orders being fulfilled by eBay or an eBay fulfillment partner.
      * @return a {@link EbayFulfillmentProgram}
      */
     @jakarta.annotation.Nullable
@@ -149,35 +149,35 @@ public class Program implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the authenticityVerification property value. This type is used to provide the status and outcome of an order line item going through the Authenticity Guarantee verification process.
+     * Sets the authenticityVerification property value. This field is returned when the third-party authenticator performs the authentication verification inspection on the order line item. Different values will be returned based on whether the item passed or failed the authentication verification inspection.
      * @param value Value to set for the authenticityVerification property.
      */
     public void setAuthenticityVerification(@jakarta.annotation.Nullable final PostSaleAuthenticationProgram value) {
         this.authenticityVerification = value;
     }
     /**
-     * Sets the ebayInternationalShipping property value. This type is used to provide details about an order line item being managed through eBay International Shipping.
+     * Sets the ebayInternationalShipping property value. This container is returned if the order is being fulfilled through eBay International Shipping.
      * @param value Value to set for the ebayInternationalShipping property.
      */
     public void setEbayInternationalShipping(@jakarta.annotation.Nullable final EbayInternationalShipping value) {
         this.ebayInternationalShipping = value;
     }
     /**
-     * Sets the ebayShipping property value. This type contains information about the management of the shipping for the order.
+     * Sets the ebayShipping property value. This container is returned only if the order is an eBay shipping order. It consists of a field that indicates the provider of a shipping label for this order.
      * @param value Value to set for the ebayShipping property.
      */
     public void setEbayShipping(@jakarta.annotation.Nullable final EbayShipping value) {
         this.ebayShipping = value;
     }
     /**
-     * Sets the ebayVault property value. The ebayVault property
+     * Sets the ebayVault property value. This field provides information about the eBay vault program that has been selected for an order. This is returned only for those items that are eligible for the eBay Vault Program.
      * @param value Value to set for the ebayVault property.
      */
     public void setEbayVault(@jakarta.annotation.Nullable final EbayVaultProgram value) {
         this.ebayVault = value;
     }
     /**
-     * Sets the fulfillmentProgram property value. This type is used to provide details about an order line item being fulfilled by eBay or an eBay fulfillment partner.
+     * Sets the fulfillmentProgram property value. This field provides details about an order line item being handled by eBay fulfillment. It is only returned for paid orders being fulfilled by eBay or an eBay fulfillment partner.
      * @param value Value to set for the fulfillmentProgram property.
      */
     public void setFulfillmentProgram(@jakarta.annotation.Nullable final EbayFulfillmentProgram value) {

@@ -31,11 +31,11 @@ public class ContestPaymentDisputeRequest implements AdditionalDataHolder, Parsa
      */
     private Map<String, Object> additionalData;
     /**
-     * This field shows information that the seller provides about the dispute, such as the basis for the dispute, any relevant evidence, tracking numbers, and so forth.&lt;br&gt;&lt;br&gt;&lt;b&gt;Max Length:&lt;/b&gt; 1000 characters.
+     * This field shows information that the seller provides about the dispute, such as the basis for the dispute, any relevant evidence, tracking numbers, and so forth.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Max Length:&lt;/strong&gt; 1000 characters.
      */
     private String note;
     /**
-     * This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * This container is needed if the seller is requesting that the buyer return the item. If this container is used, all relevant fields must be included, including &lt;strong&gt;fullName&lt;/strong&gt; and &lt;strong&gt;primaryPhone&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; If the &lt;a href =&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdispute.disputereasonenum&quot; target=&quot;_blank&quot;&gt;Dispute Reason&lt;/a&gt; is &lt;code&gt;SIGNIFICANTLY_NOT_AS_DESCRIBED&lt;/code&gt;, &lt;strong&gt;returnAddress&lt;/strong&gt; is required.&lt;/span&gt;
      */
     private ReturnAddress returnAddress;
     /**
@@ -79,7 +79,7 @@ public class ContestPaymentDisputeRequest implements AdditionalDataHolder, Parsa
         return deserializerMap;
     }
     /**
-     * Gets the note property value. This field shows information that the seller provides about the dispute, such as the basis for the dispute, any relevant evidence, tracking numbers, and so forth.&lt;br&gt;&lt;br&gt;&lt;b&gt;Max Length:&lt;/b&gt; 1000 characters.
+     * Gets the note property value. This field shows information that the seller provides about the dispute, such as the basis for the dispute, any relevant evidence, tracking numbers, and so forth.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Max Length:&lt;/strong&gt; 1000 characters.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -87,7 +87,7 @@ public class ContestPaymentDisputeRequest implements AdditionalDataHolder, Parsa
         return this.note;
     }
     /**
-     * Gets the returnAddress property value. This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * Gets the returnAddress property value. This container is needed if the seller is requesting that the buyer return the item. If this container is used, all relevant fields must be included, including &lt;strong&gt;fullName&lt;/strong&gt; and &lt;strong&gt;primaryPhone&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; If the &lt;a href =&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdispute.disputereasonenum&quot; target=&quot;_blank&quot;&gt;Dispute Reason&lt;/a&gt; is &lt;code&gt;SIGNIFICANTLY_NOT_AS_DESCRIBED&lt;/code&gt;, &lt;strong&gt;returnAddress&lt;/strong&gt; is required.&lt;/span&gt;
      * @return a {@link ReturnAddress}
      */
     @jakarta.annotation.Nullable
@@ -121,14 +121,14 @@ public class ContestPaymentDisputeRequest implements AdditionalDataHolder, Parsa
         this.additionalData = value;
     }
     /**
-     * Sets the note property value. This field shows information that the seller provides about the dispute, such as the basis for the dispute, any relevant evidence, tracking numbers, and so forth.&lt;br&gt;&lt;br&gt;&lt;b&gt;Max Length:&lt;/b&gt; 1000 characters.
+     * Sets the note property value. This field shows information that the seller provides about the dispute, such as the basis for the dispute, any relevant evidence, tracking numbers, and so forth.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Max Length:&lt;/strong&gt; 1000 characters.
      * @param value Value to set for the note property.
      */
     public void setNote(@jakarta.annotation.Nullable final String value) {
         this.note = value;
     }
     /**
-     * Sets the returnAddress property value. This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * Sets the returnAddress property value. This container is needed if the seller is requesting that the buyer return the item. If this container is used, all relevant fields must be included, including &lt;strong&gt;fullName&lt;/strong&gt; and &lt;strong&gt;primaryPhone&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; If the &lt;a href =&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdispute.disputereasonenum&quot; target=&quot;_blank&quot;&gt;Dispute Reason&lt;/a&gt; is &lt;code&gt;SIGNIFICANTLY_NOT_AS_DESCRIBED&lt;/code&gt;, &lt;strong&gt;returnAddress&lt;/strong&gt; is required.&lt;/span&gt;
      * @param value Value to set for the returnAddress property.
      */
     public void setReturnAddress(@jakarta.annotation.Nullable final ReturnAddress value) {

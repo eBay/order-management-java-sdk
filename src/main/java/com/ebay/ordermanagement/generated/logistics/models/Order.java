@@ -31,11 +31,11 @@ public class Order implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * The marketplace where the order was created.&lt;br&gt;&lt;br&gt;Use the value &lt;code&gt;EBAY&lt;/code&gt; to get the rates available for eBay orders.
+     * The marketplace where the order was created.&lt;br&gt;&lt;br&gt;Currently, only &lt;code&gt;EBAY&lt;/code&gt; is supported. This value can be used to retrieve rates available for eBay orders.
      */
     private String channel;
     /**
-     * The unique identifier of the order. The &lt;a href=/api-docs/sell/fulfillment/resources/order/methods/getOrders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; method of the &lt;b&gt;Fulfillment API&lt;/b&gt; can be used to retrieve order IDs.
+     * The unique identifier of the order. The &lt;a href=&quot;/api-docs/sell/fulfillment/resources/order/methods/getOrders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; method of the &lt;strong&gt;Fulfillment API&lt;/strong&gt; can be used to retrieve order IDs.
      */
     private String orderId;
     /**
@@ -63,7 +63,7 @@ public class Order implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the channel property value. The marketplace where the order was created.&lt;br&gt;&lt;br&gt;Use the value &lt;code&gt;EBAY&lt;/code&gt; to get the rates available for eBay orders.
+     * Gets the channel property value. The marketplace where the order was created.&lt;br&gt;&lt;br&gt;Currently, only &lt;code&gt;EBAY&lt;/code&gt; is supported. This value can be used to retrieve rates available for eBay orders.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -82,7 +82,7 @@ public class Order implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the orderId property value. The unique identifier of the order. The &lt;a href=/api-docs/sell/fulfillment/resources/order/methods/getOrders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; method of the &lt;b&gt;Fulfillment API&lt;/b&gt; can be used to retrieve order IDs.
+     * Gets the orderId property value. The unique identifier of the order. The &lt;a href=&quot;/api-docs/sell/fulfillment/resources/order/methods/getOrders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; method of the &lt;strong&gt;Fulfillment API&lt;/strong&gt; can be used to retrieve order IDs.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -107,14 +107,14 @@ public class Order implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the channel property value. The marketplace where the order was created.&lt;br&gt;&lt;br&gt;Use the value &lt;code&gt;EBAY&lt;/code&gt; to get the rates available for eBay orders.
+     * Sets the channel property value. The marketplace where the order was created.&lt;br&gt;&lt;br&gt;Currently, only &lt;code&gt;EBAY&lt;/code&gt; is supported. This value can be used to retrieve rates available for eBay orders.
      * @param value Value to set for the channel property.
      */
     public void setChannel(@jakarta.annotation.Nullable final String value) {
         this.channel = value;
     }
     /**
-     * Sets the orderId property value. The unique identifier of the order. The &lt;a href=/api-docs/sell/fulfillment/resources/order/methods/getOrders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; method of the &lt;b&gt;Fulfillment API&lt;/b&gt; can be used to retrieve order IDs.
+     * Sets the orderId property value. The unique identifier of the order. The &lt;a href=&quot;/api-docs/sell/fulfillment/resources/order/methods/getOrders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; method of the &lt;strong&gt;Fulfillment API&lt;/strong&gt; can be used to retrieve order IDs.
      * @param value Value to set for the orderId property.
      */
     public void setOrderId(@jakarta.annotation.Nullable final String value) {

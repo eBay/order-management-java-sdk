@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * This type contains information about a digital gift card line item that was purchased as a gift and sent to the recipient by email.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;b&gt;GiftDetails&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+ * This type contains information about a digital gift card line item that was purchased as a gift and sent to the recipient by email.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;strong&gt;GiftDetails&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class GiftDetails implements AdditionalDataHolder, Parsable {
@@ -31,15 +31,15 @@ public class GiftDetails implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This field contains the gift message from the buyer to the gift recipient. This field is only returned if the buyer of the gift included a message for the gift.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;b&gt;message&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * This field contains the gift message from the buyer to the gift recipient. This field is only returned if the buyer of the gift included a message for the gift.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;message&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      */
     private String message;
     /**
-     * The email address of the gift recipient. The seller will send the digital gift card to this email address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;b&gt;recipientEmail&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * The email address of the gift recipient. The seller will send the digital gift card to this email address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;recipientEmail&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      */
     private String recipientEmail;
     /**
-     * The name of the buyer, which will appear on the email that is sent to the gift recipient.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;b&gt;senderName&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * The name of the buyer, which will appear on the email that is sent to the gift recipient.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;senderName&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      */
     private String senderName;
     /**
@@ -79,7 +79,7 @@ public class GiftDetails implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the message property value. This field contains the gift message from the buyer to the gift recipient. This field is only returned if the buyer of the gift included a message for the gift.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;b&gt;message&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * Gets the message property value. This field contains the gift message from the buyer to the gift recipient. This field is only returned if the buyer of the gift included a message for the gift.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;message&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -87,7 +87,7 @@ public class GiftDetails implements AdditionalDataHolder, Parsable {
         return this.message;
     }
     /**
-     * Gets the recipientEmail property value. The email address of the gift recipient. The seller will send the digital gift card to this email address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;b&gt;recipientEmail&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * Gets the recipientEmail property value. The email address of the gift recipient. The seller will send the digital gift card to this email address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;recipientEmail&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -95,7 +95,7 @@ public class GiftDetails implements AdditionalDataHolder, Parsable {
         return this.recipientEmail;
     }
     /**
-     * Gets the senderName property value. The name of the buyer, which will appear on the email that is sent to the gift recipient.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;b&gt;senderName&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * Gets the senderName property value. The name of the buyer, which will appear on the email that is sent to the gift recipient.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;senderName&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -121,21 +121,21 @@ public class GiftDetails implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the message property value. This field contains the gift message from the buyer to the gift recipient. This field is only returned if the buyer of the gift included a message for the gift.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;b&gt;message&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * Sets the message property value. This field contains the gift message from the buyer to the gift recipient. This field is only returned if the buyer of the gift included a message for the gift.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;message&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      * @param value Value to set for the message property.
      */
     public void setMessage(@jakarta.annotation.Nullable final String value) {
         this.message = value;
     }
     /**
-     * Sets the recipientEmail property value. The email address of the gift recipient. The seller will send the digital gift card to this email address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;b&gt;recipientEmail&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * Sets the recipientEmail property value. The email address of the gift recipient. The seller will send the digital gift card to this email address.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;recipientEmail&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      * @param value Value to set for the recipientEmail property.
      */
     public void setRecipientEmail(@jakarta.annotation.Nullable final String value) {
         this.recipientEmail = value;
     }
     /**
-     * Sets the senderName property value. The name of the buyer, which will appear on the email that is sent to the gift recipient.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;b&gt;senderName&lt;/b&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
+     * Sets the senderName property value. The name of the buyer, which will appear on the email that is sent to the gift recipient.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;senderName&lt;/strong&gt; will not be returned for any order that is more than 90 days old.&lt;/span&gt;
      * @param value Value to set for the senderName property.
      */
     public void setSenderName(@jakarta.annotation.Nullable final String value) {

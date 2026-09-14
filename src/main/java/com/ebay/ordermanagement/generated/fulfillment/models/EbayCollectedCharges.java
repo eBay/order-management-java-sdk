@@ -31,11 +31,11 @@ public class EbayCollectedCharges implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This array shows any charges that eBay collects from the buyer.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt; Note: &lt;/strong&gt; Currently, the only supported charge type is BUYER_PROTECTION.&lt;/span&gt;
+     * This array shows any charges that eBay collects from the buyer.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt; Note: &lt;/strong&gt; Currently, the only supported charge type is &lt;code&gt;BUYER_PROTECTION&lt;/code&gt;.&lt;/span&gt;
      */
     private java.util.List<Charge> charges;
     /**
-     * This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * This container consists of costs related to eBay Shipping collected by eBay from the buyer of this order.
      */
     private Amount ebayShipping;
     /**
@@ -63,7 +63,7 @@ public class EbayCollectedCharges implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the charges property value. This array shows any charges that eBay collects from the buyer.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt; Note: &lt;/strong&gt; Currently, the only supported charge type is BUYER_PROTECTION.&lt;/span&gt;
+     * Gets the charges property value. This array shows any charges that eBay collects from the buyer.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt; Note: &lt;/strong&gt; Currently, the only supported charge type is &lt;code&gt;BUYER_PROTECTION&lt;/code&gt;.&lt;/span&gt;
      * @return a {@link java.util.List<Charge>}
      */
     @jakarta.annotation.Nullable
@@ -71,7 +71,7 @@ public class EbayCollectedCharges implements AdditionalDataHolder, Parsable {
         return this.charges;
     }
     /**
-     * Gets the ebayShipping property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the ebayShipping property value. This container consists of costs related to eBay Shipping collected by eBay from the buyer of this order.
      * @return a {@link Amount}
      */
     @jakarta.annotation.Nullable
@@ -107,14 +107,14 @@ public class EbayCollectedCharges implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the charges property value. This array shows any charges that eBay collects from the buyer.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt; Note: &lt;/strong&gt; Currently, the only supported charge type is BUYER_PROTECTION.&lt;/span&gt;
+     * Sets the charges property value. This array shows any charges that eBay collects from the buyer.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt; Note: &lt;/strong&gt; Currently, the only supported charge type is &lt;code&gt;BUYER_PROTECTION&lt;/code&gt;.&lt;/span&gt;
      * @param value Value to set for the charges property.
      */
     public void setCharges(@jakarta.annotation.Nullable final java.util.List<Charge> value) {
         this.charges = value;
     }
     /**
-     * Sets the ebayShipping property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the ebayShipping property value. This container consists of costs related to eBay Shipping collected by eBay from the buyer of this order.
      * @param value Value to set for the ebayShipping property.
      */
     public void setEbayShipping(@jakarta.annotation.Nullable final Amount value) {

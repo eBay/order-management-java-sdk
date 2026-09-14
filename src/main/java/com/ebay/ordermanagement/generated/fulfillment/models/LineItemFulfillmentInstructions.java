@@ -31,21 +31,29 @@ public class LineItemFulfillmentInstructions implements AdditionalDataHolder, Pa
      */
     private Map<String, Object> additionalData;
     /**
+     * This field is reserved for internal or future use. &lt;!-- Destination time zone. This is time zone id from Olson database. Example: America/Los_Angeles. Delivery dates are calculated relative to this time zone. --&gt;
+     */
+    private String destinationTimeZone;
+    /**
      * Although this field is still returned, it can be ignored since eBay Guaranteed Delivery is no longer a supported feature on any marketplace. This field may get removed from the schema in the future.
      */
     private Boolean guaranteedDelivery;
     /**
-     * The estimated latest date and time that the buyer can expect to receive the line item based on the seller&apos;s stated handling time and the transit times of the available shipping service options. The seller must pay extra attention to this date, as a failure to deliver by this date/time can result in a &apos;Late shipment&apos; seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
+     * The estimated latest date and time that the buyer can expect to receive the line item based on the seller&apos;s stated handling time and the transit times of the available shipping service options. The seller must pay extra attention to this date, as a failure to deliver by this date/time can result in a &apos;Late shipment&apos; seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
      */
     private String maxEstimatedDeliveryDate;
     /**
-     * The estimated earliest date and time that the buyer can expect to receive the line item based on the seller&apos;s stated handling time and the transit times of the available shipping service options.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
+     * The estimated earliest date and time that the buyer can expect to receive the line item based on the seller&apos;s stated handling time and the transit times of the available shipping service options.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
      */
     private String minEstimatedDeliveryDate;
     /**
-     * The latest date and time by which the seller should ship line item in order to meet the expected delivery window. This timestamp will be set by eBay based on time of purchase and the seller&apos;s stated handling time. The seller must pay extra attention to this date, as a failure to physically ship the line item by this date/time can result in a &apos;Late shipment&apos; seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
+     * The latest date and time by which the seller should ship line item in order to meet the expected delivery window. This timestamp will be set by eBay based on time of purchase and the seller&apos;s stated handling time. The seller must pay extra attention to this date, as a failure to physically ship the line item by this date/time can result in a &apos;Late shipment&apos; seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
      */
     private String shipByDate;
+    /**
+     * This field is reserved for internal or future use. &lt;!-- Source time zone. This is time zone id from Olson database. Example: America/Los_Angeles. Ship by date is calculated relative to this time zone. --&gt;
+     */
+    private String sourceTimeZone;
     /**
      * Instantiates a new {@link LineItemFulfillmentInstructions} and sets the default values.
      */
@@ -71,16 +79,26 @@ public class LineItemFulfillmentInstructions implements AdditionalDataHolder, Pa
         return this.additionalData;
     }
     /**
+     * Gets the destinationTimeZone property value. This field is reserved for internal or future use. &lt;!-- Destination time zone. This is time zone id from Olson database. Example: America/Los_Angeles. Delivery dates are calculated relative to this time zone. --&gt;
+     * @return a {@link String}
+     */
+    @jakarta.annotation.Nullable
+    public String getDestinationTimeZone() {
+        return this.destinationTimeZone;
+    }
+    /**
      * The deserialization information for the current model
      * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
      */
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(4);
+        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(6);
+        deserializerMap.put("destinationTimeZone", (n) -> { this.setDestinationTimeZone(n.getStringValue()); });
         deserializerMap.put("guaranteedDelivery", (n) -> { this.setGuaranteedDelivery(n.getBooleanValue()); });
         deserializerMap.put("maxEstimatedDeliveryDate", (n) -> { this.setMaxEstimatedDeliveryDate(n.getStringValue()); });
         deserializerMap.put("minEstimatedDeliveryDate", (n) -> { this.setMinEstimatedDeliveryDate(n.getStringValue()); });
         deserializerMap.put("shipByDate", (n) -> { this.setShipByDate(n.getStringValue()); });
+        deserializerMap.put("sourceTimeZone", (n) -> { this.setSourceTimeZone(n.getStringValue()); });
         return deserializerMap;
     }
     /**
@@ -92,7 +110,7 @@ public class LineItemFulfillmentInstructions implements AdditionalDataHolder, Pa
         return this.guaranteedDelivery;
     }
     /**
-     * Gets the maxEstimatedDeliveryDate property value. The estimated latest date and time that the buyer can expect to receive the line item based on the seller&apos;s stated handling time and the transit times of the available shipping service options. The seller must pay extra attention to this date, as a failure to deliver by this date/time can result in a &apos;Late shipment&apos; seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
+     * Gets the maxEstimatedDeliveryDate property value. The estimated latest date and time that the buyer can expect to receive the line item based on the seller&apos;s stated handling time and the transit times of the available shipping service options. The seller must pay extra attention to this date, as a failure to deliver by this date/time can result in a &apos;Late shipment&apos; seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -100,7 +118,7 @@ public class LineItemFulfillmentInstructions implements AdditionalDataHolder, Pa
         return this.maxEstimatedDeliveryDate;
     }
     /**
-     * Gets the minEstimatedDeliveryDate property value. The estimated earliest date and time that the buyer can expect to receive the line item based on the seller&apos;s stated handling time and the transit times of the available shipping service options.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
+     * Gets the minEstimatedDeliveryDate property value. The estimated earliest date and time that the buyer can expect to receive the line item based on the seller&apos;s stated handling time and the transit times of the available shipping service options.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -108,7 +126,7 @@ public class LineItemFulfillmentInstructions implements AdditionalDataHolder, Pa
         return this.minEstimatedDeliveryDate;
     }
     /**
-     * Gets the shipByDate property value. The latest date and time by which the seller should ship line item in order to meet the expected delivery window. This timestamp will be set by eBay based on time of purchase and the seller&apos;s stated handling time. The seller must pay extra attention to this date, as a failure to physically ship the line item by this date/time can result in a &apos;Late shipment&apos; seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
+     * Gets the shipByDate property value. The latest date and time by which the seller should ship line item in order to meet the expected delivery window. This timestamp will be set by eBay based on time of purchase and the seller&apos;s stated handling time. The seller must pay extra attention to this date, as a failure to physically ship the line item by this date/time can result in a &apos;Late shipment&apos; seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -116,15 +134,25 @@ public class LineItemFulfillmentInstructions implements AdditionalDataHolder, Pa
         return this.shipByDate;
     }
     /**
+     * Gets the sourceTimeZone property value. This field is reserved for internal or future use. &lt;!-- Source time zone. This is time zone id from Olson database. Example: America/Los_Angeles. Ship by date is calculated relative to this time zone. --&gt;
+     * @return a {@link String}
+     */
+    @jakarta.annotation.Nullable
+    public String getSourceTimeZone() {
+        return this.sourceTimeZone;
+    }
+    /**
      * Serializes information the current object
      * @param writer Serialization writer to use to serialize this model
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
+        writer.writeStringValue("destinationTimeZone", this.getDestinationTimeZone());
         writer.writeBooleanValue("guaranteedDelivery", this.getGuaranteedDelivery());
         writer.writeStringValue("maxEstimatedDeliveryDate", this.getMaxEstimatedDeliveryDate());
         writer.writeStringValue("minEstimatedDeliveryDate", this.getMinEstimatedDeliveryDate());
         writer.writeStringValue("shipByDate", this.getShipByDate());
+        writer.writeStringValue("sourceTimeZone", this.getSourceTimeZone());
         writer.writeAdditionalData(this.getAdditionalData());
     }
     /**
@@ -135,6 +163,13 @@ public class LineItemFulfillmentInstructions implements AdditionalDataHolder, Pa
         this.additionalData = value;
     }
     /**
+     * Sets the destinationTimeZone property value. This field is reserved for internal or future use. &lt;!-- Destination time zone. This is time zone id from Olson database. Example: America/Los_Angeles. Delivery dates are calculated relative to this time zone. --&gt;
+     * @param value Value to set for the destinationTimeZone property.
+     */
+    public void setDestinationTimeZone(@jakarta.annotation.Nullable final String value) {
+        this.destinationTimeZone = value;
+    }
+    /**
      * Sets the guaranteedDelivery property value. Although this field is still returned, it can be ignored since eBay Guaranteed Delivery is no longer a supported feature on any marketplace. This field may get removed from the schema in the future.
      * @param value Value to set for the guaranteedDelivery property.
      */
@@ -142,24 +177,31 @@ public class LineItemFulfillmentInstructions implements AdditionalDataHolder, Pa
         this.guaranteedDelivery = value;
     }
     /**
-     * Sets the maxEstimatedDeliveryDate property value. The estimated latest date and time that the buyer can expect to receive the line item based on the seller&apos;s stated handling time and the transit times of the available shipping service options. The seller must pay extra attention to this date, as a failure to deliver by this date/time can result in a &apos;Late shipment&apos; seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
+     * Sets the maxEstimatedDeliveryDate property value. The estimated latest date and time that the buyer can expect to receive the line item based on the seller&apos;s stated handling time and the transit times of the available shipping service options. The seller must pay extra attention to this date, as a failure to deliver by this date/time can result in a &apos;Late shipment&apos; seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
      * @param value Value to set for the maxEstimatedDeliveryDate property.
      */
     public void setMaxEstimatedDeliveryDate(@jakarta.annotation.Nullable final String value) {
         this.maxEstimatedDeliveryDate = value;
     }
     /**
-     * Sets the minEstimatedDeliveryDate property value. The estimated earliest date and time that the buyer can expect to receive the line item based on the seller&apos;s stated handling time and the transit times of the available shipping service options.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
+     * Sets the minEstimatedDeliveryDate property value. The estimated earliest date and time that the buyer can expect to receive the line item based on the seller&apos;s stated handling time and the transit times of the available shipping service options.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
      * @param value Value to set for the minEstimatedDeliveryDate property.
      */
     public void setMinEstimatedDeliveryDate(@jakarta.annotation.Nullable final String value) {
         this.minEstimatedDeliveryDate = value;
     }
     /**
-     * Sets the shipByDate property value. The latest date and time by which the seller should ship line item in order to meet the expected delivery window. This timestamp will be set by eBay based on time of purchase and the seller&apos;s stated handling time. The seller must pay extra attention to this date, as a failure to physically ship the line item by this date/time can result in a &apos;Late shipment&apos; seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
+     * Sets the shipByDate property value. The latest date and time by which the seller should ship line item in order to meet the expected delivery window. This timestamp will be set by eBay based on time of purchase and the seller&apos;s stated handling time. The seller must pay extra attention to this date, as a failure to physically ship the line item by this date/time can result in a &apos;Late shipment&apos; seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;/span&gt;
      * @param value Value to set for the shipByDate property.
      */
     public void setShipByDate(@jakarta.annotation.Nullable final String value) {
         this.shipByDate = value;
+    }
+    /**
+     * Sets the sourceTimeZone property value. This field is reserved for internal or future use. &lt;!-- Source time zone. This is time zone id from Olson database. Example: America/Los_Angeles. Ship by date is calculated relative to this time zone. --&gt;
+     * @param value Value to set for the sourceTimeZone property.
+     */
+    public void setSourceTimeZone(@jakarta.annotation.Nullable final String value) {
+        this.sourceTimeZone = value;
     }
 }

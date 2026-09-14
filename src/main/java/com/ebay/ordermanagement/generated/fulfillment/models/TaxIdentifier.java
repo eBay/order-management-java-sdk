@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * This type is used by the &lt;strong&gt;taxIdentifier&lt;/strong&gt; container that is returned in &lt;strong&gt;getOrder&lt;/strong&gt;. The &lt;strong&gt;taxIdentifier&lt;/strong&gt; container consists of taxpayer identification information for buyers from Italy, Spain, or Guatemala. It is currently only returned for orders occurring on the eBay Italy or eBay Spain marketplaces.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Currently, the &lt;strong&gt;taxIdentifier&lt;/strong&gt; container is only returned in &lt;strong&gt;getOrder&lt;/strong&gt; and not in &lt;strong&gt;getOrders&lt;/strong&gt;. So, if a seller wanted to view a buyer&apos;s tax information for a particular order returned in &lt;strong&gt;getOrders&lt;/strong&gt;, that seller would need to use the &lt;strong&gt;orderId&lt;/strong&gt; value for that particular order, and then run a &lt;strong&gt;getOrder&lt;/strong&gt; call against that order ID. &lt;/span&gt;
+ * This type is used by the &lt;strong&gt;taxIdentifier&lt;/strong&gt; container that is returned in &lt;strong&gt;getOrder&lt;/strong&gt;. The &lt;strong&gt;taxIdentifier&lt;/strong&gt; container consists of taxpayer identification information for buyers from Italy, Spain, or Guatemala. It is currently only returned for orders occurring on the eBay Italy or eBay Spain marketplaces.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Currently, the &lt;strong&gt;taxIdentifier&lt;/strong&gt; container is only returned in &lt;strong&gt;getOrder&lt;/strong&gt; and not in &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt;. So, if a seller wanted to view a buyer&apos;s tax information for a particular order returned in &lt;strong&gt;getOrders&lt;/strong&gt;, that seller would need to use the &lt;strong&gt;orderId&lt;/strong&gt; value for that particular order, and then run a &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder&quot; target=&quot;_blank&quot;&gt;getOrder&lt;/a&gt; call against that order ID. &lt;/span&gt;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class TaxIdentifier implements AdditionalDataHolder, Parsable {
@@ -31,13 +31,13 @@ public class TaxIdentifier implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This two-letter code indicates the country that issued the buyer&apos;s tax ID. The country that the two-letter code represents can be found in the &lt;strong&gt;CountryCodeEnum&lt;/strong&gt; type, or in the  &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html &quot;&gt;ISO 3166&lt;/a&gt; standard. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * This two-letter code indicates the country that issued the buyer&apos;s tax ID. The country that the two-letter code represents can be found in the &lt;strong&gt;CountryCodeEnum&lt;/strong&gt; type or in the  &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html&quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; standard.
      */
-    private String issuingCountry;
+    private CountryCodeEnum issuingCountry;
     /**
-     * This enumeration value indicates the type of tax identification being used for the buyer. The different tax types are defined in the &lt;strong&gt;TaxIdentifierTypeEnum&lt;/strong&gt; type. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:TaxIdentifierTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * This enumeration value indicates the type of tax identification being used for the buyer. The different tax types are defined in the &lt;strong&gt;TaxIdentifierTypeEnum&lt;/strong&gt; type.
      */
-    private String taxIdentifierType;
+    private TaxIdentifierTypeEnum taxIdentifierType;
     /**
      * This value is the unique tax ID associated with the buyer. The type of tax identification is shown in the &lt;strong&gt;taxIdentifierType&lt;/strong&gt; field.
      */
@@ -73,25 +73,25 @@ public class TaxIdentifier implements AdditionalDataHolder, Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(3);
-        deserializerMap.put("issuingCountry", (n) -> { this.setIssuingCountry(n.getStringValue()); });
-        deserializerMap.put("taxIdentifierType", (n) -> { this.setTaxIdentifierType(n.getStringValue()); });
+        deserializerMap.put("issuingCountry", (n) -> { this.setIssuingCountry(n.getEnumValue(CountryCodeEnum::forValue)); });
+        deserializerMap.put("taxIdentifierType", (n) -> { this.setTaxIdentifierType(n.getEnumValue(TaxIdentifierTypeEnum::forValue)); });
         deserializerMap.put("taxpayerId", (n) -> { this.setTaxpayerId(n.getStringValue()); });
         return deserializerMap;
     }
     /**
-     * Gets the issuingCountry property value. This two-letter code indicates the country that issued the buyer&apos;s tax ID. The country that the two-letter code represents can be found in the &lt;strong&gt;CountryCodeEnum&lt;/strong&gt; type, or in the  &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html &quot;&gt;ISO 3166&lt;/a&gt; standard. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the issuingCountry property value. This two-letter code indicates the country that issued the buyer&apos;s tax ID. The country that the two-letter code represents can be found in the &lt;strong&gt;CountryCodeEnum&lt;/strong&gt; type or in the  &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html&quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; standard.
+     * @return a {@link CountryCodeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getIssuingCountry() {
+    public CountryCodeEnum getIssuingCountry() {
         return this.issuingCountry;
     }
     /**
-     * Gets the taxIdentifierType property value. This enumeration value indicates the type of tax identification being used for the buyer. The different tax types are defined in the &lt;strong&gt;TaxIdentifierTypeEnum&lt;/strong&gt; type. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:TaxIdentifierTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the taxIdentifierType property value. This enumeration value indicates the type of tax identification being used for the buyer. The different tax types are defined in the &lt;strong&gt;TaxIdentifierTypeEnum&lt;/strong&gt; type.
+     * @return a {@link TaxIdentifierTypeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getTaxIdentifierType() {
+    public TaxIdentifierTypeEnum getTaxIdentifierType() {
         return this.taxIdentifierType;
     }
     /**
@@ -108,8 +108,8 @@ public class TaxIdentifier implements AdditionalDataHolder, Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeStringValue("issuingCountry", this.getIssuingCountry());
-        writer.writeStringValue("taxIdentifierType", this.getTaxIdentifierType());
+        writer.writeEnumValue("issuingCountry", this.getIssuingCountry());
+        writer.writeEnumValue("taxIdentifierType", this.getTaxIdentifierType());
         writer.writeStringValue("taxpayerId", this.getTaxpayerId());
         writer.writeAdditionalData(this.getAdditionalData());
     }
@@ -121,17 +121,17 @@ public class TaxIdentifier implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the issuingCountry property value. This two-letter code indicates the country that issued the buyer&apos;s tax ID. The country that the two-letter code represents can be found in the &lt;strong&gt;CountryCodeEnum&lt;/strong&gt; type, or in the  &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html &quot;&gt;ISO 3166&lt;/a&gt; standard. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the issuingCountry property value. This two-letter code indicates the country that issued the buyer&apos;s tax ID. The country that the two-letter code represents can be found in the &lt;strong&gt;CountryCodeEnum&lt;/strong&gt; type or in the  &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html&quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; standard.
      * @param value Value to set for the issuingCountry property.
      */
-    public void setIssuingCountry(@jakarta.annotation.Nullable final String value) {
+    public void setIssuingCountry(@jakarta.annotation.Nullable final CountryCodeEnum value) {
         this.issuingCountry = value;
     }
     /**
-     * Sets the taxIdentifierType property value. This enumeration value indicates the type of tax identification being used for the buyer. The different tax types are defined in the &lt;strong&gt;TaxIdentifierTypeEnum&lt;/strong&gt; type. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:TaxIdentifierTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the taxIdentifierType property value. This enumeration value indicates the type of tax identification being used for the buyer. The different tax types are defined in the &lt;strong&gt;TaxIdentifierTypeEnum&lt;/strong&gt; type.
      * @param value Value to set for the taxIdentifierType property.
      */
-    public void setTaxIdentifierType(@jakarta.annotation.Nullable final String value) {
+    public void setTaxIdentifierType(@jakarta.annotation.Nullable final TaxIdentifierTypeEnum value) {
         this.taxIdentifierType = value;
     }
     /**

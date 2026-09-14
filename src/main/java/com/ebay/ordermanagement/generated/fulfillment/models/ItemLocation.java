@@ -31,11 +31,11 @@ public class ItemLocation implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * The two-letter &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; code representing the country of the address. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The two-letter &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; code representing the country of the address.
      */
-    private String countryCode;
+    private CountryCodeEnum countryCode;
     /**
-     * Indicates the geographical location of the item (along with the values in the &lt;strong&gt;countryCode&lt;/strong&gt; and &lt;b&gt;postalCode&lt;/b&gt; fields).&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; If the item is shipped from a fulfillment center location through the Multi-Warehouse Program, this field will return the geographical location of the fulfillment center closest to the buyer.&lt;/span&gt;&lt;br&gt;This field provides city, province, state, or similar information.
+     * Indicates the geographical location of the item (along with the values in the &lt;strong&gt;countryCode&lt;/strong&gt; and &lt;strong&gt;postalCode&lt;/strong&gt; fields).&lt;br&gt;&lt;br&gt;This field provides city, province, state, or similar information.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; If the item is shipped from a fulfillment center location through the Multi-Warehouse Program, this field will return the geographical location of the fulfillment center closest to the buyer.&lt;/span&gt;
      */
     private String location;
     /**
@@ -67,11 +67,11 @@ public class ItemLocation implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the countryCode property value. The two-letter &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; code representing the country of the address. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the countryCode property value. The two-letter &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; code representing the country of the address.
+     * @return a {@link CountryCodeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getCountryCode() {
+    public CountryCodeEnum getCountryCode() {
         return this.countryCode;
     }
     /**
@@ -81,13 +81,13 @@ public class ItemLocation implements AdditionalDataHolder, Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(3);
-        deserializerMap.put("countryCode", (n) -> { this.setCountryCode(n.getStringValue()); });
+        deserializerMap.put("countryCode", (n) -> { this.setCountryCode(n.getEnumValue(CountryCodeEnum::forValue)); });
         deserializerMap.put("location", (n) -> { this.setLocation(n.getStringValue()); });
         deserializerMap.put("postalCode", (n) -> { this.setPostalCode(n.getStringValue()); });
         return deserializerMap;
     }
     /**
-     * Gets the location property value. Indicates the geographical location of the item (along with the values in the &lt;strong&gt;countryCode&lt;/strong&gt; and &lt;b&gt;postalCode&lt;/b&gt; fields).&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; If the item is shipped from a fulfillment center location through the Multi-Warehouse Program, this field will return the geographical location of the fulfillment center closest to the buyer.&lt;/span&gt;&lt;br&gt;This field provides city, province, state, or similar information.
+     * Gets the location property value. Indicates the geographical location of the item (along with the values in the &lt;strong&gt;countryCode&lt;/strong&gt; and &lt;strong&gt;postalCode&lt;/strong&gt; fields).&lt;br&gt;&lt;br&gt;This field provides city, province, state, or similar information.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; If the item is shipped from a fulfillment center location through the Multi-Warehouse Program, this field will return the geographical location of the fulfillment center closest to the buyer.&lt;/span&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -108,7 +108,7 @@ public class ItemLocation implements AdditionalDataHolder, Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeStringValue("countryCode", this.getCountryCode());
+        writer.writeEnumValue("countryCode", this.getCountryCode());
         writer.writeStringValue("location", this.getLocation());
         writer.writeStringValue("postalCode", this.getPostalCode());
         writer.writeAdditionalData(this.getAdditionalData());
@@ -121,14 +121,14 @@ public class ItemLocation implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the countryCode property value. The two-letter &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; code representing the country of the address. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the countryCode property value. The two-letter &lt;a href=&quot;https://www.iso.org/iso-3166-country-codes.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 3166&lt;/a&gt; code representing the country of the address.
      * @param value Value to set for the countryCode property.
      */
-    public void setCountryCode(@jakarta.annotation.Nullable final String value) {
+    public void setCountryCode(@jakarta.annotation.Nullable final CountryCodeEnum value) {
         this.countryCode = value;
     }
     /**
-     * Sets the location property value. Indicates the geographical location of the item (along with the values in the &lt;strong&gt;countryCode&lt;/strong&gt; and &lt;b&gt;postalCode&lt;/b&gt; fields).&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; If the item is shipped from a fulfillment center location through the Multi-Warehouse Program, this field will return the geographical location of the fulfillment center closest to the buyer.&lt;/span&gt;&lt;br&gt;This field provides city, province, state, or similar information.
+     * Sets the location property value. Indicates the geographical location of the item (along with the values in the &lt;strong&gt;countryCode&lt;/strong&gt; and &lt;strong&gt;postalCode&lt;/strong&gt; fields).&lt;br&gt;&lt;br&gt;This field provides city, province, state, or similar information.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; If the item is shipped from a fulfillment center location through the Multi-Warehouse Program, this field will return the geographical location of the fulfillment center closest to the buyer.&lt;/span&gt;
      * @param value Value to set for the location property.
      */
     public void setLocation(@jakarta.annotation.Nullable final String value) {

@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * This type contains information used by the installation provider concerning appointment details selected by the buyer
+ * This type contains information used by the installation provider concerning appointment details selected by the buyer.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class AppointmentDetails implements AdditionalDataHolder, Parsable {
@@ -31,27 +31,27 @@ public class AppointmentDetails implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * The date and time the appointment ends, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2022-10-28T00:00:00.000Z&lt;/code&gt;
+     * The date and time the appointment ends, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2022-10-28T00:00:00.000Z&lt;/code&gt;
      */
     private String appointmentEndTime;
     /**
-     * The date and time the appointment begins, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2022-10-28T00:10:00.000Z&lt;/code&gt;
+     * The date and time the appointment begins, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2022-10-28T00:10:00.000Z&lt;/code&gt;
      */
     private String appointmentStartTime;
     /**
-     * The status of the appointment. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The status of the appointment.
      */
-    private String appointmentStatus;
+    private AppointmentStatusEnum appointmentStatus;
     /**
-     * The type of appointment. MACRO appointments only have a start time (not bounded with end time). TIME_SLOT appointments have a period (both start time and end time). Required for tire installation. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The type of appointment. &lt;code&gt;MACRO&lt;/code&gt; appointments only have a start time (not bounded with end time). &lt;code&gt;TIME_SLOT&lt;/code&gt; appointments have a period (both start time and end time). Required for tire installation.
      */
-    private String appointmentType;
+    private AppointmentTypeEnum appointmentType;
     /**
-     * Appointment window for MACRO appointments. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentWindowEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Appointment window for &lt;code&gt;MACRO&lt;/code&gt; appointments.
      */
-    private String appointmentWindow;
+    private AppointmentWindowEnum appointmentWindow;
     /**
-     * Service provider date of the appointment (no time stamp). Returned only for MACRO appointment types.
+     * Service provider date of the appointment (no time stamp). Returned only for &lt;code&gt;MACRO&lt;/code&gt; appointment types.
      */
     private String serviceProviderAppointmentDate;
     /**
@@ -79,7 +79,7 @@ public class AppointmentDetails implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the appointmentEndTime property value. The date and time the appointment ends, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2022-10-28T00:00:00.000Z&lt;/code&gt;
+     * Gets the appointmentEndTime property value. The date and time the appointment ends, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2022-10-28T00:00:00.000Z&lt;/code&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -87,7 +87,7 @@ public class AppointmentDetails implements AdditionalDataHolder, Parsable {
         return this.appointmentEndTime;
     }
     /**
-     * Gets the appointmentStartTime property value. The date and time the appointment begins, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2022-10-28T00:10:00.000Z&lt;/code&gt;
+     * Gets the appointmentStartTime property value. The date and time the appointment begins, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2022-10-28T00:10:00.000Z&lt;/code&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -95,27 +95,27 @@ public class AppointmentDetails implements AdditionalDataHolder, Parsable {
         return this.appointmentStartTime;
     }
     /**
-     * Gets the appointmentStatus property value. The status of the appointment. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the appointmentStatus property value. The status of the appointment.
+     * @return a {@link AppointmentStatusEnum}
      */
     @jakarta.annotation.Nullable
-    public String getAppointmentStatus() {
+    public AppointmentStatusEnum getAppointmentStatus() {
         return this.appointmentStatus;
     }
     /**
-     * Gets the appointmentType property value. The type of appointment. MACRO appointments only have a start time (not bounded with end time). TIME_SLOT appointments have a period (both start time and end time). Required for tire installation. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the appointmentType property value. The type of appointment. &lt;code&gt;MACRO&lt;/code&gt; appointments only have a start time (not bounded with end time). &lt;code&gt;TIME_SLOT&lt;/code&gt; appointments have a period (both start time and end time). Required for tire installation.
+     * @return a {@link AppointmentTypeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getAppointmentType() {
+    public AppointmentTypeEnum getAppointmentType() {
         return this.appointmentType;
     }
     /**
-     * Gets the appointmentWindow property value. Appointment window for MACRO appointments. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentWindowEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the appointmentWindow property value. Appointment window for &lt;code&gt;MACRO&lt;/code&gt; appointments.
+     * @return a {@link AppointmentWindowEnum}
      */
     @jakarta.annotation.Nullable
-    public String getAppointmentWindow() {
+    public AppointmentWindowEnum getAppointmentWindow() {
         return this.appointmentWindow;
     }
     /**
@@ -127,14 +127,14 @@ public class AppointmentDetails implements AdditionalDataHolder, Parsable {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(6);
         deserializerMap.put("appointmentEndTime", (n) -> { this.setAppointmentEndTime(n.getStringValue()); });
         deserializerMap.put("appointmentStartTime", (n) -> { this.setAppointmentStartTime(n.getStringValue()); });
-        deserializerMap.put("appointmentStatus", (n) -> { this.setAppointmentStatus(n.getStringValue()); });
-        deserializerMap.put("appointmentType", (n) -> { this.setAppointmentType(n.getStringValue()); });
-        deserializerMap.put("appointmentWindow", (n) -> { this.setAppointmentWindow(n.getStringValue()); });
+        deserializerMap.put("appointmentStatus", (n) -> { this.setAppointmentStatus(n.getEnumValue(AppointmentStatusEnum::forValue)); });
+        deserializerMap.put("appointmentType", (n) -> { this.setAppointmentType(n.getEnumValue(AppointmentTypeEnum::forValue)); });
+        deserializerMap.put("appointmentWindow", (n) -> { this.setAppointmentWindow(n.getEnumValue(AppointmentWindowEnum::forValue)); });
         deserializerMap.put("serviceProviderAppointmentDate", (n) -> { this.setServiceProviderAppointmentDate(n.getStringValue()); });
         return deserializerMap;
     }
     /**
-     * Gets the serviceProviderAppointmentDate property value. Service provider date of the appointment (no time stamp). Returned only for MACRO appointment types.
+     * Gets the serviceProviderAppointmentDate property value. Service provider date of the appointment (no time stamp). Returned only for &lt;code&gt;MACRO&lt;/code&gt; appointment types.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -149,9 +149,9 @@ public class AppointmentDetails implements AdditionalDataHolder, Parsable {
         Objects.requireNonNull(writer);
         writer.writeStringValue("appointmentEndTime", this.getAppointmentEndTime());
         writer.writeStringValue("appointmentStartTime", this.getAppointmentStartTime());
-        writer.writeStringValue("appointmentStatus", this.getAppointmentStatus());
-        writer.writeStringValue("appointmentType", this.getAppointmentType());
-        writer.writeStringValue("appointmentWindow", this.getAppointmentWindow());
+        writer.writeEnumValue("appointmentStatus", this.getAppointmentStatus());
+        writer.writeEnumValue("appointmentType", this.getAppointmentType());
+        writer.writeEnumValue("appointmentWindow", this.getAppointmentWindow());
         writer.writeStringValue("serviceProviderAppointmentDate", this.getServiceProviderAppointmentDate());
         writer.writeAdditionalData(this.getAdditionalData());
     }
@@ -163,42 +163,42 @@ public class AppointmentDetails implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the appointmentEndTime property value. The date and time the appointment ends, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2022-10-28T00:00:00.000Z&lt;/code&gt;
+     * Sets the appointmentEndTime property value. The date and time the appointment ends, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2022-10-28T00:00:00.000Z&lt;/code&gt;
      * @param value Value to set for the appointmentEndTime property.
      */
     public void setAppointmentEndTime(@jakarta.annotation.Nullable final String value) {
         this.appointmentEndTime = value;
     }
     /**
-     * Sets the appointmentStartTime property value. The date and time the appointment begins, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2022-10-28T00:10:00.000Z&lt;/code&gt;
+     * Sets the appointmentStartTime property value. The date and time the appointment begins, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2022-10-28T00:10:00.000Z&lt;/code&gt;
      * @param value Value to set for the appointmentStartTime property.
      */
     public void setAppointmentStartTime(@jakarta.annotation.Nullable final String value) {
         this.appointmentStartTime = value;
     }
     /**
-     * Sets the appointmentStatus property value. The status of the appointment. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the appointmentStatus property value. The status of the appointment.
      * @param value Value to set for the appointmentStatus property.
      */
-    public void setAppointmentStatus(@jakarta.annotation.Nullable final String value) {
+    public void setAppointmentStatus(@jakarta.annotation.Nullable final AppointmentStatusEnum value) {
         this.appointmentStatus = value;
     }
     /**
-     * Sets the appointmentType property value. The type of appointment. MACRO appointments only have a start time (not bounded with end time). TIME_SLOT appointments have a period (both start time and end time). Required for tire installation. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the appointmentType property value. The type of appointment. &lt;code&gt;MACRO&lt;/code&gt; appointments only have a start time (not bounded with end time). &lt;code&gt;TIME_SLOT&lt;/code&gt; appointments have a period (both start time and end time). Required for tire installation.
      * @param value Value to set for the appointmentType property.
      */
-    public void setAppointmentType(@jakarta.annotation.Nullable final String value) {
+    public void setAppointmentType(@jakarta.annotation.Nullable final AppointmentTypeEnum value) {
         this.appointmentType = value;
     }
     /**
-     * Sets the appointmentWindow property value. Appointment window for MACRO appointments. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentWindowEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the appointmentWindow property value. Appointment window for &lt;code&gt;MACRO&lt;/code&gt; appointments.
      * @param value Value to set for the appointmentWindow property.
      */
-    public void setAppointmentWindow(@jakarta.annotation.Nullable final String value) {
+    public void setAppointmentWindow(@jakarta.annotation.Nullable final AppointmentWindowEnum value) {
         this.appointmentWindow = value;
     }
     /**
-     * Sets the serviceProviderAppointmentDate property value. Service provider date of the appointment (no time stamp). Returned only for MACRO appointment types.
+     * Sets the serviceProviderAppointmentDate property value. Service provider date of the appointment (no time stamp). Returned only for &lt;code&gt;MACRO&lt;/code&gt; appointment types.
      * @param value Value to set for the serviceProviderAppointmentDate property.
      */
     public void setServiceProviderAppointmentDate(@jakarta.annotation.Nullable final String value) {

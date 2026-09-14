@@ -31,13 +31,13 @@ public class Charge implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * This container shows the amount and currency of the charge.
      */
     private Amount amount;
     /**
-     * This field shows the type of buyer charge &lt;br&gt; &lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt; Note: &lt;/strong&gt; Currently, the only supported charge type is BUYER_PROTECTION. &lt;/span&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sol:ChargeTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * This field shows the type of buyer charge. &lt;br&gt; &lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt; Note: &lt;/strong&gt; Currently, the only supported charge type is &lt;code&gt;BUYER_PROTECTION&lt;/code&gt;. &lt;/span&gt;
      */
-    private String chargeType;
+    private ChargeTypeEnum chargeType;
     /**
      * Instantiates a new {@link Charge} and sets the default values.
      */
@@ -63,7 +63,7 @@ public class Charge implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the amount property value. This container shows the amount and currency of the charge.
      * @return a {@link Amount}
      */
     @jakarta.annotation.Nullable
@@ -71,11 +71,11 @@ public class Charge implements AdditionalDataHolder, Parsable {
         return this.amount;
     }
     /**
-     * Gets the chargeType property value. This field shows the type of buyer charge &lt;br&gt; &lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt; Note: &lt;/strong&gt; Currently, the only supported charge type is BUYER_PROTECTION. &lt;/span&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sol:ChargeTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the chargeType property value. This field shows the type of buyer charge. &lt;br&gt; &lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt; Note: &lt;/strong&gt; Currently, the only supported charge type is &lt;code&gt;BUYER_PROTECTION&lt;/code&gt;. &lt;/span&gt;
+     * @return a {@link ChargeTypeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getChargeType() {
+    public ChargeTypeEnum getChargeType() {
         return this.chargeType;
     }
     /**
@@ -86,7 +86,7 @@ public class Charge implements AdditionalDataHolder, Parsable {
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(2);
         deserializerMap.put("amount", (n) -> { this.setAmount(n.getObjectValue(Amount::createFromDiscriminatorValue)); });
-        deserializerMap.put("chargeType", (n) -> { this.setChargeType(n.getStringValue()); });
+        deserializerMap.put("chargeType", (n) -> { this.setChargeType(n.getEnumValue(ChargeTypeEnum::forValue)); });
         return deserializerMap;
     }
     /**
@@ -96,7 +96,7 @@ public class Charge implements AdditionalDataHolder, Parsable {
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
         writer.writeObjectValue("amount", this.getAmount());
-        writer.writeStringValue("chargeType", this.getChargeType());
+        writer.writeEnumValue("chargeType", this.getChargeType());
         writer.writeAdditionalData(this.getAdditionalData());
     }
     /**
@@ -107,17 +107,17 @@ public class Charge implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the amount property value. This container shows the amount and currency of the charge.
      * @param value Value to set for the amount property.
      */
     public void setAmount(@jakarta.annotation.Nullable final Amount value) {
         this.amount = value;
     }
     /**
-     * Sets the chargeType property value. This field shows the type of buyer charge &lt;br&gt; &lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt; Note: &lt;/strong&gt; Currently, the only supported charge type is BUYER_PROTECTION. &lt;/span&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sol:ChargeTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the chargeType property value. This field shows the type of buyer charge. &lt;br&gt; &lt;br&gt; &lt;span class=&quot;tablenote&quot;&gt; &lt;strong&gt; Note: &lt;/strong&gt; Currently, the only supported charge type is &lt;code&gt;BUYER_PROTECTION&lt;/code&gt;. &lt;/span&gt;
      * @param value Value to set for the chargeType property.
      */
-    public void setChargeType(@jakarta.annotation.Nullable final String value) {
+    public void setChargeType(@jakarta.annotation.Nullable final ChargeTypeEnum value) {
         this.chargeType = value;
     }
 }

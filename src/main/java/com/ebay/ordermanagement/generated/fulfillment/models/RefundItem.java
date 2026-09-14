@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * This type is used if the seller is issuing a refund for one or more individual order line items in a multiple line item order. Otherwise, the seller just uses the &lt;b&gt;orderLevelRefundAmount&lt;/b&gt; container to specify the amount of the refund for the entire order.
+ * This type is used if the seller is issuing a refund for one or more individual order line items in a multiple line item order. Otherwise, the seller just uses the orderLevelRefundAmount container to specify the amount of the refund for the entire order.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class RefundItem implements AdditionalDataHolder, Parsable {
@@ -31,15 +31,15 @@ public class RefundItem implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * Type defining the &lt;b&gt;legacyReference&lt;/b&gt; container. This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID and transaction ID to identify the order line item.
+     * This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID/transaction ID pair to identify the order line item.&lt;br&gt;&lt;br&gt;Either this container or the &lt;strong&gt;lineItemId&lt;/strong&gt; field is needed to identify an individual order line item that will receive a refund. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This container should &lt;strong&gt;only&lt;/strong&gt; be used if a seller is using the&lt;a href=&quot;https://developer.ebay.com/devzone/xml/docs/reference/ebay/getorders.html&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; method of the &lt;strong&gt;Trading API&lt;/strong&gt;.&lt;/span&gt;
      */
     private LegacyReference legacyReference;
     /**
-     * The unique identifier of an order line item. This identifier is created once a buyer purchases a &apos;Buy It Now&apos; item or if an auction listing ends with a winning bidder.&lt;br&gt;&lt;br&gt;Either this field or the &lt;b&gt;legacyReference&lt;/b&gt; container is needed to identify an individual order line item that will receive a refund.&lt;br&gt;&lt;br&gt; This value is returned using the &lt;a href=&quot;/api-docs/sell/fulfillment/resources/order/methods/getOrders&quot; target=&quot;_blank &quot;&gt;getOrders&lt;/a&gt; method.
+     * The unique identifier of an order line item. This identifier is created once a buyer purchases a &apos;Buy It Now&apos; item or if an auction listing ends with a winning bidder. Either this field or the legacyReference container is needed to identify an individual order line item that will receive a refund. This value is returned using the getOrders method.
      */
     private String lineItemId;
     /**
-     * This type defines the monetary value of the payment dispute, and the currency used.
+     * This container is used to specify the amount of the refund for the corresponding order line item. If a seller wants to issue a refund for an entire order, the seller would use the &lt;strong&gt;orderLevelRefundAmount&lt;/strong&gt; container instead.
      */
     private SimpleAmount refundAmount;
     /**
@@ -79,7 +79,7 @@ public class RefundItem implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the legacyReference property value. Type defining the &lt;b&gt;legacyReference&lt;/b&gt; container. This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID and transaction ID to identify the order line item.
+     * Gets the legacyReference property value. This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID/transaction ID pair to identify the order line item.&lt;br&gt;&lt;br&gt;Either this container or the &lt;strong&gt;lineItemId&lt;/strong&gt; field is needed to identify an individual order line item that will receive a refund. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This container should &lt;strong&gt;only&lt;/strong&gt; be used if a seller is using the&lt;a href=&quot;https://developer.ebay.com/devzone/xml/docs/reference/ebay/getorders.html&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; method of the &lt;strong&gt;Trading API&lt;/strong&gt;.&lt;/span&gt;
      * @return a {@link LegacyReference}
      */
     @jakarta.annotation.Nullable
@@ -87,7 +87,7 @@ public class RefundItem implements AdditionalDataHolder, Parsable {
         return this.legacyReference;
     }
     /**
-     * Gets the lineItemId property value. The unique identifier of an order line item. This identifier is created once a buyer purchases a &apos;Buy It Now&apos; item or if an auction listing ends with a winning bidder.&lt;br&gt;&lt;br&gt;Either this field or the &lt;b&gt;legacyReference&lt;/b&gt; container is needed to identify an individual order line item that will receive a refund.&lt;br&gt;&lt;br&gt; This value is returned using the &lt;a href=&quot;/api-docs/sell/fulfillment/resources/order/methods/getOrders&quot; target=&quot;_blank &quot;&gt;getOrders&lt;/a&gt; method.
+     * Gets the lineItemId property value. The unique identifier of an order line item. This identifier is created once a buyer purchases a &apos;Buy It Now&apos; item or if an auction listing ends with a winning bidder. Either this field or the legacyReference container is needed to identify an individual order line item that will receive a refund. This value is returned using the getOrders method.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -95,7 +95,7 @@ public class RefundItem implements AdditionalDataHolder, Parsable {
         return this.lineItemId;
     }
     /**
-     * Gets the refundAmount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Gets the refundAmount property value. This container is used to specify the amount of the refund for the corresponding order line item. If a seller wants to issue a refund for an entire order, the seller would use the &lt;strong&gt;orderLevelRefundAmount&lt;/strong&gt; container instead.
      * @return a {@link SimpleAmount}
      */
     @jakarta.annotation.Nullable
@@ -121,21 +121,21 @@ public class RefundItem implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the legacyReference property value. Type defining the &lt;b&gt;legacyReference&lt;/b&gt; container. This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID and transaction ID to identify the order line item.
+     * Sets the legacyReference property value. This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID/transaction ID pair to identify the order line item.&lt;br&gt;&lt;br&gt;Either this container or the &lt;strong&gt;lineItemId&lt;/strong&gt; field is needed to identify an individual order line item that will receive a refund. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; This container should &lt;strong&gt;only&lt;/strong&gt; be used if a seller is using the&lt;a href=&quot;https://developer.ebay.com/devzone/xml/docs/reference/ebay/getorders.html&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; method of the &lt;strong&gt;Trading API&lt;/strong&gt;.&lt;/span&gt;
      * @param value Value to set for the legacyReference property.
      */
     public void setLegacyReference(@jakarta.annotation.Nullable final LegacyReference value) {
         this.legacyReference = value;
     }
     /**
-     * Sets the lineItemId property value. The unique identifier of an order line item. This identifier is created once a buyer purchases a &apos;Buy It Now&apos; item or if an auction listing ends with a winning bidder.&lt;br&gt;&lt;br&gt;Either this field or the &lt;b&gt;legacyReference&lt;/b&gt; container is needed to identify an individual order line item that will receive a refund.&lt;br&gt;&lt;br&gt; This value is returned using the &lt;a href=&quot;/api-docs/sell/fulfillment/resources/order/methods/getOrders&quot; target=&quot;_blank &quot;&gt;getOrders&lt;/a&gt; method.
+     * Sets the lineItemId property value. The unique identifier of an order line item. This identifier is created once a buyer purchases a &apos;Buy It Now&apos; item or if an auction listing ends with a winning bidder. Either this field or the legacyReference container is needed to identify an individual order line item that will receive a refund. This value is returned using the getOrders method.
      * @param value Value to set for the lineItemId property.
      */
     public void setLineItemId(@jakarta.annotation.Nullable final String value) {
         this.lineItemId = value;
     }
     /**
-     * Sets the refundAmount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Sets the refundAmount property value. This container is used to specify the amount of the refund for the corresponding order line item. If a seller wants to issue a refund for an entire order, the seller would use the &lt;strong&gt;orderLevelRefundAmount&lt;/strong&gt; container instead.
      * @param value Value to set for the refundAmount property.
      */
     public void setRefundAmount(@jakarta.annotation.Nullable final SimpleAmount value) {

@@ -31,7 +31,7 @@ public class ShippingFulfillment implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * The unique identifier of the fulfillment; for example, &lt;code&gt;9405509699937003457459&lt;/code&gt;. This eBay-generated value is created with a successful &lt;b&gt;createShippingFulfillment&lt;/b&gt; call.
+     * The unique identifier of the fulfillment; for example, &lt;code&gt;9405509699937003457459&lt;/code&gt;. This eBay-generated value is created with a successful &lt;strong&gt;createShippingFulfillment&lt;/strong&gt; call.
      */
     private String fulfillmentId;
     /**
@@ -43,11 +43,11 @@ public class ShippingFulfillment implements AdditionalDataHolder, Parsable {
      */
     private String shipmentTrackingNumber;
     /**
-     * The date and time that the fulfillment package was shipped. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped.&lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * The date and time that the fulfillment package was shipped. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
     private String shippedDate;
     /**
-     * The eBay code identifying the shipping carrier for this fulfillment. This field is returned if available. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The Trading API&apos;s &lt;b&gt;ShippingCarrierCodeType&lt;/b&gt; enumeration type contains the most current list of eBay shipping carrier codes and the countries served by each carrier. See &lt;a href=&quot;https://developer.ebay.com/Devzone/XML/docs/Reference/eBay/types/ShippingCarrierCodeType.html &quot; target=&quot;_blank&quot;&gt;ShippingCarrierCodeType&lt;/a&gt;.&lt;/span&gt;
+     * The eBay code identifying the shipping carrier for this fulfillment. This field is returned if available. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The Trading API&apos;s &lt;strong&gt;ShippingCarrierCodeType&lt;/strong&gt; enumeration type contains the most current list of eBay shipping carrier codes and the countries served by each carrier. See &lt;a href=&quot;https://developer.ebay.com/Devzone/XML/docs/Reference/eBay/types/ShippingCarrierCodeType.html &quot; target=&quot;_blank&quot;&gt;ShippingCarrierCodeType&lt;/a&gt;.&lt;/span&gt;
      */
     private String shippingCarrierCode;
     /**
@@ -89,7 +89,7 @@ public class ShippingFulfillment implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the fulfillmentId property value. The unique identifier of the fulfillment; for example, &lt;code&gt;9405509699937003457459&lt;/code&gt;. This eBay-generated value is created with a successful &lt;b&gt;createShippingFulfillment&lt;/b&gt; call.
+     * Gets the fulfillmentId property value. The unique identifier of the fulfillment; for example, &lt;code&gt;9405509699937003457459&lt;/code&gt;. This eBay-generated value is created with a successful &lt;strong&gt;createShippingFulfillment&lt;/strong&gt; call.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -113,7 +113,7 @@ public class ShippingFulfillment implements AdditionalDataHolder, Parsable {
         return this.shipmentTrackingNumber;
     }
     /**
-     * Gets the shippedDate property value. The date and time that the fulfillment package was shipped. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped.&lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * Gets the shippedDate property value. The date and time that the fulfillment package was shipped. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -121,7 +121,7 @@ public class ShippingFulfillment implements AdditionalDataHolder, Parsable {
         return this.shippedDate;
     }
     /**
-     * Gets the shippingCarrierCode property value. The eBay code identifying the shipping carrier for this fulfillment. This field is returned if available. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The Trading API&apos;s &lt;b&gt;ShippingCarrierCodeType&lt;/b&gt; enumeration type contains the most current list of eBay shipping carrier codes and the countries served by each carrier. See &lt;a href=&quot;https://developer.ebay.com/Devzone/XML/docs/Reference/eBay/types/ShippingCarrierCodeType.html &quot; target=&quot;_blank&quot;&gt;ShippingCarrierCodeType&lt;/a&gt;.&lt;/span&gt;
+     * Gets the shippingCarrierCode property value. The eBay code identifying the shipping carrier for this fulfillment. This field is returned if available. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The Trading API&apos;s &lt;strong&gt;ShippingCarrierCodeType&lt;/strong&gt; enumeration type contains the most current list of eBay shipping carrier codes and the countries served by each carrier. See &lt;a href=&quot;https://developer.ebay.com/Devzone/XML/docs/Reference/eBay/types/ShippingCarrierCodeType.html &quot; target=&quot;_blank&quot;&gt;ShippingCarrierCodeType&lt;/a&gt;.&lt;/span&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -149,7 +149,7 @@ public class ShippingFulfillment implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the fulfillmentId property value. The unique identifier of the fulfillment; for example, &lt;code&gt;9405509699937003457459&lt;/code&gt;. This eBay-generated value is created with a successful &lt;b&gt;createShippingFulfillment&lt;/b&gt; call.
+     * Sets the fulfillmentId property value. The unique identifier of the fulfillment; for example, &lt;code&gt;9405509699937003457459&lt;/code&gt;. This eBay-generated value is created with a successful &lt;strong&gt;createShippingFulfillment&lt;/strong&gt; call.
      * @param value Value to set for the fulfillmentId property.
      */
     public void setFulfillmentId(@jakarta.annotation.Nullable final String value) {
@@ -170,14 +170,14 @@ public class ShippingFulfillment implements AdditionalDataHolder, Parsable {
         this.shipmentTrackingNumber = value;
     }
     /**
-     * Sets the shippedDate property value. The date and time that the fulfillment package was shipped. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped.&lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * Sets the shippedDate property value. The date and time that the fulfillment package was shipped. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the shippedDate property.
      */
     public void setShippedDate(@jakarta.annotation.Nullable final String value) {
         this.shippedDate = value;
     }
     /**
-     * Sets the shippingCarrierCode property value. The eBay code identifying the shipping carrier for this fulfillment. This field is returned if available. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The Trading API&apos;s &lt;b&gt;ShippingCarrierCodeType&lt;/b&gt; enumeration type contains the most current list of eBay shipping carrier codes and the countries served by each carrier. See &lt;a href=&quot;https://developer.ebay.com/Devzone/XML/docs/Reference/eBay/types/ShippingCarrierCodeType.html &quot; target=&quot;_blank&quot;&gt;ShippingCarrierCodeType&lt;/a&gt;.&lt;/span&gt;
+     * Sets the shippingCarrierCode property value. The eBay code identifying the shipping carrier for this fulfillment. This field is returned if available. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The Trading API&apos;s &lt;strong&gt;ShippingCarrierCodeType&lt;/strong&gt; enumeration type contains the most current list of eBay shipping carrier codes and the countries served by each carrier. See &lt;a href=&quot;https://developer.ebay.com/Devzone/XML/docs/Reference/eBay/types/ShippingCarrierCodeType.html &quot; target=&quot;_blank&quot;&gt;ShippingCarrierCodeType&lt;/a&gt;.&lt;/span&gt;
      * @param value Value to set for the shippingCarrierCode property.
      */
     public void setShippingCarrierCode(@jakarta.annotation.Nullable final String value) {
