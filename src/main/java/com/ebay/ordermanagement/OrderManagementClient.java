@@ -14,14 +14,14 @@
 
 package com.ebay.ordermanagement;
 
-import com.apollographql.apollo.ApolloClient;
+import com.ebay.ordermanagement.clients.graphql.ApolloClientFactory;
 import com.ebay.ordermanagement.clients.graphql.BearerTokenInterceptor;
 import com.ebay.ordermanagement.clients.graphql.DynamicGraphQLClient;
 import com.ebay.ordermanagement.clients.graphql.OrderManagementGraphQLClient;
 import com.ebay.ordermanagement.clients.rest.FulfillmentClient;
 import com.ebay.ordermanagement.clients.rest.LogisticsClient;
-import com.ebay.ordermanagement.configuration.OrderManagementConfiguration;
 import com.ebay.ordermanagement.configuration.KiotaAuthProvider;
+import com.ebay.ordermanagement.configuration.OrderManagementConfiguration;
 import com.ebay.ordermanagement.generated.fulfillment.FulfillmentApiClient;
 import com.ebay.ordermanagement.generated.logistics.LogisticsApiClient;
 import com.microsoft.kiota.authentication.BaseBearerTokenAuthenticationProvider;
@@ -32,17 +32,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Main facade for the Order Management SDK.
- * Provides unified access to Fulfillment and Logistics APIs.
- *
- * <pre>{@code
- * var config = new OrderManagementConfiguration();
- * config.setAccessToken("your-token");
- *
- * try (var sdk = new OrderManagementClient(config)) {
- *     var order = sdk.fulfillment.getOrderAsync("order-id", null, null, null).join();
- *     System.out.println(order);
- * }
- * }</pre>
  */
 public final class OrderManagementClient implements Closeable {
     private final OkHttpClient sharedHttpClient;
@@ -53,7 +42,6 @@ public final class OrderManagementClient implements Closeable {
     public final OrderManagementGraphQLClient graphQL;
 
     public OrderManagementClient(OrderManagementConfiguration config) {
-        // Shared OkHttpClient for all REST clients
         this.sharedHttpClient = new OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
@@ -62,29 +50,25 @@ public final class OrderManagementClient implements Closeable {
 
         var authProvider = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config));
 
-        // Fulfillment API client
         var fulfillmentAdapter = new OkHttpRequestAdapter(authProvider, null, null, sharedHttpClient);
         fulfillmentAdapter.setBaseUrl(config.getFulfillmentBaseUrl());
         this.fulfillment = new FulfillmentClient(new FulfillmentApiClient(fulfillmentAdapter), config);
 
-        // Logistics API client
         var logisticsAdapter = new OkHttpRequestAdapter(authProvider, null, null, sharedHttpClient);
         logisticsAdapter.setBaseUrl(config.getLogisticsBaseUrl());
         this.logistics = new LogisticsClient(new LogisticsApiClient(logisticsAdapter), config);
 
-        // Apollo client with token interceptor for GraphQL (SEC-004: stored as field for proper lifecycle)
         this.apolloHttpClient = new OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .addInterceptor(new BearerTokenInterceptor(config))
             .build();
-        var apolloClient = com.ebay.ordermanagement.clients.graphql.ApolloClientFactory.create(
+        var apolloClient = ApolloClientFactory.create(
             config.getGraphQLBaseUrl(),
             apolloHttpClient
         );
 
-        // GraphQL client (Apollo Kotlin with type safety)
         this.graphQL = new OrderManagementGraphQLClient(
             apolloClient,
             new DynamicGraphQLClient(sharedHttpClient, config),
