@@ -1,9 +1,12 @@
+import net.ltgt.gradle.errorprone.errorprone
+
 plugins {
     `java-library`
     `maven-publish`
     embeddedKotlin("jvm")
     id("com.apollographql.apollo") version "4.3.1"
     id("org.owasp.dependencycheck") version "12.1.3"
+    id("net.ltgt.errorprone") version "4.3.0"
 }
 
 group = "com.ebay"
@@ -44,6 +47,9 @@ dependencies {
     // SLF4J for logging
     implementation("org.slf4j:slf4j-api:2.0.17")
 
+    errorprone("com.google.errorprone:error_prone_core:2.42.0")
+    errorprone("com.uber.nullaway:nullaway:0.12.10")
+
 }
 
 apollo {
@@ -82,4 +88,25 @@ publishing {
             version = "1.0.0"
         }
     }
+}
+
+
+val lintRequested = gradle.startParameter.taskNames.any { it == "lint" || it.endsWith(":lint") }
+
+tasks.withType<JavaCompile>().configureEach {
+    inputs.property("lintRequested", lintRequested)
+    options.errorprone {
+        isEnabled.set(lintRequested)
+        disableWarningsInGeneratedCode.set(true)
+        excludedPaths.set(".*/generated/.*")
+        error("NullAway")
+        option("NullAway:AnnotatedPackages", "com.ebay.ordermanagement")
+        option("NullAway:UnannotatedSubPackages", "com.ebay.ordermanagement.generated")
+    }
+}
+
+tasks.register("lint") {
+    group = "verification"
+    description = "Static analysis of handwritten sources (Kiota output excluded)."
+    dependsOn("classes")
 }
