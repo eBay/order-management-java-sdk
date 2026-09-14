@@ -39,7 +39,7 @@ public class Property implements AdditionalDataHolder, Parsable {
      */
     private String propertyName;
     /**
-     * The value of the property specified in the &lt;b&gt;propertyName&lt;/b&gt; field.&lt;br&gt;&lt;br&gt;For example, if the &lt;b&gt;propertyName&lt;/b&gt; is &lt;code&gt;Make&lt;/code&gt;, then the &lt;b&gt;propertyValue&lt;/b&gt; will be the specific make of the vehicle, such as &lt;code&gt;Toyota&lt;/code&gt;.
+     * The value of the property specified in the &lt;strong&gt;propertyName&lt;/strong&gt; field.&lt;br&gt;&lt;br&gt;For example, if the &lt;strong&gt;propertyName&lt;/strong&gt; is &lt;code&gt;Make&lt;/code&gt;, then the &lt;strong&gt;propertyValue&lt;/strong&gt; will be the specific make of the vehicle, such as &lt;code&gt;Toyota&lt;/code&gt;.
      */
     private String propertyValue;
     /**
@@ -95,7 +95,7 @@ public class Property implements AdditionalDataHolder, Parsable {
         return this.propertyName;
     }
     /**
-     * Gets the propertyValue property value. The value of the property specified in the &lt;b&gt;propertyName&lt;/b&gt; field.&lt;br&gt;&lt;br&gt;For example, if the &lt;b&gt;propertyName&lt;/b&gt; is &lt;code&gt;Make&lt;/code&gt;, then the &lt;b&gt;propertyValue&lt;/b&gt; will be the specific make of the vehicle, such as &lt;code&gt;Toyota&lt;/code&gt;.
+     * Gets the propertyValue property value. The value of the property specified in the &lt;strong&gt;propertyName&lt;/strong&gt; field.&lt;br&gt;&lt;br&gt;For example, if the &lt;strong&gt;propertyName&lt;/strong&gt; is &lt;code&gt;Make&lt;/code&gt;, then the &lt;strong&gt;propertyValue&lt;/strong&gt; will be the specific make of the vehicle, such as &lt;code&gt;Toyota&lt;/code&gt;.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -135,7 +135,7 @@ public class Property implements AdditionalDataHolder, Parsable {
         this.propertyName = value;
     }
     /**
-     * Sets the propertyValue property value. The value of the property specified in the &lt;b&gt;propertyName&lt;/b&gt; field.&lt;br&gt;&lt;br&gt;For example, if the &lt;b&gt;propertyName&lt;/b&gt; is &lt;code&gt;Make&lt;/code&gt;, then the &lt;b&gt;propertyValue&lt;/b&gt; will be the specific make of the vehicle, such as &lt;code&gt;Toyota&lt;/code&gt;.
+     * Sets the propertyValue property value. The value of the property specified in the &lt;strong&gt;propertyName&lt;/strong&gt; field.&lt;br&gt;&lt;br&gt;For example, if the &lt;strong&gt;propertyName&lt;/strong&gt; is &lt;code&gt;Make&lt;/code&gt;, then the &lt;strong&gt;propertyValue&lt;/strong&gt; will be the specific make of the vehicle, such as &lt;code&gt;Toyota&lt;/code&gt;.
      * @param value Value to set for the propertyValue property.
      */
     public void setPropertyValue(@jakarta.annotation.Nullable final String value) {

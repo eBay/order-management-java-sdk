@@ -14,6 +14,7 @@
 
 package com.ebay.ordermanagement.generated.fulfillment.payment_dispute.item.activity;
 
+import com.ebay.ordermanagement.generated.fulfillment.models.ErrorResponse;
 import com.ebay.ordermanagement.generated.fulfillment.models.PaymentDisputeActivityHistory;
 import com.microsoft.kiota.BaseRequestBuilder;
 import com.microsoft.kiota.BaseRequestConfiguration;
@@ -49,25 +50,32 @@ public class ActivityRequestBuilder extends BaseRequestBuilder {
         super(requestAdapter, "{+baseurl}/payment_dispute/{payment_dispute_id}/activity", rawUrl);
     }
     /**
-     * This method retrieve a log of activity for a payment dispute. The identifier of the payment dispute is passed in as a path parameter. The output includes a timestamp for each action of the payment dispute, from creation to resolution, and all steps in between.
+     * This method retrieves the activity log for a payment dispute. The identifier of the payment dispute is passed in as a path parameter. The output includes a timestamp for each action of the payment dispute, from creation to resolution, and all steps in between.
      * @return a {@link PaymentDisputeActivityHistory}
+     * @throws ErrorResponse When receiving a 404 status code
+     * @throws ErrorResponse When receiving a 500 status code
      */
     @jakarta.annotation.Nullable
     public PaymentDisputeActivityHistory get() {
         return get(null);
     }
     /**
-     * This method retrieve a log of activity for a payment dispute. The identifier of the payment dispute is passed in as a path parameter. The output includes a timestamp for each action of the payment dispute, from creation to resolution, and all steps in between.
+     * This method retrieves the activity log for a payment dispute. The identifier of the payment dispute is passed in as a path parameter. The output includes a timestamp for each action of the payment dispute, from creation to resolution, and all steps in between.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link PaymentDisputeActivityHistory}
+     * @throws ErrorResponse When receiving a 404 status code
+     * @throws ErrorResponse When receiving a 500 status code
      */
     @jakarta.annotation.Nullable
     public PaymentDisputeActivityHistory get(@jakarta.annotation.Nullable final java.util.function.Consumer<GetRequestConfiguration> requestConfiguration) {
         final RequestInformation requestInfo = toGetRequestInformation(requestConfiguration);
-        return this.requestAdapter.send(requestInfo, null, PaymentDisputeActivityHistory::createFromDiscriminatorValue);
+        final HashMap<String, ParsableFactory<? extends Parsable>> errorMapping = new HashMap<String, ParsableFactory<? extends Parsable>>();
+        errorMapping.put("404", ErrorResponse::createFromDiscriminatorValue);
+        errorMapping.put("500", ErrorResponse::createFromDiscriminatorValue);
+        return this.requestAdapter.send(requestInfo, errorMapping, PaymentDisputeActivityHistory::createFromDiscriminatorValue);
     }
     /**
-     * This method retrieve a log of activity for a payment dispute. The identifier of the payment dispute is passed in as a path parameter. The output includes a timestamp for each action of the payment dispute, from creation to resolution, and all steps in between.
+     * This method retrieves the activity log for a payment dispute. The identifier of the payment dispute is passed in as a path parameter. The output includes a timestamp for each action of the payment dispute, from creation to resolution, and all steps in between.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
@@ -75,7 +83,7 @@ public class ActivityRequestBuilder extends BaseRequestBuilder {
         return toGetRequestInformation(null);
     }
     /**
-     * This method retrieve a log of activity for a payment dispute. The identifier of the payment dispute is passed in as a path parameter. The output includes a timestamp for each action of the payment dispute, from creation to resolution, and all steps in between.
+     * This method retrieves the activity log for a payment dispute. The identifier of the payment dispute is passed in as a path parameter. The output includes a timestamp for each action of the payment dispute, from creation to resolution, and all steps in between.
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */

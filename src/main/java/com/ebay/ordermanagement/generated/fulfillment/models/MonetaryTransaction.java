@@ -31,7 +31,7 @@ public class MonetaryTransaction implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * The amount involved in the monetary transaction. For active cross-border trade orders, the currency conversion and &lt;strong&gt;exchangeRate&lt;/strong&gt; fields will be displayed as well.
      */
     private DisputeAmount amount;
     /**
@@ -39,13 +39,13 @@ public class MonetaryTransaction implements AdditionalDataHolder, Parsable {
      */
     private String date;
     /**
-     * This enumeration value indicates the reason for the monetary transaction. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:MonetaryTransactionReasonEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * This enumeration value indicates the reason for the monetary transaction.
      */
-    private String reason;
+    private MonetaryTransactionReasonEnum reason;
     /**
-     * This enumeration value indicates whether the monetary transaction is a charge or a credit to the seller. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:MonetaryTransactionTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * This enumeration value indicates whether the monetary transaction is a charge or a credit to the seller.
      */
-    private String type;
+    private MonetaryTransactionTypeEnum type;
     /**
      * Instantiates a new {@link MonetaryTransaction} and sets the default values.
      */
@@ -71,7 +71,7 @@ public class MonetaryTransaction implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the amount property value. The amount involved in the monetary transaction. For active cross-border trade orders, the currency conversion and &lt;strong&gt;exchangeRate&lt;/strong&gt; fields will be displayed as well.
      * @return a {@link DisputeAmount}
      */
     @jakarta.annotation.Nullable
@@ -95,24 +95,24 @@ public class MonetaryTransaction implements AdditionalDataHolder, Parsable {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(4);
         deserializerMap.put("amount", (n) -> { this.setAmount(n.getObjectValue(DisputeAmount::createFromDiscriminatorValue)); });
         deserializerMap.put("date", (n) -> { this.setDate(n.getStringValue()); });
-        deserializerMap.put("reason", (n) -> { this.setReason(n.getStringValue()); });
-        deserializerMap.put("type", (n) -> { this.setType(n.getStringValue()); });
+        deserializerMap.put("reason", (n) -> { this.setReason(n.getEnumValue(MonetaryTransactionReasonEnum::forValue)); });
+        deserializerMap.put("type", (n) -> { this.setType(n.getEnumValue(MonetaryTransactionTypeEnum::forValue)); });
         return deserializerMap;
     }
     /**
-     * Gets the reason property value. This enumeration value indicates the reason for the monetary transaction. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:MonetaryTransactionReasonEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the reason property value. This enumeration value indicates the reason for the monetary transaction.
+     * @return a {@link MonetaryTransactionReasonEnum}
      */
     @jakarta.annotation.Nullable
-    public String getReason() {
+    public MonetaryTransactionReasonEnum getReason() {
         return this.reason;
     }
     /**
-     * Gets the type property value. This enumeration value indicates whether the monetary transaction is a charge or a credit to the seller. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:MonetaryTransactionTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the type property value. This enumeration value indicates whether the monetary transaction is a charge or a credit to the seller.
+     * @return a {@link MonetaryTransactionTypeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getType() {
+    public MonetaryTransactionTypeEnum getType() {
         return this.type;
     }
     /**
@@ -123,8 +123,8 @@ public class MonetaryTransaction implements AdditionalDataHolder, Parsable {
         Objects.requireNonNull(writer);
         writer.writeObjectValue("amount", this.getAmount());
         writer.writeStringValue("date", this.getDate());
-        writer.writeStringValue("reason", this.getReason());
-        writer.writeStringValue("type", this.getType());
+        writer.writeEnumValue("reason", this.getReason());
+        writer.writeEnumValue("type", this.getType());
         writer.writeAdditionalData(this.getAdditionalData());
     }
     /**
@@ -135,7 +135,7 @@ public class MonetaryTransaction implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the amount property value. The amount involved in the monetary transaction. For active cross-border trade orders, the currency conversion and &lt;strong&gt;exchangeRate&lt;/strong&gt; fields will be displayed as well.
      * @param value Value to set for the amount property.
      */
     public void setAmount(@jakarta.annotation.Nullable final DisputeAmount value) {
@@ -149,17 +149,17 @@ public class MonetaryTransaction implements AdditionalDataHolder, Parsable {
         this.date = value;
     }
     /**
-     * Sets the reason property value. This enumeration value indicates the reason for the monetary transaction. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:MonetaryTransactionReasonEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the reason property value. This enumeration value indicates the reason for the monetary transaction.
      * @param value Value to set for the reason property.
      */
-    public void setReason(@jakarta.annotation.Nullable final String value) {
+    public void setReason(@jakarta.annotation.Nullable final MonetaryTransactionReasonEnum value) {
         this.reason = value;
     }
     /**
-     * Sets the type property value. This enumeration value indicates whether the monetary transaction is a charge or a credit to the seller. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:MonetaryTransactionTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the type property value. This enumeration value indicates whether the monetary transaction is a charge or a credit to the seller.
      * @param value Value to set for the type property.
      */
-    public void setType(@jakarta.annotation.Nullable final String value) {
+    public void setType(@jakarta.annotation.Nullable final MonetaryTransactionTypeEnum value) {
         this.type = value;
     }
 }

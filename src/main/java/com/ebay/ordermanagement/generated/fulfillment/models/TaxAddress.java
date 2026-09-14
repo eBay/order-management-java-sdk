@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * This container consists of address information that can be used by sellers for tax purpose.
+ * This container consists of address information that can be used by sellers for tax purposes.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class TaxAddress implements AdditionalDataHolder, Parsable {
@@ -31,19 +31,19 @@ public class TaxAddress implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * The city name that can be used by sellers for tax purpose.
+     * The city name that can be used by sellers for tax purposes.
      */
     private String city;
     /**
-     * The country code that can be used by sellers for tax purpose, represented as a two-letter ISO 3166-1 alpha-2 country code. For example, &lt;strong&gt;US&lt;/strong&gt; represents the United States, and &lt;strong&gt;DE&lt;/strong&gt; represents Germany. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The country code that can be used by sellers for tax purposes, represented as a two-letter ISO 3166&amp;#8209;1 alpha&amp;#8209;2 country code. For example, &lt;strong&gt;US&lt;/strong&gt; represents the United States, and &lt;strong&gt;DE&lt;/strong&gt; represents Germany.
      */
-    private String countryCode;
+    private CountryCodeEnum countryCode;
     /**
-     * The postal code that can be used by sellers for tax purpose. Usually referred to as Zip codes in the US.
+     * The postal code that can be used by sellers for tax purposes. Usually referred to as ZIP codes in the US.
      */
     private String postalCode;
     /**
-     * The state name that can be used by sellers for tax purpose.
+     * The state name that can be used by sellers for tax purposes.
      */
     private String stateOrProvince;
     /**
@@ -71,7 +71,7 @@ public class TaxAddress implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the city property value. The city name that can be used by sellers for tax purpose.
+     * Gets the city property value. The city name that can be used by sellers for tax purposes.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -79,11 +79,11 @@ public class TaxAddress implements AdditionalDataHolder, Parsable {
         return this.city;
     }
     /**
-     * Gets the countryCode property value. The country code that can be used by sellers for tax purpose, represented as a two-letter ISO 3166-1 alpha-2 country code. For example, &lt;strong&gt;US&lt;/strong&gt; represents the United States, and &lt;strong&gt;DE&lt;/strong&gt; represents Germany. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the countryCode property value. The country code that can be used by sellers for tax purposes, represented as a two-letter ISO 3166&amp;#8209;1 alpha&amp;#8209;2 country code. For example, &lt;strong&gt;US&lt;/strong&gt; represents the United States, and &lt;strong&gt;DE&lt;/strong&gt; represents Germany.
+     * @return a {@link CountryCodeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getCountryCode() {
+    public CountryCodeEnum getCountryCode() {
         return this.countryCode;
     }
     /**
@@ -94,13 +94,13 @@ public class TaxAddress implements AdditionalDataHolder, Parsable {
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(4);
         deserializerMap.put("city", (n) -> { this.setCity(n.getStringValue()); });
-        deserializerMap.put("countryCode", (n) -> { this.setCountryCode(n.getStringValue()); });
+        deserializerMap.put("countryCode", (n) -> { this.setCountryCode(n.getEnumValue(CountryCodeEnum::forValue)); });
         deserializerMap.put("postalCode", (n) -> { this.setPostalCode(n.getStringValue()); });
         deserializerMap.put("stateOrProvince", (n) -> { this.setStateOrProvince(n.getStringValue()); });
         return deserializerMap;
     }
     /**
-     * Gets the postalCode property value. The postal code that can be used by sellers for tax purpose. Usually referred to as Zip codes in the US.
+     * Gets the postalCode property value. The postal code that can be used by sellers for tax purposes. Usually referred to as ZIP codes in the US.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -108,7 +108,7 @@ public class TaxAddress implements AdditionalDataHolder, Parsable {
         return this.postalCode;
     }
     /**
-     * Gets the stateOrProvince property value. The state name that can be used by sellers for tax purpose.
+     * Gets the stateOrProvince property value. The state name that can be used by sellers for tax purposes.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -122,7 +122,7 @@ public class TaxAddress implements AdditionalDataHolder, Parsable {
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
         writer.writeStringValue("city", this.getCity());
-        writer.writeStringValue("countryCode", this.getCountryCode());
+        writer.writeEnumValue("countryCode", this.getCountryCode());
         writer.writeStringValue("postalCode", this.getPostalCode());
         writer.writeStringValue("stateOrProvince", this.getStateOrProvince());
         writer.writeAdditionalData(this.getAdditionalData());
@@ -135,28 +135,28 @@ public class TaxAddress implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the city property value. The city name that can be used by sellers for tax purpose.
+     * Sets the city property value. The city name that can be used by sellers for tax purposes.
      * @param value Value to set for the city property.
      */
     public void setCity(@jakarta.annotation.Nullable final String value) {
         this.city = value;
     }
     /**
-     * Sets the countryCode property value. The country code that can be used by sellers for tax purpose, represented as a two-letter ISO 3166-1 alpha-2 country code. For example, &lt;strong&gt;US&lt;/strong&gt; represents the United States, and &lt;strong&gt;DE&lt;/strong&gt; represents Germany. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the countryCode property value. The country code that can be used by sellers for tax purposes, represented as a two-letter ISO 3166&amp;#8209;1 alpha&amp;#8209;2 country code. For example, &lt;strong&gt;US&lt;/strong&gt; represents the United States, and &lt;strong&gt;DE&lt;/strong&gt; represents Germany.
      * @param value Value to set for the countryCode property.
      */
-    public void setCountryCode(@jakarta.annotation.Nullable final String value) {
+    public void setCountryCode(@jakarta.annotation.Nullable final CountryCodeEnum value) {
         this.countryCode = value;
     }
     /**
-     * Sets the postalCode property value. The postal code that can be used by sellers for tax purpose. Usually referred to as Zip codes in the US.
+     * Sets the postalCode property value. The postal code that can be used by sellers for tax purposes. Usually referred to as ZIP codes in the US.
      * @param value Value to set for the postalCode property.
      */
     public void setPostalCode(@jakarta.annotation.Nullable final String value) {
         this.postalCode = value;
     }
     /**
-     * Sets the stateOrProvince property value. The state name that can be used by sellers for tax purpose.
+     * Sets the stateOrProvince property value. The state name that can be used by sellers for tax purposes.
      * @param value Value to set for the stateOrProvince property.
      */
     public void setStateOrProvince(@jakarta.annotation.Nullable final String value) {

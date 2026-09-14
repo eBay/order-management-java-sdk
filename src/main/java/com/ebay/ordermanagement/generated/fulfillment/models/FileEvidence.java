@@ -31,7 +31,7 @@ public class FileEvidence implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This field is used to identify the evidence file to be uploaded to the evidence set.&lt;br&gt;&lt;br&gt; This file is created with the &lt;a href=&quot;/api-docs/sell/fulfillment/resources/payment_dispute/methods/uploadEvidenceFile&quot; target=&quot;_blank &quot;&gt;uploadEvidenceFile&lt;/a&gt; method and can be retrieved using the &lt;a href=&quot;/api-docs/sell/fulfillment/resources/payment_dispute/methods/getPaymentDisputes&quot; target=&quot;_blank &quot;&gt;getPaymentDisputes&lt;/a&gt; method.
+     * This field is used to identify the evidence file to be uploaded to the evidence set.&lt;br&gt;&lt;br&gt; This file is created with the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-uploadevidencefile&quot; target=&quot;_blank &quot;&gt;uploadEvidenceFile&lt;/a&gt; method and can be retrieved using the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdispute&quot; target=&quot;_blank &quot;&gt;getPaymentDispute&lt;/a&gt; method.
      */
     private String fileId;
     /**
@@ -69,7 +69,7 @@ public class FileEvidence implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the fileId property value. This field is used to identify the evidence file to be uploaded to the evidence set.&lt;br&gt;&lt;br&gt; This file is created with the &lt;a href=&quot;/api-docs/sell/fulfillment/resources/payment_dispute/methods/uploadEvidenceFile&quot; target=&quot;_blank &quot;&gt;uploadEvidenceFile&lt;/a&gt; method and can be retrieved using the &lt;a href=&quot;/api-docs/sell/fulfillment/resources/payment_dispute/methods/getPaymentDisputes&quot; target=&quot;_blank &quot;&gt;getPaymentDisputes&lt;/a&gt; method.
+     * Gets the fileId property value. This field is used to identify the evidence file to be uploaded to the evidence set.&lt;br&gt;&lt;br&gt; This file is created with the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-uploadevidencefile&quot; target=&quot;_blank &quot;&gt;uploadEvidenceFile&lt;/a&gt; method and can be retrieved using the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdispute&quot; target=&quot;_blank &quot;&gt;getPaymentDispute&lt;/a&gt; method.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -93,7 +93,7 @@ public class FileEvidence implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the fileId property value. This field is used to identify the evidence file to be uploaded to the evidence set.&lt;br&gt;&lt;br&gt; This file is created with the &lt;a href=&quot;/api-docs/sell/fulfillment/resources/payment_dispute/methods/uploadEvidenceFile&quot; target=&quot;_blank &quot;&gt;uploadEvidenceFile&lt;/a&gt; method and can be retrieved using the &lt;a href=&quot;/api-docs/sell/fulfillment/resources/payment_dispute/methods/getPaymentDisputes&quot; target=&quot;_blank &quot;&gt;getPaymentDisputes&lt;/a&gt; method.
+     * Sets the fileId property value. This field is used to identify the evidence file to be uploaded to the evidence set.&lt;br&gt;&lt;br&gt; This file is created with the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-uploadevidencefile&quot; target=&quot;_blank &quot;&gt;uploadEvidenceFile&lt;/a&gt; method and can be retrieved using the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdispute&quot; target=&quot;_blank &quot;&gt;getPaymentDispute&lt;/a&gt; method.
      * @param value Value to set for the fileId property.
      */
     public void setFileId(@jakarta.annotation.Nullable final String value) {

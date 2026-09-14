@@ -35,7 +35,7 @@ public class Contact implements AdditionalDataHolder, Parsable {
      */
     private String companyName;
     /**
-     * This complex type specifies the details of a geographical address.
+     * The details of the contact&apos;s geographical address.
      */
     private ContactAddress contactAddress;
     /**
@@ -43,7 +43,7 @@ public class Contact implements AdditionalDataHolder, Parsable {
      */
     private String fullName;
     /**
-     * This complex type contains a string field representing a telephone number.
+     * The contact&apos;s primary telephone number.
      */
     private PhoneNumber primaryPhone;
     /**
@@ -79,7 +79,7 @@ public class Contact implements AdditionalDataHolder, Parsable {
         return this.companyName;
     }
     /**
-     * Gets the contactAddress property value. This complex type specifies the details of a geographical address.
+     * Gets the contactAddress property value. The details of the contact&apos;s geographical address.
      * @return a {@link ContactAddress}
      */
     @jakarta.annotation.Nullable
@@ -108,7 +108,7 @@ public class Contact implements AdditionalDataHolder, Parsable {
         return this.fullName;
     }
     /**
-     * Gets the primaryPhone property value. This complex type contains a string field representing a telephone number.
+     * Gets the primaryPhone property value. The contact&apos;s primary telephone number.
      * @return a {@link PhoneNumber}
      */
     @jakarta.annotation.Nullable
@@ -142,7 +142,7 @@ public class Contact implements AdditionalDataHolder, Parsable {
         this.companyName = value;
     }
     /**
-     * Sets the contactAddress property value. This complex type specifies the details of a geographical address.
+     * Sets the contactAddress property value. The details of the contact&apos;s geographical address.
      * @param value Value to set for the contactAddress property.
      */
     public void setContactAddress(@jakarta.annotation.Nullable final ContactAddress value) {
@@ -156,7 +156,7 @@ public class Contact implements AdditionalDataHolder, Parsable {
         this.fullName = value;
     }
     /**
-     * Sets the primaryPhone property value. This complex type contains a string field representing a telephone number.
+     * Sets the primaryPhone property value. The contact&apos;s primary telephone number.
      * @param value Value to set for the primaryPhone property.
      */
     public void setPrimaryPhone(@jakarta.annotation.Nullable final PhoneNumber value) {

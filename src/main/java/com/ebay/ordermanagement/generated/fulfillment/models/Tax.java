@@ -31,13 +31,13 @@ public class Tax implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * The monetary amount of the tax. The &lt;strong&gt;taxes&lt;/strong&gt; array is always returned for each line item in the order, but this &lt;strong&gt;amount&lt;/strong&gt; will only be returned when the line item is subject to any type of sales tax. 
      */
     private Amount amount;
     /**
-     * Tax type. This field is only available when &lt;strong&gt;fieldGroups&lt;/strong&gt; is set to &lt;code&gt;TAX_BREAKDOWN&lt;/code&gt;. If the order has fees, a breakdown of the fees is also provided. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:TaxTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Tax type. This field is only available when &lt;strong&gt;fieldGroups&lt;/strong&gt; is set to &lt;code&gt;TAX_BREAKDOWN&lt;/code&gt;. If the order has fees, a breakdown of the fees is also provided.
      */
-    private String taxType;
+    private TaxTypeEnum taxType;
     /**
      * Instantiates a new {@link Tax} and sets the default values.
      */
@@ -63,7 +63,7 @@ public class Tax implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the amount property value. The monetary amount of the tax. The &lt;strong&gt;taxes&lt;/strong&gt; array is always returned for each line item in the order, but this &lt;strong&gt;amount&lt;/strong&gt; will only be returned when the line item is subject to any type of sales tax. 
      * @return a {@link Amount}
      */
     @jakarta.annotation.Nullable
@@ -78,15 +78,15 @@ public class Tax implements AdditionalDataHolder, Parsable {
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(2);
         deserializerMap.put("amount", (n) -> { this.setAmount(n.getObjectValue(Amount::createFromDiscriminatorValue)); });
-        deserializerMap.put("taxType", (n) -> { this.setTaxType(n.getStringValue()); });
+        deserializerMap.put("taxType", (n) -> { this.setTaxType(n.getEnumValue(TaxTypeEnum::forValue)); });
         return deserializerMap;
     }
     /**
-     * Gets the taxType property value. Tax type. This field is only available when &lt;strong&gt;fieldGroups&lt;/strong&gt; is set to &lt;code&gt;TAX_BREAKDOWN&lt;/code&gt;. If the order has fees, a breakdown of the fees is also provided. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:TaxTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the taxType property value. Tax type. This field is only available when &lt;strong&gt;fieldGroups&lt;/strong&gt; is set to &lt;code&gt;TAX_BREAKDOWN&lt;/code&gt;. If the order has fees, a breakdown of the fees is also provided.
+     * @return a {@link TaxTypeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getTaxType() {
+    public TaxTypeEnum getTaxType() {
         return this.taxType;
     }
     /**
@@ -96,7 +96,7 @@ public class Tax implements AdditionalDataHolder, Parsable {
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
         writer.writeObjectValue("amount", this.getAmount());
-        writer.writeStringValue("taxType", this.getTaxType());
+        writer.writeEnumValue("taxType", this.getTaxType());
         writer.writeAdditionalData(this.getAdditionalData());
     }
     /**
@@ -107,17 +107,17 @@ public class Tax implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the amount property value. The monetary amount of the tax. The &lt;strong&gt;taxes&lt;/strong&gt; array is always returned for each line item in the order, but this &lt;strong&gt;amount&lt;/strong&gt; will only be returned when the line item is subject to any type of sales tax. 
      * @param value Value to set for the amount property.
      */
     public void setAmount(@jakarta.annotation.Nullable final Amount value) {
         this.amount = value;
     }
     /**
-     * Sets the taxType property value. Tax type. This field is only available when &lt;strong&gt;fieldGroups&lt;/strong&gt; is set to &lt;code&gt;TAX_BREAKDOWN&lt;/code&gt;. If the order has fees, a breakdown of the fees is also provided. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:TaxTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the taxType property value. Tax type. This field is only available when &lt;strong&gt;fieldGroups&lt;/strong&gt; is set to &lt;code&gt;TAX_BREAKDOWN&lt;/code&gt;. If the order has fees, a breakdown of the fees is also provided.
      * @param value Value to set for the taxType property.
      */
-    public void setTaxType(@jakarta.annotation.Nullable final String value) {
+    public void setTaxType(@jakarta.annotation.Nullable final TaxTypeEnum value) {
         this.taxType = value;
     }
 }

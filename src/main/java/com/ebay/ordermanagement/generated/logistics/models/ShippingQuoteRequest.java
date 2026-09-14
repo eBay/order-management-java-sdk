@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * This complex type defines the request body for &lt;b&gt;createShippingQuote&lt;/b&gt;. Sellers &lt;i&gt;request a quote&lt;/i&gt; for a shipment by defining the &quot;To&quot; and &quot;From&quot; addresses for the package, plus the package&apos;s size.  &lt;br&gt;&lt;br&gt;Carriers respond by offering up a &quot;rate&quot; for the service of theirs that best fits seller&apos;s needs.
+ * This complex type defines the request body for &lt;strong&gt;createShippingQuote&lt;/strong&gt;. Sellers &lt;i&gt;request a quote&lt;/i&gt; for a shipment by defining the &quot;To&quot; and &quot;From&quot; addresses for the package, plus the package&apos;s size.  &lt;br&gt;&lt;br&gt;Carriers respond by offering up a &quot;rate&quot; for the service that best fits the seller&apos;s needs.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class ShippingQuoteRequest implements AdditionalDataHolder, Parsable {
@@ -31,19 +31,19 @@ public class ShippingQuoteRequest implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * In this array, the seller specifies one or more orders that will be shipped in the shipping package. &lt;br&gt;&lt;br&gt;A shipping package can contain any number of line items from one or more orders, providing they all ship in the same package.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum list size:&lt;/b&gt; 10
+     * In this array, the seller specifies one or more orders that will be shipped in the shipping package. &lt;br&gt;&lt;br&gt;A shipping package can contain any number of line items from one or more orders, providing they all ship in the same package.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Maximum list size:&lt;/strong&gt; 10
      */
     private java.util.List<Order> orders;
     /**
-     * This complex type specifies the dimensions and weight of a package.
+     * Declares the weight and dimensions of the package.
      */
     private PackageSpecification packageSpecification;
     /**
-     * This complex type contains contact information for an individual buyer or seller.
+     * The address and contact details pertaining to the origin of the shipment.
      */
     private Contact shipFrom;
     /**
-     * This complex type contains contact information for an individual buyer or seller.
+     * The address and contact details pertaining to the shipment&apos;s destination.
      */
     private Contact shipTo;
     /**
@@ -84,7 +84,7 @@ public class ShippingQuoteRequest implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the orders property value. In this array, the seller specifies one or more orders that will be shipped in the shipping package. &lt;br&gt;&lt;br&gt;A shipping package can contain any number of line items from one or more orders, providing they all ship in the same package.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum list size:&lt;/b&gt; 10
+     * Gets the orders property value. In this array, the seller specifies one or more orders that will be shipped in the shipping package. &lt;br&gt;&lt;br&gt;A shipping package can contain any number of line items from one or more orders, providing they all ship in the same package.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Maximum list size:&lt;/strong&gt; 10
      * @return a {@link java.util.List<Order>}
      */
     @jakarta.annotation.Nullable
@@ -92,7 +92,7 @@ public class ShippingQuoteRequest implements AdditionalDataHolder, Parsable {
         return this.orders;
     }
     /**
-     * Gets the packageSpecification property value. This complex type specifies the dimensions and weight of a package.
+     * Gets the packageSpecification property value. Declares the weight and dimensions of the package.
      * @return a {@link PackageSpecification}
      */
     @jakarta.annotation.Nullable
@@ -100,7 +100,7 @@ public class ShippingQuoteRequest implements AdditionalDataHolder, Parsable {
         return this.packageSpecification;
     }
     /**
-     * Gets the shipFrom property value. This complex type contains contact information for an individual buyer or seller.
+     * Gets the shipFrom property value. The address and contact details pertaining to the origin of the shipment.
      * @return a {@link Contact}
      */
     @jakarta.annotation.Nullable
@@ -108,7 +108,7 @@ public class ShippingQuoteRequest implements AdditionalDataHolder, Parsable {
         return this.shipFrom;
     }
     /**
-     * Gets the shipTo property value. This complex type contains contact information for an individual buyer or seller.
+     * Gets the shipTo property value. The address and contact details pertaining to the shipment&apos;s destination.
      * @return a {@link Contact}
      */
     @jakarta.annotation.Nullable
@@ -135,28 +135,28 @@ public class ShippingQuoteRequest implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the orders property value. In this array, the seller specifies one or more orders that will be shipped in the shipping package. &lt;br&gt;&lt;br&gt;A shipping package can contain any number of line items from one or more orders, providing they all ship in the same package.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Maximum list size:&lt;/b&gt; 10
+     * Sets the orders property value. In this array, the seller specifies one or more orders that will be shipped in the shipping package. &lt;br&gt;&lt;br&gt;A shipping package can contain any number of line items from one or more orders, providing they all ship in the same package.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Maximum list size:&lt;/strong&gt; 10
      * @param value Value to set for the orders property.
      */
     public void setOrders(@jakarta.annotation.Nullable final java.util.List<Order> value) {
         this.orders = value;
     }
     /**
-     * Sets the packageSpecification property value. This complex type specifies the dimensions and weight of a package.
+     * Sets the packageSpecification property value. Declares the weight and dimensions of the package.
      * @param value Value to set for the packageSpecification property.
      */
     public void setPackageSpecification(@jakarta.annotation.Nullable final PackageSpecification value) {
         this.packageSpecification = value;
     }
     /**
-     * Sets the shipFrom property value. This complex type contains contact information for an individual buyer or seller.
+     * Sets the shipFrom property value. The address and contact details pertaining to the origin of the shipment.
      * @param value Value to set for the shipFrom property.
      */
     public void setShipFrom(@jakarta.annotation.Nullable final Contact value) {
         this.shipFrom = value;
     }
     /**
-     * Sets the shipTo property value. This complex type contains contact information for an individual buyer or seller.
+     * Sets the shipTo property value. The address and contact details pertaining to the shipment&apos;s destination.
      * @param value Value to set for the shipTo property.
      */
     public void setShipTo(@jakarta.annotation.Nullable final Contact value) {

@@ -14,6 +14,7 @@
 
 package com.ebay.ordermanagement.generated.fulfillment.payment_dispute.item;
 
+import com.ebay.ordermanagement.generated.fulfillment.models.ErrorResponse;
 import com.ebay.ordermanagement.generated.fulfillment.models.PaymentDispute;
 import com.ebay.ordermanagement.generated.fulfillment.payment_dispute.item.accept.AcceptRequestBuilder;
 import com.ebay.ordermanagement.generated.fulfillment.payment_dispute.item.activity.ActivityRequestBuilder;
@@ -114,6 +115,8 @@ public class WithPaymentDisputeItemRequestBuilder extends BaseRequestBuilder {
     /**
      * This method retrieves detailed information on a specific payment dispute. The payment dispute identifier is passed in as path parameter at the end of the call URI.&lt;br&gt;&lt;br&gt;Below is a summary of the information that is retrieved:&lt;ul&gt;&lt;li&gt;Current status of payment dispute&lt;/li&gt;&lt;li&gt;Amount of the payment dispute&lt;/li&gt;&lt;li&gt;Reason the payment dispute was opened&lt;/li&gt;&lt;li&gt;Order and line items associated with the payment dispute&lt;/li&gt;&lt;li&gt;Seller response options if an action is currently required on the payment dispute&lt;/li&gt;&lt;li&gt;Details on the results of the payment dispute if it has been closed&lt;/li&gt;&lt;li&gt;Details on any evidence that was provided by the seller to fight the payment dispute&lt;/li&gt;&lt;/ul&gt;
      * @return a {@link PaymentDispute}
+     * @throws ErrorResponse When receiving a 404 status code
+     * @throws ErrorResponse When receiving a 500 status code
      */
     @jakarta.annotation.Nullable
     public PaymentDispute get() {
@@ -123,11 +126,16 @@ public class WithPaymentDisputeItemRequestBuilder extends BaseRequestBuilder {
      * This method retrieves detailed information on a specific payment dispute. The payment dispute identifier is passed in as path parameter at the end of the call URI.&lt;br&gt;&lt;br&gt;Below is a summary of the information that is retrieved:&lt;ul&gt;&lt;li&gt;Current status of payment dispute&lt;/li&gt;&lt;li&gt;Amount of the payment dispute&lt;/li&gt;&lt;li&gt;Reason the payment dispute was opened&lt;/li&gt;&lt;li&gt;Order and line items associated with the payment dispute&lt;/li&gt;&lt;li&gt;Seller response options if an action is currently required on the payment dispute&lt;/li&gt;&lt;li&gt;Details on the results of the payment dispute if it has been closed&lt;/li&gt;&lt;li&gt;Details on any evidence that was provided by the seller to fight the payment dispute&lt;/li&gt;&lt;/ul&gt;
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link PaymentDispute}
+     * @throws ErrorResponse When receiving a 404 status code
+     * @throws ErrorResponse When receiving a 500 status code
      */
     @jakarta.annotation.Nullable
     public PaymentDispute get(@jakarta.annotation.Nullable final java.util.function.Consumer<GetRequestConfiguration> requestConfiguration) {
         final RequestInformation requestInfo = toGetRequestInformation(requestConfiguration);
-        return this.requestAdapter.send(requestInfo, null, PaymentDispute::createFromDiscriminatorValue);
+        final HashMap<String, ParsableFactory<? extends Parsable>> errorMapping = new HashMap<String, ParsableFactory<? extends Parsable>>();
+        errorMapping.put("404", ErrorResponse::createFromDiscriminatorValue);
+        errorMapping.put("500", ErrorResponse::createFromDiscriminatorValue);
+        return this.requestAdapter.send(requestInfo, errorMapping, PaymentDispute::createFromDiscriminatorValue);
     }
     /**
      * This method retrieves detailed information on a specific payment dispute. The payment dispute identifier is passed in as path parameter at the end of the call URI.&lt;br&gt;&lt;br&gt;Below is a summary of the information that is retrieved:&lt;ul&gt;&lt;li&gt;Current status of payment dispute&lt;/li&gt;&lt;li&gt;Amount of the payment dispute&lt;/li&gt;&lt;li&gt;Reason the payment dispute was opened&lt;/li&gt;&lt;li&gt;Order and line items associated with the payment dispute&lt;/li&gt;&lt;li&gt;Seller response options if an action is currently required on the payment dispute&lt;/li&gt;&lt;li&gt;Details on the results of the payment dispute if it has been closed&lt;/li&gt;&lt;li&gt;Details on any evidence that was provided by the seller to fight the payment dispute&lt;/li&gt;&lt;/ul&gt;

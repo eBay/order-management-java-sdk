@@ -35,7 +35,7 @@ public class ShipmentRequestBuilder extends BaseRequestBuilder {
     }
     /**
      * Gets an item from the com.ebay.ordermanagement.generated.logistics.shipment.item collection
-     * @param shipmentId This path parameter specifies the unique eBay-assigned identifier of the shipment you want to retrieve.&lt;br&gt;&lt;br&gt;The &lt;b&gt;shipmentId&lt;/b&gt; value is generated and returned by the &lt;a href=&quot;/api-docs/sell/logistics/resources/shipment/methods/createFromShippingQuote&quot; target=&quot;_blank&quot;&gt;createFromShippingQuote&lt;/a&gt; method.
+     * @param shipmentId This path parameter specifies the unique eBay-assigned identifier of the shipment you want to retrieve.&lt;br&gt;&lt;br&gt;The &lt;strong&gt;shipmentId&lt;/strong&gt; value is generated and returned by the &lt;a href=&quot;/api-docs/sell/logistics/resources/shipment/methods/createFromShippingQuote&quot; target=&quot;_blank&quot;&gt;createFromShippingQuote&lt;/a&gt; method.
      * @return a {@link WithShipmentItemRequestBuilder}
      */
     @jakarta.annotation.Nonnull

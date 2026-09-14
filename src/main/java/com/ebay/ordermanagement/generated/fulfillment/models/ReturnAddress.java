@@ -43,9 +43,9 @@ public class ReturnAddress implements AdditionalDataHolder, Parsable {
      */
     private String city;
     /**
-     * The country&apos;s two-letter, ISO 3166-1 country code. See the enumeration type for a country&apos;s value. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The country&apos;s two-letter, ISO 3166-1 country code. See the enumeration type for a country&apos;s value.
      */
-    private String country;
+    private CountryCodeEnum country;
     /**
      * The county of the return address. Counties are not applicable to all countries.
      */
@@ -59,7 +59,7 @@ public class ReturnAddress implements AdditionalDataHolder, Parsable {
      */
     private String postalCode;
     /**
-     * This type is used by the &lt;strong&gt;returnAddress&lt;/strong field that is used by the payment dispute methods. If a buyer is returning the item (under payment dispute) to the seller, a primary phone number for the seller must be provided.
+     * This container shows the seller&apos;s primary phone number associated with the return address.
      */
     private Phone primaryPhone;
     /**
@@ -115,11 +115,11 @@ public class ReturnAddress implements AdditionalDataHolder, Parsable {
         return this.city;
     }
     /**
-     * Gets the country property value. The country&apos;s two-letter, ISO 3166-1 country code. See the enumeration type for a country&apos;s value. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the country property value. The country&apos;s two-letter, ISO 3166-1 country code. See the enumeration type for a country&apos;s value.
+     * @return a {@link CountryCodeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getCountry() {
+    public CountryCodeEnum getCountry() {
         return this.country;
     }
     /**
@@ -140,7 +140,7 @@ public class ReturnAddress implements AdditionalDataHolder, Parsable {
         deserializerMap.put("addressLine1", (n) -> { this.setAddressLine1(n.getStringValue()); });
         deserializerMap.put("addressLine2", (n) -> { this.setAddressLine2(n.getStringValue()); });
         deserializerMap.put("city", (n) -> { this.setCity(n.getStringValue()); });
-        deserializerMap.put("country", (n) -> { this.setCountry(n.getStringValue()); });
+        deserializerMap.put("country", (n) -> { this.setCountry(n.getEnumValue(CountryCodeEnum::forValue)); });
         deserializerMap.put("county", (n) -> { this.setCounty(n.getStringValue()); });
         deserializerMap.put("fullName", (n) -> { this.setFullName(n.getStringValue()); });
         deserializerMap.put("postalCode", (n) -> { this.setPostalCode(n.getStringValue()); });
@@ -165,7 +165,7 @@ public class ReturnAddress implements AdditionalDataHolder, Parsable {
         return this.postalCode;
     }
     /**
-     * Gets the primaryPhone property value. This type is used by the &lt;strong&gt;returnAddress&lt;/strong field that is used by the payment dispute methods. If a buyer is returning the item (under payment dispute) to the seller, a primary phone number for the seller must be provided.
+     * Gets the primaryPhone property value. This container shows the seller&apos;s primary phone number associated with the return address.
      * @return a {@link Phone}
      */
     @jakarta.annotation.Nullable
@@ -189,7 +189,7 @@ public class ReturnAddress implements AdditionalDataHolder, Parsable {
         writer.writeStringValue("addressLine1", this.getAddressLine1());
         writer.writeStringValue("addressLine2", this.getAddressLine2());
         writer.writeStringValue("city", this.getCity());
-        writer.writeStringValue("country", this.getCountry());
+        writer.writeEnumValue("country", this.getCountry());
         writer.writeStringValue("county", this.getCounty());
         writer.writeStringValue("fullName", this.getFullName());
         writer.writeStringValue("postalCode", this.getPostalCode());
@@ -226,10 +226,10 @@ public class ReturnAddress implements AdditionalDataHolder, Parsable {
         this.city = value;
     }
     /**
-     * Sets the country property value. The country&apos;s two-letter, ISO 3166-1 country code. See the enumeration type for a country&apos;s value. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the country property value. The country&apos;s two-letter, ISO 3166-1 country code. See the enumeration type for a country&apos;s value.
      * @param value Value to set for the country property.
      */
-    public void setCountry(@jakarta.annotation.Nullable final String value) {
+    public void setCountry(@jakarta.annotation.Nullable final CountryCodeEnum value) {
         this.country = value;
     }
     /**
@@ -254,7 +254,7 @@ public class ReturnAddress implements AdditionalDataHolder, Parsable {
         this.postalCode = value;
     }
     /**
-     * Sets the primaryPhone property value. This type is used by the &lt;strong&gt;returnAddress&lt;/strong field that is used by the payment dispute methods. If a buyer is returning the item (under payment dispute) to the seller, a primary phone number for the seller must be provided.
+     * Sets the primaryPhone property value. This container shows the seller&apos;s primary phone number associated with the return address.
      * @param value Value to set for the primaryPhone property.
      */
     public void setPrimaryPhone(@jakarta.annotation.Nullable final Phone value) {

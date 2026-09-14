@@ -31,29 +31,29 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * The date and time that the order cancellation was completed, if applicable. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.&lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * This string is the date and time that the order cancellation was completed, if applicable. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
     private String cancelCompletedDate;
     /**
-     * This string value indicates the party who made the initial cancellation request. Typically, either the &apos;Buyer&apos; or &apos;Seller&apos;. If a cancellation request has been made, this field should be returned.
+     * This string value indicates the party who made the initial cancellation request. This is typically, either the &apos;Buyer&apos; or &apos;Seller&apos;. If a cancellation request has been made, this field should be returned.
      */
     private String cancelInitiator;
     /**
-     * The reason why the &lt;b&gt;cancelInitiator&lt;/b&gt; initiated the cancellation request. Cancellation reasons for a buyer might include &apos;order placed by mistake&apos; or &apos;order won&apos;t arrive in time&apos;. For a seller, a typical cancellation reason is &apos;out of stock&apos;. If a cancellation request has been made, this field should be returned.
+     * This string indicates the reason why the &lt;strong&gt;cancelInitiator&lt;/strong&gt; initiated the cancellation request. Cancellation reasons for a buyer might include &apos;order placed by mistake&apos; or &apos;order won&apos;t arrive in time&apos;. For a seller, a typical cancellation reason is &apos;out of stock&apos;. If a cancellation request has been made, this field should be returned.
      */
     private String cancelReason;
     /**
-     * The date and time that the order cancellation was requested. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.&lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * This string is the date and time that the order cancellation was requested. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
     private String cancelRequestedDate;
     /**
-     * The unique identifier of the order cancellation request. This field is returned for each cancellation request.
+     * This string vlaue is the unique identifier of the order cancellation request. This field is returned for each cancellation request.
      */
     private String cancelRequestId;
     /**
-     * The current stage or condition of the cancellation request. This field is returned for each cancellation request. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:CancelRequestStateEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The current stage or condition of the cancellation request. This field is returned for each cancellation request.
      */
-    private String cancelRequestState;
+    private CancelRequestStateEnum cancelRequestState;
     /**
      * Instantiates a new {@link CancelRequest} and sets the default values.
      */
@@ -79,7 +79,7 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the cancelCompletedDate property value. The date and time that the order cancellation was completed, if applicable. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.&lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * Gets the cancelCompletedDate property value. This string is the date and time that the order cancellation was completed, if applicable. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -87,7 +87,7 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
         return this.cancelCompletedDate;
     }
     /**
-     * Gets the cancelInitiator property value. This string value indicates the party who made the initial cancellation request. Typically, either the &apos;Buyer&apos; or &apos;Seller&apos;. If a cancellation request has been made, this field should be returned.
+     * Gets the cancelInitiator property value. This string value indicates the party who made the initial cancellation request. This is typically, either the &apos;Buyer&apos; or &apos;Seller&apos;. If a cancellation request has been made, this field should be returned.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -95,7 +95,7 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
         return this.cancelInitiator;
     }
     /**
-     * Gets the cancelReason property value. The reason why the &lt;b&gt;cancelInitiator&lt;/b&gt; initiated the cancellation request. Cancellation reasons for a buyer might include &apos;order placed by mistake&apos; or &apos;order won&apos;t arrive in time&apos;. For a seller, a typical cancellation reason is &apos;out of stock&apos;. If a cancellation request has been made, this field should be returned.
+     * Gets the cancelReason property value. This string indicates the reason why the &lt;strong&gt;cancelInitiator&lt;/strong&gt; initiated the cancellation request. Cancellation reasons for a buyer might include &apos;order placed by mistake&apos; or &apos;order won&apos;t arrive in time&apos;. For a seller, a typical cancellation reason is &apos;out of stock&apos;. If a cancellation request has been made, this field should be returned.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -103,7 +103,7 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
         return this.cancelReason;
     }
     /**
-     * Gets the cancelRequestedDate property value. The date and time that the order cancellation was requested. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.&lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * Gets the cancelRequestedDate property value. This string is the date and time that the order cancellation was requested. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -111,7 +111,7 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
         return this.cancelRequestedDate;
     }
     /**
-     * Gets the cancelRequestId property value. The unique identifier of the order cancellation request. This field is returned for each cancellation request.
+     * Gets the cancelRequestId property value. This string vlaue is the unique identifier of the order cancellation request. This field is returned for each cancellation request.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -119,11 +119,11 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
         return this.cancelRequestId;
     }
     /**
-     * Gets the cancelRequestState property value. The current stage or condition of the cancellation request. This field is returned for each cancellation request. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:CancelRequestStateEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the cancelRequestState property value. The current stage or condition of the cancellation request. This field is returned for each cancellation request.
+     * @return a {@link CancelRequestStateEnum}
      */
     @jakarta.annotation.Nullable
-    public String getCancelRequestState() {
+    public CancelRequestStateEnum getCancelRequestState() {
         return this.cancelRequestState;
     }
     /**
@@ -138,7 +138,7 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
         deserializerMap.put("cancelReason", (n) -> { this.setCancelReason(n.getStringValue()); });
         deserializerMap.put("cancelRequestedDate", (n) -> { this.setCancelRequestedDate(n.getStringValue()); });
         deserializerMap.put("cancelRequestId", (n) -> { this.setCancelRequestId(n.getStringValue()); });
-        deserializerMap.put("cancelRequestState", (n) -> { this.setCancelRequestState(n.getStringValue()); });
+        deserializerMap.put("cancelRequestState", (n) -> { this.setCancelRequestState(n.getEnumValue(CancelRequestStateEnum::forValue)); });
         return deserializerMap;
     }
     /**
@@ -152,7 +152,7 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
         writer.writeStringValue("cancelReason", this.getCancelReason());
         writer.writeStringValue("cancelRequestedDate", this.getCancelRequestedDate());
         writer.writeStringValue("cancelRequestId", this.getCancelRequestId());
-        writer.writeStringValue("cancelRequestState", this.getCancelRequestState());
+        writer.writeEnumValue("cancelRequestState", this.getCancelRequestState());
         writer.writeAdditionalData(this.getAdditionalData());
     }
     /**
@@ -163,45 +163,45 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the cancelCompletedDate property value. The date and time that the order cancellation was completed, if applicable. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.&lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * Sets the cancelCompletedDate property value. This string is the date and time that the order cancellation was completed, if applicable. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the cancelCompletedDate property.
      */
     public void setCancelCompletedDate(@jakarta.annotation.Nullable final String value) {
         this.cancelCompletedDate = value;
     }
     /**
-     * Sets the cancelInitiator property value. This string value indicates the party who made the initial cancellation request. Typically, either the &apos;Buyer&apos; or &apos;Seller&apos;. If a cancellation request has been made, this field should be returned.
+     * Sets the cancelInitiator property value. This string value indicates the party who made the initial cancellation request. This is typically, either the &apos;Buyer&apos; or &apos;Seller&apos;. If a cancellation request has been made, this field should be returned.
      * @param value Value to set for the cancelInitiator property.
      */
     public void setCancelInitiator(@jakarta.annotation.Nullable final String value) {
         this.cancelInitiator = value;
     }
     /**
-     * Sets the cancelReason property value. The reason why the &lt;b&gt;cancelInitiator&lt;/b&gt; initiated the cancellation request. Cancellation reasons for a buyer might include &apos;order placed by mistake&apos; or &apos;order won&apos;t arrive in time&apos;. For a seller, a typical cancellation reason is &apos;out of stock&apos;. If a cancellation request has been made, this field should be returned.
+     * Sets the cancelReason property value. This string indicates the reason why the &lt;strong&gt;cancelInitiator&lt;/strong&gt; initiated the cancellation request. Cancellation reasons for a buyer might include &apos;order placed by mistake&apos; or &apos;order won&apos;t arrive in time&apos;. For a seller, a typical cancellation reason is &apos;out of stock&apos;. If a cancellation request has been made, this field should be returned.
      * @param value Value to set for the cancelReason property.
      */
     public void setCancelReason(@jakarta.annotation.Nullable final String value) {
         this.cancelReason = value;
     }
     /**
-     * Sets the cancelRequestedDate property value. The date and time that the order cancellation was requested. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.&lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
+     * Sets the cancelRequestedDate property value. This string is the date and time that the order cancellation was requested. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the cancelRequestedDate property.
      */
     public void setCancelRequestedDate(@jakarta.annotation.Nullable final String value) {
         this.cancelRequestedDate = value;
     }
     /**
-     * Sets the cancelRequestId property value. The unique identifier of the order cancellation request. This field is returned for each cancellation request.
+     * Sets the cancelRequestId property value. This string vlaue is the unique identifier of the order cancellation request. This field is returned for each cancellation request.
      * @param value Value to set for the cancelRequestId property.
      */
     public void setCancelRequestId(@jakarta.annotation.Nullable final String value) {
         this.cancelRequestId = value;
     }
     /**
-     * Sets the cancelRequestState property value. The current stage or condition of the cancellation request. This field is returned for each cancellation request. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:CancelRequestStateEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the cancelRequestState property value. The current stage or condition of the cancellation request. This field is returned for each cancellation request.
      * @param value Value to set for the cancelRequestState property.
      */
-    public void setCancelRequestState(@jakarta.annotation.Nullable final String value) {
+    public void setCancelRequestState(@jakarta.annotation.Nullable final CancelRequestStateEnum value) {
         this.cancelRequestState = value;
     }
 }

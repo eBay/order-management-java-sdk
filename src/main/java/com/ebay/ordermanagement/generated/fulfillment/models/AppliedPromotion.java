@@ -35,11 +35,11 @@ public class AppliedPromotion implements AdditionalDataHolder, Parsable {
      */
     private String description;
     /**
-     * This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * The monetary amount of the sales promotion.
      */
     private Amount discountAmount;
     /**
-     * An eBay-generated unique identifier of the sales promotion.&lt;br&gt;&lt;br&gt; Multiple types of sales promotions are available to eBay Store owners, including order size/volume discounts, shipping discounts, special coupons, and price markdowns. Sales promotions can be managed through the Marketing tab of Seller Hub in My eBay, or by using the Trading API&apos;s &lt;b&gt;SetPromotionalSale&lt;/b&gt; call or the Marketing API&apos;s &lt;b&gt;createItemPromotion&lt;/b&gt; method.
+     * An eBay-generated unique identifier of the sales promotion.&lt;br&gt;&lt;br&gt; Multiple types of sales promotions are available to eBay Store owners, including order size/volume discounts, shipping discounts, special coupons, and price markdowns. Sales promotions can be managed through the Marketing tab of Seller Hub in My eBay or by using the Marketing API&apos;s &lt;strong&gt;createItemPromotion&lt;/strong&gt; method.
      */
     private String promotionId;
     /**
@@ -75,7 +75,7 @@ public class AppliedPromotion implements AdditionalDataHolder, Parsable {
         return this.description;
     }
     /**
-     * Gets the discountAmount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the discountAmount property value. The monetary amount of the sales promotion.
      * @return a {@link Amount}
      */
     @jakarta.annotation.Nullable
@@ -95,7 +95,7 @@ public class AppliedPromotion implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the promotionId property value. An eBay-generated unique identifier of the sales promotion.&lt;br&gt;&lt;br&gt; Multiple types of sales promotions are available to eBay Store owners, including order size/volume discounts, shipping discounts, special coupons, and price markdowns. Sales promotions can be managed through the Marketing tab of Seller Hub in My eBay, or by using the Trading API&apos;s &lt;b&gt;SetPromotionalSale&lt;/b&gt; call or the Marketing API&apos;s &lt;b&gt;createItemPromotion&lt;/b&gt; method.
+     * Gets the promotionId property value. An eBay-generated unique identifier of the sales promotion.&lt;br&gt;&lt;br&gt; Multiple types of sales promotions are available to eBay Store owners, including order size/volume discounts, shipping discounts, special coupons, and price markdowns. Sales promotions can be managed through the Marketing tab of Seller Hub in My eBay or by using the Marketing API&apos;s &lt;strong&gt;createItemPromotion&lt;/strong&gt; method.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -128,14 +128,14 @@ public class AppliedPromotion implements AdditionalDataHolder, Parsable {
         this.description = value;
     }
     /**
-     * Sets the discountAmount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the discountAmount property value. The monetary amount of the sales promotion.
      * @param value Value to set for the discountAmount property.
      */
     public void setDiscountAmount(@jakarta.annotation.Nullable final Amount value) {
         this.discountAmount = value;
     }
     /**
-     * Sets the promotionId property value. An eBay-generated unique identifier of the sales promotion.&lt;br&gt;&lt;br&gt; Multiple types of sales promotions are available to eBay Store owners, including order size/volume discounts, shipping discounts, special coupons, and price markdowns. Sales promotions can be managed through the Marketing tab of Seller Hub in My eBay, or by using the Trading API&apos;s &lt;b&gt;SetPromotionalSale&lt;/b&gt; call or the Marketing API&apos;s &lt;b&gt;createItemPromotion&lt;/b&gt; method.
+     * Sets the promotionId property value. An eBay-generated unique identifier of the sales promotion.&lt;br&gt;&lt;br&gt; Multiple types of sales promotions are available to eBay Store owners, including order size/volume discounts, shipping discounts, special coupons, and price markdowns. Sales promotions can be managed through the Marketing tab of Seller Hub in My eBay or by using the Marketing API&apos;s &lt;strong&gt;createItemPromotion&lt;/strong&gt; method.
      * @param value Value to set for the promotionId property.
      */
     public void setPromotionId(@jakarta.annotation.Nullable final String value) {

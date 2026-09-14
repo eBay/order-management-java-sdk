@@ -31,7 +31,7 @@ public class EbayFulfillmentProgram implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * The value returned in this field indicates the party that is handling fulfillment of the order line item. &lt;br&gt;&lt;br&gt;Valid value: &lt;code&gt;EBAY&lt;/code&gt;
+     * The value returned in this field indicates the party that is handling fulfillment of the order line item. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Valid value&lt;/strong&gt;: &lt;code&gt;EBAY&lt;/code&gt;
      */
     private String fulfilledBy;
     /**
@@ -69,7 +69,7 @@ public class EbayFulfillmentProgram implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the fulfilledBy property value. The value returned in this field indicates the party that is handling fulfillment of the order line item. &lt;br&gt;&lt;br&gt;Valid value: &lt;code&gt;EBAY&lt;/code&gt;
+     * Gets the fulfilledBy property value. The value returned in this field indicates the party that is handling fulfillment of the order line item. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Valid value&lt;/strong&gt;: &lt;code&gt;EBAY&lt;/code&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -93,7 +93,7 @@ public class EbayFulfillmentProgram implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the fulfilledBy property value. The value returned in this field indicates the party that is handling fulfillment of the order line item. &lt;br&gt;&lt;br&gt;Valid value: &lt;code&gt;EBAY&lt;/code&gt;
+     * Sets the fulfilledBy property value. The value returned in this field indicates the party that is handling fulfillment of the order line item. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Valid value&lt;/strong&gt;: &lt;code&gt;EBAY&lt;/code&gt;
      * @param value Value to set for the fulfilledBy property.
      */
     public void setFulfilledBy(@jakarta.annotation.Nullable final String value) {

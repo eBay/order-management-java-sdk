@@ -21,6 +21,9 @@ import com.microsoft.kiota.serialization.SerializationWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+/**
+ * This type contains details on the fulfillment type.
+ */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class EbayVaultProgram implements AdditionalDataHolder, Parsable {
     /**
@@ -28,9 +31,9 @@ public class EbayVaultProgram implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * This field specifies how an eBay vault order will be fulfilled. Supported options are:&lt;ul&gt;&lt;li&gt;&lt;b&gt;Seller to Vault&lt;/b&gt;: the order will be shipped by the seller to an authenticator.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Vault to Vault&lt;/b&gt;: the order will be shipped from an eBay vault to the buyer&apos;s vault.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Vault to Buyer&lt;/b&gt;: the order will be shipped from an eBay vault to the buyer&apos;s shipping address.&lt;/li&gt;&lt;/ul&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:EbayVaultFulfillmentTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * This field specifies how an eBay vault order will be fulfilled. Supported options are:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Seller to Vault&lt;/strong&gt;: The order will be shipped by the seller to an authenticator.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Vault to Vault&lt;/strong&gt;: The order will be shipped from an eBay vault to the buyer&apos;s vault.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Vault to Buyer&lt;/strong&gt;: The order will be shipped from an eBay vault to the buyer&apos;s shipping address.&lt;/li&gt;&lt;/ul&gt;
      */
-    private String fulfillmentType;
+    private EbayVaultFulfillmentTypeEnum fulfillmentType;
     /**
      * Instantiates a new {@link EbayVaultProgram} and sets the default values.
      */
@@ -62,15 +65,15 @@ public class EbayVaultProgram implements AdditionalDataHolder, Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(1);
-        deserializerMap.put("fulfillmentType", (n) -> { this.setFulfillmentType(n.getStringValue()); });
+        deserializerMap.put("fulfillmentType", (n) -> { this.setFulfillmentType(n.getEnumValue(EbayVaultFulfillmentTypeEnum::forValue)); });
         return deserializerMap;
     }
     /**
-     * Gets the fulfillmentType property value. This field specifies how an eBay vault order will be fulfilled. Supported options are:&lt;ul&gt;&lt;li&gt;&lt;b&gt;Seller to Vault&lt;/b&gt;: the order will be shipped by the seller to an authenticator.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Vault to Vault&lt;/b&gt;: the order will be shipped from an eBay vault to the buyer&apos;s vault.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Vault to Buyer&lt;/b&gt;: the order will be shipped from an eBay vault to the buyer&apos;s shipping address.&lt;/li&gt;&lt;/ul&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:EbayVaultFulfillmentTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the fulfillmentType property value. This field specifies how an eBay vault order will be fulfilled. Supported options are:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Seller to Vault&lt;/strong&gt;: The order will be shipped by the seller to an authenticator.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Vault to Vault&lt;/strong&gt;: The order will be shipped from an eBay vault to the buyer&apos;s vault.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Vault to Buyer&lt;/strong&gt;: The order will be shipped from an eBay vault to the buyer&apos;s shipping address.&lt;/li&gt;&lt;/ul&gt;
+     * @return a {@link EbayVaultFulfillmentTypeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getFulfillmentType() {
+    public EbayVaultFulfillmentTypeEnum getFulfillmentType() {
         return this.fulfillmentType;
     }
     /**
@@ -79,7 +82,7 @@ public class EbayVaultProgram implements AdditionalDataHolder, Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeStringValue("fulfillmentType", this.getFulfillmentType());
+        writer.writeEnumValue("fulfillmentType", this.getFulfillmentType());
         writer.writeAdditionalData(this.getAdditionalData());
     }
     /**
@@ -90,10 +93,10 @@ public class EbayVaultProgram implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the fulfillmentType property value. This field specifies how an eBay vault order will be fulfilled. Supported options are:&lt;ul&gt;&lt;li&gt;&lt;b&gt;Seller to Vault&lt;/b&gt;: the order will be shipped by the seller to an authenticator.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Vault to Vault&lt;/b&gt;: the order will be shipped from an eBay vault to the buyer&apos;s vault.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Vault to Buyer&lt;/b&gt;: the order will be shipped from an eBay vault to the buyer&apos;s shipping address.&lt;/li&gt;&lt;/ul&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:EbayVaultFulfillmentTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the fulfillmentType property value. This field specifies how an eBay vault order will be fulfilled. Supported options are:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Seller to Vault&lt;/strong&gt;: The order will be shipped by the seller to an authenticator.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Vault to Vault&lt;/strong&gt;: The order will be shipped from an eBay vault to the buyer&apos;s vault.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Vault to Buyer&lt;/strong&gt;: The order will be shipped from an eBay vault to the buyer&apos;s shipping address.&lt;/li&gt;&lt;/ul&gt;
      * @param value Value to set for the fulfillmentType property.
      */
-    public void setFulfillmentType(@jakarta.annotation.Nullable final String value) {
+    public void setFulfillmentType(@jakarta.annotation.Nullable final EbayVaultFulfillmentTypeEnum value) {
         this.fulfillmentType = value;
     }
 }

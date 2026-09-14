@@ -27,7 +27,7 @@ import java.util.Objects;
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class AdditionalOption implements AdditionalDataHolder, Parsable {
     /**
-     * A complex type that describes the value of a monetary amount as represented by a global currency.
+     * The monetary cost of the additional shipping option identified by the &lt;strong&gt;optionType&lt;/strong&gt; field.
      */
     private Amount additionalCost;
     /**
@@ -55,7 +55,7 @@ public class AdditionalOption implements AdditionalDataHolder, Parsable {
         return new AdditionalOption();
     }
     /**
-     * Gets the additionalCost property value. A complex type that describes the value of a monetary amount as represented by a global currency.
+     * Gets the additionalCost property value. The monetary cost of the additional shipping option identified by the &lt;strong&gt;optionType&lt;/strong&gt; field.
      * @return a {@link Amount}
      */
     @jakarta.annotation.Nullable
@@ -100,7 +100,7 @@ public class AdditionalOption implements AdditionalDataHolder, Parsable {
         writer.writeAdditionalData(this.getAdditionalData());
     }
     /**
-     * Sets the additionalCost property value. A complex type that describes the value of a monetary amount as represented by a global currency.
+     * Sets the additionalCost property value. The monetary cost of the additional shipping option identified by the &lt;strong&gt;optionType&lt;/strong&gt; field.
      * @param value Value to set for the additionalCost property.
      */
     public void setAdditionalCost(@jakarta.annotation.Nullable final Amount value) {

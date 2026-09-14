@@ -31,27 +31,31 @@ public class PaymentDisputeOutcomeDetail implements AdditionalDataHolder, Parsab
      */
     private Map<String, Object> additionalData;
     /**
-     * This type defines the monetary value of the payment dispute, and the currency used.
+     * This container shows the amount of money in donation credits.
+     */
+    private SimpleAmount donationCreditAmount;
+    /**
+     * This container will show the dollar value of any fees associated with the payment dispute. This container is only returned if there are fees associated with the payment dispute.
      */
     private SimpleAmount fees;
     /**
-     * This type defines the monetary value of the payment dispute, and the currency used.
+     * This container shows the amount of money that the seller is protected against in a payment dispute under eBay&apos;s seller protection policy.
      */
     private SimpleAmount protectedAmount;
     /**
-     * This enumeration value indicates if the seller is fully protected, partially protected, or not protected by eBay for the payment dispute. This field is always returned once the payment dispute is resolved. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:ProtectionStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * This enumeration value indicates if the seller is fully protected, partially protected, or not protected by eBay for the payment dispute. This field is always returned once the payment dispute is resolved.
      */
-    private String protectionStatus;
+    private ProtectionStatusEnum protectionStatus;
     /**
-     * The enumeration value returned in this field indicates the outcome of the payment dispute for the seller. This field is always returned once the payment dispute is resolved. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:OutcomeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The enumeration value returned in this field indicates the outcome of the payment dispute for the seller. This field is always returned once the payment dispute is resolved.
      */
-    private String reasonForClosure;
+    private OutcomeEnum reasonForClosure;
     /**
-     * This type defines the monetary value of the payment dispute, and the currency used.
+     * This container shows the dollar amount being recouped from the seller. This container is empty if the seller wins the payment dispute or if the seller is fully protected by eBay&apos;s seller protection policy.
      */
     private SimpleAmount recoupAmount;
     /**
-     * This type defines the monetary value of the payment dispute, and the currency used.
+     * This container shows the amount of money in selling fee credits due back to the seller after a payment dispute is settled.
      */
     private SimpleAmount totalFeeCredit;
     /**
@@ -79,7 +83,15 @@ public class PaymentDisputeOutcomeDetail implements AdditionalDataHolder, Parsab
         return this.additionalData;
     }
     /**
-     * Gets the fees property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Gets the donationCreditAmount property value. This container shows the amount of money in donation credits.
+     * @return a {@link SimpleAmount}
+     */
+    @jakarta.annotation.Nullable
+    public SimpleAmount getDonationCreditAmount() {
+        return this.donationCreditAmount;
+    }
+    /**
+     * Gets the fees property value. This container will show the dollar value of any fees associated with the payment dispute. This container is only returned if there are fees associated with the payment dispute.
      * @return a {@link SimpleAmount}
      */
     @jakarta.annotation.Nullable
@@ -92,17 +104,18 @@ public class PaymentDisputeOutcomeDetail implements AdditionalDataHolder, Parsab
      */
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(6);
+        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(7);
+        deserializerMap.put("donationCreditAmount", (n) -> { this.setDonationCreditAmount(n.getObjectValue(SimpleAmount::createFromDiscriminatorValue)); });
         deserializerMap.put("fees", (n) -> { this.setFees(n.getObjectValue(SimpleAmount::createFromDiscriminatorValue)); });
         deserializerMap.put("protectedAmount", (n) -> { this.setProtectedAmount(n.getObjectValue(SimpleAmount::createFromDiscriminatorValue)); });
-        deserializerMap.put("protectionStatus", (n) -> { this.setProtectionStatus(n.getStringValue()); });
-        deserializerMap.put("reasonForClosure", (n) -> { this.setReasonForClosure(n.getStringValue()); });
+        deserializerMap.put("protectionStatus", (n) -> { this.setProtectionStatus(n.getEnumValue(ProtectionStatusEnum::forValue)); });
+        deserializerMap.put("reasonForClosure", (n) -> { this.setReasonForClosure(n.getEnumValue(OutcomeEnum::forValue)); });
         deserializerMap.put("recoupAmount", (n) -> { this.setRecoupAmount(n.getObjectValue(SimpleAmount::createFromDiscriminatorValue)); });
         deserializerMap.put("totalFeeCredit", (n) -> { this.setTotalFeeCredit(n.getObjectValue(SimpleAmount::createFromDiscriminatorValue)); });
         return deserializerMap;
     }
     /**
-     * Gets the protectedAmount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Gets the protectedAmount property value. This container shows the amount of money that the seller is protected against in a payment dispute under eBay&apos;s seller protection policy.
      * @return a {@link SimpleAmount}
      */
     @jakarta.annotation.Nullable
@@ -110,23 +123,23 @@ public class PaymentDisputeOutcomeDetail implements AdditionalDataHolder, Parsab
         return this.protectedAmount;
     }
     /**
-     * Gets the protectionStatus property value. This enumeration value indicates if the seller is fully protected, partially protected, or not protected by eBay for the payment dispute. This field is always returned once the payment dispute is resolved. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:ProtectionStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the protectionStatus property value. This enumeration value indicates if the seller is fully protected, partially protected, or not protected by eBay for the payment dispute. This field is always returned once the payment dispute is resolved.
+     * @return a {@link ProtectionStatusEnum}
      */
     @jakarta.annotation.Nullable
-    public String getProtectionStatus() {
+    public ProtectionStatusEnum getProtectionStatus() {
         return this.protectionStatus;
     }
     /**
-     * Gets the reasonForClosure property value. The enumeration value returned in this field indicates the outcome of the payment dispute for the seller. This field is always returned once the payment dispute is resolved. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:OutcomeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the reasonForClosure property value. The enumeration value returned in this field indicates the outcome of the payment dispute for the seller. This field is always returned once the payment dispute is resolved.
+     * @return a {@link OutcomeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getReasonForClosure() {
+    public OutcomeEnum getReasonForClosure() {
         return this.reasonForClosure;
     }
     /**
-     * Gets the recoupAmount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Gets the recoupAmount property value. This container shows the dollar amount being recouped from the seller. This container is empty if the seller wins the payment dispute or if the seller is fully protected by eBay&apos;s seller protection policy.
      * @return a {@link SimpleAmount}
      */
     @jakarta.annotation.Nullable
@@ -134,7 +147,7 @@ public class PaymentDisputeOutcomeDetail implements AdditionalDataHolder, Parsab
         return this.recoupAmount;
     }
     /**
-     * Gets the totalFeeCredit property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Gets the totalFeeCredit property value. This container shows the amount of money in selling fee credits due back to the seller after a payment dispute is settled.
      * @return a {@link SimpleAmount}
      */
     @jakarta.annotation.Nullable
@@ -147,10 +160,11 @@ public class PaymentDisputeOutcomeDetail implements AdditionalDataHolder, Parsab
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
+        writer.writeObjectValue("donationCreditAmount", this.getDonationCreditAmount());
         writer.writeObjectValue("fees", this.getFees());
         writer.writeObjectValue("protectedAmount", this.getProtectedAmount());
-        writer.writeStringValue("protectionStatus", this.getProtectionStatus());
-        writer.writeStringValue("reasonForClosure", this.getReasonForClosure());
+        writer.writeEnumValue("protectionStatus", this.getProtectionStatus());
+        writer.writeEnumValue("reasonForClosure", this.getReasonForClosure());
         writer.writeObjectValue("recoupAmount", this.getRecoupAmount());
         writer.writeObjectValue("totalFeeCredit", this.getTotalFeeCredit());
         writer.writeAdditionalData(this.getAdditionalData());
@@ -163,42 +177,49 @@ public class PaymentDisputeOutcomeDetail implements AdditionalDataHolder, Parsab
         this.additionalData = value;
     }
     /**
-     * Sets the fees property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Sets the donationCreditAmount property value. This container shows the amount of money in donation credits.
+     * @param value Value to set for the donationCreditAmount property.
+     */
+    public void setDonationCreditAmount(@jakarta.annotation.Nullable final SimpleAmount value) {
+        this.donationCreditAmount = value;
+    }
+    /**
+     * Sets the fees property value. This container will show the dollar value of any fees associated with the payment dispute. This container is only returned if there are fees associated with the payment dispute.
      * @param value Value to set for the fees property.
      */
     public void setFees(@jakarta.annotation.Nullable final SimpleAmount value) {
         this.fees = value;
     }
     /**
-     * Sets the protectedAmount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Sets the protectedAmount property value. This container shows the amount of money that the seller is protected against in a payment dispute under eBay&apos;s seller protection policy.
      * @param value Value to set for the protectedAmount property.
      */
     public void setProtectedAmount(@jakarta.annotation.Nullable final SimpleAmount value) {
         this.protectedAmount = value;
     }
     /**
-     * Sets the protectionStatus property value. This enumeration value indicates if the seller is fully protected, partially protected, or not protected by eBay for the payment dispute. This field is always returned once the payment dispute is resolved. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:ProtectionStatusEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the protectionStatus property value. This enumeration value indicates if the seller is fully protected, partially protected, or not protected by eBay for the payment dispute. This field is always returned once the payment dispute is resolved.
      * @param value Value to set for the protectionStatus property.
      */
-    public void setProtectionStatus(@jakarta.annotation.Nullable final String value) {
+    public void setProtectionStatus(@jakarta.annotation.Nullable final ProtectionStatusEnum value) {
         this.protectionStatus = value;
     }
     /**
-     * Sets the reasonForClosure property value. The enumeration value returned in this field indicates the outcome of the payment dispute for the seller. This field is always returned once the payment dispute is resolved. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/fulfillment/types/api:OutcomeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the reasonForClosure property value. The enumeration value returned in this field indicates the outcome of the payment dispute for the seller. This field is always returned once the payment dispute is resolved.
      * @param value Value to set for the reasonForClosure property.
      */
-    public void setReasonForClosure(@jakarta.annotation.Nullable final String value) {
+    public void setReasonForClosure(@jakarta.annotation.Nullable final OutcomeEnum value) {
         this.reasonForClosure = value;
     }
     /**
-     * Sets the recoupAmount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Sets the recoupAmount property value. This container shows the dollar amount being recouped from the seller. This container is empty if the seller wins the payment dispute or if the seller is fully protected by eBay&apos;s seller protection policy.
      * @param value Value to set for the recoupAmount property.
      */
     public void setRecoupAmount(@jakarta.annotation.Nullable final SimpleAmount value) {
         this.recoupAmount = value;
     }
     /**
-     * Sets the totalFeeCredit property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Sets the totalFeeCredit property value. This container shows the amount of money in selling fee credits due back to the seller after a payment dispute is settled.
      * @param value Value to set for the totalFeeCredit property.
      */
     public void setTotalFeeCredit(@jakarta.annotation.Nullable final SimpleAmount value) {
