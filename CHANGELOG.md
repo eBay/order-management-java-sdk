@@ -1,22 +1,29 @@
 # ChangeLog
 
-## 1.1.0 (09/14/2026)
+## 0.2.0 (09/14/2026)
 
-- The following clients were added:
-  - `PostOrderApiClient`
-- The following members were added to `OrderManagementClient`:
-  - `postOrderApi`
+### Breaking changes
 
-## 1.0.0 (09/14/2026)
+#### Changed signatures
 
-**Breaking changes**
-- The following operations changed signature on `FulfillmentClient`:
-  - `uploadEvidenceFileAsync`: `(String, String, RequestOptions)` → `(String, byte[], String, RequestOptions)`
-- The following operations changed signature on `LogisticsClient`:
-  - `createFromShippingQuoteAsync`: `(CreateShipmentFromQuoteRequest, String, RequestOptions)` → `(CreateShipmentFromQuoteRequest, String, String, RequestOptions)`
-  - `createShippingQuoteAsync`: `(ShippingQuoteRequest, String, RequestOptions)` → `(ShippingQuoteRequest, String, String, RequestOptions)`
+`FulfillmentClient`:
 
-- The following operations were added to `OrderManagementGraphQLClient`:
-  - `bulkUpdateOrderTagsAsync`
-  - `commitToPurchaseAsync`
-  - `requestPurchaseQuoteAsync`
+| Operation | Previous parameters | Current parameters |
+| --- | --- | --- |
+| `uploadEvidenceFileAsync` | `(String paymentDisputeId, String accessToken, RequestOptions requestOptions)` | `(String paymentDisputeId, byte[] body, String accessToken, RequestOptions requestOptions)` |
+
+`LogisticsClient`:
+
+| Operation | Previous parameters | Current parameters |
+| --- | --- | --- |
+| `createFromShippingQuoteAsync` | `(CreateShipmentFromQuoteRequest body, String accessToken, RequestOptions requestOptions)` | `(CreateShipmentFromQuoteRequest body, String xEBAYCMARKETPLACEID, String accessToken, RequestOptions requestOptions)` |
+| `createShippingQuoteAsync` | `(ShippingQuoteRequest body, String accessToken, RequestOptions requestOptions)` | `(ShippingQuoteRequest body, String xEBAYCMARKETPLACEID, String accessToken, RequestOptions requestOptions)` |
+
+### Added
+
+- Client `PostOrderApiClient` and member `OrderManagementClient.postOrderApi`.
+#### `OrderManagementGraphQLClient`
+
+- `bulkUpdateOrderTagsAsync`
+- `commitToPurchaseAsync`
+- `requestPurchaseQuoteAsync`
