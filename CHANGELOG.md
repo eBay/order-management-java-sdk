@@ -10,14 +10,14 @@
 
 | Operation | Previous parameters | Current parameters |
 | --- | --- | --- |
-| `uploadEvidenceFileAsync` | `(String, String, RequestOptions)` | `(String, byte[], String, RequestOptions)` |
+| `uploadEvidenceFileAsync` | `(String paymentDisputeId, String accessToken, RequestOptions requestOptions)` | `(String paymentDisputeId, byte[] body, String accessToken, RequestOptions requestOptions)` |
 
 `LogisticsClient`:
 
 | Operation | Previous parameters | Current parameters |
 | --- | --- | --- |
-| `createFromShippingQuoteAsync` | `(CreateShipmentFromQuoteRequest, String, RequestOptions)` | `(CreateShipmentFromQuoteRequest, String, String, RequestOptions)` |
-| `createShippingQuoteAsync` | `(ShippingQuoteRequest, String, RequestOptions)` | `(ShippingQuoteRequest, String, String, RequestOptions)` |
+| `createFromShippingQuoteAsync` | `(CreateShipmentFromQuoteRequest body, String accessToken, RequestOptions requestOptions)` | `(CreateShipmentFromQuoteRequest body, String xEBAYCMARKETPLACEID, String accessToken, RequestOptions requestOptions)` |
+| `createShippingQuoteAsync` | `(ShippingQuoteRequest body, String accessToken, RequestOptions requestOptions)` | `(ShippingQuoteRequest body, String xEBAYCMARKETPLACEID, String accessToken, RequestOptions requestOptions)` |
 
 ### Added
 
