@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "com.ebay"
-version = "0.2.2"
+version = "0.2.3"
 
 java {
     toolchain { languageVersion.set(JavaLanguageVersion.of(17)) }
@@ -38,7 +38,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     // JSON for DynamicGraphQLClient escape hatch
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.22.3")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.22.4")
 
     // Kotlin coroutines for Future integration (matches eBay Android)
     api(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.11.0"))
@@ -91,7 +91,7 @@ publishing {
             from(components["java"])
             groupId = "com.ebay"
             artifactId = "order-management-java-sdk"
-            version = "0.2.2"
+            version = "0.2.3"
         }
     }
 }
