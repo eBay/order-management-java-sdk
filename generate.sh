@@ -20,7 +20,7 @@ echo "Generating Order Management Java SDK with Kiota..."
 rm -rf src/main/java/com/ebay/ordermanagement/generated
 
 echo "Generating FulfillmentApiClient..."
-kiota generate -l java -d specs/openapi/fulfillment.json \
+kiota generate -l java -d specs/kiota/fulfillment.json \
   -c FulfillmentApiClient -n com.ebay.ordermanagement.generated.fulfillment \
   -o src/main/java/com/ebay/ordermanagement/generated/fulfillment --ebc --co
 

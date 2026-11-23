@@ -1,6 +1,6 @@
 {
-  "descriptionHash": "C44DCBCE6FA06247F8B4242614048806B9EFC0B8FF91A377CF837D1C151967885BCCD5DFC86F672A4BB08321F7F5263EFF270BEC7023122C5A452C789B6F4FDE",
-  "descriptionLocation": "../../../../../../../../specs/openapi/fulfillment.json",
+  "descriptionHash": "4AECC176AAB950F0CBA963C5B686A476DBFE715C51413225563F2494A863812F4473DDE67D4439C79AE8685C9CB05953D9201ACF2BFE8FC4612D4CEEE3054DEC",
+  "descriptionLocation": "../../../../../../../../specs/kiota/fulfillment.json",
   "lockFileVersion": "1.0.0",
   "kiotaVersion": "1.35.0",
   "clientClassName": "FulfillmentApiClient",

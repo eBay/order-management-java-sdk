@@ -185,8 +185,11 @@ public final class FulfillmentClient {
             String paymentDisputeId, byte[] body, String accessToken, RequestOptions requestOptions) {
         return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
-            return kiota.paymentDispute().byPayment_dispute_id(Params.requireValid("paymentDisputeId", paymentDisputeId)).uploadEvidenceFile().post(config -> {
+            com.microsoft.kiota.MultipartBody multipartBody = new com.microsoft.kiota.MultipartBody();
+            multipartBody.addOrReplacePart("file", "application/octet-stream", body);
+            return kiota.paymentDispute().byPayment_dispute_id(Params.requireValid("paymentDisputeId", paymentDisputeId)).uploadEvidenceFile().post(multipartBody, config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
+                config.headers.remove("Content-Type");
             });
         }));
     }

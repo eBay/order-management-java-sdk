@@ -1,5 +1,12 @@
 # ChangeLog
 
+## 0.2.4 (11/23/2026)
+
+### Bug fixes
+
+- `FulfillmentClient.uploadEvidenceFileAsync` now sends the file as a `multipart/form-data` part. Before, it sent the request without a body, so every upload failed.
+- It sends `Content-Type: multipart/form-data` with its boundary, even when `RequestOptions` sets a plain `multipart/form-data` header.
+
 ## 0.2.3 (10/28/2026)
 
 ### Dependencies
