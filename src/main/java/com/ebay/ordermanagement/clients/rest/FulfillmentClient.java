@@ -189,7 +189,6 @@ public final class FulfillmentClient {
             multipartBody.addOrReplacePart("file", "application/octet-stream", body);
             return kiota.paymentDispute().byPayment_dispute_id(Params.requireValid("paymentDisputeId", paymentDisputeId)).uploadEvidenceFile().post(multipartBody, config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
-                config.headers.remove("Content-Type");
             });
         }));
     }
