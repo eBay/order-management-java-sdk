@@ -18,6 +18,7 @@ import com.microsoft.kiota.serialization.AdditionalDataHolder;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
 import com.microsoft.kiota.serialization.SerializationWriter;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -45,7 +46,7 @@ public class Order implements AdditionalDataHolder, Parsable {
     /**
      * The date and time that the order was created. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
-    private String creationDate;
+    private OffsetDateTime creationDate;
     /**
      * This field is only returned if &lt;code&gt;true&lt;/code&gt; and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, &apos;Goods and Services&apos; tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer&apos;s residence. If this field is returned, the seller should search for one or more &lt;strong&gt;ebayCollectAndRemitTaxes&lt;/strong&gt; containers at the line item level to get more information about the type of tax and the amount.
      */
@@ -61,7 +62,7 @@ public class Order implements AdditionalDataHolder, Parsable {
     /**
      * The date and time that the order was last modified. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
-    private String lastModifiedDate;
+    private OffsetDateTime lastModifiedDate;
     /**
      * This array contains the details for all line items that comprise the order.
      */
@@ -156,10 +157,10 @@ public class Order implements AdditionalDataHolder, Parsable {
     }
     /**
      * Gets the creationDate property value. The date and time that the order was created. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
-     * @return a {@link String}
+     * @return a {@link OffsetDateTime}
      */
     @jakarta.annotation.Nullable
-    public String getCreationDate() {
+    public OffsetDateTime getCreationDate() {
         return this.creationDate;
     }
     /**
@@ -180,11 +181,11 @@ public class Order implements AdditionalDataHolder, Parsable {
         deserializerMap.put("buyer", (n) -> { this.setBuyer(n.getObjectValue(Buyer::createFromDiscriminatorValue)); });
         deserializerMap.put("buyerCheckoutNotes", (n) -> { this.setBuyerCheckoutNotes(n.getStringValue()); });
         deserializerMap.put("cancelStatus", (n) -> { this.setCancelStatus(n.getObjectValue(CancelStatus::createFromDiscriminatorValue)); });
-        deserializerMap.put("creationDate", (n) -> { this.setCreationDate(n.getStringValue()); });
+        deserializerMap.put("creationDate", (n) -> { this.setCreationDate(n.getOffsetDateTimeValue()); });
         deserializerMap.put("ebayCollectAndRemitTax", (n) -> { this.setEbayCollectAndRemitTax(n.getBooleanValue()); });
         deserializerMap.put("fulfillmentHrefs", (n) -> { this.setFulfillmentHrefs(n.getCollectionOfPrimitiveValues(String.class)); });
         deserializerMap.put("fulfillmentStartInstructions", (n) -> { this.setFulfillmentStartInstructions(n.getCollectionOfObjectValues(FulfillmentStartInstruction::createFromDiscriminatorValue)); });
-        deserializerMap.put("lastModifiedDate", (n) -> { this.setLastModifiedDate(n.getStringValue()); });
+        deserializerMap.put("lastModifiedDate", (n) -> { this.setLastModifiedDate(n.getOffsetDateTimeValue()); });
         deserializerMap.put("lineItems", (n) -> { this.setLineItems(n.getCollectionOfObjectValues(LineItem::createFromDiscriminatorValue)); });
         deserializerMap.put("orderFulfillmentStatus", (n) -> { this.setOrderFulfillmentStatus(n.getEnumValue(OrderFulfillmentStatus::forValue)); });
         deserializerMap.put("orderId", (n) -> { this.setOrderId(n.getStringValue()); });
@@ -216,10 +217,10 @@ public class Order implements AdditionalDataHolder, Parsable {
     }
     /**
      * Gets the lastModifiedDate property value. The date and time that the order was last modified. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
-     * @return a {@link String}
+     * @return a {@link OffsetDateTime}
      */
     @jakarta.annotation.Nullable
-    public String getLastModifiedDate() {
+    public OffsetDateTime getLastModifiedDate() {
         return this.lastModifiedDate;
     }
     /**
@@ -319,11 +320,11 @@ public class Order implements AdditionalDataHolder, Parsable {
         writer.writeObjectValue("buyer", this.getBuyer());
         writer.writeStringValue("buyerCheckoutNotes", this.getBuyerCheckoutNotes());
         writer.writeObjectValue("cancelStatus", this.getCancelStatus());
-        writer.writeStringValue("creationDate", this.getCreationDate());
+        writer.writeOffsetDateTimeValue("creationDate", this.getCreationDate());
         writer.writeBooleanValue("ebayCollectAndRemitTax", this.getEbayCollectAndRemitTax());
         writer.writeCollectionOfPrimitiveValues("fulfillmentHrefs", this.getFulfillmentHrefs());
         writer.writeCollectionOfObjectValues("fulfillmentStartInstructions", this.getFulfillmentStartInstructions());
-        writer.writeStringValue("lastModifiedDate", this.getLastModifiedDate());
+        writer.writeOffsetDateTimeValue("lastModifiedDate", this.getLastModifiedDate());
         writer.writeCollectionOfObjectValues("lineItems", this.getLineItems());
         writer.writeEnumValue("orderFulfillmentStatus", this.getOrderFulfillmentStatus());
         writer.writeStringValue("orderId", this.getOrderId());
@@ -369,7 +370,7 @@ public class Order implements AdditionalDataHolder, Parsable {
      * Sets the creationDate property value. The date and time that the order was created. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the creationDate property.
      */
-    public void setCreationDate(@jakarta.annotation.Nullable final String value) {
+    public void setCreationDate(@jakarta.annotation.Nullable final OffsetDateTime value) {
         this.creationDate = value;
     }
     /**
@@ -397,7 +398,7 @@ public class Order implements AdditionalDataHolder, Parsable {
      * Sets the lastModifiedDate property value. The date and time that the order was last modified. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the lastModifiedDate property.
      */
-    public void setLastModifiedDate(@jakarta.annotation.Nullable final String value) {
+    public void setLastModifiedDate(@jakarta.annotation.Nullable final OffsetDateTime value) {
         this.lastModifiedDate = value;
     }
     /**

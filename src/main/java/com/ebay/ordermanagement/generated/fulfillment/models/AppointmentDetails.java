@@ -18,6 +18,7 @@ import com.microsoft.kiota.serialization.AdditionalDataHolder;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
 import com.microsoft.kiota.serialization.SerializationWriter;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -33,11 +34,11 @@ public class AppointmentDetails implements AdditionalDataHolder, Parsable {
     /**
      * The date and time the appointment ends, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2022-10-28T00:00:00.000Z&lt;/code&gt;
      */
-    private String appointmentEndTime;
+    private OffsetDateTime appointmentEndTime;
     /**
      * The date and time the appointment begins, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2022-10-28T00:10:00.000Z&lt;/code&gt;
      */
-    private String appointmentStartTime;
+    private OffsetDateTime appointmentStartTime;
     /**
      * The status of the appointment.
      */
@@ -80,18 +81,18 @@ public class AppointmentDetails implements AdditionalDataHolder, Parsable {
     }
     /**
      * Gets the appointmentEndTime property value. The date and time the appointment ends, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2022-10-28T00:00:00.000Z&lt;/code&gt;
-     * @return a {@link String}
+     * @return a {@link OffsetDateTime}
      */
     @jakarta.annotation.Nullable
-    public String getAppointmentEndTime() {
+    public OffsetDateTime getAppointmentEndTime() {
         return this.appointmentEndTime;
     }
     /**
      * Gets the appointmentStartTime property value. The date and time the appointment begins, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2022-10-28T00:10:00.000Z&lt;/code&gt;
-     * @return a {@link String}
+     * @return a {@link OffsetDateTime}
      */
     @jakarta.annotation.Nullable
-    public String getAppointmentStartTime() {
+    public OffsetDateTime getAppointmentStartTime() {
         return this.appointmentStartTime;
     }
     /**
@@ -125,8 +126,8 @@ public class AppointmentDetails implements AdditionalDataHolder, Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(6);
-        deserializerMap.put("appointmentEndTime", (n) -> { this.setAppointmentEndTime(n.getStringValue()); });
-        deserializerMap.put("appointmentStartTime", (n) -> { this.setAppointmentStartTime(n.getStringValue()); });
+        deserializerMap.put("appointmentEndTime", (n) -> { this.setAppointmentEndTime(n.getOffsetDateTimeValue()); });
+        deserializerMap.put("appointmentStartTime", (n) -> { this.setAppointmentStartTime(n.getOffsetDateTimeValue()); });
         deserializerMap.put("appointmentStatus", (n) -> { this.setAppointmentStatus(n.getEnumValue(AppointmentStatusEnum::forValue)); });
         deserializerMap.put("appointmentType", (n) -> { this.setAppointmentType(n.getEnumValue(AppointmentTypeEnum::forValue)); });
         deserializerMap.put("appointmentWindow", (n) -> { this.setAppointmentWindow(n.getEnumValue(AppointmentWindowEnum::forValue)); });
@@ -147,8 +148,8 @@ public class AppointmentDetails implements AdditionalDataHolder, Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeStringValue("appointmentEndTime", this.getAppointmentEndTime());
-        writer.writeStringValue("appointmentStartTime", this.getAppointmentStartTime());
+        writer.writeOffsetDateTimeValue("appointmentEndTime", this.getAppointmentEndTime());
+        writer.writeOffsetDateTimeValue("appointmentStartTime", this.getAppointmentStartTime());
         writer.writeEnumValue("appointmentStatus", this.getAppointmentStatus());
         writer.writeEnumValue("appointmentType", this.getAppointmentType());
         writer.writeEnumValue("appointmentWindow", this.getAppointmentWindow());
@@ -166,14 +167,14 @@ public class AppointmentDetails implements AdditionalDataHolder, Parsable {
      * Sets the appointmentEndTime property value. The date and time the appointment ends, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2022-10-28T00:00:00.000Z&lt;/code&gt;
      * @param value Value to set for the appointmentEndTime property.
      */
-    public void setAppointmentEndTime(@jakarta.annotation.Nullable final String value) {
+    public void setAppointmentEndTime(@jakarta.annotation.Nullable final OffsetDateTime value) {
         this.appointmentEndTime = value;
     }
     /**
      * Sets the appointmentStartTime property value. The date and time the appointment begins, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2022-10-28T00:10:00.000Z&lt;/code&gt;
      * @param value Value to set for the appointmentStartTime property.
      */
-    public void setAppointmentStartTime(@jakarta.annotation.Nullable final String value) {
+    public void setAppointmentStartTime(@jakarta.annotation.Nullable final OffsetDateTime value) {
         this.appointmentStartTime = value;
     }
     /**

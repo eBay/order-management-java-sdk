@@ -21,6 +21,10 @@ import okhttp3.Response
 
 internal class BearerTokenInterceptor(private val config: OrderManagementConfiguration) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
+        // Never hand the token to a host outside the trusted list, or over plain http off loopback.
+        if (!config.isTrustedUrl(chain.request().url.toString())) {
+            return chain.proceed(chain.request())
+        }
         val token = TokenContext.CURRENT.get()
             ?: config.accessToken
             ?: error("No access token. Pass accessToken per-call or set OrderManagementConfiguration.accessToken.")

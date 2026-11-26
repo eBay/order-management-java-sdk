@@ -16,11 +16,18 @@
 
 set -euo pipefail
 
+KIOTA_VERSION=$(kiota --version 2>/dev/null | cut -d'+' -f1)
+if [ "$KIOTA_VERSION" != "1.35.0" ]; then
+  echo "Error: kiota 1.35.0 required, found '${KIOTA_VERSION:-not installed}'"
+  echo "See https://learn.microsoft.com/en-us/openapi/kiota/install for installation options."
+  exit 1
+fi
+
 echo "Generating Order Management Java SDK with Kiota..."
 rm -rf src/main/java/com/ebay/ordermanagement/generated
 
 echo "Generating FulfillmentApiClient..."
-kiota generate -l java -d specs/openapi/fulfillment.json \
+kiota generate -l java -d specs/kiota/fulfillment.json \
   -c FulfillmentApiClient -n com.ebay.ordermanagement.generated.fulfillment \
   -o src/main/java/com/ebay/ordermanagement/generated/fulfillment --ebc --co
 
@@ -28,11 +35,6 @@ echo "Generating LogisticsApiClient..."
 kiota generate -l java -d specs/openapi/logistics.json \
   -c LogisticsApiClient -n com.ebay.ordermanagement.generated.logistics \
   -o src/main/java/com/ebay/ordermanagement/generated/logistics --ebc --co
-
-echo "Generating PostOrderApiApiClient..."
-kiota generate -l java -d specs/openapi/post-order-api.json \
-  -c PostOrderApiApiClient -n com.ebay.ordermanagement.generated.postorderapi \
-  -o src/main/java/com/ebay/ordermanagement/generated/postorderapi --ebc --co
 
 echo "Adding license headers to generated files..."
 ./add-license-headers.sh ./src

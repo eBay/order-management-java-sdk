@@ -18,6 +18,7 @@ import com.microsoft.kiota.serialization.AdditionalDataHolder;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
 import com.microsoft.kiota.serialization.SerializationWriter;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -53,11 +54,11 @@ public class FulfillmentStartInstruction implements AdditionalDataHolder, Parsab
     /**
      * This is the estimated latest date that the fulfillment will be completed. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the &lt;strong&gt;fulfillmentInstructionsType&lt;/strong&gt; field is &lt;code&gt;DIGITAL&lt;/code&gt; or &lt;code&gt;PREPARE_FOR_PICKUP&lt;/code&gt;.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
-    private String maxEstimatedDeliveryDate;
+    private OffsetDateTime maxEstimatedDeliveryDate;
     /**
      * This is the estimated earliest date that the fulfillment will be completed. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if  the value of the &lt;strong&gt;fulfillmentInstructionsType&lt;/strong&gt; field is &lt;code&gt;DIGITAL&lt;/code&gt; or &lt;code&gt;PREPARE_FOR_PICKUP&lt;/code&gt;.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
-    private String minEstimatedDeliveryDate;
+    private OffsetDateTime minEstimatedDeliveryDate;
     /**
      * This container is only returned for In-Store Pickup orders, and it indicates the specific merchant&apos;s store where the buyer will pick up the order. The In-Store Pickup feature is supported in the US, Canada, UK, Germany, and Australia marketplaces.
      */
@@ -126,8 +127,8 @@ public class FulfillmentStartInstruction implements AdditionalDataHolder, Parsab
         deserializerMap.put("ebaySupportedFulfillment", (n) -> { this.setEbaySupportedFulfillment(n.getBooleanValue()); });
         deserializerMap.put("finalDestinationAddress", (n) -> { this.setFinalDestinationAddress(n.getObjectValue(Address::createFromDiscriminatorValue)); });
         deserializerMap.put("fulfillmentInstructionsType", (n) -> { this.setFulfillmentInstructionsType(n.getEnumValue(FulfillmentInstructionsType::forValue)); });
-        deserializerMap.put("maxEstimatedDeliveryDate", (n) -> { this.setMaxEstimatedDeliveryDate(n.getStringValue()); });
-        deserializerMap.put("minEstimatedDeliveryDate", (n) -> { this.setMinEstimatedDeliveryDate(n.getStringValue()); });
+        deserializerMap.put("maxEstimatedDeliveryDate", (n) -> { this.setMaxEstimatedDeliveryDate(n.getOffsetDateTimeValue()); });
+        deserializerMap.put("minEstimatedDeliveryDate", (n) -> { this.setMinEstimatedDeliveryDate(n.getOffsetDateTimeValue()); });
         deserializerMap.put("pickupStep", (n) -> { this.setPickupStep(n.getObjectValue(PickupStep::createFromDiscriminatorValue)); });
         deserializerMap.put("shippingStep", (n) -> { this.setShippingStep(n.getObjectValue(ShippingStep::createFromDiscriminatorValue)); });
         return deserializerMap;
@@ -150,18 +151,18 @@ public class FulfillmentStartInstruction implements AdditionalDataHolder, Parsab
     }
     /**
      * Gets the maxEstimatedDeliveryDate property value. This is the estimated latest date that the fulfillment will be completed. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the &lt;strong&gt;fulfillmentInstructionsType&lt;/strong&gt; field is &lt;code&gt;DIGITAL&lt;/code&gt; or &lt;code&gt;PREPARE_FOR_PICKUP&lt;/code&gt;.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
-     * @return a {@link String}
+     * @return a {@link OffsetDateTime}
      */
     @jakarta.annotation.Nullable
-    public String getMaxEstimatedDeliveryDate() {
+    public OffsetDateTime getMaxEstimatedDeliveryDate() {
         return this.maxEstimatedDeliveryDate;
     }
     /**
      * Gets the minEstimatedDeliveryDate property value. This is the estimated earliest date that the fulfillment will be completed. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if  the value of the &lt;strong&gt;fulfillmentInstructionsType&lt;/strong&gt; field is &lt;code&gt;DIGITAL&lt;/code&gt; or &lt;code&gt;PREPARE_FOR_PICKUP&lt;/code&gt;.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
-     * @return a {@link String}
+     * @return a {@link OffsetDateTime}
      */
     @jakarta.annotation.Nullable
-    public String getMinEstimatedDeliveryDate() {
+    public OffsetDateTime getMinEstimatedDeliveryDate() {
         return this.minEstimatedDeliveryDate;
     }
     /**
@@ -191,8 +192,8 @@ public class FulfillmentStartInstruction implements AdditionalDataHolder, Parsab
         writer.writeBooleanValue("ebaySupportedFulfillment", this.getEbaySupportedFulfillment());
         writer.writeObjectValue("finalDestinationAddress", this.getFinalDestinationAddress());
         writer.writeEnumValue("fulfillmentInstructionsType", this.getFulfillmentInstructionsType());
-        writer.writeStringValue("maxEstimatedDeliveryDate", this.getMaxEstimatedDeliveryDate());
-        writer.writeStringValue("minEstimatedDeliveryDate", this.getMinEstimatedDeliveryDate());
+        writer.writeOffsetDateTimeValue("maxEstimatedDeliveryDate", this.getMaxEstimatedDeliveryDate());
+        writer.writeOffsetDateTimeValue("minEstimatedDeliveryDate", this.getMinEstimatedDeliveryDate());
         writer.writeObjectValue("pickupStep", this.getPickupStep());
         writer.writeObjectValue("shippingStep", this.getShippingStep());
         writer.writeAdditionalData(this.getAdditionalData());
@@ -243,14 +244,14 @@ public class FulfillmentStartInstruction implements AdditionalDataHolder, Parsab
      * Sets the maxEstimatedDeliveryDate property value. This is the estimated latest date that the fulfillment will be completed. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the &lt;strong&gt;fulfillmentInstructionsType&lt;/strong&gt; field is &lt;code&gt;DIGITAL&lt;/code&gt; or &lt;code&gt;PREPARE_FOR_PICKUP&lt;/code&gt;.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the maxEstimatedDeliveryDate property.
      */
-    public void setMaxEstimatedDeliveryDate(@jakarta.annotation.Nullable final String value) {
+    public void setMaxEstimatedDeliveryDate(@jakarta.annotation.Nullable final OffsetDateTime value) {
         this.maxEstimatedDeliveryDate = value;
     }
     /**
      * Sets the minEstimatedDeliveryDate property value. This is the estimated earliest date that the fulfillment will be completed. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if  the value of the &lt;strong&gt;fulfillmentInstructionsType&lt;/strong&gt; field is &lt;code&gt;DIGITAL&lt;/code&gt; or &lt;code&gt;PREPARE_FOR_PICKUP&lt;/code&gt;.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the minEstimatedDeliveryDate property.
      */
-    public void setMinEstimatedDeliveryDate(@jakarta.annotation.Nullable final String value) {
+    public void setMinEstimatedDeliveryDate(@jakarta.annotation.Nullable final OffsetDateTime value) {
         this.minEstimatedDeliveryDate = value;
     }
     /**

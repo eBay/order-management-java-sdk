@@ -61,7 +61,7 @@ public class OrderSearchPagedCollection implements AdditionalDataHolder, Parsabl
     /**
      * This array is returned if one or more errors or warnings occur with the call request.
      */
-    private java.util.List<ErrorDetailV3> warnings;
+    private java.util.List<ErrorDetail> warnings;
     /**
      * Instantiates a new {@link OrderSearchPagedCollection} and sets the default values.
      */
@@ -100,7 +100,7 @@ public class OrderSearchPagedCollection implements AdditionalDataHolder, Parsabl
         deserializerMap.put("orders", (n) -> { this.setOrders(n.getCollectionOfObjectValues(Order::createFromDiscriminatorValue)); });
         deserializerMap.put("prev", (n) -> { this.setPrev(n.getStringValue()); });
         deserializerMap.put("total", (n) -> { this.setTotal(n.getIntegerValue()); });
-        deserializerMap.put("warnings", (n) -> { this.setWarnings(n.getCollectionOfObjectValues(ErrorDetailV3::createFromDiscriminatorValue)); });
+        deserializerMap.put("warnings", (n) -> { this.setWarnings(n.getCollectionOfObjectValues(ErrorDetail::createFromDiscriminatorValue)); });
         return deserializerMap;
     }
     /**
@@ -161,10 +161,10 @@ public class OrderSearchPagedCollection implements AdditionalDataHolder, Parsabl
     }
     /**
      * Gets the warnings property value. This array is returned if one or more errors or warnings occur with the call request.
-     * @return a {@link java.util.List<ErrorDetailV3>}
+     * @return a {@link java.util.List<ErrorDetail>}
      */
     @jakarta.annotation.Nullable
-    public java.util.List<ErrorDetailV3> getWarnings() {
+    public java.util.List<ErrorDetail> getWarnings() {
         return this.warnings;
     }
     /**
@@ -243,7 +243,7 @@ public class OrderSearchPagedCollection implements AdditionalDataHolder, Parsabl
      * Sets the warnings property value. This array is returned if one or more errors or warnings occur with the call request.
      * @param value Value to set for the warnings property.
      */
-    public void setWarnings(@jakarta.annotation.Nullable final java.util.List<ErrorDetailV3> value) {
+    public void setWarnings(@jakarta.annotation.Nullable final java.util.List<ErrorDetail> value) {
         this.warnings = value;
     }
 }

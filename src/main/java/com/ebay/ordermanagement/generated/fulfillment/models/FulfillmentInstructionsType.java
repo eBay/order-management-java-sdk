@@ -22,10 +22,10 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public enum FulfillmentInstructionsType implements ValuedEnum {
-    DIGITAL("DIGITAL"),
-    PREPARE_FOR_PICKUP("PREPARE_FOR_PICKUP"),
-    SELLER_DEFINED("SELLER_DEFINED"),
     SHIP_TO("SHIP_TO"),
+    PREPARE_FOR_PICKUP("PREPARE_FOR_PICKUP"),
+    DIGITAL("DIGITAL"),
+    SELLER_DEFINED("SELLER_DEFINED"),
     FULFILLED_BY_EBAY("FULFILLED_BY_EBAY");
     public final String value;
     FulfillmentInstructionsType(final String value) {
@@ -37,10 +37,10 @@ public enum FulfillmentInstructionsType implements ValuedEnum {
     public static FulfillmentInstructionsType forValue(@jakarta.annotation.Nonnull final String searchValue) {
         Objects.requireNonNull(searchValue);
         switch(searchValue) {
-            case "DIGITAL": return DIGITAL;
-            case "PREPARE_FOR_PICKUP": return PREPARE_FOR_PICKUP;
-            case "SELLER_DEFINED": return SELLER_DEFINED;
             case "SHIP_TO": return SHIP_TO;
+            case "PREPARE_FOR_PICKUP": return PREPARE_FOR_PICKUP;
+            case "DIGITAL": return DIGITAL;
+            case "SELLER_DEFINED": return SELLER_DEFINED;
             case "FULFILLED_BY_EBAY": return FULFILLED_BY_EBAY;
             default: return null;
         }

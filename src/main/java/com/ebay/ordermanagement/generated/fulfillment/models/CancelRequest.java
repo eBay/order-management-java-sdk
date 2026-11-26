@@ -18,6 +18,7 @@ import com.microsoft.kiota.serialization.AdditionalDataHolder;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
 import com.microsoft.kiota.serialization.SerializationWriter;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -33,7 +34,7 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
     /**
      * This string is the date and time that the order cancellation was completed, if applicable. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
-    private String cancelCompletedDate;
+    private OffsetDateTime cancelCompletedDate;
     /**
      * This string value indicates the party who made the initial cancellation request. This is typically, either the &apos;Buyer&apos; or &apos;Seller&apos;. If a cancellation request has been made, this field should be returned.
      */
@@ -45,7 +46,7 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
     /**
      * This string is the date and time that the order cancellation was requested. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
-    private String cancelRequestedDate;
+    private OffsetDateTime cancelRequestedDate;
     /**
      * This string vlaue is the unique identifier of the order cancellation request. This field is returned for each cancellation request.
      */
@@ -80,10 +81,10 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
     }
     /**
      * Gets the cancelCompletedDate property value. This string is the date and time that the order cancellation was completed, if applicable. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
-     * @return a {@link String}
+     * @return a {@link OffsetDateTime}
      */
     @jakarta.annotation.Nullable
-    public String getCancelCompletedDate() {
+    public OffsetDateTime getCancelCompletedDate() {
         return this.cancelCompletedDate;
     }
     /**
@@ -104,10 +105,10 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
     }
     /**
      * Gets the cancelRequestedDate property value. This string is the date and time that the order cancellation was requested. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
-     * @return a {@link String}
+     * @return a {@link OffsetDateTime}
      */
     @jakarta.annotation.Nullable
-    public String getCancelRequestedDate() {
+    public OffsetDateTime getCancelRequestedDate() {
         return this.cancelRequestedDate;
     }
     /**
@@ -133,10 +134,10 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(6);
-        deserializerMap.put("cancelCompletedDate", (n) -> { this.setCancelCompletedDate(n.getStringValue()); });
+        deserializerMap.put("cancelCompletedDate", (n) -> { this.setCancelCompletedDate(n.getOffsetDateTimeValue()); });
         deserializerMap.put("cancelInitiator", (n) -> { this.setCancelInitiator(n.getStringValue()); });
         deserializerMap.put("cancelReason", (n) -> { this.setCancelReason(n.getStringValue()); });
-        deserializerMap.put("cancelRequestedDate", (n) -> { this.setCancelRequestedDate(n.getStringValue()); });
+        deserializerMap.put("cancelRequestedDate", (n) -> { this.setCancelRequestedDate(n.getOffsetDateTimeValue()); });
         deserializerMap.put("cancelRequestId", (n) -> { this.setCancelRequestId(n.getStringValue()); });
         deserializerMap.put("cancelRequestState", (n) -> { this.setCancelRequestState(n.getEnumValue(CancelRequestStateEnum::forValue)); });
         return deserializerMap;
@@ -147,10 +148,10 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeStringValue("cancelCompletedDate", this.getCancelCompletedDate());
+        writer.writeOffsetDateTimeValue("cancelCompletedDate", this.getCancelCompletedDate());
         writer.writeStringValue("cancelInitiator", this.getCancelInitiator());
         writer.writeStringValue("cancelReason", this.getCancelReason());
-        writer.writeStringValue("cancelRequestedDate", this.getCancelRequestedDate());
+        writer.writeOffsetDateTimeValue("cancelRequestedDate", this.getCancelRequestedDate());
         writer.writeStringValue("cancelRequestId", this.getCancelRequestId());
         writer.writeEnumValue("cancelRequestState", this.getCancelRequestState());
         writer.writeAdditionalData(this.getAdditionalData());
@@ -166,7 +167,7 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
      * Sets the cancelCompletedDate property value. This string is the date and time that the order cancellation was completed, if applicable. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the cancelCompletedDate property.
      */
-    public void setCancelCompletedDate(@jakarta.annotation.Nullable final String value) {
+    public void setCancelCompletedDate(@jakarta.annotation.Nullable final OffsetDateTime value) {
         this.cancelCompletedDate = value;
     }
     /**
@@ -187,7 +188,7 @@ public class CancelRequest implements AdditionalDataHolder, Parsable {
      * Sets the cancelRequestedDate property value. This string is the date and time that the order cancellation was requested. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the cancelRequestedDate property.
      */
-    public void setCancelRequestedDate(@jakarta.annotation.Nullable final String value) {
+    public void setCancelRequestedDate(@jakarta.annotation.Nullable final OffsetDateTime value) {
         this.cancelRequestedDate = value;
     }
     /**

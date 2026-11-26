@@ -33,23 +33,6 @@ class OrderManagementGraphQLClient @JvmOverloads internal constructor(
     private val scope: CoroutineScope = CoroutineScope(Dispatchers.IO)
 ) {
 
-    suspend fun addListingsToReturnRuleListingGroupAsync(
-        input: AddListingsToReturnRuleListingGroupInput,
-        accessToken: String? = null
-    ): AddListingsToReturnRuleListingGroupMutation.AddListingsToReturnRuleListingGroup? {
-        val prev = TokenContext.CURRENT.get()
-        TokenContext.CURRENT.set(accessToken ?: prev)
-        try {
-            val response = apolloClient.mutation(AddListingsToReturnRuleListingGroupMutation(input)).execute()
-            if (response.hasErrors()) {
-                throw GraphQLException(response.errors!!.map { it.message })
-            }
-            return response.dataAssertNoErrors.addListingsToReturnRuleListingGroup
-        } finally {
-            TokenContext.CURRENT.set(prev)
-        }
-    }
-
     suspend fun appendSellerReturnResponseRuleAsync(
         input: AppendSellerReturnResponseRuleInput,
         accessToken: String? = null
@@ -220,23 +203,6 @@ class OrderManagementGraphQLClient @JvmOverloads internal constructor(
         }
     }
 
-    suspend fun createInStoreReturnAsync(
-        input: CreateInStoreReturnInput,
-        accessToken: String? = null
-    ): CreateInStoreReturnMutation.CreateInStoreReturn? {
-        val prev = TokenContext.CURRENT.get()
-        TokenContext.CURRENT.set(accessToken ?: prev)
-        try {
-            val response = apolloClient.mutation(CreateInStoreReturnMutation(input)).execute()
-            if (response.hasErrors()) {
-                throw GraphQLException(response.errors!!.map { it.message })
-            }
-            return response.dataAssertNoErrors.createInStoreReturn
-        } finally {
-            TokenContext.CURRENT.set(prev)
-        }
-    }
-
     suspend fun createItemCommitmentCancellationAsync(
         input: CreateItemCommitmentCancellationInput,
         accessToken: String? = null
@@ -305,23 +271,6 @@ class OrderManagementGraphQLClient @JvmOverloads internal constructor(
         }
     }
 
-    suspend fun createReturnRuleListingGroupAsync(
-        input: CreateReturnRuleListingGroupInput,
-        accessToken: String? = null
-    ): CreateReturnRuleListingGroupMutation.CreateReturnRuleListingGroup? {
-        val prev = TokenContext.CURRENT.get()
-        TokenContext.CURRENT.set(accessToken ?: prev)
-        try {
-            val response = apolloClient.mutation(CreateReturnRuleListingGroupMutation(input)).execute()
-            if (response.hasErrors()) {
-                throw GraphQLException(response.errors!!.map { it.message })
-            }
-            return response.dataAssertNoErrors.createReturnRuleListingGroup
-        } finally {
-            TokenContext.CURRENT.set(prev)
-        }
-    }
-
     suspend fun declineContractCancellationAsync(
         input: DeclineContractCancellationInput,
         accessToken: String? = null
@@ -351,23 +300,6 @@ class OrderManagementGraphQLClient @JvmOverloads internal constructor(
                 throw GraphQLException(response.errors!!.map { it.message })
             }
             return response.dataAssertNoErrors.declineReturn
-        } finally {
-            TokenContext.CURRENT.set(prev)
-        }
-    }
-
-    suspend fun deleteReturnRuleListingGroupAsync(
-        input: DeleteReturnRuleListingGroupInput,
-        accessToken: String? = null
-    ): DeleteReturnRuleListingGroupMutation.DeleteReturnRuleListingGroup? {
-        val prev = TokenContext.CURRENT.get()
-        TokenContext.CURRENT.set(accessToken ?: prev)
-        try {
-            val response = apolloClient.mutation(DeleteReturnRuleListingGroupMutation(input)).execute()
-            if (response.hasErrors()) {
-                throw GraphQLException(response.errors!!.map { it.message })
-            }
-            return response.dataAssertNoErrors.deleteReturnRuleListingGroup
         } finally {
             TokenContext.CURRENT.set(prev)
         }
@@ -732,23 +664,6 @@ class OrderManagementGraphQLClient @JvmOverloads internal constructor(
         }
     }
 
-    suspend fun returnRuleListingGroupAsync(
-        input: ReturnRuleListingGroupInput,
-        accessToken: String? = null
-    ): ReturnRuleListingGroupQuery.ReturnRuleListingGroup? {
-        val prev = TokenContext.CURRENT.get()
-        TokenContext.CURRENT.set(accessToken ?: prev)
-        try {
-            val response = apolloClient.query(ReturnRuleListingGroupQuery(input)).execute()
-            if (response.hasErrors()) {
-                throw GraphQLException(response.errors!!.map { it.message })
-            }
-            return response.dataAssertNoErrors.returnRuleListingGroup
-        } finally {
-            TokenContext.CURRENT.set(prev)
-        }
-    }
-
     suspend fun sellerContractCancellationsAsync(
         input: SellerContractCancellationsInput,
         accessToken: String? = null
@@ -988,9 +903,6 @@ class OrderManagementGraphQLClient @JvmOverloads internal constructor(
         }
     }
 
-    fun addListingsToReturnRuleListingGroupFuture(input: AddListingsToReturnRuleListingGroupInput, accessToken: String?) =
-        scope.future { addListingsToReturnRuleListingGroupAsync(input, accessToken) }
-
     fun appendSellerReturnResponseRuleFuture(input: AppendSellerReturnResponseRuleInput, accessToken: String?) =
         scope.future { appendSellerReturnResponseRuleAsync(input, accessToken) }
 
@@ -1021,9 +933,6 @@ class OrderManagementGraphQLClient @JvmOverloads internal constructor(
     fun contractCancellationFuture(input: ContractCancellationInput, accessToken: String?) =
         scope.future { contractCancellationAsync(input, accessToken) }
 
-    fun createInStoreReturnFuture(input: CreateInStoreReturnInput, accessToken: String?) =
-        scope.future { createInStoreReturnAsync(input, accessToken) }
-
     fun createItemCommitmentCancellationFuture(input: CreateItemCommitmentCancellationInput, accessToken: String?) =
         scope.future { createItemCommitmentCancellationAsync(input, accessToken) }
 
@@ -1036,17 +945,11 @@ class OrderManagementGraphQLClient @JvmOverloads internal constructor(
     fun createPurchaseQuoteCancellationFuture(input: CreatePurchaseQuoteCancellationInput, accessToken: String?) =
         scope.future { createPurchaseQuoteCancellationAsync(input, accessToken) }
 
-    fun createReturnRuleListingGroupFuture(input: CreateReturnRuleListingGroupInput, accessToken: String?) =
-        scope.future { createReturnRuleListingGroupAsync(input, accessToken) }
-
     fun declineContractCancellationFuture(input: DeclineContractCancellationInput, accessToken: String?) =
         scope.future { declineContractCancellationAsync(input, accessToken) }
 
     fun declineReturnFuture(input: DeclineReturnInput, accessToken: String?) =
         scope.future { declineReturnAsync(input, accessToken) }
-
-    fun deleteReturnRuleListingGroupFuture(input: DeleteReturnRuleListingGroupInput, accessToken: String?) =
-        scope.future { deleteReturnRuleListingGroupAsync(input, accessToken) }
 
     fun deleteSellerReturnRuleFuture(input: DeleteSellerReturnRuleInput, accessToken: String?) =
         scope.future { deleteSellerReturnRuleAsync(input, accessToken) }
@@ -1110,9 +1013,6 @@ class OrderManagementGraphQLClient @JvmOverloads internal constructor(
 
     fun requestPurchaseQuoteFuture(input: RequestPurchaseQuoteInput, accessToken: String?) =
         scope.future { requestPurchaseQuoteAsync(input, accessToken) }
-
-    fun returnRuleListingGroupFuture(input: ReturnRuleListingGroupInput, accessToken: String?) =
-        scope.future { returnRuleListingGroupAsync(input, accessToken) }
 
     fun sellerContractCancellationsFuture(input: SellerContractCancellationsInput, accessToken: String?) =
         scope.future { sellerContractCancellationsAsync(input, accessToken) }

@@ -22,9 +22,9 @@ import java.util.Objects;
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public enum OrderFulfillmentStatus implements ValuedEnum {
-    FULFILLED("FULFILLED"),
+    NOT_STARTED("NOT_STARTED"),
     IN_PROGRESS("IN_PROGRESS"),
-    NOT_STARTED("NOT_STARTED");
+    FULFILLED("FULFILLED");
     public final String value;
     OrderFulfillmentStatus(final String value) {
         this.value = value;
@@ -35,9 +35,9 @@ public enum OrderFulfillmentStatus implements ValuedEnum {
     public static OrderFulfillmentStatus forValue(@jakarta.annotation.Nonnull final String searchValue) {
         Objects.requireNonNull(searchValue);
         switch(searchValue) {
-            case "FULFILLED": return FULFILLED;
-            case "IN_PROGRESS": return IN_PROGRESS;
             case "NOT_STARTED": return NOT_STARTED;
+            case "IN_PROGRESS": return IN_PROGRESS;
+            case "FULFILLED": return FULFILLED;
             default: return null;
         }
     }
