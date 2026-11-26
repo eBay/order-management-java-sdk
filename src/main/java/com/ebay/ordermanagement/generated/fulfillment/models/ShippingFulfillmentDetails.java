@@ -18,6 +18,7 @@ import com.microsoft.kiota.serialization.AdditionalDataHolder;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
 import com.microsoft.kiota.serialization.SerializationWriter;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -37,7 +38,7 @@ public class ShippingFulfillmentDetails implements AdditionalDataHolder, Parsabl
     /**
      * This is the actual date and time that the fulfillment package was shipped. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. The seller should use the actual date/time that the package was shipped, but if this field is omitted, it will default to the current date/time.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;br&gt;&lt;br&gt;&lt;strong&gt;Default:&lt;/strong&gt; The current date and time.
      */
-    private String shippedDate;
+    private OffsetDateTime shippedDate;
     /**
      * The unique identifier of the shipping carrier being used to ship the line item(s). Technically, the &lt;strong&gt;shippingCarrierCode&lt;/strong&gt; and &lt;strong&gt;trackingNumber&lt;/strong&gt; fields are optional, but generally these fields will be provided if the shipping carrier and tracking number are known. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Use the Trading API&apos;s &lt;strong&gt;GeteBayDetails&lt;/strong&gt; call to retrieve the latest shipping carrier enumeration values. When making the &lt;a href=&quot;https://developer.ebay.com/devzone/xml/docs/reference/ebay/GeteBayDetails.html&quot; target=&quot;_blank&quot;&gt;GeteBayDetails&lt;/a&gt; call, include the &lt;strong&gt;DetailName&lt;/strong&gt; field in the request payload and set its value to &lt;code&gt;ShippingCarrierDetails&lt;/code&gt;. Each valid shipping carrier enumeration value is returned in a &lt;strong&gt;ShippingCarrierDetails.ShippingCarrier&lt;/strong&gt; field in the response payload.&lt;/span&gt;
      */
@@ -78,7 +79,7 @@ public class ShippingFulfillmentDetails implements AdditionalDataHolder, Parsabl
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(4);
         deserializerMap.put("lineItems", (n) -> { this.setLineItems(n.getCollectionOfObjectValues(LineItemReference::createFromDiscriminatorValue)); });
-        deserializerMap.put("shippedDate", (n) -> { this.setShippedDate(n.getStringValue()); });
+        deserializerMap.put("shippedDate", (n) -> { this.setShippedDate(n.getOffsetDateTimeValue()); });
         deserializerMap.put("shippingCarrierCode", (n) -> { this.setShippingCarrierCode(n.getStringValue()); });
         deserializerMap.put("trackingNumber", (n) -> { this.setTrackingNumber(n.getStringValue()); });
         return deserializerMap;
@@ -93,10 +94,10 @@ public class ShippingFulfillmentDetails implements AdditionalDataHolder, Parsabl
     }
     /**
      * Gets the shippedDate property value. This is the actual date and time that the fulfillment package was shipped. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. The seller should use the actual date/time that the package was shipped, but if this field is omitted, it will default to the current date/time.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;br&gt;&lt;br&gt;&lt;strong&gt;Default:&lt;/strong&gt; The current date and time.
-     * @return a {@link String}
+     * @return a {@link OffsetDateTime}
      */
     @jakarta.annotation.Nullable
-    public String getShippedDate() {
+    public OffsetDateTime getShippedDate() {
         return this.shippedDate;
     }
     /**
@@ -122,7 +123,7 @@ public class ShippingFulfillmentDetails implements AdditionalDataHolder, Parsabl
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
         writer.writeCollectionOfObjectValues("lineItems", this.getLineItems());
-        writer.writeStringValue("shippedDate", this.getShippedDate());
+        writer.writeOffsetDateTimeValue("shippedDate", this.getShippedDate());
         writer.writeStringValue("shippingCarrierCode", this.getShippingCarrierCode());
         writer.writeStringValue("trackingNumber", this.getTrackingNumber());
         writer.writeAdditionalData(this.getAdditionalData());
@@ -145,7 +146,7 @@ public class ShippingFulfillmentDetails implements AdditionalDataHolder, Parsabl
      * Sets the shippedDate property value. This is the actual date and time that the fulfillment package was shipped. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. The seller should use the actual date/time that the package was shipped, but if this field is omitted, it will default to the current date/time.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;br&gt;&lt;br&gt;&lt;strong&gt;Default:&lt;/strong&gt; The current date and time.
      * @param value Value to set for the shippedDate property.
      */
-    public void setShippedDate(@jakarta.annotation.Nullable final String value) {
+    public void setShippedDate(@jakarta.annotation.Nullable final OffsetDateTime value) {
         this.shippedDate = value;
     }
     /**

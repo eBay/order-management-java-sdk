@@ -35,6 +35,10 @@ public class Buyer implements AdditionalDataHolder, Parsable {
      */
     private ExtendedContact buyerRegistrationAddress;
     /**
+     * The external identifiers associated with the buyer.
+     */
+    private java.util.List<ExternalId> externalIds;
+    /**
      * This container consists of address information that can be used by sellers for tax purpose.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; When using the eBay vault program, if an item is shipped to a vault, the tax address will be the vault address.&lt;/span&gt;
      */
     private TaxAddress taxAddress;
@@ -79,13 +83,22 @@ public class Buyer implements AdditionalDataHolder, Parsable {
         return this.buyerRegistrationAddress;
     }
     /**
+     * Gets the externalIds property value. The external identifiers associated with the buyer.
+     * @return a {@link java.util.List<ExternalId>}
+     */
+    @jakarta.annotation.Nullable
+    public java.util.List<ExternalId> getExternalIds() {
+        return this.externalIds;
+    }
+    /**
      * The deserialization information for the current model
      * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
      */
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(4);
+        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(5);
         deserializerMap.put("buyerRegistrationAddress", (n) -> { this.setBuyerRegistrationAddress(n.getObjectValue(ExtendedContact::createFromDiscriminatorValue)); });
+        deserializerMap.put("externalIds", (n) -> { this.setExternalIds(n.getCollectionOfObjectValues(ExternalId::createFromDiscriminatorValue)); });
         deserializerMap.put("taxAddress", (n) -> { this.setTaxAddress(n.getObjectValue(TaxAddress::createFromDiscriminatorValue)); });
         deserializerMap.put("taxIdentifier", (n) -> { this.setTaxIdentifier(n.getObjectValue(TaxIdentifier::createFromDiscriminatorValue)); });
         deserializerMap.put("username", (n) -> { this.setUsername(n.getStringValue()); });
@@ -122,6 +135,7 @@ public class Buyer implements AdditionalDataHolder, Parsable {
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
         writer.writeObjectValue("buyerRegistrationAddress", this.getBuyerRegistrationAddress());
+        writer.writeCollectionOfObjectValues("externalIds", this.getExternalIds());
         writer.writeObjectValue("taxAddress", this.getTaxAddress());
         writer.writeObjectValue("taxIdentifier", this.getTaxIdentifier());
         writer.writeStringValue("username", this.getUsername());
@@ -140,6 +154,13 @@ public class Buyer implements AdditionalDataHolder, Parsable {
      */
     public void setBuyerRegistrationAddress(@jakarta.annotation.Nullable final ExtendedContact value) {
         this.buyerRegistrationAddress = value;
+    }
+    /**
+     * Sets the externalIds property value. The external identifiers associated with the buyer.
+     * @param value Value to set for the externalIds property.
+     */
+    public void setExternalIds(@jakarta.annotation.Nullable final java.util.List<ExternalId> value) {
+        this.externalIds = value;
     }
     /**
      * Sets the taxAddress property value. This container consists of address information that can be used by sellers for tax purpose.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; When using the eBay vault program, if an item is shipped to a vault, the tax address will be the vault address.&lt;/span&gt;

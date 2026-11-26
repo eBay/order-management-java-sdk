@@ -43,7 +43,7 @@ public final class FulfillmentClient {
     }
 
     public CompletableFuture<Order> getOrderAsync(
-            String orderId, String fieldGroups, String accessToken, RequestOptions requestOptions) {
+            String orderId, com.ebay.ordermanagement.generated.fulfillment.order.item.GetFieldGroupsQueryParameterType fieldGroups, String accessToken, RequestOptions requestOptions) {
         return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.order().byOrderId(Params.requireValid("orderId", orderId)).get(config -> {
@@ -54,7 +54,7 @@ public final class FulfillmentClient {
     }
 
     public CompletableFuture<OrderSearchPagedCollection> getOrdersAsync(
-            String fieldGroups, String filter, String limit, String offset, String orderIds, String accessToken, RequestOptions requestOptions) {
+            com.ebay.ordermanagement.generated.fulfillment.order.GetFieldGroupsQueryParameterType fieldGroups, String filter, String limit, String offset, String orderIds, String accessToken, RequestOptions requestOptions) {
         return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.order().get(config -> {
@@ -119,16 +119,15 @@ public final class FulfillmentClient {
         }));
     }
 
-    public CompletableFuture<Void> fetchEvidenceContentAsync(
+    public CompletableFuture<InputStream> fetchEvidenceContentAsync(
             String paymentDisputeId, String evidenceId, String fileId, String accessToken, RequestOptions requestOptions) {
         return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
-            kiota.paymentDispute().byPayment_dispute_id(Params.requireValid("paymentDisputeId", paymentDisputeId)).fetchEvidenceContent().get(config -> {
+            return kiota.paymentDispute().byPayment_dispute_id(Params.requireValid("paymentDisputeId", paymentDisputeId)).fetchEvidenceContent().get(config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
                 if (evidenceId != null) config.queryParameters.evidenceId = evidenceId;
                 if (fileId != null) config.queryParameters.fileId = fileId;
             });
-            return null;
         }));
     }
 
@@ -185,7 +184,9 @@ public final class FulfillmentClient {
             String paymentDisputeId, byte[] body, String accessToken, RequestOptions requestOptions) {
         return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
-            return kiota.paymentDispute().byPayment_dispute_id(Params.requireValid("paymentDisputeId", paymentDisputeId)).uploadEvidenceFile().post(config -> {
+            com.microsoft.kiota.MultipartBody multipartBody = new com.microsoft.kiota.MultipartBody();
+            multipartBody.addOrReplacePart("file", "application/octet-stream", body);
+            return kiota.paymentDispute().byPayment_dispute_id(Params.requireValid("paymentDisputeId", paymentDisputeId)).uploadEvidenceFile().post(multipartBody, config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
         }));
@@ -206,6 +207,17 @@ public final class FulfillmentClient {
         return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             kiota.paymentDispute().byPayment_dispute_id(Params.requireValid("paymentDisputeId", paymentDisputeId)).updateEvidence().post(body, config -> {
+                headers.forEach((k, v) -> config.headers.add(k, v));
+            });
+            return null;
+        }));
+    }
+
+    public CompletableFuture<Void> createAdditionalShippingFulfillmentAsync(
+            String orderId, ShippingTrackingDetails body, String accessToken, RequestOptions requestOptions) {
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
+            Map<String, String> headers = mergedHeaders(requestOptions);
+            kiota.order().byOrderId(Params.requireValid("orderId", orderId)).shippingFulfillment().createAdditional().post(body, config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
             return null;

@@ -19,6 +19,7 @@ import com.ebay.ordermanagement.generated.fulfillment.models.UploadEvidenceFileP
 import com.microsoft.kiota.BaseRequestBuilder;
 import com.microsoft.kiota.BaseRequestConfiguration;
 import com.microsoft.kiota.HttpMethod;
+import com.microsoft.kiota.MultipartBody;
 import com.microsoft.kiota.RequestAdapter;
 import com.microsoft.kiota.RequestInformation;
 import com.microsoft.kiota.RequestOption;
@@ -51,17 +52,19 @@ public class UploadEvidenceFileRequestBuilder extends BaseRequestBuilder {
     }
     /**
      * This method is used to upload an evidence file for a contested payment dispute. The unique identifier of the payment dispute is passed in as a path parameter, and unique identifiers for payment disputes can be retrieved with the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; method.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;uploadEvidenceFile&lt;/strong&gt; only uploads an encrypted, binary image file (using &lt;strong&gt;multipart/form-data&lt;/strong&gt; HTTP request header), and does not have a JSON-based request payload.&lt;br&gt;&lt;br&gt;Use &apos;file&apos; as the name of the key that you use to upload the image file. The upload will not be successful if a different key name is used.&lt;br&gt;&lt;br&gt;The three image formats supported at this time are &lt;strong&gt;.JPEG&lt;/strong&gt;, &lt;strong&gt;.JPG&lt;/strong&gt;, and &lt;strong&gt;.PNG&lt;/strong&gt;.&lt;/span&gt;&lt;br&gt;After the file is successfully uploaded, the seller will need to grab the &lt;strong&gt;fileId&lt;/strong&gt; value in the response payload to add this file to a new evidence set using the &lt;strong&gt;addEvidence&lt;/strong&gt; method, or to add this file to an existing evidence set using the &lt;strong&gt;updateEvidence&lt;/strong&gt; method.&lt;br&gt;&lt;br&gt;&lt;div class=&quot;msgbox_important&quot;&gt;&lt;p class=&quot;msgbox_importantInDiv&quot; data-mc-autonum=&quot;&amp;lt;b&amp;gt;&amp;lt;span style=&amp;quot;color: #dd1e31;&amp;quot; class=&amp;quot;mcFormatColor&amp;quot;&amp;gt;Important! &amp;lt;/span&amp;gt;&amp;lt;/b&amp;gt;&quot;&gt;&lt;span class=&quot;autonumber&quot;&gt;&lt;span&gt;&lt;strong&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important!&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt; This method only supports file upload. If &lt;code&gt;PROOF_OF_DELIVERY&lt;/code&gt; is requested when contesting a payment dispute, do &lt;strong&gt;not&lt;/strong&gt; upload shipment tracking information for proof of order delivery using this method. Instead, use the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-createshippingfulfillment&quot; target=&quot;_blank &quot;&gt;createShippingFulfillment&lt;/a&gt; to provide tracking information evidence for a dispute. &lt;/p&gt;&lt;/div&gt;
+     * @param body The request body
      * @return a {@link UploadEvidenceFilePaymentDisputeResponse}
      * @throws ErrorResponse When receiving a 400 status code
      * @throws ErrorResponse When receiving a 404 status code
      * @throws ErrorResponse When receiving a 409 status code
      */
     @jakarta.annotation.Nullable
-    public UploadEvidenceFilePaymentDisputeResponse post() {
-        return post(null);
+    public UploadEvidenceFilePaymentDisputeResponse post(@jakarta.annotation.Nonnull final MultipartBody body) {
+        return post(body, null);
     }
     /**
      * This method is used to upload an evidence file for a contested payment dispute. The unique identifier of the payment dispute is passed in as a path parameter, and unique identifiers for payment disputes can be retrieved with the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; method.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;uploadEvidenceFile&lt;/strong&gt; only uploads an encrypted, binary image file (using &lt;strong&gt;multipart/form-data&lt;/strong&gt; HTTP request header), and does not have a JSON-based request payload.&lt;br&gt;&lt;br&gt;Use &apos;file&apos; as the name of the key that you use to upload the image file. The upload will not be successful if a different key name is used.&lt;br&gt;&lt;br&gt;The three image formats supported at this time are &lt;strong&gt;.JPEG&lt;/strong&gt;, &lt;strong&gt;.JPG&lt;/strong&gt;, and &lt;strong&gt;.PNG&lt;/strong&gt;.&lt;/span&gt;&lt;br&gt;After the file is successfully uploaded, the seller will need to grab the &lt;strong&gt;fileId&lt;/strong&gt; value in the response payload to add this file to a new evidence set using the &lt;strong&gt;addEvidence&lt;/strong&gt; method, or to add this file to an existing evidence set using the &lt;strong&gt;updateEvidence&lt;/strong&gt; method.&lt;br&gt;&lt;br&gt;&lt;div class=&quot;msgbox_important&quot;&gt;&lt;p class=&quot;msgbox_importantInDiv&quot; data-mc-autonum=&quot;&amp;lt;b&amp;gt;&amp;lt;span style=&amp;quot;color: #dd1e31;&amp;quot; class=&amp;quot;mcFormatColor&amp;quot;&amp;gt;Important! &amp;lt;/span&amp;gt;&amp;lt;/b&amp;gt;&quot;&gt;&lt;span class=&quot;autonumber&quot;&gt;&lt;span&gt;&lt;strong&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important!&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt; This method only supports file upload. If &lt;code&gt;PROOF_OF_DELIVERY&lt;/code&gt; is requested when contesting a payment dispute, do &lt;strong&gt;not&lt;/strong&gt; upload shipment tracking information for proof of order delivery using this method. Instead, use the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-createshippingfulfillment&quot; target=&quot;_blank &quot;&gt;createShippingFulfillment&lt;/a&gt; to provide tracking information evidence for a dispute. &lt;/p&gt;&lt;/div&gt;
+     * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link UploadEvidenceFilePaymentDisputeResponse}
      * @throws ErrorResponse When receiving a 400 status code
@@ -69,8 +72,9 @@ public class UploadEvidenceFileRequestBuilder extends BaseRequestBuilder {
      * @throws ErrorResponse When receiving a 409 status code
      */
     @jakarta.annotation.Nullable
-    public UploadEvidenceFilePaymentDisputeResponse post(@jakarta.annotation.Nullable final java.util.function.Consumer<PostRequestConfiguration> requestConfiguration) {
-        final RequestInformation requestInfo = toPostRequestInformation(requestConfiguration);
+    public UploadEvidenceFilePaymentDisputeResponse post(@jakarta.annotation.Nonnull final MultipartBody body, @jakarta.annotation.Nullable final java.util.function.Consumer<PostRequestConfiguration> requestConfiguration) {
+        Objects.requireNonNull(body);
+        final RequestInformation requestInfo = toPostRequestInformation(body, requestConfiguration);
         final HashMap<String, ParsableFactory<? extends Parsable>> errorMapping = new HashMap<String, ParsableFactory<? extends Parsable>>();
         errorMapping.put("400", ErrorResponse::createFromDiscriminatorValue);
         errorMapping.put("404", ErrorResponse::createFromDiscriminatorValue);
@@ -79,22 +83,26 @@ public class UploadEvidenceFileRequestBuilder extends BaseRequestBuilder {
     }
     /**
      * This method is used to upload an evidence file for a contested payment dispute. The unique identifier of the payment dispute is passed in as a path parameter, and unique identifiers for payment disputes can be retrieved with the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; method.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;uploadEvidenceFile&lt;/strong&gt; only uploads an encrypted, binary image file (using &lt;strong&gt;multipart/form-data&lt;/strong&gt; HTTP request header), and does not have a JSON-based request payload.&lt;br&gt;&lt;br&gt;Use &apos;file&apos; as the name of the key that you use to upload the image file. The upload will not be successful if a different key name is used.&lt;br&gt;&lt;br&gt;The three image formats supported at this time are &lt;strong&gt;.JPEG&lt;/strong&gt;, &lt;strong&gt;.JPG&lt;/strong&gt;, and &lt;strong&gt;.PNG&lt;/strong&gt;.&lt;/span&gt;&lt;br&gt;After the file is successfully uploaded, the seller will need to grab the &lt;strong&gt;fileId&lt;/strong&gt; value in the response payload to add this file to a new evidence set using the &lt;strong&gt;addEvidence&lt;/strong&gt; method, or to add this file to an existing evidence set using the &lt;strong&gt;updateEvidence&lt;/strong&gt; method.&lt;br&gt;&lt;br&gt;&lt;div class=&quot;msgbox_important&quot;&gt;&lt;p class=&quot;msgbox_importantInDiv&quot; data-mc-autonum=&quot;&amp;lt;b&amp;gt;&amp;lt;span style=&amp;quot;color: #dd1e31;&amp;quot; class=&amp;quot;mcFormatColor&amp;quot;&amp;gt;Important! &amp;lt;/span&amp;gt;&amp;lt;/b&amp;gt;&quot;&gt;&lt;span class=&quot;autonumber&quot;&gt;&lt;span&gt;&lt;strong&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important!&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt; This method only supports file upload. If &lt;code&gt;PROOF_OF_DELIVERY&lt;/code&gt; is requested when contesting a payment dispute, do &lt;strong&gt;not&lt;/strong&gt; upload shipment tracking information for proof of order delivery using this method. Instead, use the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-createshippingfulfillment&quot; target=&quot;_blank &quot;&gt;createShippingFulfillment&lt;/a&gt; to provide tracking information evidence for a dispute. &lt;/p&gt;&lt;/div&gt;
+     * @param body The request body
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
-    public RequestInformation toPostRequestInformation() {
-        return toPostRequestInformation(null);
+    public RequestInformation toPostRequestInformation(@jakarta.annotation.Nonnull final MultipartBody body) {
+        return toPostRequestInformation(body, null);
     }
     /**
      * This method is used to upload an evidence file for a contested payment dispute. The unique identifier of the payment dispute is passed in as a path parameter, and unique identifiers for payment disputes can be retrieved with the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries&quot; target=&quot;_blank &quot;&gt;getPaymentDisputeSummaries&lt;/a&gt; method.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;strong&gt;uploadEvidenceFile&lt;/strong&gt; only uploads an encrypted, binary image file (using &lt;strong&gt;multipart/form-data&lt;/strong&gt; HTTP request header), and does not have a JSON-based request payload.&lt;br&gt;&lt;br&gt;Use &apos;file&apos; as the name of the key that you use to upload the image file. The upload will not be successful if a different key name is used.&lt;br&gt;&lt;br&gt;The three image formats supported at this time are &lt;strong&gt;.JPEG&lt;/strong&gt;, &lt;strong&gt;.JPG&lt;/strong&gt;, and &lt;strong&gt;.PNG&lt;/strong&gt;.&lt;/span&gt;&lt;br&gt;After the file is successfully uploaded, the seller will need to grab the &lt;strong&gt;fileId&lt;/strong&gt; value in the response payload to add this file to a new evidence set using the &lt;strong&gt;addEvidence&lt;/strong&gt; method, or to add this file to an existing evidence set using the &lt;strong&gt;updateEvidence&lt;/strong&gt; method.&lt;br&gt;&lt;br&gt;&lt;div class=&quot;msgbox_important&quot;&gt;&lt;p class=&quot;msgbox_importantInDiv&quot; data-mc-autonum=&quot;&amp;lt;b&amp;gt;&amp;lt;span style=&amp;quot;color: #dd1e31;&amp;quot; class=&amp;quot;mcFormatColor&amp;quot;&amp;gt;Important! &amp;lt;/span&amp;gt;&amp;lt;/b&amp;gt;&quot;&gt;&lt;span class=&quot;autonumber&quot;&gt;&lt;span&gt;&lt;strong&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important!&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt; This method only supports file upload. If &lt;code&gt;PROOF_OF_DELIVERY&lt;/code&gt; is requested when contesting a payment dispute, do &lt;strong&gt;not&lt;/strong&gt; upload shipment tracking information for proof of order delivery using this method. Instead, use the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-createshippingfulfillment&quot; target=&quot;_blank &quot;&gt;createShippingFulfillment&lt;/a&gt; to provide tracking information evidence for a dispute. &lt;/p&gt;&lt;/div&gt;
+     * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return a {@link RequestInformation}
      */
     @jakarta.annotation.Nonnull
-    public RequestInformation toPostRequestInformation(@jakarta.annotation.Nullable final java.util.function.Consumer<PostRequestConfiguration> requestConfiguration) {
+    public RequestInformation toPostRequestInformation(@jakarta.annotation.Nonnull final MultipartBody body, @jakarta.annotation.Nullable final java.util.function.Consumer<PostRequestConfiguration> requestConfiguration) {
+        Objects.requireNonNull(body);
         final RequestInformation requestInfo = new RequestInformation(HttpMethod.POST, urlTemplate, pathParameters);
         requestInfo.configure(requestConfiguration, PostRequestConfiguration::new);
         requestInfo.headers.tryAdd("Accept", "application/json");
+        requestInfo.setContentFromParsable(requestAdapter, "multipart/form-data", body);
         return requestInfo;
     }
     /**

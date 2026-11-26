@@ -10,12 +10,12 @@
       "name": "eBay API License Agreement",
       "url": "https://developer.ebay.com/join/api-license-agreement"
     },
-    "version": "v1.20.6"
+    "version": "v1.20.7"
   },
   "servers": [
     {
       "url": "https://apiz.ebay.com{basePath}",
-      "description": "Production",
+      "description": "Production Server",
       "variables": {
         "basePath": {
           "default": "/sell/fulfillment/v1"
@@ -23,7 +23,7 @@
       }
     },
     {
-      "url": "https://api.sandbox.ebay.com{basePath}",
+      "url": "https://apiz.sandbox.ebay.com{basePath}",
       "description": "Sandbox Server",
       "variables": {
         "basePath": {
@@ -45,22 +45,29 @@
         "operationId": "getOrder",
         "parameters": [
           {
-            "name": "fieldGroups",
-            "in": "query",
-            "description": "This parameter lets you control what is returned in the response.<br><br><span class=\"tablenote\"><strong>Note:</strong> The only presently supported value is <code>TAX_BREAKDOWN</code>. This field group adds addition fields to the response that return a breakdown of taxes and fees.</span>",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "orderId",
             "in": "path",
             "description": "This path parameter is used to specify the unique identifier of the order being retrieved.<br><br> Use the <a href=\"/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders\" target=\"_blank\">getOrders</a> method to retrieve order IDs. Order ID values are also shown in My eBay/Seller Hub.<br><br><span class=\"tablenote\"><strong>Note:</strong> <a href=\"/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders\" target=\"_blank\">getOrders</a> can return orders up to two years old. Do not provide the <strong>orderId</strong> for an order created more than two years in the past.</span>",
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "style": "simple",
+            "explode": false
+          },
+          {
+            "name": "fieldGroups",
+            "in": "query",
+            "description": "This parameter lets you control what is returned in the response.<br><br><span class=\"tablenote\"><strong>Note:</strong> The only presently supported value is <code>TAX_BREAKDOWN</code>. This field group adds addition fields to the response that return a breakdown of taxes and fees.</span>",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "TAX_BREAKDOWN"
+              ]
+            },
+            "style": "form",
+            "explode": true
           }
         ],
         "responses": {
@@ -89,10 +96,33 @@
                   "description": "Invalid field group: {fieldGroup}"
                 }
               }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
             }
           },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "x-response-codes": {
+              "errors": {
+                "2002": {
+                  "domain": "ACCESS",
+                  "category": "REQUEST",
+                  "description": "Resource not found"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error",
@@ -102,6 +132,13 @@
                   "domain": "API_FULFILLMENT",
                   "category": "APPLICATION",
                   "description": "System error"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
             }
@@ -114,7 +151,8 @@
               "https://api.ebay.com/oauth/api_scope/sell.fulfillment.readonly"
             ]
           }
-        ]
+        ],
+        "summary": "Get a seller order by ID"
       }
     },
     "/order": {
@@ -126,22 +164,15 @@
         "operationId": "getOrders",
         "parameters": [
           {
-            "name": "fieldGroups",
-            "in": "query",
-            "description": "This parameter lets you control what is returned in the response.<br><br><span class=\"tablenote\"><strong>Note:</strong> The only presently supported value is <code>TAX_BREAKDOWN</code>. This field group adds addition fields to the response that return a breakdown of taxes and fees.</span>",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "filter",
             "in": "query",
             "description": "One or more comma-separated criteria for narrowing down the collection of orders returned by this call. These criteria correspond to specific fields in the response payload. Multiple filter criteria combine to further restrict the results. <br><br><span class=\"tablenote\"><strong>Note:</strong> <a href=\"/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders\" target=\"_blank\">getOrders</a> can return orders up to two years old. Do not set the <code>creationdate</code> filter to a date beyond two years in the past.</span><br><span class=\"tablenote\"><strong>Note:</strong> If the <strong>orderIds</strong> parameter is included in the request, the <strong>filter</strong> parameter will be ignored.</span><br>The available criteria are as follows: <dl> <dt><code><strong>creationdate</strong></code></dt> <dd>The time period during which qualifying orders were created (the <strong>orders.creationDate</strong> field). In the URI, this is expressed as a starting timestamp, with or without an ending timestamp (in brackets). The timestamps are in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock.For example: <ul> <li><code>creationdate:[2016-02-21T08:25:43.511Z..]</code> identifies orders created on or after the given timestamp.</li> <li><code>creationdate:[2016-02-21T08:25:43.511Z..2016-04-21T08:25:43.511Z]</code> identifies orders created between the given timestamps, inclusive.</li> </ul> </dd> <dt><code><strong>lastmodifieddate</strong></code></dt> <dd>The time period during which qualifying orders were last modified (the <strong>orders.modifiedDate</strong> field).  In the URI, this is expressed as a starting timestamp, with or without an ending timestamp (in brackets). The timestamps are in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock.For example: <ul> <li><code>lastmodifieddate:[2016-05-15T08:25:43.511Z..]</code> identifies orders modified on or after the given timestamp.</li> <li><code>lastmodifieddate:[2016-05-15T08:25:43.511Z..2016-05-31T08:25:43.511Z]</code> identifies orders modified between the given timestamps, inclusive.</li> </ul> <span class=\"tablenote\"><strong>Note:</strong> If <strong>creationdate</strong> and <strong>lastmodifieddate</strong> are both included, only <strong>creationdate</strong> is used.</span> <br></dd> <dt><code><strong>orderfulfillmentstatus</strong></code></dt> <dd>The degree to which qualifying orders have been shipped (the <strong>orders.orderFulfillmentStatus</strong> field). In the URI, this is expressed as one of the following value combinations: <ul> <li><code>orderfulfillmentstatus:{NOT_STARTED|IN_PROGRESS}</code> specifies orders for which no shipping fulfillments have been started, plus orders for which at least one shipping fulfillment has been started but not completed.</li> <li><code>orderfulfillmentstatus:{FULFILLED|IN_PROGRESS}</code> specifies orders for which all shipping fulfillments have been completed, plus orders for which at least one shipping fulfillment has been started but not completed.</li> </ul> <span class=\"tablenote\"><strong>Note:</strong> The values <code>NOT_STARTED</code>, <code>IN_PROGRESS</code>, and <code>FULFILLED</code> can be used in various combinations, but only the combinations shown here are currently supported.</span> </dd> </dl> Here is an example of a <strong>getOrders</strong> call using all of these filters: <br> <pre>GET https://api.ebay.com/sell/v1/order?<br>filter=<strong>creationdate</strong>:%5B2016-03-21T08:25:43.511Z..2016-04-21T08:25:43.511Z%5D,<br><strong>lastmodifieddate</strong>:%5B2016-05-15T08:25:43.511Z..%5D,<br><strong>orderfulfillmentstatus</strong>:%7BNOT_STARTED%7CIN_PROGRESS%7D</pre> <span class=\"tablenote\"><strong>Note:</strong> This call requires that certain special characters in the URI query string be percent-encoded: <br> &nbsp;&nbsp;&nbsp;&nbsp;<code>[</code> = <code>%5B</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>]</code> = <code>%5D</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>{</code> = <code>%7B</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>|</code> = <code>%7C</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>}</code> = <code>%7D</code> <br> This query filter example uses these codes.</span>",
             "required": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "style": "form",
+            "explode": true
           },
           {
             "name": "limit",
@@ -150,7 +181,9 @@
             "required": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "style": "form",
+            "explode": true
           },
           {
             "name": "offset",
@@ -159,7 +192,9 @@
             "required": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "style": "form",
+            "explode": true
           },
           {
             "name": "orderIds",
@@ -168,7 +203,23 @@
             "required": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "fieldGroups",
+            "in": "query",
+            "description": "This parameter lets you control what is returned in the response.<br><br><span class=\"tablenote\"><strong>Note:</strong> The only presently supported value is <code>TAX_BREAKDOWN</code>. This field group adds addition fields to the response that return a breakdown of taxes and fees.</span>",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "TAX_BREAKDOWN"
+              ]
+            },
+            "style": "form",
+            "explode": true
           }
         ],
         "responses": {
@@ -224,7 +275,7 @@
                 "30900": {
                   "domain": "API_FULFILLMENT",
                   "category": "REQUEST",
-                  "description": "Exceeded maximum number of order IDs (the current limit is <code>50</code>)"
+                  "description": "Exceeded maximum number of order IDs (the current limit is 50)"
                 },
                 "31000": {
                   "domain": "API_FULFILLMENT",
@@ -242,6 +293,13 @@
                   "description": "Invalid field group: {fieldGroup}"
                 }
               }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
             }
           },
           "500": {
@@ -254,6 +312,13 @@
                   "description": "System error"
                 }
               }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
             }
           }
         },
@@ -264,7 +329,8 @@
               "https://api.ebay.com/oauth/api_scope/sell.fulfillment.readonly"
             ]
           }
-        ]
+        ],
+        "summary": "Search for seller orders"
       }
     },
     "/order/{order_id}/issue_refund": {
@@ -589,7 +655,9 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "style": "simple",
+            "explode": false
           }
         ],
         "responses": {
@@ -613,6 +681,13 @@
                   "description": "Invalid order ID: {orderId}"
                 }
               }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
             }
           },
           "500": {
@@ -625,6 +700,13 @@
                   "description": "System error"
                 }
               }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
             }
           }
         },
@@ -635,13 +717,14 @@
               "https://api.ebay.com/oauth/api_scope/sell.fulfillment.readonly"
             ]
           }
-        ]
+        ],
+        "summary": "Get all shipping fulfillments for an order"
       },
       "post": {
         "tags": [
           "shipping_fulfillment"
         ],
-        "description": "When you group an order's line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is <i>shipping fulfillment</i>. For each package, execute this call once to generate the shipping fulfillment associated with that package. <br><br> <span class=\"tablenote\"><strong>Note:</strong> A single line item in an order can consist of multiple units of a purchased item, and one unit can consist of multiple parts or components. Although these components might be provided by the manufacturer in separate packaging, the seller must include all components of a given line item in the same package.</span><br>Before using this call for a given package, you must determine which line items are in the package. If the package has been shipped, you should provide the date of shipment in the request. If not provided, it will default to the current date and time.<br><br>This method can also be used to provide proof of delivery for contested payment disputes. To do so, use this method to create a shipping fulfillment and provide shipment tracking information for all line items involved in the dispute. EBay will then pick up this information for the dispute directly.",
+        "description": "This method is used by sellers to create a shipping fulfillment for an order.<p>When you group an order's line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is shipping fulfillment. For each package, execute this call once to generate the shipping fulfillment associated with that package.</p><p>Use this method when an order is shipped in a single package, or to create multiple packages for the same order, as long as each package contains different line items from that order. Each call creates one shipping fulfillment for the specified order line items and associates that package with its tracking information.</p><p>Before using this method, determine which line items are included in the package. If the package has already shipped, you should provide the date of shipment in the request. If no shipment date is provided, the current date and time is used.</p><p>If the same line item under an order must be shipped across multiple packages, use the <b>createAdditionalShippingFulfillment</b> method for the additional package shipments. That method is intended primarily to support that use case.</p><p>This method can also be used to provide proof of delivery for contested payment disputes. To do so, create a shipping fulfillment and provide shipment tracking information for all line items involved in the dispute. eBay will then pick up this information for the dispute directly.</p>",
         "operationId": "createShippingFulfillment",
         "parameters": [
           {
@@ -651,7 +734,9 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "style": "simple",
+            "explode": false
           },
           {
             "name": "Content-Type",
@@ -660,11 +745,13 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "style": "simple",
+            "explode": false
           }
         ],
         "requestBody": {
-          "description": "fulfillment payload",
+          "description": "Shipping fulfillment details including tracking number, carrier, and line items.",
           "content": {
             "application/json": {
               "schema": {
@@ -677,13 +764,16 @@
         },
         "responses": {
           "201": {
-            "description": "Created. The call also returns the following location response header: <br><br><code>{ENV}/sell/fulfillment/v1/order/{ORDERID}/shipping_fulfillment/{FULFILLMENTID}</code> <br><br>The <code>ENV</code> string is the HTTPS path to the same eBay supported environment in which this call was issued. The <code>ORDERID</code> parameter is the unique identifier of the order addressed by this call; for example, <code>01-03955-36441</code>. The <code>FULFILLMENTID</code> parameter identifies the newly created fulfillment; for example, <code>9405509699937003457459</code>. Use this Get Fulfillment URI to retrieve the contents of the new fulfillment.",
+            "description": "Created",
             "headers": {
               "Location": {
                 "schema": {
                   "type": "string",
                   "description": "The <strong>location</strong> response header contains the <a href=\"/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-getshippingfulfillment\" target=\"_blank\">getShippingFulfillment</a> URI to retrieve the contents of the newly created shipping fulfillment. The URL includes the eBay-assigned <code>fulfillmentId</code>, which you can use to reference the shipping fulfillment. Below is an example location response header:<br><br><code>{ENV}/sell/fulfillment/v1/order/{ORDERID}/shipping_fulfillment/{FULFILLMENTID}</code><br><br>The <code>ENV</code> string is the HTTPS path to the same eBay-supported environment in which this call was issued. The <code>ORDERID</code> parameter is the unique identifier of the order addressed by this call (e.g., 01-03955-36441). The <code>FULFILLMENTID</code> parameter identifies the newly created fulfillment (e.g., 9405509699937003457459). Use this Get Fulfillment URI to retrieve the contents of the new fulfillment."
-                }
+                },
+                "description": "URI of the newly created shipping fulfillment.",
+                "style": "simple",
+                "explode": false
               }
             },
             "content": {
@@ -754,10 +844,33 @@
                   "description": "Please use PUT operation for updating shipping fulfillment"
                 }
               }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
             }
           },
           "409": {
-            "description": "Conflict"
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "x-response-codes": {
+              "errors": {
+                "34500": {
+                  "domain": "API_FULFILLMENT",
+                  "category": "REQUEST",
+                  "description": "A shipping fulfillment already exists for this order."
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error",
@@ -769,6 +882,13 @@
                   "description": "System error"
                 }
               }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
             }
           }
         },
@@ -778,7 +898,8 @@
               "https://api.ebay.com/oauth/api_scope/sell.fulfillment"
             ]
           }
-        ]
+        ],
+        "summary": "Create a shipping fulfillment for an order"
       }
     },
     "/order/{orderId}/shipping_fulfillment/{fulfillmentId}": {
@@ -790,22 +911,26 @@
         "operationId": "getShippingFulfillment",
         "parameters": [
           {
-            "name": "fulfillmentId",
-            "in": "path",
-            "description": "This path parameter is used to specify the unique identifier of the shipping fulfillment being retrieved.<br><br>Use the <a href=\"/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-getshippingfulfillments\" target=\"_blank\">getShippingFulfillments</a> method to retrieve fulfillment IDs.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "orderId",
             "in": "path",
             "description": "This path parameter is used to specify the unique identifier of the order associated with the shipping fulfillment being retrieved.<br><br> Use the <a href=\"/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders\" target=\"_blank\">getOrders</a> method to retrieve order IDs. Order ID values are also shown in My eBay/Seller Hub.",
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "style": "simple",
+            "explode": false
+          },
+          {
+            "name": "fulfillmentId",
+            "in": "path",
+            "description": "This path parameter is used to specify the unique identifier of the shipping fulfillment being retrieved.<br><br>Use the <a href=\"/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-getshippingfulfillments\" target=\"_blank\">getShippingFulfillments</a> method to retrieve fulfillment IDs.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false
           }
         ],
         "responses": {
@@ -834,10 +959,33 @@
                   "description": "Invalid shipping fulfillment ID: {fulfillmentId}"
                 }
               }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
             }
           },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "x-response-codes": {
+              "errors": {
+                "2002": {
+                  "domain": "ACCESS",
+                  "category": "REQUEST",
+                  "description": "Resource not found"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error",
@@ -847,6 +995,13 @@
                   "domain": "API_FULFILLMENT",
                   "category": "APPLICATION",
                   "description": "System error"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
             }
@@ -859,7 +1014,8 @@
               "https://api.ebay.com/oauth/api_scope/sell.fulfillment.readonly"
             ]
           }
-        ]
+        ],
+        "summary": "Get a specific shipping fulfillment"
       }
     },
     "/payment_dispute/{payment_dispute_id}": {
@@ -2121,6 +2277,176 @@
           }
         }
       ]
+    },
+    "/order/{orderId}/shipping_fulfillment/create_additional": {
+      "post": {
+        "tags": [
+          "shipping_fulfillment"
+        ],
+        "summary": "Create an additional shipping fulfillment for an order",
+        "description": "This method is used by sellers to add an additional shipping fulfillment for an order shipped in multiple packages. Each call creates one additional shipping fulfillment for the specified order line items and associates that package with its own tracking number and shipping carrier. Use this method when an order is fulfilled across multiple packages and each package needs to be tracked separately, including when the same line item is shipped in more than one package.<p>Before using this method, determine which line items are included in the additional package. If the package has already shipped, provide the shipment date in the request. If no shipment date is provided, the current date and time are used.</p><p>After using <b>createAdditionalShippingFulfillment</b>, do not use <b>createShippingFulfillment</b> unless you intend to replace all previously entered fulfillment information.</p>",
+        "operationId": "createAdditionalShippingFulfillment",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "This path parameter is used to specify the unique identifier of the order associated with the additional shipping fulfillment being created.<br><br>Use the <a href=\"/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders\" target=\"_blank\">getOrders</a> method to retrieve order IDs.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "This container consists of the details needed to create the additional shipping fulfillment for one package associated with the order, including the tracking number, shipping carrier, optional shipment date, and the order line items included in that package.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShippingTrackingDetails",
+                "description": "Details of the additional shipping fulfillment to create for the order."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "Location": {
+                "description": "The URI of the newly created additional shipping fulfillment.",
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                  "type": "string",
+                  "description": "The <strong>Location</strong> response header contains the <a href=\"/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-getshippingfulfillment\" target=\"_blank\">getShippingFulfillment</a> URI to retrieve the contents of the newly created shipping fulfillment. The URL includes the eBay-assigned <code>fulfillmentId</code>, which you can use to reference the shipping fulfillment. Below is an example <strong>Location</strong> response header:<br><br><code>{ENV}/sell/fulfillment/v1/order/{ORDERID}/shipping_fulfillment/{FULFILLMENTID}</code><br><br>The <code>ENV</code> string is the HTTPS path to the same eBay-supported environment in which this call was issued. The <code>ORDERID</code> parameter is the unique identifier of the order addressed by this call. The <code>FULFILLMENTID</code> parameter identifies the newly created shipping fulfillment. Use this URI to retrieve the contents of the new shipping fulfillment."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "x-response-codes": {
+              "errors": {
+                "32100": {
+                  "domain": "API_FULFILLMENT",
+                  "category": "REQUEST",
+                  "description": "Invalid Order Id: {orderId}"
+                },
+                "32200": {
+                  "domain": "API_FULFILLMENT",
+                  "category": "REQUEST",
+                  "description": "Invalid line item id: {lineItemId}"
+                },
+                "32210": {
+                  "domain": "API_FULFILLMENT",
+                  "category": "REQUEST",
+                  "description": "Duplicate line item in the request"
+                },
+                "32300": {
+                  "domain": "API_FULFILLMENT",
+                  "category": "REQUEST",
+                  "description": "Tracking number is missing or invalid, or the shipping carrier code is unrecognized"
+                },
+                "32400": {
+                  "domain": "API_FULFILLMENT",
+                  "category": "REQUEST",
+                  "description": "Requested user is suspended"
+                },
+                "32500": {
+                  "domain": "API_FULFILLMENT",
+                  "category": "REQUEST",
+                  "description": "Invalid shipped date"
+                },
+                "32600": {
+                  "domain": "API_FULFILLMENT",
+                  "category": "REQUEST",
+                  "description": "Invalid input data"
+                },
+                "32900": {
+                  "domain": "API_FULFILLMENT",
+                  "category": "REQUEST",
+                  "description": "Tracking upload is not allowed for this order"
+                },
+                "34100": {
+                  "domain": "API_FULFILLMENT",
+                  "category": "REQUEST",
+                  "description": "Maximum tracking number for order is exceeded"
+                },
+                "34200": {
+                  "domain": "API_FULFILLMENT",
+                  "category": "REQUEST",
+                  "description": "Line Items contain Global Shipping Program and non-Global Shipping Program orders"
+                },
+                "34300": {
+                  "domain": "API_FULFILLMENT",
+                  "category": "REQUEST",
+                  "description": "Mark As Shipped for multiple Global Shipping Program line items is not supported"
+                },
+                "34600": {
+                  "domain": "API_FULFILLMENT",
+                  "category": "REQUEST",
+                  "description": "Total shipped quantity for line item {lineItemId} equals or exceeds the ordered quantity"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "x-response-codes": {
+              "errors": {
+                "32900": {
+                  "domain": "API_FULFILLMENT",
+                  "category": "REQUEST",
+                  "description": "Tracking upload is not allowed for this order"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "x-response-codes": {
+              "errors": {
+                "30500": {
+                  "domain": "API_FULFILLMENT",
+                  "category": "APPLICATION",
+                  "description": "System error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_auth": [
+              "https://api.ebay.com/oauth/api_scope/sell.fulfillment"
+            ]
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -2317,11 +2643,13 @@
         "properties": {
           "appointmentEndTime": {
             "type": "string",
-            "description": "The date and time the appointment ends, formatted as an <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:00:00.000Z</code>"
+            "description": "The date and time the appointment ends, formatted as an <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:00:00.000Z</code>",
+            "format": "date-time"
           },
           "appointmentStartTime": {
             "type": "string",
-            "description": "The date and time the appointment begins, formatted as an <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:10:00.000Z</code>"
+            "description": "The date and time the appointment begins, formatted as an <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:10:00.000Z</code>",
+            "format": "date-time"
           },
           "appointmentStatus": {
             "description": "The status of the appointment.",
@@ -2343,7 +2671,7 @@
         "description": "This type contains information used by the installation provider concerning appointment details selected by the buyer."
       },
       "AppointmentStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type for the appointment status of tire installation values. | - **ON_HOLD**: The appointment is on hold. - **CONFIRMED**: The appointment has been confirmed. - **CANCELLED**: The appointment has been canceled by the customer. - **FULFILLED**: The appointment has been completed.",
         "enum": [
           "ON_HOLD",
@@ -2353,7 +2681,7 @@
         ]
       },
       "AppointmentTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type for appointment values. | - **TIME_SLOT**: Indicates this appointment has both start and end date-times. - **MACRO**: Indicates this appointment has both start date-time (<strong>appointmentStartTime</strong>) and may have a service provider appointment date (<strong>serviceProviderAppointmentDate</strong>).",
         "enum": [
           "TIME_SLOT",
@@ -2361,7 +2689,7 @@
         ]
       },
       "AppointmentWindowEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type for window slot values. | - **MORNING**: Appointment window starts before noon. - **EVENING**: Appointment window starts after noon.",
         "enum": [
           "MORNING",
@@ -2369,7 +2697,7 @@
         ]
       },
       "AuthenticityVerificationReasonEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type lists the possible outcomes of an authentication verification inspection on an order line item. | - **NOT_AUTHENTIC**: This enumerated value indicates that the order line item could not be authenticated. This means that the order line item has failed the authenticity verification inspection. - **NOT_AS_DESCRIBED**: This enumeration value indicates that the order line item is not as described. This means that the order line item has failed the authenticity verification inspection because the order line item does not match the order line item's description. - **CUSTOMIZED**: This enumeration value indicates that the order line item is customized and will be sent to the buyer. This means that the order line item has been altered or customized and cannot be labeled as authentic. - **MISCATEGORIZED**: This enumeration value indicates that the order line item is miscategorized and will be sent to the buyer. This means that the item was in the wrong eBay category, and cannot be labeled as authentic. - **NOT_AUTHENTIC_NO_RETURN**: This enumeration value indicates that the order line item was found as counterfeit and cannot be returned to the seller because of legal constraints.",
         "enum": [
           "NOT_AUTHENTIC",
@@ -2380,7 +2708,7 @@
         ]
       },
       "AuthenticityVerificationStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines all possible statuses of an order line item going through an authenticity verification inspection. | - **PENDING**: This enumerated value indicates that the authentication status is PENDING. The item's authenticity is still unknown. - **PASSED**: This enumerated value indicates that the authentication status has PASSED. The item is authentic. - **FAILED**: This enumerated value indicates that the authentication has FAILED. The item's authenticity could not be verified. - **PASSED_WITH_EXCEPTION**: This enumerated value indicates that the authentication status has PASSED_WITH_EXCEPTION. There may be legal reasons or requirements such that the item cannot be labeled authentic.",
         "enum": [
           "PENDING",
@@ -2412,6 +2740,13 @@
           "username": {
             "type": "string",
             "description": "The buyer's eBay user ID.<br><br><span class=\"tablenote\"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href=\"/api-docs/static/data-handling-update.html\" target=\"_blank\">Data Handling Compliance</a>.</span>"
+          },
+          "externalIds": {
+            "type": "array",
+            "description": "The external identifiers associated with the buyer.",
+            "items": {
+              "$ref": "#/components/schemas/ExternalId"
+            }
           }
         },
         "description": "This type contains information about the order's buyer."
@@ -2421,7 +2756,8 @@
         "properties": {
           "cancelCompletedDate": {
             "type": "string",
-            "description": "This string is the date and time that the order cancellation was completed, if applicable. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>"
+            "description": "This string is the date and time that the order cancellation was completed, if applicable. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>",
+            "format": "date-time"
           },
           "cancelInitiator": {
             "type": "string",
@@ -2433,7 +2769,8 @@
           },
           "cancelRequestedDate": {
             "type": "string",
-            "description": "This string is the date and time that the order cancellation was requested. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>"
+            "description": "This string is the date and time that the order cancellation was requested. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>",
+            "format": "date-time"
           },
           "cancelRequestId": {
             "type": "string",
@@ -2447,7 +2784,7 @@
         "description": "This type contains information about a buyer request to cancel an order."
       },
       "CancelRequestStateEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type defines the possible status of an order cancellation request. | - **COMPLETED**: This value indicates that the order cancellation request was successfully processed and completed. - **REJECTED**: This value indicates that the buyer's request to cancel the order has been rejected by the seller. - **REQUESTED**: This value indicates that the buyer has requested that a particular order be cancelled, but the seller has yet to accept or reject the cancellation request.",
         "enum": [
           "COMPLETED",
@@ -2456,7 +2793,7 @@
         ]
       },
       "CancelStateEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type contains a list of the states that can apply to an order with regard to cancellation. | - **CANCELED**: This value indicates the order has been cancelled. - **IN_PROGRESS**: This value indicated that one or more cancellation requests have been made against the order. - **NONE_REQUESTED**: This value indicates that no cancellation requests have been made against the order.",
         "enum": [
           "CANCELED",
@@ -2472,7 +2809,8 @@
         "properties": {
           "cancelledDate": {
             "type": "string",
-            "description": "The date and time the order was cancelled, if applicable. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>"
+            "description": "The date and time the order was cancelled, if applicable. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>",
+            "format": "date-time"
           },
           "cancelRequests": {
             "type": "array",
@@ -2503,14 +2841,14 @@
         "description": "This type is used to display the charge type and the amount of the charge against the buyer."
       },
       "ChargeTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type contains the type of charges that may be returned under the <strong>charges</strong> array. | - **BUYER_PROTECTION**: This enumeration value indicates that the buyer was charged a Buyer Protection fee. This fee applies only when a buyer purchases an item from a private seller on the eBay UK marketplace and includes both the fee and applicable tax against the fee.",
         "enum": [
           "BUYER_PROTECTION"
         ]
       },
       "CollectionMethodEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the collection methods that are used to collect either 'Collect and Remit' sales tax in the US, or 'Good and Services' tax in Australia and New Zealand.<br><br><span class=\"tablenote\"><strong>Note:</strong> Although the <strong>collectionMethod</strong> field is returned for all orders subject to 'Collect and Remit' tax, the <strong>collectionMethod</strong> field and the <strong>CollectionMethodEnum</strong> type are not currently of any practical use, although this field may have use in the future. If and when the logic of this field is changed, this note will be updated and a note will also be added to the Release Notes.</span> | - **INVOICE**: This enumeration value is for future use only and will not currently be returned in the <strong>collectionMethod</strong> field. - **NET**: This enumeration value is always returned in the <strong>collectionMethod</strong> field for 'Collect and Remit' taxes, but the <strong>collectionMethod</strong> field is currently for future use.",
         "enum": [
           "INVOICE",
@@ -3207,7 +3545,7 @@
         "description": "This type describes the VAT tax details. The eBay VAT tax type and the eBay VAT identifier number will be returned if a VAT tax is applicable for the order.<br>"
       },
       "EbayVaultFulfillmentTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type specifies which <strong>EbayVaultProgram</strong> has been selected for an order. | - **SELLER_TO_VAULT**: This enumeration type indicates that the seller will ship the order to an authenticator. When using this program, <strong>fulfillmentInstructionsType</strong> will be set to <code>SHIP_TO</code> and the order will be shipped to the authenticator's shipping address. - **VAULT_TO_VAULT**: This enumeration type indicates that eBay will ship the order from an eBay vault to the buyer's vault. - **VAULT_TO_BUYER**: This enumeration type indicates that eBay will ship the order from an eBay vault to the shipping address provided by the buyer.",
         "enum": [
           "SELLER_TO_VAULT",
@@ -3512,13 +3850,13 @@
         "description": "This type contains the criteria for narrowing down the collection of orders that will be returned by the <a href=\"/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders\" target=\"_blank\">getOrders</a> call.<br><br><span class=\"tablenote\"><strong>Note:</strong> The <strong>FilterField</strong> type provides the underlying data structure for the <strong>filter</strong> parameter for orders returned by a search, which combines the <strong>field</strong>, <strong>range</strong>, <strong>set</strong>, and <strong>value</strong> fields in a single string. However, this type is not used directly in the call.</span>"
       },
       "FulfillmentInstructionsType": {
-        "type": "object",
-        "description": "This enumerated type lists the available methods of fulfillment for a set of line items. | - **DIGITAL**: This enumeration value indicates the order contains one or more digital gift card line items that are sent to the recipient by email. - **PREPARE_FOR_PICKUP**: This enumeration value indicates that the order is an In-Store Pickup order or a Click and Collect order. If this value is returned for an In-Store Pickup order, the seller can look at the pickupStep container to see the specific store where the buyer will pick up the order. If this value is returned for a Click and Collect order, the seller will look at the <strong>shippingStep</strong> container to see which store the buyer will pick up the item. The seller is then responsible for shipping the order to that store location. - **SELLER_DEFINED**: This enumeration value indicates that the seller will determine how to deliver these line items to the buyer. - **SHIP_TO**: This enumeration value indicates that the seller will package and ship these line items. If this value is returned, the seller can look at the <strong>shippingStep</strong> container to see the specific shipping details, including the shipping address and the shipping service option that will be used. - **FULFILLED_BY_EBAY**: This enumeration value indicates that eBay will package and ship an order as specified by <strong>fulfillmentType</strong>.",
+        "type": "string",
+        "description": "This enumerated type defines the type of fulfillment plan for the seller. | - **SHIP_TO**: Seller ships the item to the buyer's address. - **PREPARE_FOR_PICKUP**: Seller prepares the item for in-store pickup by the buyer. - **DIGITAL**: Item is a digital good delivered electronically (no shipping required). - **SELLER_DEFINED**: Seller handles fulfillment in a seller-defined custom way. - **FULFILLED_BY_EBAY**: eBay handles fulfillment on behalf of the seller.",
         "enum": [
-          "DIGITAL",
-          "PREPARE_FOR_PICKUP",
-          "SELLER_DEFINED",
           "SHIP_TO",
+          "PREPARE_FOR_PICKUP",
+          "DIGITAL",
+          "SELLER_DEFINED",
           "FULFILLED_BY_EBAY"
         ]
       },
@@ -3550,11 +3888,13 @@
           },
           "maxEstimatedDeliveryDate": {
             "type": "string",
-            "description": "This is the estimated latest date that the fulfillment will be completed. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>"
+            "description": "This is the estimated latest date that the fulfillment will be completed. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>",
+            "format": "date-time"
           },
           "minEstimatedDeliveryDate": {
             "type": "string",
-            "description": "This is the estimated earliest date that the fulfillment will be completed. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if  the value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>"
+            "description": "This is the estimated earliest date that the fulfillment will be completed. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if  the value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>",
+            "format": "date-time"
           },
           "pickupStep": {
             "description": "This container is only returned for In-Store Pickup orders, and it indicates the specific merchant's store where the buyer will pick up the order. The In-Store Pickup feature is supported in the US, Canada, UK, Germany, and Australia marketplaces.",
@@ -3812,6 +4152,18 @@
             "items": {
               "$ref": "#/components/schemas/NameValuePair"
             }
+          },
+          "purchaseSource": {
+            "description": "This enumeration value indicates the channel through which the line item was purchased.",
+            "$ref": "#/components/schemas/PurchaseSourceEnum"
+          },
+          "ebayLiveContext": {
+            "description": "This container is returned only if the line item was purchased through an eBay Live event. It contains details about the associated eBay Live event.",
+            "$ref": "#/components/schemas/EbayLiveContext"
+          },
+          "combineShipping": {
+            "description": "This container is returned only if the line item is associated with a combine-shipping group. It contains details about the combine-shipping window for the line item.",
+            "$ref": "#/components/schemas/CombineShipping"
           }
         },
         "description": "This type contains the details of each line item in an order."
@@ -3834,15 +4186,18 @@
           },
           "maxEstimatedDeliveryDate": {
             "type": "string",
-            "description": "The estimated latest date and time that the buyer can expect to receive the line item based on the seller's stated handling time and the transit times of the available shipping service options. The seller must pay extra attention to this date, as a failure to deliver by this date/time can result in a 'Late shipment' seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. <br><br><span class=\"tablenote\"><strong>Note:</strong> This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>"
+            "description": "The estimated latest date and time that the buyer can expect to receive the line item based on the seller's stated handling time and the transit times of the available shipping service options. The seller must pay extra attention to this date, as a failure to deliver by this date/time can result in a 'Late shipment' seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. <br><br><span class=\"tablenote\"><strong>Note:</strong> This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>",
+            "format": "date-time"
           },
           "minEstimatedDeliveryDate": {
             "type": "string",
-            "description": "The estimated earliest date and time that the buyer can expect to receive the line item based on the seller's stated handling time and the transit times of the available shipping service options.<br><br><span class=\"tablenote\"><strong>Note:</strong> This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>"
+            "description": "The estimated earliest date and time that the buyer can expect to receive the line item based on the seller's stated handling time and the transit times of the available shipping service options.<br><br><span class=\"tablenote\"><strong>Note:</strong> This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>",
+            "format": "date-time"
           },
           "shipByDate": {
             "type": "string",
-            "description": "The latest date and time by which the seller should ship line item in order to meet the expected delivery window. This timestamp will be set by eBay based on time of purchase and the seller's stated handling time. The seller must pay extra attention to this date, as a failure to physically ship the line item by this date/time can result in a 'Late shipment' seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. <br><br><span class=\"tablenote\"><strong>Note:</strong> This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>"
+            "description": "The latest date and time by which the seller should ship line item in order to meet the expected delivery window. This timestamp will be set by eBay based on time of purchase and the seller's stated handling time. The seller must pay extra attention to this date, as a failure to physically ship the line item by this date/time can result in a 'Late shipment' seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. <br><br><span class=\"tablenote\"><strong>Note:</strong> This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>",
+            "format": "date-time"
           },
           "sourceTimeZone": {
             "type": "string",
@@ -3852,7 +4207,7 @@
         "description": "This type contains the specifications for processing the fulfillment of a line item, including the handling window and the delivery window. These fields provide guidance for <i>eBay Guaranteed Delivery</i> as well as for non-guaranteed delivery."
       },
       "LineItemFulfillmentStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "The current status of all activity required to complete fulfillment of a line item. | - **FULFILLED**: The line item has been processed, packaged, and shipped. <span class=\"tablenote\"><strong>Note</strong>: A line item is considered fulfilled as soon as any one unit or component of the line item is assigned to a fulfillment.</span> - **IN_PROGRESS**: Applies only to orders with more than one line item. Indicates the seller has begun packaging and shipping one or more line items from the order, but not all line items have been shipped. - **NOT_STARTED**: The seller has not yet begun packaging the line item.",
         "enum": [
           "FULFILLED",
@@ -3909,7 +4264,8 @@
           },
           "refundDate": {
             "type": "string",
-            "description": "The date and time that the refund was issued for the line item. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>"
+            "description": "The date and time that the refund was issued for the line item. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>",
+            "format": "date-time"
           },
           "refundId": {
             "type": "string",
@@ -3938,11 +4294,13 @@
           },
           "maxEstimatedDeliveryDate": {
             "type": "string",
-            "description": "The end of the date range in which the linked line item is expected to be delivered to the shipping address."
+            "description": "The end of the date range in which the linked line item is expected to be delivered to the shipping address.",
+            "format": "date-time"
           },
           "minEstimatedDeliveryDate": {
             "type": "string",
-            "description": "The beginning of the date range in which the linked line item is expected to be delivered to the shipping address."
+            "description": "The beginning of the date range in which the linked line item is expected to be delivered to the shipping address.",
+            "format": "date-time"
           },
           "orderId": {
             "type": "string",
@@ -3967,7 +4325,7 @@
         "description": "This type contains data on a line item that is related to, but not a part of, the order."
       },
       "MarketplaceIdEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type contains a list of the standard codes that represent each of the eBay marketplaces. | - **EBAY_AT**: eBay Austria (ebay.at) - **EBAY_AU**: eBay Australia (ebay.com/au) - **EBAY_BE**: eBay Belgium (ebay.com/sch/Belgium) - **EBAY_CA**: eBay Canada (English) (ebay.ca) - **EBAY_CH**: eBay Switzerland (ebay.ch) - **EBAY_CN**: eBay China (ebay.com/sch/China) - **EBAY_CZ**: eBay Czech Republic (ebay.com/sch/Czech-Republic) - **EBAY_DE**: eBay Germany (ebay.de) - **EBAY_DK**: eBay Denmark (ebay.com/sch/Denmark) - **EBAY_ES**: eBay Spain (ebay.es) - **EBAY_FI**: eBay Finland (ebay.com/sch/Finland) - **EBAY_FR**: eBay France (ebay.fr) - **EBAY_GB**: eBay UK (ebay.co.uk) - **EBAY_GR**: eBay Greece (ebay.com/sch/Greece) - **EBAY_HK**: eBay Hong Kong (ebay.com.hk) - **EBAY_HU**: eBay Hungary (ebay.com/sch/Hungary) - **EBAY_ID**: eBay Indonesia (id.ebay.com) - **EBAY_IE**: eBay Ireland (ebay.ie) - **EBAY_IL**: eBay Israel (ebay.com/sch/Israel) - **EBAY_IN**: eBay India (ebay.in)<br><span class=\"tablenote\"><strong>Note:</strong> eBay India is no longer a functioning eBay marketplace.</span> - **EBAY_IT**: eBay Italy (ebay.it) - **EBAY_JP**: eBay Japan (ebay.co.jp) - **EBAY_MY**: eBay Malaysia (ebay.com/my) - **EBAY_NL**: eBay Netherlands (ebay.nl) - **EBAY_NO**: eBay Norway (ebay.com/sch/Norway) - **EBAY_NZ**: eBay New Zealand (ebay.com/sch/New-Zealand) - **EBAY_PE**: eBay Peru (ebay.com/sch/Peru) - **EBAY_PH**: eBay Philippines (ebay.ph) - **EBAY_PL**: eBay Poland (ebay.pl) - **EBAY_PR**: eBay Puerto Rico (ebay.com/sch/Puerto-Rico) - **EBAY_PT**: eBay Portugal (ebay.com/sch/Portugal) - **EBAY_RU**: eBay Russia (ebay.com/sch/Russia) - **EBAY_SE**: eBay Sweden (ebay.com/sch/Sweden) - **EBAY_SG**: eBay Singapore (ebay.com/sg) - **EBAY_TH**: eBay Thailand (export.ebay.co.th) - **EBAY_TW**: eBay Taiwan (ebay.com/tw) - **EBAY_US**: eBay US (ebay.com) - **EBAY_VN**: eBay Vietnam (ebay.vn) - **EBAY_ZA**: eBay South Africa (ebay.com/sch/South-Africa) - **EBAY_HALF_US**: This enumeration value is no longer applicable as the Half.com site no longer exists. - **EBAY_MOTORS_US**: eBay Motors US (ebay.com/motors)",
         "enum": [
           "EBAY_AT",
@@ -4097,7 +4455,8 @@
           },
           "creationDate": {
             "type": "string",
-            "description": "The date and time that the order was created. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>"
+            "description": "The date and time that the order was created. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>",
+            "format": "date-time"
           },
           "ebayCollectAndRemitTax": {
             "type": "boolean",
@@ -4119,7 +4478,8 @@
           },
           "lastModifiedDate": {
             "type": "string",
-            "description": "The date and time that the order was last modified. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>"
+            "description": "The date and time that the order was last modified. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>",
+            "format": "date-time"
           },
           "lineItems": {
             "type": "array",
@@ -4172,12 +4532,12 @@
         "description": "This type contains the details of an order, including information about the buyer, order history, shipping fulfillments, line items, costs, payments, and order fulfillment status."
       },
       "OrderFulfillmentStatus": {
-        "type": "object",
-        "description": "The current status of all activity required to complete fulfillment of an order. | - **FULFILLED**: The entire order has been shipped. <strong>Note</strong>: When any quantity of a line item is assigned to a fulfillment, that line item is marked as FULFILLED, even if the total quantity of the line item has not yet shipped. - **IN_PROGRESS**: Applies only to orders with more than one line item. Indicates the seller has begun packaging and shipping line items from the order, but not all line items have been shipped. - **NOT_STARTED**: The seller has not yet begun packaging any line items from the order.",
+        "type": "string",
+        "description": "This enumerated type defines the current fulfillment status of the order. | - **NOT_STARTED**: No fulfillment has been initiated for this order. - **IN_PROGRESS**: Fulfillment is in progress for one or more line items in this order. - **FULFILLED**: All line items in this order have been fulfilled.",
         "enum": [
-          "FULFILLED",
+          "NOT_STARTED",
           "IN_PROGRESS",
-          "NOT_STARTED"
+          "FULFILLED"
         ]
       },
       "OrderLineItems": {
@@ -4199,7 +4559,7 @@
         "description": "This type is used by the <strong>lineItems</strong> array that is used to identify one or more line items in the order with the payment dispute."
       },
       "OrderPaymentStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type contains the possible payment states of an order, or in case of a refund request, the possible states of a buyer refund. | - **FAILED**: This enumeration value indicates that buyer payment or refund has failed. - **FULLY_REFUNDED**: This enumeration value indicates that the full amount of the order has been refunded to the buyer. This value is only applicable to return requests or order cancellations. - **PAID**: This enumeration value indicates that the order has been paid in full. Once this PAID value is returned in an order management call, it is safe for the seller to ship the order to the buyer. - **PARTIALLY_REFUNDED**: This enumeration value indicates that a partial amount of the order has been refunded to the buyer. - **PENDING**: This enumeration value indicates that buyer payment or a refund from the seller is in the pending state.",
         "enum": [
           "FAILED",
@@ -4218,7 +4578,8 @@
           },
           "refundDate": {
             "type": "string",
-            "description": "The date and time that the refund was issued. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>"
+            "description": "The date and time that the refund was issued. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>",
+            "format": "date-time"
           },
           "refundId": {
             "type": "string",
@@ -4283,7 +4644,7 @@
             "type": "array",
             "description": "This array is returned if one or more errors or warnings occur with the call request.",
             "items": {
-              "$ref": "#/components/schemas/ErrorDetailV3"
+              "$ref": "#/components/schemas/ErrorDetail"
             }
           }
         },
@@ -4312,7 +4673,8 @@
           },
           "paymentDate": {
             "type": "string",
-            "description": "The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>"
+            "description": "The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>",
+            "format": "date-time"
           },
           "paymentHolds": {
             "type": "array",
@@ -4550,7 +4912,8 @@
         "properties": {
           "expectedReleaseDate": {
             "type": "string",
-            "description": "The date and time that the payment being held is expected to be released to the seller. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field will be returned if known by eBay. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>"
+            "description": "The date and time that the payment being held is expected to be released to the seller. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field will be returned if known by eBay. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>",
+            "format": "date-time"
           },
           "holdAmount": {
             "description": "The monetary amount of the payment being held. This field is always returned with the <strong>paymentHolds</strong> array. ",
@@ -4566,7 +4929,8 @@
           },
           "releaseDate": {
             "type": "string",
-            "description": "The date and time that the payment being held was actually released to the seller. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the seller's payment is actually released into the seller's account.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>"
+            "description": "The date and time that the payment being held was actually released to the seller. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the seller's payment is actually released into the seller's account.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>",
+            "format": "date-time"
           },
           "sellerActionsToRelease": {
             "type": "array",
@@ -4579,7 +4943,7 @@
         "description": "This type contains information about a hold placed on a payment to a seller for an order, including the reason why the buyer's payment for the order is being held, the expected release date of the funds into the seller's account, the current state of the hold, the actual release date if the payment has been released, and possible actions the seller can take to expedite the payout of funds into their account."
       },
       "PaymentMethodTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type contains the payment methods that a buyer may use for order payment. | - **CREDIT_CARD**: This enumeration value indicates that the buyer used a credit card to pay for the order. - **PAYPAL**: This enumeration value indicates that the buyer used PayPal to pay for the order. <strong>Note</strong>: This value should no longer be returned, as eBay manages all online payments from buyers. When eBay does handle the online payment from the buyer, the <code>EBAY</code> value will be returned instead. - **CASHIER_CHECK**: This enumeration value indicates that the buyer used a cashier's check to pay for the order. This form of payment can only be used for payment transactions off of eBay's platform, and this value will only appear if the seller updates the completed order with the payment details. - **PERSONAL_CHECK**: This enumeration value indicates that the buyer used a personal check to pay for the order. This form of payment can only be used for payment transactions off of eBay's platform, and this value will only appear if the seller updates the completed order with the payment details. - **CASH_ON_PICKUP**: This enumeration value indicates that the buyer used cash to pay for the order. This form of payment can only be used for payment transactions off of eBay's platform, and this value will only appear if the seller updates the completed order with the payment details. - **EFT**: This enumeration value indicates that the buyer used an Electronic Funds Transfer (EFT) to pay for the order. This form of payment can only be used for payment transactions off of eBay's platform, and this vaue will only appear if the seller updates the completed order with the payment details. - **EBAY**: This enumeration value is returned whenever eBay handles the online payment from the buyer. - **ESCROW**: This enumeration value indicates that the buyer used Escrow to pay for the order. This form of payment is used for high-value orders.",
         "enum": [
           "CREDIT_CARD",
@@ -4593,7 +4957,7 @@
         ]
       },
       "PaymentStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines all possible order payment states. | - **FAILED**: This enumeration value indicates that the buyer attempted to pay for the order, but the payment has failed. - **PAID**: This enumeration value indicates that the item has been paid in full. Once this PAID value is returned in an order management call, it is safe for the seller to ship the item to the buyer. - **PENDING**: This enumeration value indicates that payment on the order is still in the pending state and has not completed.",
         "enum": [
           "FAILED",
@@ -4964,7 +5328,8 @@
           },
           "shippedDate": {
             "type": "string",
-            "description": "The date and time that the fulfillment package was shipped. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>"
+            "description": "The date and time that the fulfillment package was shipped. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>",
+            "format": "date-time"
           },
           "shippingCarrierCode": {
             "type": "string",
@@ -4988,7 +5353,8 @@
           },
           "shippedDate": {
             "type": "string",
-            "description": "This is the actual date and time that the fulfillment package was shipped. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. The seller should use the actual date/time that the package was shipped, but if this field is omitted, it will default to the current date/time.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code><br><br><strong>Default:</strong> The current date and time."
+            "description": "This is the actual date and time that the fulfillment package was shipped. This timestamp is in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. The seller should use the actual date/time that the package was shipped, but if this field is omitted, it will default to the current date/time.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code><br><br><strong>Default:</strong> The current date and time.",
+            "format": "date-time"
           },
           "shippingCarrierCode": {
             "type": "string",
@@ -5024,8 +5390,26 @@
             "type": "array",
             "description": "This array is only returned if one or more errors or warnings occur with the call request.",
             "items": {
-              "$ref": "#/components/schemas/ErrorDetailV3"
+              "$ref": "#/components/schemas/ErrorDetail"
             }
+          },
+          "limit": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Maximum number of fulfillments returned per page."
+          },
+          "offset": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of fulfillments skipped before this page."
+          },
+          "next": {
+            "type": "string",
+            "description": "URI of the next page of results, if one exists."
+          },
+          "prev": {
+            "type": "string",
+            "description": "URI of the previous page of results, if one exists."
           }
         },
         "description": "This type contains the specifications for the entire collection of shipping fulfillments that are associated with the order specified by a <a href=\"/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-getshippingfulfillments\" target=\"_blank\">getShippingFulfillments</a> call. The <strong>fulfillments</strong> container returns an array of all the fulfillments in the collection."
@@ -5033,9 +5417,9 @@
       "ShippingStep": {
         "type": "object",
         "required": [
+          "shipTo",
           "shippingCarrierCode",
-          "shippingServiceCode",
-          "shipTo"
+          "shippingServiceCode"
         ],
         "properties": {
           "shippingCarrierCode": {
@@ -5072,7 +5456,7 @@
         "description": "This type defines the monetary value of the payment dispute, and the currency used."
       },
       "SoldFormatEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the listing formats for which a line item may be sold. | - **AUCTION**: This enumeration value indicates that the line item was purchased through an auction listing. Note that this value will be returned even if the buyer purchases the item through the 'Buy it Now' feature or if the buyer proposes and the seller accepts a 'Best Offer' for the auction item. Both the 'Buy it Now' and 'Best Offer' features get turned off on the listing as soon as the active auction listing has at least one qualifying bid. - **FIXED_PRICE**: This enumeration value indicates that the line item was purchased through a fixed-price listing. Note that this value will be returned whether the buyer purchases the item at the 'Fixed Price' or if the buyer proposes and the seller accepts a 'Best Offer' price. The 'Buy it Now' feature is not applicable to fixed-price listings. With fixed-price listings, buyer may purchase multiple units of the same line item if inventory is available. - **OTHER**: This enumeration value may be returned if the listing type cannot be determined by eBay. - **SECOND_CHANCE_OFFER**: This enumeration value indicates that the line item was purchased through a 'Second Chance Offer'. Sellers can propose a 'Second Chance Offer' to a non-winning bidder on an ended auction listing when either the winning bidder has failed to pay for an item or if the seller has more inventory of the auction item. A seller can create a 'Second Chance Offer' immediately after a listing ends, all the way up to 60 days after the end of the listing. A 'Second Chance Offer' can be proposed through the eBay UI, or the seller also can use the <strong>AddSecondChanceItem</strong> call of the Trading API. Based on the seller's preference, a prospective buyer can have up to seven days to make a decision on purchasing the item.",
         "enum": [
           "AUCTION",
@@ -5136,8 +5520,8 @@
         "description": "This type is used by the <strong>taxIdentifier</strong> container that is returned in <strong>getOrder</strong>. The <strong>taxIdentifier</strong> container consists of taxpayer identification information for buyers from Italy, Spain, or Guatemala. It is currently only returned for orders occurring on the eBay Italy or eBay Spain marketplaces.<br><br><span class=\"tablenote\"><strong>Note:</strong> Currently, the <strong>taxIdentifier</strong> container is only returned in <strong>getOrder</strong> and not in <a href=\"/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders\" target=\"_blank\">getOrders</a>. So, if a seller wanted to view a buyer's tax information for a particular order returned in <strong>getOrders</strong>, that seller would need to use the <strong>orderId</strong> value for that particular order, and then run a <a href=\"/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder\" target=\"_blank\">getOrder</a> call against that order ID. </span>"
       },
       "TaxIdentifierTypeEnum": {
-        "type": "object",
-        "description": "This enumeration type defines the different tax identification types being used by buyers. This includes Spanish, Italian, and Guatamalan buyers, as well as buyers from other countries using a value-added tax identifier number (VATIN). | - **CODICE_FISCALE**: This value indicates that the <strong>taxpayerId</strong> value is a Codice Fiscale ID, which is an identifier used by the Italian government to identify taxpayers in Italy. - **CURP**: This value indicates that the <strong>taxpayerId</strong> value is a CURP number, which is one identifier used by the Mexican tax authorities (SAT) to identify taxpayers in Mexico. In Spanish, this ID is known as the 'Clave Única de Registro de Población'. - **DNI**: This value indicates that the <strong>taxpayerId</strong> value is a Spanish National Identity Number, which is one identifier used by the Spanish government to identify taxpayers in Spain. In Spanish, this ID is known as the 'Documento nacional de identidad'. The other tax identifier for Spanish residents is the NIE number, or 'Numero de Identidad de Extranjero'. - **NIE**: This value indicates that the <strong>taxpayerId</strong> value is a NIE Number, which is one identifier used by the Spanish government to identify taxpayers in Spain. 'NIE' stands for 'Numero de Identidad de Extranjero'. The other tax identifier for Spanish residents is the DNI number, or 'Documento nacional de identidad'. Spanish residents can also be identified by their Spanish VAT (Value-Added Tax) number, which is also called the 'Numero de Identificacion Fiscal' or NIF. - **NIF**: This value indicates that the <strong>taxpayerId</strong> value is an NIF Number, which is also known as their Spanish VAT (Value-Added Tax) number. 'NIF' stands for 'Numero de Identificacion Fiscal'. Spanish residents can also be identified by their DNI ('Documento nacional de identidad') number or their NIE ('Numero de Identidad de Extranjero') number. - **NIT**: This value indicates that the <strong>taxpayerId</strong> value is a NIT number, which is an identifier used by the Guatemalan government to identify taxpayers in Guatemala. In Spanish, this ID is known as the 'Numero de identificacion tributaria'. - **RFC**: This value indicates taxpayerId value is a RFC number, which is one identifier used by the Mexican tax authorities (SAT) to identify taxpayers in Mexico. In Spanish, this ID is known as the 'Registro Federal de Contribuyentes'. - **RUT**: This value indicates that the <strong>taxpayerId</strong> value is a Tax Registration Number, which is an identifier used by the Chileans government to identify taxpayers in Chile. In Spanish, this ID is known as the 'Rol Único Tributario'. - **VATIN**: This value indicates that the <strong>taxpayerId</strong> value is a VATIN number, which is the value-added tax identification number for the buyer. This identifier is used for value added tax purposes in many countries, including the countries of the European Union.",
+        "type": "string",
+        "description": "This enumeration type defines the different tax identification types being used by buyers. This includes Spanish, Italian, and Guatamalan buyers, as well as buyers from other countries using a value-added tax identifier number (VATIN). | - **CODICE_FISCALE**: This value indicates that the <strong>taxpayerId</strong> value is a Codice Fiscale ID, which is an identifier used by the Italian government to identify taxpayers in Italy. - **CURP**: This value indicates that the <strong>taxpayerId</strong> value is a CURP number, which is one identifier used by the Mexican tax authorities (SAT) to identify taxpayers in Mexico. In Spanish, this ID is known as the 'Clave Ãšnica de Registro de PoblaciÃ³n'. - **DNI**: This value indicates that the <strong>taxpayerId</strong> value is a Spanish National Identity Number, which is one identifier used by the Spanish government to identify taxpayers in Spain. In Spanish, this ID is known as the 'Documento nacional de identidad'. The other tax identifier for Spanish residents is the NIE number, or 'Numero de Identidad de Extranjero'. - **NIE**: This value indicates that the <strong>taxpayerId</strong> value is a NIE Number, which is one identifier used by the Spanish government to identify taxpayers in Spain. 'NIE' stands for 'Numero de Identidad de Extranjero'. The other tax identifier for Spanish residents is the DNI number, or 'Documento nacional de identidad'. Spanish residents can also be identified by their Spanish VAT (Value-Added Tax) number, which is also called the 'Numero de Identificacion Fiscal' or NIF. - **NIF**: This value indicates that the <strong>taxpayerId</strong> value is an NIF Number, which is also known as their Spanish VAT (Value-Added Tax) number. 'NIF' stands for 'Numero de Identificacion Fiscal'. Spanish residents can also be identified by their DNI ('Documento nacional de identidad') number or their NIE ('Numero de Identidad de Extranjero') number. - **NIT**: This value indicates that the <strong>taxpayerId</strong> value is a NIT number, which is an identifier used by the Guatemalan government to identify taxpayers in Guatemala. In Spanish, this ID is known as the 'Numero de identificacion tributaria'. - **RFC**: This value indicates taxpayerId value is a RFC number, which is one identifier used by the Mexican tax authorities (SAT) to identify taxpayers in Mexico. In Spanish, this ID is known as the 'Registro Federal de Contribuyentes'. - **RUT**: This value indicates that the <strong>taxpayerId</strong> value is a Tax Registration Number, which is an identifier used by the Chileans government to identify taxpayers in Chile. In Spanish, this ID is known as the 'Rol Ãšnico Tributario'. - **VATIN**: This value indicates that the <strong>taxpayerId</strong> value is a VATIN number, which is the value-added tax identification number for the buyer. This identifier is used for value added tax purposes in many countries, including the countries of the European Union.",
         "enum": [
           "CODICE_FISCALE",
           "CURP",
@@ -5151,8 +5535,8 @@
         ]
       },
       "TaxTypeEnum": {
-        "type": "object",
-        "description": "This enumeration type defines the sales tax types that may be collected by eBay and remitted to the appropriate taxing authority for a given line item in an order. Although not all sales tax is subject to be collected and remitted by eBay, this type is only used by the <strong>eBayCollectAndRemitTaxes</strong> container, so all of these tax types will be subject to 'Collect and Remit'. | - **STATE_SALES_TAX**: This enumeration value indicates that US state sales tax was charged to the buyer against the order line item. EBay now calculates, collects, and remits sales tax to the proper taxing authorities in all 50 states and Washington, DC. — any sales tax rate set up by the seller for the buyer's state will be ignored. However, sellers may continue to set sales tax rates for the following US territories: <ul><li>American Samoa (AS)</li><li>Guam (GU)</li><li>Northern Mariana Islands (MP)</li><li>Palau (PW)</li><li>US Virgin Islands (VI)</li></ul> - **PROVINCE_SALES_TAX**: This enumeration value indicates that provincial sales tax was charged to the buyer against the order line item. In provinces that mandate sales tax, any sales tax rate set up by the seller for the buyer's province will be ignored, and the seller is not involved with the collection of this tax at all. - **REGION**: This enumeration value indicates that regional sales tax was charged to the buyer against the order line item. In regions that mandate sales tax, any sales tax rate set up by the seller for the buyer's region will be ignored, and the seller is not involved with the collection of this tax at all. - **VAT**: This enumeration value indicates that Value-Added tax (VAT) was charged to the buyer against the order line item. VAT is not applicable in all countries, including the United States. - **GST**: This enumeration value indicates that a Goods and Services Tax was charged to the buyer against the order line item. This tax type applies to: <ul><li>Australia and New Zealand: this is an import tax charged to buyers outside of these two countries</li><li>Canada: GST indicates that a Federal Sales Tax was charged to the buyer against the order line item. Depending on the province this can be either Goods and Services Tax (GST) or Harmonized Sales Tax (HST).<li>Jersey: this is a transactional tax on sales of goods and services supplied.</li></ul> - **ELECTRONIC_RECYCLING_FEE**: This enumeration value indicates that an Electronic Recycling Fee was charged to the buyer against the order line item. This fee is imposed on the retail sale or lease of certain electronic products that have been identified as covered electronic devices (CEDs). This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **MATTRESS_RECYCLING_FEE**: This enumeration value indicates that a mattress waste recycling fee was charged to the buyer against the order line item for each mattress, box spring, foundation, and base sold. This recycling fee is per piece. This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **ADDITIONAL_FEE**: This enumeration value indicates that an additional recycling fee was charged to the buyer against the order line item. This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **BATTERY_RECYCLING_FEE**: This enumeration value indicates that the battery recycling fee was charged to the buyer against the order line item. This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **TIRE_RECYCLING_FEE**: This enumeration value indicates that the tire recycling fee was charged to the buyer against the order line item. This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **WHITE_GOODS_DISPOSABLE_TAX**: This enumeration value indicates that the disposal tax for white goods was charged to the buyer against the order line item (White Goods Disposal Tax). White goods includes items like refrigerators, ranges, water heaters, freezers, unit air conditioners, washing machines, clothes dryers, and other similar domestic and commercial large appliances. This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **IMPORT_VAT**: This enumeration value indicates that the Value-Added Tax (VAT) was charged to the buyer against an imported order line item (only applies to international orders). VAT is not applicable in all countries, including the United States. - **SST**: This enumeration value indicates that a Sales & Service Tax was charged to the buyer against the order line item. SST only applies to Malaysia.",
+        "type": "string",
+        "description": "This enumeration type defines the sales tax types that may be collected by eBay and remitted to the appropriate taxing authority for a given line item in an order. Although not all sales tax is subject to be collected and remitted by eBay, this type is only used by the <strong>eBayCollectAndRemitTaxes</strong> container, so all of these tax types will be subject to 'Collect and Remit'. | - **STATE_SALES_TAX**: This enumeration value indicates that US state sales tax was charged to the buyer against the order line item. EBay now calculates, collects, and remits sales tax to the proper taxing authorities in all 50 states and Washington, DC. â€” any sales tax rate set up by the seller for the buyer's state will be ignored. However, sellers may continue to set sales tax rates for the following US territories: <ul><li>American Samoa (AS)</li><li>Guam (GU)</li><li>Northern Mariana Islands (MP)</li><li>Palau (PW)</li><li>US Virgin Islands (VI)</li></ul> - **PROVINCE_SALES_TAX**: This enumeration value indicates that provincial sales tax was charged to the buyer against the order line item. In provinces that mandate sales tax, any sales tax rate set up by the seller for the buyer's province will be ignored, and the seller is not involved with the collection of this tax at all. - **REGION**: This enumeration value indicates that regional sales tax was charged to the buyer against the order line item. In regions that mandate sales tax, any sales tax rate set up by the seller for the buyer's region will be ignored, and the seller is not involved with the collection of this tax at all. - **VAT**: This enumeration value indicates that Value-Added tax (VAT) was charged to the buyer against the order line item. VAT is not applicable in all countries, including the United States. - **GST**: This enumeration value indicates that a Goods and Services Tax was charged to the buyer against the order line item. This tax type applies to: <ul><li>Australia and New Zealand: this is an import tax charged to buyers outside of these two countries</li><li>Canada: GST indicates that a Federal Sales Tax was charged to the buyer against the order line item. Depending on the province this can be either Goods and Services Tax (GST) or Harmonized Sales Tax (HST).<li>Jersey: this is a transactional tax on sales of goods and services supplied.</li></ul> - **ELECTRONIC_RECYCLING_FEE**: This enumeration value indicates that an Electronic Recycling Fee was charged to the buyer against the order line item. This fee is imposed on the retail sale or lease of certain electronic products that have been identified as covered electronic devices (CEDs). This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **MATTRESS_RECYCLING_FEE**: This enumeration value indicates that a mattress waste recycling fee was charged to the buyer against the order line item for each mattress, box spring, foundation, and base sold. This recycling fee is per piece. This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **ADDITIONAL_FEE**: This enumeration value indicates that an additional recycling fee was charged to the buyer against the order line item. This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **BATTERY_RECYCLING_FEE**: This enumeration value indicates that the battery recycling fee was charged to the buyer against the order line item. This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **TIRE_RECYCLING_FEE**: This enumeration value indicates that the tire recycling fee was charged to the buyer against the order line item. This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **WHITE_GOODS_DISPOSABLE_TAX**: This enumeration value indicates that the disposal tax for white goods was charged to the buyer against the order line item (White Goods Disposal Tax). White goods includes items like refrigerators, ranges, water heaters, freezers, unit air conditioners, washing machines, clothes dryers, and other similar domestic and commercial large appliances. This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **IMPORT_VAT**: This enumeration value indicates that the Value-Added Tax (VAT) was charged to the buyer against an imported order line item (only applies to international orders). VAT is not applicable in all countries, including the United States. - **SST**: This enumeration value indicates that a Sales & Service Tax was charged to the buyer against the order line item. SST only applies to Malaysia.",
         "enum": [
           "STATE_SALES_TAX",
           "PROVINCE_SALES_TAX",
@@ -5352,6 +5736,129 @@
             "$ref": "#/components/schemas/EvidenceTypeEnum"
           }
         }
+      },
+      "ExternalId": {
+        "type": "object",
+        "description": "An external identifier associated with the buyer.",
+        "properties": {
+          "externalKey": {
+            "type": "string",
+            "description": "The unique external key."
+          },
+          "externalIdType": {
+            "type": "string",
+            "description": "The type of the external identifier."
+          },
+          "attributes": {
+            "type": "array",
+            "description": "Additional key-value attributes associated with this external identifier.",
+            "items": {
+              "$ref": "#/components/schemas/Attribute"
+            }
+          }
+        }
+      },
+      "Attribute": {
+        "type": "object",
+        "description": "A key-value metadata attribute. Replaces com.ebay.order.common.v1.Attribute to remove the external OrderTypes library dependency.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The attribute name."
+          },
+          "value": {
+            "type": "string",
+            "description": "The attribute value."
+          }
+        }
+      },
+      "ShippingTrackingDetails": {
+        "type": "object",
+        "description": "This type contains the details for creating an additional shipping fulfillment for an order that is being shipped in multiple packages.",
+        "properties": {
+          "trackingNumber": {
+            "type": "string",
+            "description": "This field is used to specify the shipment tracking number for the package associated with the additional shipping fulfillment."
+          },
+          "shippingCarrierCode": {
+            "type": "string",
+            "description": "This field is used to specify the shipping carrier used to ship the package associated with the additional shipping fulfillment."
+          },
+          "shippedDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "This is the actual date and time that the package associated with the additional shipping fulfillment was shipped. If this field is omitted, it will default to the current date and time."
+          },
+          "lineItems": {
+            "type": "array",
+            "description": "This array contains the line items and quantities that are included in the package associated with the additional shipping fulfillment.",
+            "items": {
+              "$ref": "#/components/schemas/LineItemReference"
+            }
+          }
+        },
+        "required": [
+          "lineItems",
+          "shippingCarrierCode",
+          "trackingNumber"
+        ]
+      },
+      "PurchaseSourceEnum": {
+        "type": "string",
+        "description": "This enumerated type defines the sales channel through which the order line item was purchased. | - **EBAY_LIVE**: This enumeration value indicates that the line item was purchased during an eBay Live event. - **CORE**: This enumeration value indicates that the line item was purchased through the standard eBay marketplace flow.",
+        "enum": [
+          "EBAY_LIVE",
+          "CORE"
+        ]
+      },
+      "EbayLiveContext": {
+        "type": "object",
+        "description": "This type contains details about the eBay Live event associated with the order line item. This container is returned only when the corresponding <strong>purchaseSource</strong> value is <code>EBAY_LIVE</code>.",
+        "properties": {
+          "eventId": {
+            "type": "string",
+            "description": "This field is used to specify the unique identifier of the eBay Live event during which the line item was purchased.",
+            "maxLength": 16
+          }
+        }
+      },
+      "CombineShipping": {
+        "type": "object",
+        "description": "This type contains combine-shipping information for an order line item. If this container is returned, the line item has been assigned to a combine-shipping group.",
+        "properties": {
+          "shippingWindow": {
+            "$ref": "#/components/schemas/ShippingWindow",
+            "description": "This container consists of details about the combine-shipping window associated with the order line item."
+          }
+        }
+      },
+      "ShippingWindow": {
+        "type": "object",
+        "description": "This type contains the details of the combine-shipping window associated with an order line item.",
+        "properties": {
+          "windowId": {
+            "type": "string",
+            "description": "This field is used to specify the unique identifier of the combine-shipping group associated with the order line item.",
+            "maxLength": 36
+          },
+          "status": {
+            "description": "This enumeration value indicates the current status of the combine-shipping window.",
+            "$ref": "#/components/schemas/ShippingWindowStatusEnum"
+          },
+          "shippingWindowEndDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the shipping window ends. This timestamp is in ISO 8601 format, which uses the 24-hour UTC clock. This field is returned only when an end date is available for the shipping window."
+          }
+        }
+      },
+      "ShippingWindowStatusEnum": {
+        "type": "string",
+        "description": "This enumerated type defines the current status of the combine-shipping window associated with an order line item. | - **OPEN**: This enumeration value indicates that the combine-shipping window is still active and additional eligible orders might still be added to the group. - **CLOSED**: This enumeration value indicates that the combine-shipping window has ended and no additional orders will be added to the group.",
+        "enum": [
+          "OPEN",
+          "CLOSED"
+        ]
       }
     },
     "securitySchemes": {
@@ -5362,16 +5869,18 @@
           "clientCredentials": {
             "tokenUrl": "https://api.ebay.com/identity/v1/oauth2/token",
             "scopes": {
-              "https://api.ebay.com/oauth/api_scope/sell.payment.dispute": "View and manage disputes and related details (including payment and order information)."
+              "https://api.ebay.com/oauth/api_scope/sell.payment.dispute": "View and manage disputes and related details (including payment and order information).",
+              "https://api.ebay.com/oauth/api_scope/sell.fulfillment": "Manage seller fulfillment operations",
+              "https://api.ebay.com/oauth/api_scope/sell.fulfillment.readonly": "View seller fulfillment data"
             }
           },
           "authorizationCode": {
             "authorizationUrl": "https://auth.ebay.com/oauth2/authorize",
             "tokenUrl": "https://api.ebay.com/identity/v1/oauth2/token",
             "scopes": {
-              "https://api.ebay.com/oauth/api_scope/sell.fulfillment": "View and manage your order fulfillments",
+              "https://api.ebay.com/oauth/api_scope/sell.fulfillment": "Manage seller fulfillment operations",
               "https://api.ebay.com/oauth/api_scope/sell.finances": "View and manage your payment and order information to display this information to you and allow you to initiate refunds using the third party application",
-              "https://api.ebay.com/oauth/api_scope/sell.fulfillment.readonly": "View your order fulfillments",
+              "https://api.ebay.com/oauth/api_scope/sell.fulfillment.readonly": "View seller fulfillment data",
               "https://api.ebay.com/oauth/api_scope/sell.payment.dispute": "View and manage disputes and related details (including payment and order information).",
               "eBayUser": "eBay user access scope"
             }
@@ -5399,8 +5908,11 @@
   },
   "tags": [
     {
-      "name": "Refund",
+      "name": "order",
       "description": "Issue Refund related operations"
+    },
+    {
+      "name": "shipping_fulfillment"
     }
   ]
 }

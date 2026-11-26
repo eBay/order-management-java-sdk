@@ -35,6 +35,10 @@ public class LineItem implements AdditionalDataHolder, Parsable {
      */
     private java.util.List<AppliedPromotion> appliedPromotions;
     /**
+     * This container is returned only if the line item is associated with a combine-shipping group. It contains details about the combine-shipping window for the line item.
+     */
+    private CombineShipping combineShipping;
+    /**
      * This array is only returned for a Parts &amp; Accessory item and identifies the buyer&apos;s motor vehicle that is compatible with the part or accessory.
      */
     private java.util.List<Property> compatibilityProperties;
@@ -54,6 +58,10 @@ public class LineItem implements AdditionalDataHolder, Parsable {
      * This container consists of a breakdown of costs that are collected by eBay from the buyer for this order. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Currently, this container is returned only if eBay is directly charging the buyer for eBay shipping.&lt;/span&gt;
      */
     private EbayCollectedCharges ebayCollectedCharges;
+    /**
+     * This container is returned only if the line item was purchased through an eBay Live event. It contains details about the associated eBay Live event.
+     */
+    private EbayLiveContext ebayLiveContext;
     /**
      * This container consists of information that is needed by the seller to send a digital gift card to the buyer or recipient of the digital gift card. This container is only returned and applicable for digital gift card line items.
      */
@@ -102,6 +110,10 @@ public class LineItem implements AdditionalDataHolder, Parsable {
      * The unique identifier of the eBay marketplace where the line item was listed. Often, the &lt;strong&gt;listingMarketplaceId&lt;/strong&gt; and the &lt;strong&gt;purchaseMarketplaceId&lt;/strong&gt; identifier are the same, but there are occasions when an item will surface on multiple eBay marketplaces.
      */
     private MarketplaceIdEnum purchaseMarketplaceId;
+    /**
+     * This enumeration value indicates the channel through which the line item was purchased.
+     */
+    private PurchaseSourceEnum purchaseSource;
     /**
      * The number of units of the line item in the order. These are represented as a group by a single &lt;strong&gt;lineItemId&lt;/strong&gt;.
      */
@@ -167,6 +179,14 @@ public class LineItem implements AdditionalDataHolder, Parsable {
         return this.appliedPromotions;
     }
     /**
+     * Gets the combineShipping property value. This container is returned only if the line item is associated with a combine-shipping group. It contains details about the combine-shipping window for the line item.
+     * @return a {@link CombineShipping}
+     */
+    @jakarta.annotation.Nullable
+    public CombineShipping getCombineShipping() {
+        return this.combineShipping;
+    }
+    /**
      * Gets the compatibilityProperties property value. This array is only returned for a Parts &amp; Accessory item and identifies the buyer&apos;s motor vehicle that is compatible with the part or accessory.
      * @return a {@link java.util.List<Property>}
      */
@@ -207,18 +227,28 @@ public class LineItem implements AdditionalDataHolder, Parsable {
         return this.ebayCollectedCharges;
     }
     /**
+     * Gets the ebayLiveContext property value. This container is returned only if the line item was purchased through an eBay Live event. It contains details about the associated eBay Live event.
+     * @return a {@link EbayLiveContext}
+     */
+    @jakarta.annotation.Nullable
+    public EbayLiveContext getEbayLiveContext() {
+        return this.ebayLiveContext;
+    }
+    /**
      * The deserialization information for the current model
      * @return a {@link Map<String, java.util.function.Consumer<ParseNode>>}
      */
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
-        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(26);
+        final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(29);
         deserializerMap.put("appliedPromotions", (n) -> { this.setAppliedPromotions(n.getCollectionOfObjectValues(AppliedPromotion::createFromDiscriminatorValue)); });
+        deserializerMap.put("combineShipping", (n) -> { this.setCombineShipping(n.getObjectValue(CombineShipping::createFromDiscriminatorValue)); });
         deserializerMap.put("compatibilityProperties", (n) -> { this.setCompatibilityProperties(n.getCollectionOfObjectValues(Property::createFromDiscriminatorValue)); });
         deserializerMap.put("deliveryCost", (n) -> { this.setDeliveryCost(n.getObjectValue(DeliveryCost::createFromDiscriminatorValue)); });
         deserializerMap.put("discountedLineItemCost", (n) -> { this.setDiscountedLineItemCost(n.getObjectValue(Amount::createFromDiscriminatorValue)); });
         deserializerMap.put("ebayCollectAndRemitTaxes", (n) -> { this.setEbayCollectAndRemitTaxes(n.getCollectionOfObjectValues(EbayCollectAndRemitTax::createFromDiscriminatorValue)); });
         deserializerMap.put("ebayCollectedCharges", (n) -> { this.setEbayCollectedCharges(n.getObjectValue(EbayCollectedCharges::createFromDiscriminatorValue)); });
+        deserializerMap.put("ebayLiveContext", (n) -> { this.setEbayLiveContext(n.getObjectValue(EbayLiveContext::createFromDiscriminatorValue)); });
         deserializerMap.put("giftDetails", (n) -> { this.setGiftDetails(n.getObjectValue(GiftDetails::createFromDiscriminatorValue)); });
         deserializerMap.put("itemLocation", (n) -> { this.setItemLocation(n.getObjectValue(ItemLocation::createFromDiscriminatorValue)); });
         deserializerMap.put("legacyItemId", (n) -> { this.setLegacyItemId(n.getStringValue()); });
@@ -231,6 +261,7 @@ public class LineItem implements AdditionalDataHolder, Parsable {
         deserializerMap.put("listingMarketplaceId", (n) -> { this.setListingMarketplaceId(n.getEnumValue(MarketplaceIdEnum::forValue)); });
         deserializerMap.put("properties", (n) -> { this.setProperties(n.getObjectValue(LineItemProperties::createFromDiscriminatorValue)); });
         deserializerMap.put("purchaseMarketplaceId", (n) -> { this.setPurchaseMarketplaceId(n.getEnumValue(MarketplaceIdEnum::forValue)); });
+        deserializerMap.put("purchaseSource", (n) -> { this.setPurchaseSource(n.getEnumValue(PurchaseSourceEnum::forValue)); });
         deserializerMap.put("quantity", (n) -> { this.setQuantity(n.getIntegerValue()); });
         deserializerMap.put("refunds", (n) -> { this.setRefunds(n.getCollectionOfObjectValues(LineItemRefund::createFromDiscriminatorValue)); });
         deserializerMap.put("sku", (n) -> { this.setSku(n.getStringValue()); });
@@ -338,6 +369,14 @@ public class LineItem implements AdditionalDataHolder, Parsable {
         return this.purchaseMarketplaceId;
     }
     /**
+     * Gets the purchaseSource property value. This enumeration value indicates the channel through which the line item was purchased.
+     * @return a {@link PurchaseSourceEnum}
+     */
+    @jakarta.annotation.Nullable
+    public PurchaseSourceEnum getPurchaseSource() {
+        return this.purchaseSource;
+    }
+    /**
      * Gets the quantity property value. The number of units of the line item in the order. These are represented as a group by a single &lt;strong&gt;lineItemId&lt;/strong&gt;.
      * @return a {@link Integer}
      */
@@ -408,11 +447,13 @@ public class LineItem implements AdditionalDataHolder, Parsable {
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
         writer.writeCollectionOfObjectValues("appliedPromotions", this.getAppliedPromotions());
+        writer.writeObjectValue("combineShipping", this.getCombineShipping());
         writer.writeCollectionOfObjectValues("compatibilityProperties", this.getCompatibilityProperties());
         writer.writeObjectValue("deliveryCost", this.getDeliveryCost());
         writer.writeObjectValue("discountedLineItemCost", this.getDiscountedLineItemCost());
         writer.writeCollectionOfObjectValues("ebayCollectAndRemitTaxes", this.getEbayCollectAndRemitTaxes());
         writer.writeObjectValue("ebayCollectedCharges", this.getEbayCollectedCharges());
+        writer.writeObjectValue("ebayLiveContext", this.getEbayLiveContext());
         writer.writeObjectValue("giftDetails", this.getGiftDetails());
         writer.writeObjectValue("itemLocation", this.getItemLocation());
         writer.writeStringValue("legacyItemId", this.getLegacyItemId());
@@ -425,6 +466,7 @@ public class LineItem implements AdditionalDataHolder, Parsable {
         writer.writeEnumValue("listingMarketplaceId", this.getListingMarketplaceId());
         writer.writeObjectValue("properties", this.getProperties());
         writer.writeEnumValue("purchaseMarketplaceId", this.getPurchaseMarketplaceId());
+        writer.writeEnumValue("purchaseSource", this.getPurchaseSource());
         writer.writeIntegerValue("quantity", this.getQuantity());
         writer.writeCollectionOfObjectValues("refunds", this.getRefunds());
         writer.writeStringValue("sku", this.getSku());
@@ -448,6 +490,13 @@ public class LineItem implements AdditionalDataHolder, Parsable {
      */
     public void setAppliedPromotions(@jakarta.annotation.Nullable final java.util.List<AppliedPromotion> value) {
         this.appliedPromotions = value;
+    }
+    /**
+     * Sets the combineShipping property value. This container is returned only if the line item is associated with a combine-shipping group. It contains details about the combine-shipping window for the line item.
+     * @param value Value to set for the combineShipping property.
+     */
+    public void setCombineShipping(@jakarta.annotation.Nullable final CombineShipping value) {
+        this.combineShipping = value;
     }
     /**
      * Sets the compatibilityProperties property value. This array is only returned for a Parts &amp; Accessory item and identifies the buyer&apos;s motor vehicle that is compatible with the part or accessory.
@@ -483,6 +532,13 @@ public class LineItem implements AdditionalDataHolder, Parsable {
      */
     public void setEbayCollectedCharges(@jakarta.annotation.Nullable final EbayCollectedCharges value) {
         this.ebayCollectedCharges = value;
+    }
+    /**
+     * Sets the ebayLiveContext property value. This container is returned only if the line item was purchased through an eBay Live event. It contains details about the associated eBay Live event.
+     * @param value Value to set for the ebayLiveContext property.
+     */
+    public void setEbayLiveContext(@jakarta.annotation.Nullable final EbayLiveContext value) {
+        this.ebayLiveContext = value;
     }
     /**
      * Sets the giftDetails property value. This container consists of information that is needed by the seller to send a digital gift card to the buyer or recipient of the digital gift card. This container is only returned and applicable for digital gift card line items.
@@ -567,6 +623,13 @@ public class LineItem implements AdditionalDataHolder, Parsable {
      */
     public void setPurchaseMarketplaceId(@jakarta.annotation.Nullable final MarketplaceIdEnum value) {
         this.purchaseMarketplaceId = value;
+    }
+    /**
+     * Sets the purchaseSource property value. This enumeration value indicates the channel through which the line item was purchased.
+     * @param value Value to set for the purchaseSource property.
+     */
+    public void setPurchaseSource(@jakarta.annotation.Nullable final PurchaseSourceEnum value) {
+        this.purchaseSource = value;
     }
     /**
      * Sets the quantity property value. The number of units of the line item in the order. These are represented as a group by a single &lt;strong&gt;lineItemId&lt;/strong&gt;.

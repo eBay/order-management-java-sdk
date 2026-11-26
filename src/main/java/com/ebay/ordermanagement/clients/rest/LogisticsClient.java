@@ -63,14 +63,13 @@ public final class LogisticsClient {
         }));
     }
 
-    public CompletableFuture<Void> downloadLabelFileAsync(
+    public CompletableFuture<InputStream> downloadLabelFileAsync(
             String shipmentId, String accessToken, RequestOptions requestOptions) {
         return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
-            kiota.shipment().byShipmentId(Params.requireValid("shipmentId", shipmentId)).downloadLabelFile().get(config -> {
+            return kiota.shipment().byShipmentId(Params.requireValid("shipmentId", shipmentId)).downloadLabelFile().get(config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-            return null;
         }));
     }
 

@@ -18,6 +18,7 @@ import com.microsoft.kiota.serialization.AdditionalDataHolder;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
 import com.microsoft.kiota.serialization.SerializationWriter;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -33,7 +34,7 @@ public class PaymentHold implements AdditionalDataHolder, Parsable {
     /**
      * The date and time that the payment being held is expected to be released to the seller. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field will be returned if known by eBay. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
-    private String expectedReleaseDate;
+    private OffsetDateTime expectedReleaseDate;
     /**
      * The monetary amount of the payment being held. This field is always returned with the &lt;strong&gt;paymentHolds&lt;/strong&gt; array. 
      */
@@ -49,7 +50,7 @@ public class PaymentHold implements AdditionalDataHolder, Parsable {
     /**
      * The date and time that the payment being held was actually released to the seller. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the seller&apos;s payment is actually released into the seller&apos;s account.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
-    private String releaseDate;
+    private OffsetDateTime releaseDate;
     /**
      * A list of one or more possible actions that the seller can take to expedite the release of the payment hold.
      */
@@ -80,10 +81,10 @@ public class PaymentHold implements AdditionalDataHolder, Parsable {
     }
     /**
      * Gets the expectedReleaseDate property value. The date and time that the payment being held is expected to be released to the seller. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field will be returned if known by eBay. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
-     * @return a {@link String}
+     * @return a {@link OffsetDateTime}
      */
     @jakarta.annotation.Nullable
-    public String getExpectedReleaseDate() {
+    public OffsetDateTime getExpectedReleaseDate() {
         return this.expectedReleaseDate;
     }
     /**
@@ -93,11 +94,11 @@ public class PaymentHold implements AdditionalDataHolder, Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(6);
-        deserializerMap.put("expectedReleaseDate", (n) -> { this.setExpectedReleaseDate(n.getStringValue()); });
+        deserializerMap.put("expectedReleaseDate", (n) -> { this.setExpectedReleaseDate(n.getOffsetDateTimeValue()); });
         deserializerMap.put("holdAmount", (n) -> { this.setHoldAmount(n.getObjectValue(Amount::createFromDiscriminatorValue)); });
         deserializerMap.put("holdReason", (n) -> { this.setHoldReason(n.getStringValue()); });
         deserializerMap.put("holdState", (n) -> { this.setHoldState(n.getStringValue()); });
-        deserializerMap.put("releaseDate", (n) -> { this.setReleaseDate(n.getStringValue()); });
+        deserializerMap.put("releaseDate", (n) -> { this.setReleaseDate(n.getOffsetDateTimeValue()); });
         deserializerMap.put("sellerActionsToRelease", (n) -> { this.setSellerActionsToRelease(n.getCollectionOfObjectValues(SellerActionsToRelease::createFromDiscriminatorValue)); });
         return deserializerMap;
     }
@@ -127,10 +128,10 @@ public class PaymentHold implements AdditionalDataHolder, Parsable {
     }
     /**
      * Gets the releaseDate property value. The date and time that the payment being held was actually released to the seller. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the seller&apos;s payment is actually released into the seller&apos;s account.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
-     * @return a {@link String}
+     * @return a {@link OffsetDateTime}
      */
     @jakarta.annotation.Nullable
-    public String getReleaseDate() {
+    public OffsetDateTime getReleaseDate() {
         return this.releaseDate;
     }
     /**
@@ -147,11 +148,11 @@ public class PaymentHold implements AdditionalDataHolder, Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeStringValue("expectedReleaseDate", this.getExpectedReleaseDate());
+        writer.writeOffsetDateTimeValue("expectedReleaseDate", this.getExpectedReleaseDate());
         writer.writeObjectValue("holdAmount", this.getHoldAmount());
         writer.writeStringValue("holdReason", this.getHoldReason());
         writer.writeStringValue("holdState", this.getHoldState());
-        writer.writeStringValue("releaseDate", this.getReleaseDate());
+        writer.writeOffsetDateTimeValue("releaseDate", this.getReleaseDate());
         writer.writeCollectionOfObjectValues("sellerActionsToRelease", this.getSellerActionsToRelease());
         writer.writeAdditionalData(this.getAdditionalData());
     }
@@ -166,7 +167,7 @@ public class PaymentHold implements AdditionalDataHolder, Parsable {
      * Sets the expectedReleaseDate property value. The date and time that the payment being held is expected to be released to the seller. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field will be returned if known by eBay. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the expectedReleaseDate property.
      */
-    public void setExpectedReleaseDate(@jakarta.annotation.Nullable final String value) {
+    public void setExpectedReleaseDate(@jakarta.annotation.Nullable final OffsetDateTime value) {
         this.expectedReleaseDate = value;
     }
     /**
@@ -194,7 +195,7 @@ public class PaymentHold implements AdditionalDataHolder, Parsable {
      * Sets the releaseDate property value. The date and time that the payment being held was actually released to the seller. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the seller&apos;s payment is actually released into the seller&apos;s account.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the releaseDate property.
      */
-    public void setReleaseDate(@jakarta.annotation.Nullable final String value) {
+    public void setReleaseDate(@jakarta.annotation.Nullable final OffsetDateTime value) {
         this.releaseDate = value;
     }
     /**

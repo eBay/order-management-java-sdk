@@ -18,6 +18,7 @@ import com.microsoft.kiota.serialization.AdditionalDataHolder;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
 import com.microsoft.kiota.serialization.SerializationWriter;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -37,7 +38,7 @@ public class Payment implements AdditionalDataHolder, Parsable {
     /**
      * The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
-    private String paymentDate;
+    private OffsetDateTime paymentDate;
     /**
      * This container is only returned if eBay is temporarily holding the seller&apos;s funds for the order. If a payment hold has been placed on the order, this container includes the reason for the payment hold, the expected release date of the funds into the seller&apos;s account, the current state of the hold, and as soon as the payment hold has been released, the actual release date.
      */
@@ -94,7 +95,7 @@ public class Payment implements AdditionalDataHolder, Parsable {
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(6);
         deserializerMap.put("amount", (n) -> { this.setAmount(n.getObjectValue(Amount::createFromDiscriminatorValue)); });
-        deserializerMap.put("paymentDate", (n) -> { this.setPaymentDate(n.getStringValue()); });
+        deserializerMap.put("paymentDate", (n) -> { this.setPaymentDate(n.getOffsetDateTimeValue()); });
         deserializerMap.put("paymentHolds", (n) -> { this.setPaymentHolds(n.getCollectionOfObjectValues(PaymentHold::createFromDiscriminatorValue)); });
         deserializerMap.put("paymentMethod", (n) -> { this.setPaymentMethod(n.getEnumValue(PaymentMethodTypeEnum::forValue)); });
         deserializerMap.put("paymentReferenceId", (n) -> { this.setPaymentReferenceId(n.getStringValue()); });
@@ -103,10 +104,10 @@ public class Payment implements AdditionalDataHolder, Parsable {
     }
     /**
      * Gets the paymentDate property value. The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
-     * @return a {@link String}
+     * @return a {@link OffsetDateTime}
      */
     @jakarta.annotation.Nullable
-    public String getPaymentDate() {
+    public OffsetDateTime getPaymentDate() {
         return this.paymentDate;
     }
     /**
@@ -148,7 +149,7 @@ public class Payment implements AdditionalDataHolder, Parsable {
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
         writer.writeObjectValue("amount", this.getAmount());
-        writer.writeStringValue("paymentDate", this.getPaymentDate());
+        writer.writeOffsetDateTimeValue("paymentDate", this.getPaymentDate());
         writer.writeCollectionOfObjectValues("paymentHolds", this.getPaymentHolds());
         writer.writeEnumValue("paymentMethod", this.getPaymentMethod());
         writer.writeStringValue("paymentReferenceId", this.getPaymentReferenceId());
@@ -173,7 +174,7 @@ public class Payment implements AdditionalDataHolder, Parsable {
      * Sets the paymentDate property value. The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the paymentDate property.
      */
-    public void setPaymentDate(@jakarta.annotation.Nullable final String value) {
+    public void setPaymentDate(@jakarta.annotation.Nullable final OffsetDateTime value) {
         this.paymentDate = value;
     }
     /**

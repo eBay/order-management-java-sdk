@@ -18,6 +18,7 @@ import com.microsoft.kiota.serialization.AdditionalDataHolder;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
 import com.microsoft.kiota.serialization.SerializationWriter;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -41,11 +42,11 @@ public class LinkedOrderLineItem implements AdditionalDataHolder, Parsable {
     /**
      * The end of the date range in which the linked line item is expected to be delivered to the shipping address.
      */
-    private String maxEstimatedDeliveryDate;
+    private OffsetDateTime maxEstimatedDeliveryDate;
     /**
      * The beginning of the date range in which the linked line item is expected to be delivered to the shipping address.
      */
-    private String minEstimatedDeliveryDate;
+    private OffsetDateTime minEstimatedDeliveryDate;
     /**
      * The unique identifier of the order to which the linked line item belongs.
      */
@@ -95,8 +96,8 @@ public class LinkedOrderLineItem implements AdditionalDataHolder, Parsable {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(8);
         deserializerMap.put("lineItemAspects", (n) -> { this.setLineItemAspects(n.getCollectionOfObjectValues(NameValuePair::createFromDiscriminatorValue)); });
         deserializerMap.put("lineItemId", (n) -> { this.setLineItemId(n.getStringValue()); });
-        deserializerMap.put("maxEstimatedDeliveryDate", (n) -> { this.setMaxEstimatedDeliveryDate(n.getStringValue()); });
-        deserializerMap.put("minEstimatedDeliveryDate", (n) -> { this.setMinEstimatedDeliveryDate(n.getStringValue()); });
+        deserializerMap.put("maxEstimatedDeliveryDate", (n) -> { this.setMaxEstimatedDeliveryDate(n.getOffsetDateTimeValue()); });
+        deserializerMap.put("minEstimatedDeliveryDate", (n) -> { this.setMinEstimatedDeliveryDate(n.getOffsetDateTimeValue()); });
         deserializerMap.put("orderId", (n) -> { this.setOrderId(n.getStringValue()); });
         deserializerMap.put("sellerId", (n) -> { this.setSellerId(n.getStringValue()); });
         deserializerMap.put("shipments", (n) -> { this.setShipments(n.getCollectionOfObjectValues(TrackingInfo::createFromDiscriminatorValue)); });
@@ -121,18 +122,18 @@ public class LinkedOrderLineItem implements AdditionalDataHolder, Parsable {
     }
     /**
      * Gets the maxEstimatedDeliveryDate property value. The end of the date range in which the linked line item is expected to be delivered to the shipping address.
-     * @return a {@link String}
+     * @return a {@link OffsetDateTime}
      */
     @jakarta.annotation.Nullable
-    public String getMaxEstimatedDeliveryDate() {
+    public OffsetDateTime getMaxEstimatedDeliveryDate() {
         return this.maxEstimatedDeliveryDate;
     }
     /**
      * Gets the minEstimatedDeliveryDate property value. The beginning of the date range in which the linked line item is expected to be delivered to the shipping address.
-     * @return a {@link String}
+     * @return a {@link OffsetDateTime}
      */
     @jakarta.annotation.Nullable
-    public String getMinEstimatedDeliveryDate() {
+    public OffsetDateTime getMinEstimatedDeliveryDate() {
         return this.minEstimatedDeliveryDate;
     }
     /**
@@ -175,8 +176,8 @@ public class LinkedOrderLineItem implements AdditionalDataHolder, Parsable {
         Objects.requireNonNull(writer);
         writer.writeCollectionOfObjectValues("lineItemAspects", this.getLineItemAspects());
         writer.writeStringValue("lineItemId", this.getLineItemId());
-        writer.writeStringValue("maxEstimatedDeliveryDate", this.getMaxEstimatedDeliveryDate());
-        writer.writeStringValue("minEstimatedDeliveryDate", this.getMinEstimatedDeliveryDate());
+        writer.writeOffsetDateTimeValue("maxEstimatedDeliveryDate", this.getMaxEstimatedDeliveryDate());
+        writer.writeOffsetDateTimeValue("minEstimatedDeliveryDate", this.getMinEstimatedDeliveryDate());
         writer.writeStringValue("orderId", this.getOrderId());
         writer.writeStringValue("sellerId", this.getSellerId());
         writer.writeCollectionOfObjectValues("shipments", this.getShipments());
@@ -208,14 +209,14 @@ public class LinkedOrderLineItem implements AdditionalDataHolder, Parsable {
      * Sets the maxEstimatedDeliveryDate property value. The end of the date range in which the linked line item is expected to be delivered to the shipping address.
      * @param value Value to set for the maxEstimatedDeliveryDate property.
      */
-    public void setMaxEstimatedDeliveryDate(@jakarta.annotation.Nullable final String value) {
+    public void setMaxEstimatedDeliveryDate(@jakarta.annotation.Nullable final OffsetDateTime value) {
         this.maxEstimatedDeliveryDate = value;
     }
     /**
      * Sets the minEstimatedDeliveryDate property value. The beginning of the date range in which the linked line item is expected to be delivered to the shipping address.
      * @param value Value to set for the minEstimatedDeliveryDate property.
      */
-    public void setMinEstimatedDeliveryDate(@jakarta.annotation.Nullable final String value) {
+    public void setMinEstimatedDeliveryDate(@jakarta.annotation.Nullable final OffsetDateTime value) {
         this.minEstimatedDeliveryDate = value;
     }
     /**

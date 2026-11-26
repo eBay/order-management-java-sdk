@@ -57,6 +57,11 @@ public final class DynamicGraphQLClient {
                 "No access token. Pass accessToken or set OrderManagementConfiguration.accessToken.");
         }
 
+        if (!config.isTrustedUrl(config.getGraphQLBaseUrl())) {
+            throw new IllegalStateException(
+                "graphQLBaseUrl is not trusted: it must use https, or http on a loopback host, and its host must be in OrderManagementConfiguration allowedHosts.");
+        }
+
         Map<String, String> headers = new HashMap<>(config.getDefaultRequestOptions().getHeaders());
         if (requestOptions != null) {
             headers.putAll(requestOptions.getHeaders());

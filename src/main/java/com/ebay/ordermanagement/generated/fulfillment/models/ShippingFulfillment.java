@@ -18,6 +18,7 @@ import com.microsoft.kiota.serialization.AdditionalDataHolder;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
 import com.microsoft.kiota.serialization.SerializationWriter;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -45,7 +46,7 @@ public class ShippingFulfillment implements AdditionalDataHolder, Parsable {
     /**
      * The date and time that the fulfillment package was shipped. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      */
-    private String shippedDate;
+    private OffsetDateTime shippedDate;
     /**
      * The eBay code identifying the shipping carrier for this fulfillment. This field is returned if available. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The Trading API&apos;s &lt;strong&gt;ShippingCarrierCodeType&lt;/strong&gt; enumeration type contains the most current list of eBay shipping carrier codes and the countries served by each carrier. See &lt;a href=&quot;https://developer.ebay.com/Devzone/XML/docs/Reference/eBay/types/ShippingCarrierCodeType.html &quot; target=&quot;_blank&quot;&gt;ShippingCarrierCodeType&lt;/a&gt;.&lt;/span&gt;
      */
@@ -84,7 +85,7 @@ public class ShippingFulfillment implements AdditionalDataHolder, Parsable {
         deserializerMap.put("fulfillmentId", (n) -> { this.setFulfillmentId(n.getStringValue()); });
         deserializerMap.put("lineItems", (n) -> { this.setLineItems(n.getCollectionOfObjectValues(LineItemReference::createFromDiscriminatorValue)); });
         deserializerMap.put("shipmentTrackingNumber", (n) -> { this.setShipmentTrackingNumber(n.getStringValue()); });
-        deserializerMap.put("shippedDate", (n) -> { this.setShippedDate(n.getStringValue()); });
+        deserializerMap.put("shippedDate", (n) -> { this.setShippedDate(n.getOffsetDateTimeValue()); });
         deserializerMap.put("shippingCarrierCode", (n) -> { this.setShippingCarrierCode(n.getStringValue()); });
         return deserializerMap;
     }
@@ -114,10 +115,10 @@ public class ShippingFulfillment implements AdditionalDataHolder, Parsable {
     }
     /**
      * Gets the shippedDate property value. The date and time that the fulfillment package was shipped. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
-     * @return a {@link String}
+     * @return a {@link OffsetDateTime}
      */
     @jakarta.annotation.Nullable
-    public String getShippedDate() {
+    public OffsetDateTime getShippedDate() {
         return this.shippedDate;
     }
     /**
@@ -137,7 +138,7 @@ public class ShippingFulfillment implements AdditionalDataHolder, Parsable {
         writer.writeStringValue("fulfillmentId", this.getFulfillmentId());
         writer.writeCollectionOfObjectValues("lineItems", this.getLineItems());
         writer.writeStringValue("shipmentTrackingNumber", this.getShipmentTrackingNumber());
-        writer.writeStringValue("shippedDate", this.getShippedDate());
+        writer.writeOffsetDateTimeValue("shippedDate", this.getShippedDate());
         writer.writeStringValue("shippingCarrierCode", this.getShippingCarrierCode());
         writer.writeAdditionalData(this.getAdditionalData());
     }
@@ -173,7 +174,7 @@ public class ShippingFulfillment implements AdditionalDataHolder, Parsable {
      * Sets the shippedDate property value. The date and time that the fulfillment package was shipped. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;
      * @param value Value to set for the shippedDate property.
      */
-    public void setShippedDate(@jakarta.annotation.Nullable final String value) {
+    public void setShippedDate(@jakarta.annotation.Nullable final OffsetDateTime value) {
         this.shippedDate = value;
     }
     /**
